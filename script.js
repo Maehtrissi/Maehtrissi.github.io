@@ -23,8 +23,22 @@ modal.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
 });
+const SPONTI_SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbw3Z-8DkG9I3GPxeCyqOrwIVMRyE5tcZFDEHxhSJgdLOqgue-K3JmKwTPM8X4g8ahI5/exec";
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const data = new FormData(form);
+  fetch(SPONTI_SIGNUP_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify({
+      name: data.get("name"),
+      email: data.get("email"),
+      business: data.get("business"),
+      consent: data.get("consent") ? "Ja" : "Nein",
+    }),
+  }).catch(() => {});
   form.hidden = true;
   success.hidden = false;
 });
