@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="So einfach buchst du einen Kurs auf Sponti – in wenigen Klicks." />
+    <title>In wenigen Klicks buchen | Sponti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="courses-page">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="Sponti Startseite"><span>Sponti</span></a>
+      <a class="text-link" href="index.html">← Zur Startseite</a>
+      <button class="button button-small button-dark" data-open-booking>Sponti beitreten <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main>
+      <section class="courses-heading">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> So einfach geht's</div>
+        <h1>In wenigen Klicks<br /><em>gebucht.</em></h1>
+        <p>Kein Konto, keine lange Anmeldung. So kommst du in unter zwei Minuten zu deinem nächsten Kurs.</p>
+      </section>
+
+      <section class="steps-section" aria-label="Buchungsschritte">
+        <article class="step-card">
+          <div class="step-number">01</div>
+          <h2>Kurs auswählen</h2>
+          <p>Stöbere durch freie Plätze in deiner Nähe und finde, was zu dir passt.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-number">02</div>
+          <h2>Zeit bestätigen</h2>
+          <p>Wähle Datum und Uhrzeit – alle Termine sind garantiert noch verfügbar.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-number">03</div>
+          <h2>Daten eingeben</h2>
+          <p>Name und E-Mail reichen. Keine Registrierung, kein Passwort nötig.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-number">04</div>
+          <h2>Sofort bestätigt</h2>
+          <p>Du erhältst direkt eine Bestätigung per E-Mail – dein Platz ist sicher.</p>
+        </article>
+      </section>
+
+      <section class="booking-preview-section">
+        <div class="booking-preview-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Ohne Umwege</div>
+          <h2>Probier's<br /><em>gleich aus.</em></h2>
+          <p>So sieht deine Buchung aus – ausfüllen, abschicken, fertig.</p>
+          <ul class="booking-facts">
+            <li>✓ Kostenlos stornierbar bis 24 Std. vorher</li>
+            <li>✓ Bezahlung erst vor Ort oder per Rechnung</li>
+            <li>✓ Bestätigung landet sofort in deinem Postfach</li>
+          </ul>
+        </div>
+        <div class="booking-preview-card">
+          <div class="mini-label">Wähle deinen Kurs</div>
+          <h3 id="selected-course-title">Ton &amp; Kaffee</h3>
+          <span class="course-price-inline" id="selected-course-meta">ab 29 € · Do, 18:00 Uhr</span>
+          <form class="mini-form">
+            <label>Kurs
+              <select id="course-select">
+                <option data-price="ab 29 €" data-times="Do · 18:00 Uhr,Sa · 10:00 Uhr,So · 15:00 Uhr" data-spots="4 Plätze frei">Ton &amp; Kaffee</option>
+                <option data-price="ab 18 €" data-times="Fr · 09:30 Uhr,Sa · 08:00 Uhr,So · 09:30 Uhr" data-spots="6 Plätze frei">Morning Flow</option>
+                <option data-price="ab 42 €" data-times="Fr · 19:00 Uhr,Sa · 18:00 Uhr" data-spots="2 Plätze frei">Pasta selber machen</option>
+                <option data-price="ab 24 €" data-times="Sa · 14:00 Uhr,So · 11:00 Uhr" data-spots="5 Plätze frei">City Photo Walk</option>
+                <option data-price="ab 35 €" data-times="Sa · 16:30 Uhr,So · 13:00 Uhr" data-spots="3 Plätze frei">Blumen arrangieren</option>
+                <option data-price="ab 16 €" data-times="So · 11:00 Uhr,So · 17:00 Uhr" data-spots="8 Plätze frei">Dance Basics</option>
+              </select>
+            </label>
+            <label>Uhrzeit
+              <select id="time-select"></select>
+            </label>
+            <span class="spots-badge" id="selected-course-spots">4 Plätze frei</span>
+            <label>Name<input placeholder="Dein Name" disabled /></label>
+            <label>E-Mail<input placeholder="du@beispiel.de" disabled /></label>
+            <button class="button button-primary" type="button" data-open-booking>Platz sichern <span aria-hidden="true">↗</span></button>
+          </form>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-leaf"></div>
+        <div class="eyebrow light"><span class="eyebrow-dot"></span> Bereit für dein nächstes Erlebnis?</div>
+        <h2>Finde einen<br /><em>Kurs für dich.</em></h2>
+        <p>Alle Kurse mit freien Plätzen auf einen Blick.</p>
+        <a class="button button-light" href="kurse.html">Kurse ansehen <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="logo" href="index.html"><span>Sponti</span></a><span>Kurzfristig freie Kursplätze für neugierige Menschen.</span><span>© 2024 Sponti</span></footer>
+
+    <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" data-close-booking aria-label="Anmeldeformular schließen">×</button>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Sei als Erstes dabei</div>
+        <h2 id="modal-title">Sponti beitreten.</h2>
+        <p>Verrate uns, wo du bist und was du magst. Wir schicken dir neue Kurse mit freien Plätzen.</p>
+        <form id="demo-form">
+          <label>Vor- und Nachname<input name="name" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@beispiel.de" /></label>
+          <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
+          <button class="button button-primary" type="submit">Auf dem Laufenden bleiben <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      const courseSelect = document.querySelector("#course-select");
+      const timeSelect = document.querySelector("#time-select");
+      if (courseSelect && timeSelect) {
+        const title = document.querySelector("#selected-course-title");
+        const meta = document.querySelector("#selected-course-meta");
+        const spots = document.querySelector("#selected-course-spots");
+
+        const populateTimes = () => {
+          const option = courseSelect.selectedOptions[0];
+          const times = option.dataset.times.split(",");
+          timeSelect.innerHTML = times
+            .map((time) => `<option>${time}</option>`)
+            .join("");
+        };
+
+        const updateCourse = () => {
+          const option = courseSelect.selectedOptions[0];
+          title.textContent = option.textContent;
+          meta.textContent = `${option.dataset.price} · ${timeSelect.value}`;
+          spots.textContent = option.dataset.spots;
+        };
+
+        courseSelect.addEventListener("change", () => {
+          populateTimes();
+          updateCourse();
+        });
+        timeSelect.addEventListener("change", updateCourse);
+
+        populateTimes();
+        updateCourse();
+      }
+    </script>
+  </body>
+</html>

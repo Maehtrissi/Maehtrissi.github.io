@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Entdecke alle Kurse mit freien Plätzen auf Sponti." />
+    <title>Freie Kurse | Sponti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="courses-page">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="Sponti Startseite"><span>Sponti</span></a>
+      <a class="text-link" href="index.html">← Zur Startseite</a>
+      <button class="button button-small button-dark" data-open-booking>Sponti beitreten <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main>
+      <section class="courses-heading">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Kurzfristig freie Plätze</div>
+        <h1>Finde deinen<br /><em>nächsten Kurs.</em></h1>
+        <p>Alle Erlebnisse, die in den nächsten Tagen stattfinden und noch Platz für dich haben.</p>
+        <div class="course-filters" aria-label="Kurse filtern">
+          <button class="filter active" data-filter="alle">Alle Kurse</button>
+          <button class="filter" data-filter="yoga-wellness">Yoga &amp; Wellness</button>
+          <button class="filter" data-filter="kochen-geniessen">Kochen &amp; Genießen</button>
+          <button class="filter" data-filter="kunst-handwerk">Kunst &amp; Handwerk</button>
+          <button class="filter" data-filter="fotografie-design">Fotografie &amp; Design</button>
+          <button class="filter" data-filter="tanz-bewegung">Tanz &amp; Bewegung</button>
+          <button class="filter" data-filter="natur-draussen">Natur &amp; Draußen</button>
+        </div>
+        <div class="filter-group-label">Tag</div>
+        <div class="course-filters" aria-label="Nach Tag filtern">
+          <button class="filter day-filter" data-day="do">Donnerstag</button>
+          <button class="filter day-filter" data-day="fr">Freitag</button>
+          <button class="filter day-filter" data-day="sa">Samstag</button>
+          <button class="filter day-filter" data-day="so">Sonntag</button>
+        </div>
+        <div class="filter-group-label">Uhrzeit</div>
+        <div class="course-filters" aria-label="Nach Uhrzeit filtern">
+          <button class="filter time-filter" data-time="vormittag">Vormittag</button>
+          <button class="filter time-filter" data-time="nachmittag">Nachmittag</button>
+          <button class="filter time-filter" data-time="abend">Abend</button>
+        </div>
+      </section>
+
+      <section class="course-grid" aria-label="Verfügbare Kurse">
+        <article class="course-card" data-category="kunst-handwerk" data-day="do" data-time="abend">
+          <div class="course-image course-image-clay"><span class="course-category">Kunst &amp; Handwerk</span><span class="course-date">Do · 18:00 Uhr</span></div>
+          <div class="course-card-body"><h2>Ton &amp; Kaffee</h2><p>Forme deine erste Tasse in entspannter Atmosphäre.</p><div class="course-details"><span>📍 Atelier Nord</span><strong>4 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 29 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+        <article class="course-card" data-category="yoga-wellness" data-day="fr" data-time="vormittag">
+          <div class="course-image course-image-yoga"><span class="course-category">Yoga &amp; Wellness</span><span class="course-date">Fr · 09:30 Uhr</span></div>
+          <div class="course-card-body"><h2>Morning Flow</h2><p>Starte mit Bewegung, Atem und einem klaren Kopf in den Tag.</p><div class="course-details"><span>📍 Namaste Studio</span><strong>6 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 18 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+        <article class="course-card" data-category="kochen-geniessen" data-day="fr" data-time="abend">
+          <div class="course-image course-image-pasta"><span class="course-category">Kochen &amp; Genießen</span><span class="course-date">Fr · 19:00 Uhr</span></div>
+          <div class="course-card-body"><h2>Pasta selber machen</h2><p>Gemeinsam kneten, rollen und genießen – buon appetito!</p><div class="course-details"><span>📍 Cucina Studio</span><strong>2 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 42 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+        <article class="course-card" data-category="fotografie-design" data-day="sa" data-time="nachmittag">
+          <div class="course-image course-image-photo"><span class="course-category">Fotografie &amp; Design</span><span class="course-date">Sa · 14:00 Uhr</span></div>
+          <div class="course-card-body"><h2>City Photo Walk</h2><p>Entdecke deine Stadt durch neue Perspektiven und Linsen.</p><div class="course-details"><span>📍 Treffpunkt: Marktplatz</span><strong>5 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 24 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+        <article class="course-card" data-category="natur-draussen" data-day="sa" data-time="nachmittag">
+          <div class="course-image course-image-bouquet"><span class="course-category">Natur &amp; Draußen</span><span class="course-date">Sa · 16:30 Uhr</span></div>
+          <div class="course-card-body"><h2>Blumen arrangieren</h2><p>Gestalte deinen eigenen saisonalen Strauß für zuhause.</p><div class="course-details"><span>📍 Blütenwerk</span><strong>3 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 35 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+        <article class="course-card" data-category="tanz-bewegung" data-day="so" data-time="vormittag">
+          <div class="course-image course-image-dance"><span class="course-category">Tanz &amp; Bewegung</span><span class="course-date">So · 11:00 Uhr</span></div>
+          <div class="course-card-body"><h2>Dance Basics</h2><p>Ein lockerer Einstieg in Rhythmus, Bewegung und gute Laune.</p><div class="course-details"><span>📍 Studio West</span><strong>8 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 16 €</span><button class="course-book" data-open-booking>Platz sichern ↗</button></div></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="logo" href="index.html"><span>Sponti</span></a><span>Kurzfristig freie Kursplätze für neugierige Menschen.</span><span>© 2024 Sponti</span></footer>
+
+    <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" data-close-booking aria-label="Anmeldeformular schließen">×</button>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Sei als Erstes dabei</div>
+        <h2 id="modal-title">Sponti beitreten.</h2>
+        <p>Verrate uns, wo du bist und was du magst. Wir schicken dir neue Kurse mit freien Plätzen.</p>
+        <form id="demo-form">
+          <label>Vor- und Nachname<input name="name" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@beispiel.de" /></label>
+          <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
+          <button class="button button-primary" type="submit">Auf dem Laufenden bleiben <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      const categoryButtons = document.querySelectorAll(".filter[data-filter]");
+      const dayButtons = document.querySelectorAll(".day-filter");
+      const timeButtons = document.querySelectorAll(".time-filter");
+      const courseCards = document.querySelectorAll(".course-card");
+      const allButton = document.querySelector('.filter[data-filter="alle"]');
+
+      const activeValues = (buttons, attr) =>
+        [...buttons]
+          .filter((b) => b.classList.contains("active"))
+          .map((b) => b.dataset[attr]);
+
+      const applyFilters = () => {
+        const activeCategories = activeValues(categoryButtons, "filter").filter(
+          (f) => f !== "alle"
+        );
+        const activeDays = activeValues(dayButtons, "day");
+        const activeTimes = activeValues(timeButtons, "time");
+
+        courseCards.forEach((card) => {
+          const matchCategory =
+            activeCategories.length === 0 ||
+            activeCategories.includes(card.dataset.category);
+          const matchDay =
+            activeDays.length === 0 || activeDays.includes(card.dataset.day);
+          const matchTime =
+            activeTimes.length === 0 || activeTimes.includes(card.dataset.time);
+          card.style.display =
+            matchCategory && matchDay && matchTime ? "" : "none";
+        });
+
+        allButton.classList.toggle("active", activeCategories.length === 0);
+      };
+
+      allButton.addEventListener("click", () => {
+        categoryButtons.forEach((b) => b.classList.remove("active"));
+        allButton.classList.add("active");
+        applyFilters();
+      });
+
+      categoryButtons.forEach((button) => {
+        if (button === allButton) return;
+        button.addEventListener("click", () => {
+          button.classList.toggle("active");
+          applyFilters();
+        });
+      });
+
+      [...dayButtons, ...timeButtons].forEach((button) => {
+        button.addEventListener("click", () => {
+          button.classList.toggle("active");
+          applyFilters();
+        });
+      });
+
+      const urlFilter = new URLSearchParams(window.location.search).get("filter");
+      const urlButton = [...categoryButtons].find((b) => b.dataset.filter === urlFilter);
+      if (urlButton) {
+        urlButton.classList.add("active");
+        applyFilters();
+      }
+    </script>
+  </body>
+</html>

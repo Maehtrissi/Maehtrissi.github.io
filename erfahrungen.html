@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lies Erfahrungen von Menschen, die spontane Kurse über Sponti gefunden haben." />
+    <title>Erfahrungen | Sponti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="courses-page">
+    <header class="site-header">
+      <a class="logo" href="index.html" aria-label="Sponti Startseite"><span>Sponti</span></a>
+      <a class="text-link" href="index.html">← Zur Startseite</a>
+      <button class="button button-small button-dark" data-open-booking>Sponti beitreten <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main>
+      <section class="courses-heading">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Aus der Sponti-Community</div>
+        <h1>Erfahrungen<br /><em>unserer Mitglieder.</em></h1>
+        <p>Echte Geschichten von Menschen, die spontan einen Kurs gebucht haben.</p>
+      </section>
+
+      <section class="review-form-section">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Deine Meinung zählt</div>
+        <h2>Teile deine<br /><em>eigene Erfahrung.</em></h2>
+        <form class="review-form" id="review-form">
+          <label>Dein Name<input name="name" required placeholder="Dein Name" /></label>
+          <label>Welchen Kurs hast du gemacht?
+            <select name="course" required>
+              <option value="" disabled selected>Kurs auswählen</option>
+              <option value="Ton &amp; Kaffee">Ton &amp; Kaffee</option>
+              <option value="Morning Flow">Morning Flow</option>
+              <option value="Pasta selber machen">Pasta selber machen</option>
+              <option value="City Photo Walk">City Photo Walk</option>
+              <option value="Blumen arrangieren">Blumen arrangieren</option>
+              <option value="Dance Basics">Dance Basics</option>
+            </select>
+          </label>
+          <label>Deine Erfahrung<textarea name="review" rows="3" required placeholder="Wie war dein Kurs?"></textarea></label>
+          <button class="button button-primary" type="submit">Erfahrung teilen <span aria-hidden="true">↗</span></button>
+        </form>
+      </section>
+
+      <section class="story-grid" aria-label="Erfahrungsberichte" id="story-grid">
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Ich habe Sponti an einem Mittwoch geöffnet, einen Pasta-Kurs für Freitag gefunden und hatte den besten Abend.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">LK</div><div><strong>Laura K.</strong><span>Pasta selber machen</span></div></div>
+        </article>
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Ich wollte schon lange Töpfern ausprobieren. Über Sponti fand ich zwei Tage später einen freien Platz.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">MT</div><div><strong>Markus T.</strong><span>Ton &amp; Kaffee</span></div></div>
+        </article>
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Der Morning Flow war die beste spontane Entscheidung der Woche. Buchen ging in unter einer Minute.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">SJ</div><div><strong>Sara J.</strong><span>Morning Flow</span></div></div>
+        </article>
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Ich liebe es, dass ich sehen kann, wie viele Plätze noch frei sind. Kein Warten, einfach machen.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">DP</div><div><strong>David P.</strong><span>City Photo Walk</span></div></div>
+        </article>
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Am Samstagmorgen spontan Blumen arrangieren – ich wusste gar nicht, dass es das in meiner Nähe gibt.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">NF</div><div><strong>Nina F.</strong><span>Blumen arrangieren</span></div></div>
+        </article>
+        <article class="story-card">
+          <div class="testimonial-quote story-quote">„Dance Basics war mein erster Sponti-Kurs. Mittlerweile schaue ich jede Woche vorbei, was frei ist.“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">RB</div><div><strong>Ricardo B.</strong><span>Dance Basics</span></div></div>
+        </article>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-leaf"></div>
+        <div class="eyebrow light"><span class="eyebrow-dot"></span> Werde Teil der Community</div>
+        <h2>Deine Geschichte<br /><em>kommt bestimmt.</em></h2>
+        <p>Finde jetzt einen Kurs mit freien Plätzen und erlebe etwas Spontanes.</p>
+        <a class="button button-light" href="kurse.html">Kurse ansehen <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="logo" href="index.html"><span>Sponti</span></a><span>Kurzfristig freie Kursplätze für neugierige Menschen.</span><span>© 2024 Sponti</span></footer>
+
+    <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" data-close-booking aria-label="Anmeldeformular schließen">×</button>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Sei als Erstes dabei</div>
+        <h2 id="modal-title">Sponti beitreten.</h2>
+        <p>Verrate uns, wo du bist und was du magst. Wir schicken dir neue Kurse mit freien Plätzen.</p>
+        <form id="demo-form">
+          <label>Vor- und Nachname<input name="name" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@beispiel.de" /></label>
+          <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
+          <button class="button button-primary" type="submit">Auf dem Laufenden bleiben <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      const reviewForm = document.querySelector("#review-form");
+      const storyGrid = document.querySelector("#story-grid");
+
+      const initials = (name) =>
+        name
+          .trim()
+          .split(/\s+/)
+          .map((part) => part[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+
+      reviewForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(reviewForm);
+        const name = data.get("name").trim();
+        const course = data.get("course");
+        const review = data.get("review").trim();
+        if (!name || !course || !review) return;
+
+        const card = document.createElement("article");
+        card.className = "story-card";
+        card.innerHTML = `
+          <div class="testimonial-quote story-quote">„${review}“</div>
+          <div class="testimonial-meta"><div class="testimonial-avatar">${initials(name)}</div><div><strong>${name}</strong><span>${course}</span></div></div>
+        `;
+        storyGrid.prepend(card);
+        reviewForm.reset();
+      });
+    </script>
+  </body>
+</html>
