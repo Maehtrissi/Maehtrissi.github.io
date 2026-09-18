@@ -23,7 +23,7 @@ modal.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
 });
-const SPONTI_SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbw3Z-8DkG9I3GPxeCyqOrwIVMRyE5tcZFDEHxhSJgdLOqgue-K3JmKwTPM8X4g8ahI5/exec";
+const SPONTI_SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwiZbl3r1f_LWe_i8PAGY03aJ9-8jBC-Eq1cOpp3Um-Jc5hyNbZzDGTadKmDw07OCM/exec";
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -36,7 +36,6 @@ form.addEventListener("submit", (event) => {
       name: data.get("name"),
       email: data.get("email"),
       business: data.get("business"),
-      consent: data.get("consent") ? "Ja" : "Nein",
     }),
   }).catch(() => {});
   form.hidden = true;
@@ -52,4 +51,3 @@ if (partnerForm) {
     partnerSuccess.hidden = false;
   });
 }
-
