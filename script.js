@@ -23,23 +23,44 @@ modal.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
 });
-const SPONTI_SIGNUP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxwiZbl3r1f_LWe_i8PAGY03aJ9-8jBC-Eq1cOpp3Um-Jc5hyNbZzDGTadKmDw07OCM/exec";
+const SUPABASE_URL = "https://ehifskiigrfpxeiruyxr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy";
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = new FormData(form);
-  fetch(SPONTI_SIGNUP_ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "text/plain" },
-    body: JSON.stringify({
-      name: data.get("name"),
-      email: data.get("email"),
-      business: data.get("business"),
-    }),
-  }).catch(() => {});
-  form.hidden = true;
-  success.hidden = false;
+
+  try {
+    const data = new FormData(form);
+
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/Kunden%20-%20Users`,
+      {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          Name: data.get("name"),
+          Email: data.get("email"),
+          Interest: data.get("business")
+        })
+      }
+    );
+
+    if (!response.ok) {
+  throw new Error("Fehler beim Speichern");
+}
+
+    form.hidden = true;
+    success.hidden = false;
+
+  } catch (error) {
+    console.error(error);
+    alert("Fehler beim Speichern");
+  }
 });
 
 const partnerForm = document.querySelector("#partner-form");
