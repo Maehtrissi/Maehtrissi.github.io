@@ -64,13 +64,13 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
 }
 
 .logo img {
-  height: 45px;
+  height: 20px;
   width: auto;
   display: block;
 }
 
 .logo span {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
   color: #0f5859;
 }
