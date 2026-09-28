@@ -62,13 +62,11 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
   align-items: center;
   gap: 10px;
 }
-<br>
 .logo img {
   height: 10px;
   width: auto;
   display: block;
 }
-<br>
 .logo span {
   font-size: 25px;
   font-weight: 700;
