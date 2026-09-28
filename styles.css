@@ -55,9 +55,6 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
 .text-link-nav-motion:hover {
   transform: translateY(-1.5px) scale(1.07);
 }
-.text-link-nav-motion:hover span {
-  transform: none;
-}
 .trusted { align-items: center; display: flex; gap: 13px; margin-top: 55px; }
 .trusted p { color: var(--muted); font-size: 11px; line-height: 1.5; max-width: 170px; }
 .trusted strong { color: var(--ink); }
