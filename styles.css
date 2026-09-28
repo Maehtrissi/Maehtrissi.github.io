@@ -68,10 +68,35 @@ select {
   margin-left: 100px;
 }
 
+/* ==================================================
+   NAVIGATION OBEN
+   ================================================== */
+
+.nav-links {
+  display: flex;*  gap: 35px;
+  margin-left: 100px;*}
+
 .nav-links a {
-  color: var(--muted);
+  color: var(--m*ted);
   font-size: 13px;
-  font-weight: 500;
+  font-we*ght: 500;
+
+  display: inline-block;
+  transform-origin: center;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Hover-Effekt */
+.nav-links a:hover {
+  color: var(--ink);
+  transform: scale(1.10);
+
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
 }
 
 
