@@ -72,3 +72,75 @@ if (partnerForm) {
     partnerSuccess.hidden = false;
   });
 }
+
+const locationCarousel = document.querySelector("[data-location-carousel]");
+
+if (locationCarousel) {
+  const viewport = locationCarousel.querySelector("[data-location-viewport]");
+  const cards = [...locationCarousel.querySelectorAll("[data-location-card]")];
+  const previousButton = locationCarousel.querySelector("[data-location-previous]");
+  const nextButton = locationCarousel.querySelector("[data-location-next]");
+  const status = locationCarousel.querySelector("[data-location-status]");
+  let activeIndex = 0;
+  let scrollTimer;
+
+  const setActiveCard = (index) => {
+    activeIndex = (index + cards.length) % cards.length;
+    cards.forEach((card, cardIndex) => {
+      const isActive = cardIndex === activeIndex;
+      card.classList.toggle("is-active", isActive);
+      card.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+
+    const city = cards[activeIndex].querySelector("strong").textContent;
+    status.textContent = `${city}, ${activeIndex + 1} von ${cards.length}`;
+  };
+
+  const scrollToCard = (index, focusViewport = false) => {
+    setActiveCard(index);
+    const card = cards[activeIndex];
+    viewport.scrollTo({
+      left: card.offsetLeft - (viewport.clientWidth - card.clientWidth) / 2,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+    if (focusViewport) viewport.focus({ preventScroll: true });
+  };
+
+  const syncActiveCard = () => {
+    const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+    const closestIndex = cards.reduce((closest, card, index) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2;
+      const closestCenter = cards[closest].offsetLeft + cards[closest].clientWidth / 2;
+      return Math.abs(cardCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter) ? index : closest;
+    }, 0);
+    setActiveCard(closestIndex);
+  };
+
+  previousButton.addEventListener("click", () => scrollToCard(activeIndex - 1, true));
+  nextButton.addEventListener("click", () => scrollToCard(activeIndex + 1, true));
+  viewport.addEventListener("scroll", () => {
+    window.clearTimeout(scrollTimer);
+    scrollTimer = window.setTimeout(syncActiveCard, 100);
+  }, { passive: true });
+  viewport.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollToCard(activeIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollToCard(activeIndex + 1);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      scrollToCard(0);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      scrollToCard(cards.length - 1);
+    }
+  });
+
+  setActiveCard(0);
+  requestAnimationFrame(() => scrollToCard(0));
+}

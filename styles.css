@@ -94,7 +94,7 @@ transform: translateY(-2px) scale(1.07);
 .logo-mark {
   display: none;
 }
-/* STANDORT-KARTEN */
+/* STANDORT-KARUSSELL */
 
 .locations-section {
   max-width: 1176px;
@@ -103,36 +103,67 @@ transform: translateY(-2px) scale(1.07);
   overflow: hidden;
 }
 
-.locations-section h2 {
-  font-size: clamp(45px, 5vw, 64px);
-  margin: 20px 0 50px;
+.locations-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 42px;
 }
 
-.location-stack {
+.locations-section h2 {
+  font-size: clamp(45px, 5vw, 64px);
+  margin: 20px 0 0;
+}
+
+.locations-intro {
+  max-width: 270px;
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.location-carousel {
   position: relative;
-  width: 650px;
-  height: 300px;
-  margin: 0 auto;
+}
+
+.location-viewport {
+  overflow-x: auto;
+  padding: 12px max(18vw, 150px) 28px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.location-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.location-viewport:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+  border-radius: 24px;
+}
+
+.location-track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
 }
 
 .location-card {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-
-  width: 220px;
-  height: 270px;
-
-  border-radius: 16px;
+  position: relative;
+  display: block;
+  width: min(56vw, 500px);
+  aspect-ratio: 1.32;
   overflow: hidden;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition:
-    transform .45s ease,
-    opacity .45s ease,
-    box-shadow .45s ease;
+  scroll-snap-align: center;
+  border-radius: 24px;
+  box-shadow: 0 12px 28px rgb(25 52 45 / 14%);
+  opacity: .58;
+  transform: scale(.86);
+  transition: transform .38s ease, opacity .38s ease, box-shadow .38s ease;
 }
 
 .location-card img {
@@ -142,27 +173,158 @@ transform: translateY(-2px) scale(1.07);
   display: block;
 }
 
+.location-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 32%, rgb(25 52 45 / 88%) 100%);
+}
+
+.location-card-copy {
+  position: absolute;
+  right: clamp(20px, 4vw, 36px);
+  bottom: clamp(20px, 4vw, 32px);
+  left: clamp(20px, 4vw, 36px);
+  display: grid;
+  gap: 2px;
+  color: var(--white);
+}
+
+.location-card-copy span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.location-card-copy strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1;
+}
+
+.location-card-copy b {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgb(255 254 250 / 65%);
+  border-radius: 50%;
+  font-size: 20px;
+  transition: background-color .2s ease, color .2s ease;
+}
+
 .location-card.is-active {
-  transform: translateX(-50%) scale(1);
   opacity: 1;
-  z-index: 5;
-  pointer-events: auto;
-  box-shadow: 0 15px 35px #19342d25;
+  transform: scale(1);
+  box-shadow: 0 20px 42px rgb(25 52 45 / 24%);
 }
 
-.location-card.is-prev {
-  transform: translateX(-115%) scale(.78) rotate(-7deg);
-  opacity: .65;
+.location-card:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .location-card.is-active:hover {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 25px 45px rgb(25 52 45 / 27%);
+  }
+
+  .location-card:hover .location-card-copy b {
+    background: var(--lime);
+    color: var(--ink);
+  }
+}
+
+.location-control {
+  position: absolute;
+  top: 50%;
   z-index: 2;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 10px 22px rgb(25 52 45 / 14%);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
 }
 
-.location-card.is-next {
-  transform: translateX(15%) scale(.78) rotate(7deg);
-  opacity: .65;
-  z-index: 2;
+.location-control-previous {
+  left: 6px;
 }
 
-.location-card.is-active:hover {
-  transform: translateX(-50%) translateY(-5px) scale(1.03);
-  box-shadow: 0 20px 40px #19342d30;
+.location-control-next {
+  right: 6px;
+}
+
+.location-control:hover {
+  color: var(--ink);
+  background: var(--lime);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.location-control:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.location-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .locations-section {
+    padding: 80px 0;
+  }
+
+  .locations-heading {
+    display: block;
+    margin: 0 20px 28px;
+  }
+
+  .locations-intro {
+    margin-top: 18px;
+  }
+
+  .location-viewport {
+    padding: 8px 12vw 24px;
+  }
+
+  .location-track {
+    gap: 16px;
+  }
+
+  .location-card {
+    width: 76vw;
+    border-radius: 20px;
+    transform: scale(.94);
+  }
+
+  .location-card.is-active {
+    transform: scale(1);
+  }
+
+  .location-control {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .location-viewport,
+  .location-card,
+  .location-card-copy b,
+  .location-control {
+    scroll-behavior: auto;
+    transition: none;
+  }
 }
