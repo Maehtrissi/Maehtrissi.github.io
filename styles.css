@@ -32,8 +32,24 @@ h1 { font-size: clamp(56px, 6.4vw, 86px); margin: 27px 0 24px; }
 h1 em, h2 em { color: var(--orange); font-style: italic; }
 .hero-text { color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 390px; }
 .hero-actions { align-items: center; display: flex; gap: 27px; margin-top: 33px; }
-.text-link { border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; padding-bottom: 4px; }
-.text-link span { margin-left: 13px; }
+.text-link {
+  border-bottom: 1px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  padding-bottom: 4px;
+  transition: transform 0.2s ease;
+}
+.text-link:hover {
+  transform: translateY(-2px) scale(1.07);
+}
+.text-link span {
+  margin-left: 13px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.text-link:hover span {
+  transform: translateY(3px);
+}
 .trusted { align-items: center; display: flex; gap: 13px; margin-top: 55px; }
 .trusted p { color: var(--muted); font-size: 11px; line-height: 1.5; max-width: 170px; }
 .trusted strong { color: var(--ink); }
