@@ -35,6 +35,7 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
 .hero-actions { align-items: center; display: flex; gap: 27px; margin-top: 33px; }
 .text-link {
   border-bottom: 1px solid var(--ink);
+  display: inline-flex;
   font-size: 13px;
   font-weight: 700;
   padding-bottom: 4px;
