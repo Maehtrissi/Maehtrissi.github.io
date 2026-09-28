@@ -64,7 +64,7 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
 }
 <br>
 .logo img {
-  height: 35px;
+  height: 20px;
   width: auto;
   display: block;
 }
