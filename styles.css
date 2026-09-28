@@ -81,18 +81,17 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Ganze Karte bewegt sich beim Hover leicht nach oben */
 .category-card:hover {
   box-shadow: 0 12px 25px #19342d22;
   transform: translateY(-4px);
 }
 
-/* Farbverlauf über der Karte */
-.category-card:after {
+.category-card::after {
   background: linear-gradient(145deg, transparent 35%, #19342d55);
   content: "";
   inset: 0;
   position: absolute;
+  pointer-events: none;
 }
 
 .category-card > * {
@@ -100,13 +99,12 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
   z-index: 1;
 }
 
-/* Kleiner Text oben */
 .category-card span {
   font-size: 10px;
   opacity: 0.8;
 }
 
-/* Titel wie Yoga, Kochen, Töpfern */
+/* Yoga, Kochen, Töpfern usw. */
 .category-card strong {
   display: inline-block;
   font-family: "Playfair Display", serif;
@@ -114,25 +112,23 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
   letter-spacing: -0.04em;
   line-height: 0.98;
   transform-origin: left center;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
 }
 
-/* Titel beim Hover vergrössern + unterstreichen */
+/* HOVER EFFEKT */
 .category-card:hover strong {
-  transform: scale(1.1);
+  transform: scale(1.12);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
 }
 
-/* Pfeil */
 .category-card b {
   align-self: flex-end;
   font-size: 21px;
   font-weight: 400;
 }
 
-/* Farben der einzelnen Kategorien */
 .category-yoga {
   background: linear-gradient(135deg, #76937e, #d3b66f);
 }
@@ -176,4 +172,20 @@ h1 em, h2 em { color: var(--orange); font-style: italic; }
   font-size: 25px;
   font-weight: 700;
   color: #0f5859;
+}
+/* ========================================
+   SPONTI KATEGORIEN HOVER
+   ======================================== */
+
+.category-card strong {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+
+.category-card:hover strong {
+  transform: scale(1.12);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
 }
