@@ -332,3 +332,330 @@ transform: translateY(-2px) scale(1.07);
     transition: none;
   }
 }
+
+.provider-page .site-header {
+  margin-bottom: 0;
+}
+
+.provider-hero,
+.provider-section,
+.provider-how,
+.provider-booking {
+  max-width: 1176px;
+  margin: 0 auto;
+  padding: 110px 0;
+}
+
+.provider-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+  align-items: center;
+  gap: 80px;
+  min-height: 620px;
+}
+
+.provider-hero h1,
+.provider-section h2,
+.provider-how h2,
+.provider-booking h2,
+.provider-costs h2,
+.provider-cta h2 {
+  font-size: clamp(44px, 5vw, 68px);
+  margin: 20px 0;
+}
+
+.provider-hero p,
+.provider-intro,
+.provider-booking p,
+.provider-costs p,
+.provider-cta p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+.provider-hero .button {
+  margin-top: 28px;
+}
+
+.provider-hero-card {
+  display: grid;
+  align-content: space-between;
+  min-height: 400px;
+  padding: 34px;
+  border-radius: 26px;
+  color: var(--ink);
+  background: var(--lime);
+  box-shadow: 18px 22px 0 var(--orange);
+  transform: rotate(3deg);
+}
+
+.provider-hero-card > span,
+.provider-booking-highlight > span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.provider-hero-card strong,
+.provider-booking-highlight strong {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.provider-hero-card div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.provider-hero-card b {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.provider-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 34px 80px;
+}
+
+.provider-section-heading {
+  grid-column: 1;
+}
+
+.provider-section .provider-intro {
+  align-self: end;
+  margin: 0 0 24px;
+}
+
+.provider-benefit-grid,
+.provider-category-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.provider-benefit-card {
+  min-height: 240px;
+  padding: 26px;
+  border-radius: 18px;
+  background: var(--white);
+}
+
+.provider-benefit-card > span {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.provider-benefit-card h3,
+.provider-steps h3 {
+  margin: 36px 0 10px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+  line-height: 1;
+}
+
+.provider-benefit-card p,
+.provider-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.provider-how {
+  padding-top: 100px;
+  border-top: 1px solid var(--line);
+}
+
+.provider-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin: 52px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.provider-steps li {
+  padding-top: 20px;
+  border-top: 2px solid var(--ink);
+}
+
+.provider-steps li > span {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.provider-booking {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.provider-booking p + p {
+  margin-top: 18px;
+}
+
+.provider-booking-highlight {
+  display: grid;
+  min-height: 300px;
+  padding: 32px;
+  border-radius: 24px;
+  color: var(--white);
+  background: var(--ink);
+}
+
+.provider-booking-highlight b {
+  align-self: end;
+  justify-self: end;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--lime);
+  font-size: 22px;
+}
+
+.provider-category-grid li {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.provider-other {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
+
+.provider-other strong {
+  color: var(--ink);
+}
+
+.provider-costs {
+  max-width: none;
+  padding: 110px max(20px, calc((100% - 1176px) / 2));
+  color: var(--white);
+  background: var(--ink);
+}
+
+.provider-costs p {
+  color: #c6d4ce;
+}
+
+.provider-costs strong {
+  display: block;
+  margin-top: 28px;
+  color: var(--lime);
+}
+
+.provider-cta {
+  padding: 120px 20px;
+  text-align: center;
+  background: var(--sage);
+}
+
+.provider-cta p {
+  margin: 0 auto 28px;
+}
+
+.provider-page .site-footer {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+}
+
+.footer-links a {
+  color: inherit;
+}
+
+@media (max-width: 760px) {
+  .provider-hero,
+  .provider-section,
+  .provider-how,
+  .provider-booking {
+    display: block;
+    padding: 74px 20px;
+  }
+
+  .provider-hero {
+    min-height: auto;
+  }
+
+  .provider-hero-card {
+    min-height: 300px;
+    margin-top: 52px;
+    box-shadow: 12px 15px 0 var(--orange);
+  }
+
+  .provider-section .provider-intro {
+    margin-top: 22px;
+  }
+
+  .provider-benefit-grid,
+  .provider-steps,
+  .provider-category-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .provider-benefit-grid {
+    margin-top: 38px;
+  }
+
+  .provider-benefit-card {
+    min-height: 0;
+  }
+
+  .provider-benefit-card h3 {
+    margin-top: 25px;
+  }
+
+  .provider-steps {
+    margin-top: 38px;
+  }
+
+  .provider-booking-highlight {
+    min-height: 250px;
+    margin-top: 42px;
+  }
+
+  .provider-costs {
+    padding: 78px 20px;
+  }
+
+  .provider-cta {
+    padding: 78px 20px;
+  }
+
+  .provider-page .site-footer {
+    gap: 18px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
