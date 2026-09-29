@@ -101,7 +101,7 @@
           <li>Yoga &amp; Wellness</li><li>Kochen &amp; Geniessen</li><li>Kunst &amp; Handwerk</li>
           <li>Fotografie &amp; Design</li><li>Tanz &amp; Bewegung</li><li>Natur &amp; Draussen</li>
         </ul>
-        <p class="provider-other"><strong>Dein Angebot passt in keine Kategorie?</strong><br> Kein Problem. Sponti soll mit neuen Erlebnissen wachsen. Melde dich bei uns, damit wir unser Sortiment erweitern. Wir sind dir sehr dankbar</p>
+        <p class="provider-other"><strong>Dein Angebot passt in keine Kategorie?</strong><br> Kein Problem. Sponti soll mit neuen Erlebnissen wachsen. Melde dich bei uns, damit wir unser Sortiment erweitern. Wir sind dir sehr dankbar.</p>
       </section>
 
       <section class="provider-costs" aria-labelledby="costs-title">
@@ -115,7 +115,15 @@
         <div class="eyebrow light"><span class="eyebrow-dot"></span> Interesse?</div>
         <h2 id="cta-title">Noch freie Plätze?<br><em>Lass sie uns füllen.</em></h2>
         <p>Mach dein Angebot auf Sponti sichtbar und erreiche Menschen, die spontan nach ihrem nächsten Erlebnis suchen.</p>
-        <a class="button button-light" href="mailto:info.sponti@gmail.com?subject=Angebot%20f%C3%BCr%20Sponti">Angebot einreichen <span aria-hidden="true">↗</span></a>
+      <div>
+        <form class="partner-form" id="partner-form">
+          <label>Name des Unternehmens<input name="company" required placeholder="z. B. Studio Blume" /></label>
+          <label>Ansprechperson<input name="contact" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@unternehmen.de" /></label>
+          <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
+          <label>Nachricht (optional)<textarea name="message" rows="3" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
+          <button class="button button-primary" type="submit">Anfrage senden <span aria-hidden="true">↗</span></button>
+          <p class="form-success" id="partner-success" hidden>Danke! Wir melden uns in Kürze bei dir.</p>
       </section>
     </main>
 
