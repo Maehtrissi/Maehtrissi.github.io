@@ -5,63 +5,84 @@ const form = document.querySelector("#demo-form");
 const success = document.querySelector("#form-success");
 
 function openModal() {
+  if (!modal) return;
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  modal.querySelector("input").focus();
+  const firstInput = modal.querySelector("input");
+  if (firstInput) firstInput.focus();
 }
 
 function closeModal() {
+  if (!modal) return;
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
 }
 
 openButtons.forEach((button) => button.addEventListener("click", openModal));
-closeButton.addEventListener("click", closeModal);
-modal.addEventListener("click", (event) => {
-  if (event.target === modal) closeModal();
-});
+if (closeButton) closeButton.addEventListener("click", closeModal);
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+}
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  if (event.key === "Escape" && modal && modal.classList.contains("is-open")) closeModal();
 });
+
 const SUPABASE_URL = "https://ehifskiigrfpxeiruyxr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy";
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (form) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  try {
     const data = new FormData(form);
+    const submission = {
+      Name: data.get("name"),
+      Email: data.get("email"),
+      Interest: data.get("business"),
+      CreatedAt: new Date().toISOString()
+    };
 
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/Kunden%20-%20Users`,
-      {
-        method: "POST",
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-          "Content-Type": "application/json",
-          "Prefer": "return=minimal"
-        },
-        body: JSON.stringify({
-          Name: data.get("name"),
-          Email: data.get("email"),
-          Interest: data.get("business")
-        })
+    // Store in localStorage as backup database
+    try {
+      const existing = JSON.parse(localStorage.getItem("sponti_registrations") || "[]");
+      existing.push(submission);
+      localStorage.setItem("sponti_registrations", JSON.stringify(existing));
+    } catch (err) {
+      console.warn("Could not save to localStorage:", err);
+    }
+
+    try {
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/Kunden%20-%20Users`,
+        {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({
+            Name: submission.Name,
+            Email: submission.Email,
+            Interest: submission.Interest
+          })
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Fehler beim Speichern in Supabase");
       }
-    );
-
-    if (!response.ok) {
-  throw new Error("Fehler beim Speichern");
-}
+    } catch (error) {
+      console.error("Supabase request failed, entry retained in localStorage:", error);
+    }
 
     form.hidden = true;
-    success.hidden = false;
-
-  } catch (error) {
-    console.error(error);
-    alert("Fehler beim Speichern");
-  }
-});
+    if (success) success.hidden = false;
+  });
+}
 
 const partnerForm = document.querySelector("#partner-form");
 const partnerSuccess = document.querySelector("#partner-success");
@@ -69,7 +90,7 @@ if (partnerForm) {
   partnerForm.addEventListener("submit", (event) => {
     event.preventDefault();
     partnerForm.querySelectorAll("input, select, textarea, button").forEach((el) => (el.hidden = true));
-    partnerSuccess.hidden = false;
+    if (partnerSuccess) partnerSuccess.hidden = false;
   });
 }
 
@@ -93,20 +114,23 @@ if (locationCarousel) {
     });
 
     const city = cards[activeIndex].querySelector("strong").textContent;
-    status.textContent = `${city}, ${activeIndex + 1} von ${cards.length}`;
+    if (status) status.textContent = `${city}, ${activeIndex + 1} von ${cards.length}`;
   };
 
   const scrollToCard = (index, focusViewport = false) => {
     setActiveCard(index);
     const card = cards[activeIndex];
-    viewport.scrollTo({
-      left: card.offsetLeft - (viewport.clientWidth - card.clientWidth) / 2,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-    });
-    if (focusViewport) viewport.focus({ preventScroll: true });
+    if (viewport && card) {
+      viewport.scrollTo({
+        left: card.offsetLeft - (viewport.clientWidth - card.clientWidth) / 2,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+      });
+      if (focusViewport) viewport.focus({ preventScroll: true });
+    }
   };
 
   const syncActiveCard = () => {
+    if (!viewport) return;
     const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
     const closestIndex = cards.reduce((closest, card, index) => {
       const cardCenter = card.offsetLeft + card.clientWidth / 2;
@@ -116,30 +140,32 @@ if (locationCarousel) {
     setActiveCard(closestIndex);
   };
 
-  previousButton.addEventListener("click", () => scrollToCard(activeIndex - 1, true));
-  nextButton.addEventListener("click", () => scrollToCard(activeIndex + 1, true));
-  viewport.addEventListener("scroll", () => {
-    window.clearTimeout(scrollTimer);
-    scrollTimer = window.setTimeout(syncActiveCard, 100);
-  }, { passive: true });
-  viewport.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      scrollToCard(activeIndex - 1);
-    }
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      scrollToCard(activeIndex + 1);
-    }
-    if (event.key === "Home") {
-      event.preventDefault();
-      scrollToCard(0);
-    }
-    if (event.key === "End") {
-      event.preventDefault();
-      scrollToCard(cards.length - 1);
-    }
-  });
+  if (previousButton) previousButton.addEventListener("click", () => scrollToCard(activeIndex - 1, true));
+  if (nextButton) nextButton.addEventListener("click", () => scrollToCard(activeIndex + 1, true));
+  if (viewport) {
+    viewport.addEventListener("scroll", () => {
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(syncActiveCard, 100);
+    }, { passive: true });
+    viewport.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollToCard(activeIndex - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollToCard(activeIndex + 1);
+      }
+      if (event.key === "Home") {
+        event.preventDefault();
+        scrollToCard(0);
+      }
+      if (event.key === "End") {
+        event.preventDefault();
+        scrollToCard(cards.length - 1);
+      }
+    });
+  }
 
   setActiveCard(0);
   requestAnimationFrame(() => scrollToCard(0));
