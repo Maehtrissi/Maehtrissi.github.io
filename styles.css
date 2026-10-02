@@ -242,11 +242,11 @@ transform: translateY(-2px) scale(1.07);
 }
 
 .location-control-previous {
-  left: 16px;
+  left: clamp(-64px, calc((1176px - 100vw) / 2 + 68px), 144px);
 }
 
 .location-control-next {
-  right: 16px;
+  right: clamp(-64px, calc((1176px - 100vw) / 2 + 68px), 144px);
 }
 
 .location-control:hover {
