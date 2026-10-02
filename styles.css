@@ -847,3 +847,15 @@ transform: translateY(-2px) scale(1.07);
     transition: none;
   }
 }
+
+@media (max-width: 760px) {
+  .category-card > span,
+  .category-card > b,
+  .feature-arrow,
+  .feature-link > span[aria-hidden="true"],
+  .text-link > span[aria-hidden="true"],
+  a.button > span[aria-hidden="true"],
+  .location-card-copy b[aria-hidden="true"] {
+    display: none;
+  }
+}
