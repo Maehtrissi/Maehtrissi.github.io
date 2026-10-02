@@ -170,3 +170,14 @@ if (locationCarousel) {
   setActiveCard(0);
   requestAnimationFrame(() => scrollToCard(0));
 }
+
+const navToggle = document.querySelector("#nav-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    navToggle.querySelector(".nav-toggle-icon").textContent = isOpen ? "✕" : "☰";
+  });
+}
