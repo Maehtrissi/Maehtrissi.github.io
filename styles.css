@@ -1258,3 +1258,45 @@ button > span[aria-hidden="true"] {
     margin-top: 22px;
   }
 }
+
+.course-card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.course-image:after {
+  transition: background-color .22s ease;
+}
+
+.course-card:focus-within {
+  box-shadow: 0 14px 28px rgb(25 52 45 / 16%);
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  transform: translateY(-3px);
+}
+
+.course-card:focus-within .course-image:after {
+  background: linear-gradient(transparent 40%, rgb(25 52 45 / 52%));
+}
+
+.course-book:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .course-card:has(.course-book:hover) {
+    box-shadow: 0 14px 28px rgb(25 52 45 / 16%);
+    transform: translateY(-3px);
+  }
+
+  .course-card:has(.course-book:hover) .course-image:after {
+    background: linear-gradient(transparent 40%, rgb(25 52 45 / 52%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-card,
+  .course-image:after {
+    transition: none;
+  }
+}
