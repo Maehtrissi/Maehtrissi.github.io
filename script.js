@@ -171,13 +171,54 @@ if (locationCarousel) {
   requestAnimationFrame(() => scrollToCard(0));
 }
 
-const navToggle = document.querySelector("#nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+const siteMenu = document.querySelector("[data-site-menu]");
+const siteMenuTrigger = document.querySelector("[data-site-menu-trigger]");
 
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    navToggle.querySelector(".nav-toggle-icon").textContent = isOpen ? "✕" : "☰";
+if (siteMenu && siteMenuTrigger) {
+  const menuPanel = siteMenu.querySelector(".site-menu-panel");
+  const closeMenuButtons = siteMenu.querySelectorAll("[data-site-menu-close]");
+  const menuFocusables = () => [...siteMenu.querySelectorAll("a[href], button:not([disabled])")];
+
+  const closeSiteMenu = (returnFocus = true) => {
+    siteMenu.classList.remove("is-open");
+    siteMenu.setAttribute("aria-hidden", "true");
+    siteMenuTrigger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("site-menu-open");
+    if (returnFocus) siteMenuTrigger.focus();
+  };
+
+  const openSiteMenu = () => {
+    siteMenu.classList.add("is-open");
+    siteMenu.setAttribute("aria-hidden", "false");
+    siteMenuTrigger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("site-menu-open");
+    window.setTimeout(() => menuPanel.querySelector(".site-menu-close").focus(), 50);
+  };
+
+  siteMenuTrigger.addEventListener("click", openSiteMenu);
+  closeMenuButtons.forEach((button) => button.addEventListener("click", () => closeSiteMenu()));
+  siteMenu.querySelectorAll(".site-menu-links a").forEach((link) => link.addEventListener("click", () => closeSiteMenu(false)));
+  siteMenu.querySelector("[data-open-booking]")?.addEventListener("click", () => closeSiteMenu(false));
+
+  document.addEventListener("keydown", (event) => {
+    if (!siteMenu.classList.contains("is-open")) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeSiteMenu();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+    const focusables = menuFocusables();
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 }

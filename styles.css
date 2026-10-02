@@ -664,35 +664,186 @@ transform: translateY(-2px) scale(1.07);
 .footer-socials a { color: var(--ink); font-weight: 600; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
 .footer-socials a:hover { opacity: 0.7; transform: translateY(-1px); }
 
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+.site-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 9px 11px 9px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
   color: var(--ink);
-  font-size: 20px;
-  padding: 6px 12px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+.site-menu-trigger:hover {
+  color: var(--white);
+  background: var(--ink);
+  transform: translateY(-2px);
+}
+
+.site-menu-trigger:focus-visible,
+.site-menu-close:focus-visible,
+.site-menu-links a:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.site-menu-icon {
+  display: grid;
+  gap: 5px;
+  width: 20px;
+}
+
+.site-menu-icon i {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+}
+
+.site-menu {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.site-menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.site-menu-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(25 52 45 / 50%);
+  opacity: 0;
+  cursor: default;
+  transition: opacity .3s ease;
+}
+
+.site-menu.is-open .site-menu-scrim {
+  opacity: 1;
+}
+
+.site-menu-panel {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  width: min(430px, calc(100% - 32px));
+  min-height: calc(100dvh - 32px);
+  padding: 24px;
+  border-radius: 26px;
+  color: var(--ink);
+  background: var(--cream);
+  box-shadow: -16px 20px 0 rgb(237 141 89 / 92%), 0 28px 60px rgb(25 52 45 / 24%);
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity .3s ease, transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+
+.site-menu.is-open .site-menu-panel {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.site-menu-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.site-menu-close {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--white);
+  font-size: 29px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.site-menu-close:hover {
+  background: var(--lime);
+  transform: rotate(8deg);
+}
+
+.site-menu-links {
+  display: grid;
+  gap: 3px;
+  margin: auto 0;
+}
+
+.site-menu-links a {
+  padding: 10px 0;
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 5vw, 45px);
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.site-menu-links a:hover {
+  color: var(--orange);
+  transform: translateX(8px);
+}
+
+.site-menu-cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.site-menu-open {
+  overflow: hidden;
 }
 
 @media (max-width: 760px) {
-  .nav-toggle {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-    margin-left: 0;
-    margin-top: 16px;
-    padding: 16px 0;
-    border-top: 1px solid var(--line);
-  }
-  .nav-links.is-open {
-    display: flex;
-  }
   .site-header {
-    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .site-menu-panel {
+    top: 10px;
+    right: 10px;
+    width: calc(100% - 20px);
+    min-height: calc(100dvh - 20px);
+    padding: 22px;
+    box-shadow: -9px 12px 0 rgb(237 141 89 / 92%), 0 24px 50px rgb(25 52 45 / 24%);
+  }
+
+  .site-menu-links a {
+    font-size: clamp(31px, 10vw, 44px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-menu-scrim,
+  .site-menu-panel,
+  .site-menu-trigger,
+  .site-menu-close,
+  .site-menu-links a {
+    transition: none;
   }
 }

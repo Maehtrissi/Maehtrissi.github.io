@@ -16,17 +16,18 @@
         <img src="logo.png" alt="Sponti Logo">
         <span>Sponti</span>
       </a>
-      <nav class="nav-links">
-          <a href="kurse.html">Kurs entdecken</a>
-          <a href="kursanbieter.html">Für Kursanbieter</a>
-          <a href="warum.html">Motivation</a>
-          <a href="erfahrungen.html">Erfahrungen</a>
-      </nav>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
-        <span class="nav-toggle-icon">☰</span>
+      <button class="site-menu-trigger" type="button" data-site-menu-trigger aria-expanded="false" aria-controls="site-menu">
+        <span>Menü</span><span class="site-menu-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
-      <button class="button button-small button-dark" data-open-booking>Sponti beitreten <span aria-hidden="true">↗</span></button>
     </header>
+    <div class="site-menu" id="site-menu" data-site-menu aria-hidden="true">
+      <button class="site-menu-scrim" type="button" data-site-menu-close aria-label="Menü schließen"></button>
+      <section class="site-menu-panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
+        <div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schließen">×</button></div>
+        <nav class="site-menu-links" aria-label="Hauptnavigation"><a href="index.html">Startseite</a><a href="kurse.html">Kurs entdecken</a><a href="kursanbieter.html">Für Kursanbieter</a><a href="warum.html">Motivation</a><a href="erfahrungen.html">Erfahrungen</a></nav>
+        <button class="button button-primary site-menu-cta" type="button" data-open-booking>Sponti beitreten <span aria-hidden="true">↗</span></button>
+      </section>
+    </div>
 
     <main>
       <section class="courses-heading">
