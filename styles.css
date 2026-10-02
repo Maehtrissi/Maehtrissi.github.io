@@ -204,20 +204,6 @@ transform: translateY(-2px) scale(1.07);
   line-height: 1;
 }
 
-.location-card-copy b {
-  position: absolute;
-  right: 0;
-  bottom: 3px;
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid rgb(255 254 250 / 65%);
-  border-radius: 50%;
-  font-size: 20px;
-  transition: background-color .2s ease, color .2s ease;
-}
-
 .location-card.is-active {
   opacity: 1;
   transform: scale(1);
@@ -235,47 +221,6 @@ transform: translateY(-2px) scale(1.07);
     box-shadow: 0 25px 45px rgb(25 52 45 / 27%);
   }
 
-  .location-card:hover .location-card-copy b {
-    background: var(--lime);
-    color: var(--ink);
-  }
-}
-
-.location-control {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--ink);
-  background: var(--white);
-  box-shadow: 0 10px 22px rgb(25 52 45 / 14%);
-  cursor: pointer;
-  transform: translateY(-50%);
-  transition: background-color .2s ease, color .2s ease, transform .2s ease;
-}
-
-.location-control-previous {
-  left: 6px;
-}
-
-.location-control-next {
-  right: 6px;
-}
-
-.location-control:hover {
-  color: var(--ink);
-  background: var(--lime);
-  transform: translateY(-50%) scale(1.06);
-}
-
-.location-control:focus-visible {
-  outline: 3px solid var(--orange);
-  outline-offset: 3px;
 }
 
 .location-status {
@@ -318,16 +263,11 @@ transform: translateY(-2px) scale(1.07);
     transform: scale(1);
   }
 
-  .location-control {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .location-viewport,
-  .location-card,
-  .location-card-copy b,
-  .location-control {
+  .location-card {
     scroll-behavior: auto;
     transition: none;
   }
@@ -850,10 +790,11 @@ transform: translateY(-2px) scale(1.07);
 
 a > span[aria-hidden="true"],
 button > span[aria-hidden="true"],
-.feature-arrow,
-.category-card > b[aria-hidden="true"],
-.location-card-copy b[aria-hidden="true"],
 .provider-booking-highlight b[aria-hidden="true"] {
   font-family: "DM Sans", Arial, sans-serif;
   font-variant-emoji: text;
+}
+
+.feature-item {
+  grid-template-columns: 42px 1fr;
 }
