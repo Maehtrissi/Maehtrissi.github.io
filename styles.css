@@ -1062,6 +1062,65 @@ button > span[aria-hidden="true"] {
   background: var(--lime);
 }
 
+.why-team-voices {
+  margin-top: 112px;
+  padding: 52px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.why-team-voices-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, .65fr);
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 52px;
+}
+
+.why-team-voices-heading p,
+.why-team-voices figcaption {
+  margin: 0;
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.why-team-voices h2 {
+  grid-column: 1;
+  margin: 0;
+  font-size: clamp(38px, 4.8vw, 66px);
+  line-height: 1;
+}
+
+.why-team-voices-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.why-team-voices figure {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  margin: 0;
+  padding: 4px 0 0 22px;
+  border-left: 1px solid var(--line);
+}
+
+.why-team-voices blockquote {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(20px, 2vw, 27px);
+  line-height: 1.15;
+}
+
+.why-team-voices figcaption {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
 .why-commitment {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, .65fr);
@@ -1095,7 +1154,8 @@ button > span[aria-hidden="true"] {
 
   .why-paths,
   .why-commitment,
-  .why-problem {
+  .why-problem,
+  .why-team-voices-heading {
     grid-template-columns: 1fr;
   }
 
@@ -1122,5 +1182,29 @@ button > span[aria-hidden="true"] {
     gap: 26px;
     margin-top: 70px;
     padding-top: 40px;
+  }
+
+  .why-team-voices {
+    margin-top: 70px;
+    padding: 40px 0;
+  }
+
+  .why-team-voices-heading {
+    gap: 18px;
+    margin-bottom: 36px;
+  }
+
+  .why-team-voices-list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .why-team-voices figure {
+    min-height: 0;
+    padding-left: 18px;
+  }
+
+  .why-team-voices figcaption {
+    margin-top: 22px;
   }
 }
