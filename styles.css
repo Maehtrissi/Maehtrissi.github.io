@@ -10,7 +10,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--cream); background-image: radial-gradient(circle at 4% 18%, #d7f27733 0%, transparent 32%), radial-gradient(circle at 97% 12%, #ed8d5926 0%, transparent 30%), radial-gradient(circle at 3% 78%, #dfe9d866 0%, transparent 34%), radial-gradient(circle at 98% 82%, #d7f27729 0%, transparent 32%); background-attachment: fixed; font-family: "DM Sans", sans-serif; }
+body { margin: 0; color: var(--ink); background: #f4f3e9; background-image: radial-gradient(circle at 3% 14%, #d7f27752 0%, transparent 36%), radial-gradient(circle at 96% 10%, #ed8d5940 0%, transparent 34%), radial-gradient(circle at 6% 52%, #dfe9d88c 0%, transparent 31%), radial-gradient(circle at 96% 62%, #d7f27745 0%, transparent 36%), radial-gradient(circle at 48% 104%, #ed8d5929 0%, transparent 35%); background-attachment: fixed; font-family: "DM Sans", sans-serif; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-decoration: none; }
