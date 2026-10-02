@@ -948,6 +948,36 @@ button > span[aria-hidden="true"] {
   line-height: 1.65;
 }
 
+.why-problem {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .65fr);
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 112px;
+  padding: 52px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.why-problem h2 {
+  margin: 0;
+  font-size: clamp(38px, 4.8vw, 66px);
+  line-height: 1;
+}
+
+.why-problem-copy {
+  display: grid;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.why-problem-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
 .why-paths {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -956,7 +986,7 @@ button > span[aria-hidden="true"] {
 
 .why-path {
   display: flex;
-  min-height: 430px;
+  min-height: 540px;
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(30px, 5vw, 58px);
@@ -980,6 +1010,32 @@ button > span[aria-hidden="true"] {
   margin-top: auto;
 }
 
+.why-path-points {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 36px;
+  padding: 0;
+  list-style: none;
+}
+
+.why-path-points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.why-path-points li::before {
+  position: absolute;
+  top: .55em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--orange);
+  content: "";
+}
+
 .why-path-discover {
   background: var(--sage);
 }
@@ -991,6 +1047,14 @@ button > span[aria-hidden="true"] {
 
 .why-path-provide > p {
   color: #c6d4ce;
+}
+
+.why-path-provide .why-path-points {
+  color: #dce8e2;
+}
+
+.why-path-provide .why-path-points li::before {
+  background: var(--lime);
 }
 
 .why-path-provide .button {
@@ -1030,8 +1094,15 @@ button > span[aria-hidden="true"] {
   }
 
   .why-paths,
-  .why-commitment {
+  .why-commitment,
+  .why-problem {
     grid-template-columns: 1fr;
+  }
+
+  .why-problem {
+    gap: 26px;
+    margin-bottom: 70px;
+    padding: 40px 0;
   }
 
   .why-path {
@@ -1040,6 +1111,10 @@ button > span[aria-hidden="true"] {
   }
 
   .why-path > p {
+    margin-bottom: 30px;
+  }
+
+  .why-path-points {
     margin-bottom: 30px;
   }
 
