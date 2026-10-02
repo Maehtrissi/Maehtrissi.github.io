@@ -861,6 +861,13 @@ button > span[aria-hidden="true"] {
   grid-template-columns: 42px 1fr;
 }
 
+@media (hover: none) {
+  .category-card:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
 .filter {
   transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }

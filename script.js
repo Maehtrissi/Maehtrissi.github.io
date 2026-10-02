@@ -104,6 +104,7 @@ if (locationCarousel) {
   const status = locationCarousel.querySelector("[data-location-status]");
   let activeIndex = 0;
   let scrollTimer;
+  let isProgrammaticScroll = false;
 
   const positionControls = () => {
     if (!viewport || !previousButton || !nextButton) return;
@@ -142,10 +143,18 @@ if (locationCarousel) {
     setActiveCard(index);
     const card = cards[activeIndex];
     if (viewport && card) {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      isProgrammaticScroll = !prefersReducedMotion;
       viewport.scrollTo({
         left: card.offsetLeft - (viewport.clientWidth - card.clientWidth) / 2,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+        behavior: prefersReducedMotion ? "auto" : "smooth"
       });
+      window.clearTimeout(scrollTimer);
+      if (prefersReducedMotion) {
+        requestAnimationFrame(positionControls);
+      } else {
+        scrollTimer = window.setTimeout(settleScroll, 180);
+      }
       if (focusViewport) viewport.focus({ preventScroll: true });
     }
   };
@@ -161,12 +170,23 @@ if (locationCarousel) {
     setActiveCard(closestIndex);
   };
 
+  const settleScroll = () => {
+    if (isProgrammaticScroll) {
+      isProgrammaticScroll = false;
+      positionControls();
+      return;
+    }
+
+    syncActiveCard();
+  };
+
   if (previousButton) previousButton.addEventListener("click", () => scrollToCard(activeIndex - 1, true));
   if (nextButton) nextButton.addEventListener("click", () => scrollToCard(activeIndex + 1, true));
   if (viewport) {
     viewport.addEventListener("scroll", () => {
+      positionControls();
       window.clearTimeout(scrollTimer);
-      scrollTimer = window.setTimeout(syncActiveCard, 100);
+      scrollTimer = window.setTimeout(settleScroll, isProgrammaticScroll ? 180 : 100);
     }, { passive: true });
     viewport.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
