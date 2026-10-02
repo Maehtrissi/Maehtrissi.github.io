@@ -848,14 +848,12 @@ transform: translateY(-2px) scale(1.07);
   }
 }
 
-@media (max-width: 760px) {
-  .category-card > span,
-  .category-card > b,
-  .feature-arrow,
-  .feature-link > span[aria-hidden="true"],
-  .text-link > span[aria-hidden="true"],
-  a.button > span[aria-hidden="true"],
-  .location-card-copy b[aria-hidden="true"] {
-    display: none;
-  }
+a > span[aria-hidden="true"],
+button > span[aria-hidden="true"],
+.feature-arrow,
+.category-card > b[aria-hidden="true"],
+.location-card-copy b[aria-hidden="true"],
+.provider-booking-highlight b[aria-hidden="true"] {
+  font-family: "DM Sans", Arial, sans-serif;
+  font-variant-emoji: text;
 }
