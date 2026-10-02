@@ -105,6 +105,26 @@ if (locationCarousel) {
   let activeIndex = 0;
   let scrollTimer;
 
+  const positionControls = () => {
+    if (!viewport || !previousButton || !nextButton) return;
+
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      previousButton.style.left = "";
+      nextButton.style.left = "";
+      nextButton.style.right = "";
+      return;
+    }
+
+    const activeCard = cards[activeIndex];
+    const cardLeft = viewport.offsetLeft + activeCard.offsetLeft - viewport.scrollLeft;
+    const controlWidth = previousButton.offsetWidth;
+    const gap = 16;
+
+    previousButton.style.left = `${Math.max(16, cardLeft - controlWidth - gap)}px`;
+    nextButton.style.left = `${Math.min(locationCarousel.clientWidth - controlWidth - 16, cardLeft + activeCard.clientWidth + gap)}px`;
+    nextButton.style.right = "auto";
+  };
+
   const setActiveCard = (index) => {
     activeIndex = (index + cards.length) % cards.length;
     cards.forEach((card, cardIndex) => {
@@ -115,6 +135,7 @@ if (locationCarousel) {
 
     const city = cards[activeIndex].querySelector("strong").textContent;
     if (status) status.textContent = `${city}, ${activeIndex + 1} von ${cards.length}`;
+    positionControls();
   };
 
   const scrollToCard = (index, focusViewport = false) => {
@@ -167,6 +188,7 @@ if (locationCarousel) {
     });
   }
 
+  window.addEventListener("resize", positionControls);
   setActiveCard(0);
   requestAnimationFrame(() => scrollToCard(0));
 }
