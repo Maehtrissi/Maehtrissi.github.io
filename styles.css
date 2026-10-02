@@ -128,7 +128,9 @@ transform: translateY(-2px) scale(1.07);
 }
 
 .location-carousel {
+  --location-control-lane: clamp(88px, 9vw, 112px);
   position: relative;
+  padding-inline: var(--location-control-lane);
 }
 
 .location-viewport {
@@ -242,11 +244,11 @@ transform: translateY(-2px) scale(1.07);
 }
 
 .location-control-previous {
-  left: clamp(-64px, calc((1176px - 100vw) / 2 + 68px), 144px);
+  left: clamp(16px, 2vw, 24px);
 }
 
 .location-control-next {
-  right: clamp(-64px, calc((1176px - 100vw) / 2 + 68px), 144px);
+  right: clamp(16px, 2vw, 24px);
 }
 
 .location-control:hover {
@@ -305,6 +307,7 @@ transform: translateY(-2px) scale(1.07);
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 12px;
+    padding-inline: 0;
   }
 
   .location-viewport {
