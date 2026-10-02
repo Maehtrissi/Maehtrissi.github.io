@@ -124,7 +124,10 @@
           <p class="locations-intro">Wähle deinen Ort und entdecke kurzfristig freie Plätze.</p>
         </div>
         <div class="location-carousel" data-location-carousel role="group" aria-roledescription="Karussell" aria-label="Orte auswählen">
-          <section class="location-viewport" data-location-viewport tabindex="0" aria-label="Ortskarten. Mit den Pfeiltasten zwischen Orten wechseln.">
+          <button class="location-control location-control-previous" type="button" data-location-previous aria-controls="location-viewport" aria-label="Vorherigen Ort anzeigen">
+            <span aria-hidden="true">←</span>
+          </button>
+          <section class="location-viewport" id="location-viewport" data-location-viewport tabindex="0" aria-label="Ortskarten. Mit den Pfeiltasten zwischen Orten wechseln.">
             <div class="location-track" data-location-track>
               <a class="location-card" href="kurse.html?ort=zug" data-location-card aria-label="Kurse in Zug entdecken">
                 <img src="Zug.png" alt="">
@@ -146,14 +149,17 @@
                 <span class="location-card-overlay"></span>
                 <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Schwyz</strong></span>
               </a>
-                <a class="location-card" href="kurse.html?ort=aargau" data-location-card aria-label="Kurse in Aargau entdecken">
+              <a class="location-card" href="kurse.html?ort=aargau" data-location-card aria-label="Kurse in Aargau entdecken">
                 <img src="Aargau.png" alt="">
                 <span class="location-card-overlay"></span>
-                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Schwyz</strong></span>
+                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Aargau</strong></span>
               </a>
             </div>
           </section>
-          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 4</p>
+          <button class="location-control location-control-next" type="button" data-location-next aria-controls="location-viewport" aria-label="Nächsten Ort anzeigen">
+            <span aria-hidden="true">→</span>
+          </button>
+          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 5</p>
         </div>
       </section>
       <section class="testimonial-section" id="stories">

@@ -223,6 +223,43 @@ transform: translateY(-2px) scale(1.07);
 
 }
 
+.location-control {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 10px 22px rgb(25 52 45 / 14%);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.location-control-previous {
+  left: 6px;
+}
+
+.location-control-next {
+  right: 6px;
+}
+
+.location-control:hover {
+  color: var(--ink);
+  background: var(--lime);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.location-control:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
 .location-status {
   margin: 0;
   color: var(--muted);
@@ -261,6 +298,10 @@ transform: translateY(-2px) scale(1.07);
 
   .location-card.is-active {
     transform: scale(1);
+  }
+
+  .location-control {
+    display: none;
   }
 
 }
