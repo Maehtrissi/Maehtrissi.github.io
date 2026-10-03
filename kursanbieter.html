@@ -35,7 +35,7 @@
           <div class="eyebrow"><span class="eyebrow-dot"></span> Für Kursanbieter</div>
           <h1 id="provider-title">Freie Plätze?<br><em>Mach sie sichtbar.</em></h1>
           <p>Erreiche Menschen, die spontan etwas erleben möchten, und fülle freie Plätze in deinen Kursen und Erlebnissen.</p>
-          <a class="button button-primary" href="index.html#businesses">Angebot auf Sponti einreichen</a>
+          <button class="button button-primary" type="button" data-open-partner>Angebot auf Sponti einreichen</button>
         </div>
         <div class="provider-hero-card" aria-hidden="true">
           <span>SPONTI</span>
@@ -120,7 +120,7 @@
         <div class="eyebrow light"><span class="eyebrow-dot"></span> Interesse?</div>
         <h2 id="cta-title">Noch freie Plätze?<br><em>Lass sie uns füllen.</em></h2>
         <p>Mach dein Angebot auf Sponti sichtbar und erreiche Menschen, die spontan nach ihrem nächsten Erlebnis suchen.</p>
-        <a class="button button-primary" href="index.html#businesses">Angebot einreichen</a>
+        <button class="button button-primary" type="button" data-open-partner>Angebot einreichen</button>
       </section>
     </main>
 
@@ -150,6 +150,24 @@
           <p id="form-error" role="alert" hidden></p>
         </form>
         <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
+      </div>
+    </div>
+    <div class="modal-backdrop" id="partner-modal" aria-hidden="true">
+      <div class="modal partner-modal" role="dialog" aria-modal="true" aria-labelledby="partner-modal-title" tabindex="-1">
+        <button class="modal-close" type="button" data-close-partner aria-label="Kursanbieterformular schliessen">×</button>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Für Kursanbieter</div>
+        <h2 id="partner-modal-title">Angebot einreichen.</h2>
+        <p>Erzähl uns von deinem Angebot. Wir melden uns bei dir.</p>
+        <form class="partner-form" id="partner-form" data-partner-form>
+          <label>Name des Unternehmens<input name="company" autocomplete="organization" maxlength="200" required placeholder="z. B. Studio Blume" /></label>
+          <label>Ansprechperson<input name="contact" autocomplete="name" maxlength="200" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" autocomplete="email" maxlength="254" required placeholder="du@unternehmen.de" /></label>
+          <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
+          <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="5000" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
+          <button class="button button-primary" type="submit">Anfrage senden</button>
+          <p data-partner-error role="alert" hidden></p>
+          <p class="form-success" id="partner-success" data-partner-success role="status" tabindex="-1" hidden>Danke! Wir melden uns in Kürze bei dir.</p>
+        </form>
       </div>
     </div>
     <script src="script.js"></script>

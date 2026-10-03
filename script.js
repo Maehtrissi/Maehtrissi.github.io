@@ -106,15 +106,118 @@ if (form) {
   });
 }
 
-const partnerForm = document.querySelector("#partner-form");
-const partnerSuccess = document.querySelector("#partner-success");
-if (partnerForm) {
-  partnerForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    partnerForm.querySelectorAll("input, select, textarea, button").forEach((el) => (el.hidden = true));
-    if (partnerSuccess) partnerSuccess.hidden = false;
+const partnerModal = document.querySelector("#partner-modal");
+let partnerOpener = null;
+let partnerBackground = [];
+let previousBodyOverflow = "";
+
+function closePartnerModal() {
+  if (!partnerModal || !partnerModal.classList.contains("is-open")) return;
+  partnerModal.classList.remove("is-open");
+  partnerModal.setAttribute("aria-hidden", "true");
+  partnerBackground.forEach(({ element, wasInert }) => { element.inert = wasInert; });
+  partnerBackground = [];
+  document.body.style.overflow = previousBodyOverflow;
+  partnerOpener?.focus();
+}
+
+if (partnerModal) {
+  document.querySelectorAll("[data-open-partner]").forEach((button) => {
+    button.addEventListener("click", () => {
+      partnerOpener = button;
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      partnerBackground = [...document.body.children]
+        .filter((element) => element !== partnerModal && element.tagName !== "SCRIPT")
+        .map((element) => ({ element, wasInert: element.inert }));
+      partnerBackground.forEach(({ element }) => { element.inert = true; });
+      partnerModal.classList.add("is-open");
+      partnerModal.setAttribute("aria-hidden", "false");
+      const submittedMessage = partnerModal.querySelector("[data-partner-success]");
+      const firstInput = partnerModal.querySelector("input");
+      const focusTarget = submittedMessage && !submittedMessage.hidden ? submittedMessage : firstInput;
+      (focusTarget || partnerModal.querySelector("[data-close-partner]")).focus();
+    });
+  });
+  partnerModal.querySelector("[data-close-partner]").addEventListener("click", closePartnerModal);
+  partnerModal.addEventListener("click", (event) => {
+    if (event.target === partnerModal) closePartnerModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!partnerModal.classList.contains("is-open")) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closePartnerModal();
+    }
+    if (event.key !== "Tab") return;
+    const focusables = [...partnerModal.querySelectorAll("button, input, select, textarea, a[href]")]
+      .filter((element) => !element.disabled && !element.closest("[hidden]"));
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 }
+
+document.querySelectorAll("[data-partner-form]").forEach((partnerForm) => {
+  const partnerSuccess = partnerForm.querySelector("[data-partner-success]");
+  const partnerError = partnerForm.querySelector("[data-partner-error]");
+  const submitButton = partnerForm.querySelector('[type="submit"]');
+  let isSubmitting = false;
+
+  partnerForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (isSubmitting || !partnerForm.reportValidity()) return;
+    const data = new FormData(partnerForm);
+    const submission = {
+      company: String(data.get("company") || "").trim(),
+      contact: String(data.get("contact") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      category: String(data.get("category") || "").trim(),
+      message: String(data.get("message") || "").trim()
+    };
+    if (!submission.company || !submission.contact || !submission.email) {
+      partnerError.textContent = "Bitte fülle Unternehmen, Ansprechperson und E-Mail-Adresse aus.";
+      partnerError.hidden = false;
+      return;
+    }
+    isSubmitting = true;
+    partnerError.hidden = true;
+    partnerSuccess.hidden = true;
+    submitButton.disabled = true;
+    partnerForm.setAttribute("aria-busy", "true");
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/Kursanbieter`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(submission)
+      });
+      if (!response.ok) throw new Error("Fehler beim Speichern der Kursanbieter-Anfrage");
+      partnerForm.querySelectorAll("label, button").forEach((element) => { element.hidden = true; });
+      partnerSuccess.hidden = false;
+      partnerSuccess.focus();
+    } catch (error) {
+      console.error("Kursanbieter-Anfrage konnte nicht gespeichert werden:", error);
+      partnerError.textContent = "Deine Anfrage konnte nicht gespeichert werden. Bitte versuche es erneut.";
+      partnerError.hidden = false;
+    } finally {
+      isSubmitting = false;
+      submitButton.disabled = false;
+      partnerForm.removeAttribute("aria-busy");
+    }
+  });
+});
 
 const locationCarousel = document.querySelector("[data-location-carousel]");
 
