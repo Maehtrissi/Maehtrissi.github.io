@@ -1308,3 +1308,20 @@ button > span[aria-hidden="true"] {
 [data-partner-form] [hidden] { display: none !important; }
 [data-partner-error] { color: #a12b2b; font-size: 13px; margin: 0; }
 [data-partner-form] button:disabled { cursor: wait; opacity: 0.65; }
+
+/* Motivation: values and invitation */
+.why-values { margin-top: 112px; }
+.why-values-heading { max-width: 760px; }
+.why-values h2 { margin: 18px 0 24px; font-size: clamp(38px, 4.8vw, 66px); line-height: 1; }
+.why-values-heading > p { max-width: 590px; color: var(--muted); font-size: 18px; line-height: 1.65; }
+.why-values-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; margin-top: 48px; }
+.why-values-grid article { padding-top: 26px; border-top: 1px solid var(--line); }
+.why-value-number { color: var(--orange); font-size: 14px; font-weight: 700; }
+.why-values-grid h3 { margin: 20px 0 16px; font-size: 26px; line-height: 1.2; }
+.why-values-grid p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.why-commitment-copy { display: grid; gap: 24px; justify-items: start; }
+@media (max-width: 760px) {
+  .why-values { margin-top: 70px; }
+  .why-values-heading > p { font-size: 16px; }
+  .why-values-grid { grid-template-columns: 1fr; gap: 30px; margin-top: 32px; }
+}
