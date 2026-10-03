@@ -1365,3 +1365,16 @@ button > span[aria-hidden="true"] {
   .provider-benefit-card:hover { transform: none; }
   .provider-hero-card:hover { transform: rotate(3deg); }
 }
+
+/* Erfahrungsberichte: card hover */
+.story-card { transition: transform .22s ease, box-shadow .22s ease; }
+@media (hover: hover) {
+  .story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgb(25 52 45 / 12%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-card { transition: none; }
+  .story-card:hover { transform: none; }
+}
