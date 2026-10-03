@@ -117,9 +117,11 @@
         <form id="demo-form">
           <label>Vor- und Nachname<input name="name" required placeholder="Dein Name" /></label>
           <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@beispiel.de" /></label>
+          <label>Telefonnummer<input name="phone" type="tel" autocomplete="tel" required maxlength="30" placeholder="z. B. +41 79 123 45 67" /></label>
           <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
           <label class="consent-label"><input type="checkbox" name="consent" checked required /><span>Ich bin damit einverstanden, dass Sponti mich per E-Mail über neue Kurse mit freien Plätzen und Angebote informiert.</span></label>
           <button class="button button-primary" type="submit">Auf dem Laufenden bleiben</button>
+          <p id="form-error" role="alert" hidden></p>
         </form>
         <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
       </div>

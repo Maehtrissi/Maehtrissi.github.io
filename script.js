@@ -33,25 +33,47 @@ const SUPABASE_URL = "https://ehifskiigrfpxeiruyxr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy";
 
 if (form) {
+  const phoneInput = form.elements.namedItem("phone");
+  const errorMessage = document.querySelector("#form-error");
+  const submitButton = form.querySelector('[type="submit"]');
+  let isSubmitting = false;
+
+  const validatePhone = () => {
+    const value = phoneInput.value.trim();
+    const digitCount = value.replace(/\D/g, "").length;
+    const valid = /^[+0-9 ()/.\-]+$/.test(value)
+      && (!value.includes("+") || value.indexOf("+") === 0 && value.lastIndexOf("+") === 0)
+      && digitCount >= 7 && digitCount <= 15;
+    phoneInput.setCustomValidity(valid ? "" : "Bitte gib eine gültige Telefonnummer mit 7 bis 15 Ziffern ein.");
+  };
+  phoneInput.addEventListener("input", validatePhone);
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
+    validatePhone();
+    if (!form.reportValidity()) return;
 
     const data = new FormData(form);
     const submission = {
-      Name: data.get("name"),
-      Email: data.get("email"),
-      Interest: data.get("business"),
-      CreatedAt: new Date().toISOString()
+      Name: String(data.get("name") || "").trim(),
+      Email: String(data.get("email") || "").trim(),
+      Phone: String(data.get("phone") || "").trim(),
+      Interest: data.get("business")
     };
-
-    // Store in localStorage as backup database
-    try {
-      const existing = JSON.parse(localStorage.getItem("sponti_registrations") || "[]");
-      existing.push(submission);
-      localStorage.setItem("sponti_registrations", JSON.stringify(existing));
-    } catch (err) {
-      console.warn("Could not save to localStorage:", err);
+    if (!submission.Name) {
+      if (errorMessage) {
+        errorMessage.textContent = "Bitte gib deinen Vor- und Nachnamen ein.";
+        errorMessage.hidden = false;
+      }
+      return;
     }
+
+    isSubmitting = true;
+    if (errorMessage) errorMessage.hidden = true;
+    if (success) success.hidden = true;
+    if (submitButton) submitButton.disabled = true;
+    form.setAttribute("aria-busy", "true");
 
     try {
       const response = await fetch(
@@ -64,23 +86,23 @@ if (form) {
             "Content-Type": "application/json",
             "Prefer": "return=minimal"
           },
-          body: JSON.stringify({
-            Name: submission.Name,
-            Email: submission.Email,
-            Interest: submission.Interest
-          })
+          body: JSON.stringify(submission)
         }
       );
-
-      if (!response.ok) {
-        throw new Error("Fehler beim Speichern in Supabase");
-      }
+      if (!response.ok) throw new Error("Fehler beim Speichern in Supabase");
+      form.hidden = true;
+      if (success) success.hidden = false;
     } catch (error) {
-      console.error("Supabase request failed, entry retained in localStorage:", error);
+      console.error("Supabase request failed:", error);
+      if (errorMessage) {
+        errorMessage.textContent = "Deine Anmeldung konnte nicht gespeichert werden. Bitte versuche es erneut.";
+        errorMessage.hidden = false;
+      }
+    } finally {
+      isSubmitting = false;
+      if (submitButton) submitButton.disabled = false;
+      form.removeAttribute("aria-busy");
     }
-
-    form.hidden = true;
-    if (success) success.hidden = false;
   });
 }
 
