@@ -1325,3 +1325,20 @@ button > span[aria-hidden="true"] {
   .why-values-heading > p { font-size: 16px; }
   .why-values-grid { grid-template-columns: 1fr; gap: 30px; margin-top: 32px; }
 }
+
+/* Kursanbieter: category hover */
+.provider-category-grid li {
+  transition: transform .22s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease;
+}
+@media (hover: hover) {
+  .provider-category-grid li:hover {
+    transform: translateY(-3px);
+    background-color: var(--sage);
+    border-color: var(--orange);
+    box-shadow: 0 10px 24px rgb(25 52 45 / 12%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .provider-category-grid li { transition: none; }
+  .provider-category-grid li:hover { transform: none; }
+}
