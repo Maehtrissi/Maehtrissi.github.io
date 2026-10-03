@@ -1284,12 +1284,12 @@ button > span[aria-hidden="true"] {
 }
 
 @media (hover: hover) {
-  .course-card:has(.course-book:hover) {
+  .course-card:hover {
     box-shadow: 0 14px 28px rgb(25 52 45 / 16%);
     transform: translateY(-3px);
   }
 
-  .course-card:has(.course-book:hover) .course-image:after {
+  .course-card:hover .course-image:after {
     background: linear-gradient(transparent 40%, rgb(25 52 45 / 52%));
   }
 }
