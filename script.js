@@ -178,11 +178,12 @@ document.querySelectorAll("[data-partner-form]").forEach((partnerForm) => {
       company: String(data.get("company") || "").trim(),
       contact: String(data.get("contact") || "").trim(),
       email: String(data.get("email") || "").trim(),
+      offer_type: String(data.get("offer_type") || "").trim(),
       category: String(data.get("category") || "").trim(),
       message: String(data.get("message") || "").trim()
     };
-    if (!submission.company || !submission.contact || !submission.email) {
-      partnerError.textContent = "Bitte fülle Unternehmen, Ansprechperson und E-Mail-Adresse aus.";
+    if (!submission.company || !submission.contact || !submission.email || !["Einzelne Kurse", "Mehrere Kurse", "Beides"].includes(submission.offer_type)) {
+      partnerError.textContent = "Bitte fülle die Pflichtfelder aus und wähle aus, was du anbieten möchtest.";
       partnerError.hidden = false;
       return;
     }

@@ -7,13 +7,14 @@ create table public."Kursanbieter" (
   contact text not null check (length(trim(contact)) between 1 and 200),
   email text not null check (length(trim(email)) between 3 and 254 and email ~ '^[^[:space:]@]+@[^[:space:]@]+[.][^[:space:]@]+$'),
   category text not null check (category in ('Yoga & Wellness', 'Kochen & Genießen', 'Kunst & Handwerk', 'Fotografie & Design', 'Tanz & Bewegung', 'Natur & Draußen', 'Etwas anderes')),
+  offer_type text check (offer_type in ('Einzelne Kurse', 'Mehrere Kurse', 'Beides')),
   message text not null default '' check (length(message) <= 5000),
   created_at timestamptz not null default now()
 );
 
 alter table public."Kursanbieter" enable row level security;
 revoke all on table public."Kursanbieter" from anon, authenticated;
-grant insert (company, contact, email, category, message) on table public."Kursanbieter" to anon, authenticated;
+grant insert (company, contact, email, category, message, offer_type) on table public."Kursanbieter" to anon, authenticated;
 grant all on table public."Kursanbieter" to service_role;
 
 create policy "Submit provider enquiry"
@@ -26,6 +27,7 @@ create policy "Submit provider enquiry"
     and length(trim(email)) between 3 and 254
     and email ~ '^[^[:space:]@]+@[^[:space:]@]+[.][^[:space:]@]+$'
     and category in ('Yoga & Wellness', 'Kochen & Genießen', 'Kunst & Handwerk', 'Fotografie & Design', 'Tanz & Bewegung', 'Natur & Draußen', 'Etwas anderes')
+    and offer_type in ('Einzelne Kurse', 'Mehrere Kurse', 'Beides')
     and length(message) <= 5000
   );
 
