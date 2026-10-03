@@ -59,8 +59,16 @@ if (form) {
       Name: String(data.get("name") || "").trim(),
       Email: String(data.get("email") || "").trim(),
       Phone: String(data.get("phone") || "").trim(),
-      Interest: data.get("business")
+      Interest: data.get("business"),
+      ContactChannel: String(data.get("contact_channel") || "").trim()
     };
+    if (!["WhatsApp", "E-Mail", "Beides"].includes(submission.ContactChannel)) {
+      if (errorMessage) {
+        errorMessage.textContent = "Bitte wähle WhatsApp, E-Mail oder Beides aus.";
+        errorMessage.hidden = false;
+      }
+      return;
+    }
     if (!submission.Name) {
       if (errorMessage) {
         errorMessage.textContent = "Bitte gib deinen Vor- und Nachnamen ein.";
