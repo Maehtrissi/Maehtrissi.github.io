@@ -1300,3 +1300,11 @@ button > span[aria-hidden="true"] {
     transition: none;
   }
 }
+
+/* Kursanbieter popup */
+#partner-modal .partner-modal { max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; }
+#partner-modal .partner-form { background: transparent; padding: 0; }
+#partner-modal .partner-form textarea { width: 100%; box-sizing: border-box; }
+[data-partner-form] [hidden] { display: none !important; }
+[data-partner-error] { color: #a12b2b; font-size: 13px; margin: 0; }
+[data-partner-form] button:disabled { cursor: wait; opacity: 0.65; }
