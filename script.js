@@ -40,6 +40,7 @@ if (form) {
     const submission = {
       Name: data.get("name"),
       Email: data.get("email"),
+      Phone: data.get("phone"),
       Interest: data.get("business"),
       CreatedAt: new Date().toISOString()
     };
@@ -67,6 +68,7 @@ if (form) {
           body: JSON.stringify({
             Name: submission.Name,
             Email: submission.Email,
+            Phone: submission.Phone,
             Interest: submission.Interest
           })
         }
