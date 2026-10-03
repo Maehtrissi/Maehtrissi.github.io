@@ -20,7 +20,14 @@ create policy "Submit provider enquiry"
   on public."Kursanbieter"
   for insert
   to anon, authenticated
-  with check (true);
+  with check (
+    length(trim(company)) between 1 and 200
+    and length(trim(contact)) between 1 and 200
+    and length(trim(email)) between 3 and 254
+    and email ~ '^[^[:space:]@]+@[^[:space:]@]+[.][^[:space:]@]+$'
+    and category in ('Yoga & Wellness', 'Kochen & Genießen', 'Kunst & Handwerk', 'Fotografie & Design', 'Tanz & Bewegung', 'Natur & Draußen', 'Etwas anderes')
+    and length(message) <= 5000
+  );
 
 notify pgrst, 'reload schema';
 commit;
