@@ -1342,3 +1342,26 @@ button > span[aria-hidden="true"] {
   .provider-category-grid li { transition: none; }
   .provider-category-grid li:hover { transform: none; }
 }
+
+/* Kursanbieter: benefit cards and hero hover */
+.provider-benefit-card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.provider-hero-card {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+@media (hover: hover) {
+  .provider-benefit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgb(25 52 45 / 12%);
+  }
+  .provider-hero-card:hover {
+    transform: translateY(-5px) rotate(1deg);
+    box-shadow: 20px 26px 0 var(--orange);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .provider-benefit-card, .provider-hero-card { transition: none; }
+  .provider-benefit-card:hover { transform: none; }
+  .provider-hero-card:hover { transform: rotate(3deg); }
+}
