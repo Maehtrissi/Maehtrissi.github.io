@@ -177,31 +177,27 @@ document.querySelectorAll("[data-partner-form]").forEach((partnerForm) => {
   const partnerError = partnerForm.querySelector("[data-partner-error]");
   const submitButton = partnerForm.querySelector('[type="submit"]');
   let isSubmitting = false;
-  const websiteInput = partnerForm.elements.namedItem("website_url");
-  const validateWebsite = () => {
-    const value = websiteInput?.value.trim() || "";
-    let valid = !value;
-    if (value) {
-      try {
-        const url = new URL(value);
-        valid = ["https:", "http:"].includes(url.protocol) && !!url.hostname && !url.username && !url.password;
-      } catch { valid = false; }
-    }
-    websiteInput?.setCustomValidity(valid ? "" : "Bitte gib einen vollständigen Website-Link mit https:// oder http:// ein.");
+  const partnerPhoneInput = partnerForm.elements.namedItem("phone");
+  const validatePartnerPhone = () => {
+    const value = partnerPhoneInput?.value.trim() || "";
+    const digits = value.replace(/\D/g, "").length;
+    const valid = !value || (/^[+0-9 ()/.\-]+$/.test(value) && digits >= 7 && digits <= 15
+      && (!value.includes("+") || value.indexOf("+") === 0 && value.lastIndexOf("+") === 0));
+    partnerPhoneInput?.setCustomValidity(valid ? "" : "Bitte gib eine gültige Telefonnummer mit 7 bis 15 Ziffern ein.");
   };
-  websiteInput?.addEventListener("input", validateWebsite);
+  partnerPhoneInput?.addEventListener("input", validatePartnerPhone);
 
   partnerForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (isSubmitting) return;
-    validateWebsite();
+    validatePartnerPhone();
     if (!partnerForm.reportValidity()) return;
     const data = new FormData(partnerForm);
     const submission = {
       company: String(data.get("company") || "").trim(),
       contact: String(data.get("contact") || "").trim(),
       email: String(data.get("email") || "").trim(),
-      website_url: String(data.get("website_url") || "").trim(),
+      phone: String(data.get("phone") || "").trim(),
       offer_type: String(data.get("offer_type") || "").trim(),
       category: String(data.get("category") || "").trim(),
       message: String(data.get("message") || "").trim()
