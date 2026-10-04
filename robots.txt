@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Sponti-Mitarbeiter/
+
+Sitemap: https://sponti-switzerland.ch/sitemap.xml
