@@ -46,7 +46,7 @@
       <section class="courses-heading">
         <div class="eyebrow"><span class="eyebrow-dot"></span> Kurzfristig freie Plätze</div>
         <h1>Finde deinen<br /><em>nächsten Kurs.</em></h1>
-        <p>Alle Erlebnisse, die in den nächsten Tagen stattfinden und noch Platz für dich haben.</p>
+        <p>Entdecke kommende Kurse mit freien Plätzen in der Schweiz.</p>
         <div class="course-filters" aria-label="Kurse filtern">
           <button class="filter active" data-filter="alle">Alle Kurse</button>
           <button class="filter" data-filter="yoga-wellness">Yoga &amp; Wellness</button>
@@ -64,6 +64,7 @@
           <button class="filter location-filter" data-location="luzern">Luzern</button>
           <button class="filter location-filter" data-location="schwyz">Schwyz</button>
           <button class="filter location-filter" data-location="aargau">Aargau</button>
+          <button class="filter location-filter" data-location="andere">Weitere Orte</button>
         </div>
         <div class="filter-group-label">Tag</div>
         <div class="course-filters" aria-label="Nach Tag filtern">
@@ -83,32 +84,8 @@
         </div>
       </section>
 
-      <section class="course-grid" aria-label="Verfügbare Kurse">
-        <article class="course-card" data-category="kunst-handwerk" data-day="do" data-time="abend">
-          <div class="course-image course-image-clay"><span class="course-category">Kunst &amp; Handwerk</span><span class="course-date">Do · 18:00 Uhr</span></div>
-          <div class="course-card-body"><h2>Ton &amp; Kaffee</h2><p>Forme deine erste Tasse in entspannter Atmosphäre.</p><div class="course-details"><span>📍 Atelier Nord</span><strong>4 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 29 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-        <article class="course-card" data-category="yoga-wellness" data-day="fr" data-time="vormittag">
-          <div class="course-image course-image-yoga"><span class="course-category">Yoga &amp; Wellness</span><span class="course-date">Fr · 09:30 Uhr</span></div>
-          <div class="course-card-body"><h2>Morning Flow</h2><p>Starte mit Bewegung, Atem und einem klaren Kopf in den Tag.</p><div class="course-details"><span>📍 Namaste Studio</span><strong>6 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 18 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-        <article class="course-card" data-category="kochen-geniessen" data-day="fr" data-time="abend">
-          <div class="course-image course-image-pasta"><span class="course-category">Kochen &amp; Genießen</span><span class="course-date">Fr · 19:00 Uhr</span></div>
-          <div class="course-card-body"><h2>Pasta selber machen</h2><p>Gemeinsam kneten, rollen und genießen – buon appetito!</p><div class="course-details"><span>📍 Cucina Studio</span><strong>2 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 42 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-        <article class="course-card" data-category="fotografie-design" data-day="sa" data-time="nachmittag">
-          <div class="course-image course-image-photo"><span class="course-category">Fotografie &amp; Design</span><span class="course-date">Sa · 14:00 Uhr</span></div>
-          <div class="course-card-body"><h2>City Photo Walk</h2><p>Entdecke deine Stadt durch neue Perspektiven und Linsen.</p><div class="course-details"><span>📍 Treffpunkt: Marktplatz</span><strong>5 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 24 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-        <article class="course-card" data-category="natur-draussen" data-day="sa" data-time="nachmittag">
-          <div class="course-image course-image-bouquet"><span class="course-category">Natur &amp; Draußen</span><span class="course-date">Sa · 16:30 Uhr</span></div>
-          <div class="course-card-body"><h2>Blumen arrangieren</h2><p>Gestalte deinen eigenen saisonalen Strauß für zuhause.</p><div class="course-details"><span>📍 Blütenwerk</span><strong>3 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 35 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-        <article class="course-card" data-category="tanz-bewegung" data-day="so" data-time="vormittag">
-          <div class="course-image course-image-dance"><span class="course-category">Tanz &amp; Bewegung</span><span class="course-date">So · 11:00 Uhr</span></div>
-          <div class="course-card-body"><h2>Dance Basics</h2><p>Ein lockerer Einstieg in Rhythmus, Bewegung und gute Laune.</p><div class="course-details"><span>📍 Studio West</span><strong>8 Plätze frei</strong></div><div class="course-bottom"><span class="course-price">ab 16 €</span><button class="course-book" data-open-booking>Platz sichern</button></div></div>
-        </article>
-      </section>
+      <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
+      <section class="course-grid" aria-label="Verfügbare Kurse" aria-busy="true"></section>
     </main>
 
         <footer class="site-footer">
@@ -142,67 +119,7 @@
       </div>
     </div>
     <script src="script.js?v=contact-channel-20261003"></script>
-    <script>
-      const categoryButtons = document.querySelectorAll(".filter[data-filter]");
-      const dayButtons = document.querySelectorAll(".day-filter");
-      const timeButtons = document.querySelectorAll(".time-filter");
-      const courseCards = document.querySelectorAll(".course-card");
-      const allButton = document.querySelector('.filter[data-filter="alle"]');
-
-      const activeValues = (buttons, attr) =>
-        [...buttons]
-          .filter((b) => b.classList.contains("active"))
-          .map((b) => b.dataset[attr]);
-
-      const applyFilters = () => {
-        const activeCategories = activeValues(categoryButtons, "filter").filter(
-          (f) => f !== "alle"
-        );
-        const activeDays = activeValues(dayButtons, "day");
-        const activeTimes = activeValues(timeButtons, "time");
-
-        courseCards.forEach((card) => {
-          const matchCategory =
-            activeCategories.length === 0 ||
-            activeCategories.includes(card.dataset.category);
-          const matchDay =
-            activeDays.length === 0 || activeDays.includes(card.dataset.day);
-          const matchTime =
-            activeTimes.length === 0 || activeTimes.includes(card.dataset.time);
-          card.style.display =
-            matchCategory && matchDay && matchTime ? "" : "none";
-        });
-
-        allButton.classList.toggle("active", activeCategories.length === 0);
-      };
-
-      allButton.addEventListener("click", () => {
-        categoryButtons.forEach((b) => b.classList.remove("active"));
-        allButton.classList.add("active");
-        applyFilters();
-      });
-
-      categoryButtons.forEach((button) => {
-        if (button === allButton) return;
-        button.addEventListener("click", () => {
-          button.classList.toggle("active");
-          applyFilters();
-        });
-      });
-
-      [...dayButtons, ...timeButtons].forEach((button) => {
-        button.addEventListener("click", () => {
-          button.classList.toggle("active");
-          applyFilters();
-        });
-      });
-
-      const urlFilter = new URLSearchParams(window.location.search).get("filter");
-      const urlButton = [...categoryButtons].find((b) => b.dataset.filter === urlFilter);
-      if (urlButton) {
-        urlButton.classList.add("active");
-        applyFilters();
-      }
-    </script>
+    <script src="courses.js?v=20261004"></script>
   </body>
 </html>
+
