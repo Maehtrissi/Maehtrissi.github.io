@@ -26,6 +26,7 @@
     <meta name="twitter:title" content="Unsere Idee: mehr spontane Erlebnisse | Sponti Schweiz" />
     <meta name="twitter:description" content="Warum es Sponti gibt: Wir verbinden freie Kursplätze mit neugierigen Menschen in der Schweiz und machen lokale Kurse und Erlebnisse sichtbar." />
     <meta name="twitter:image" content="https://sponti-switzerland.ch/logo.png" />
+    <link rel="stylesheet" href="customer-account.css?v=20261005" />
 </head>
 
 <body>
@@ -35,6 +36,7 @@
         <img src="logo.png" alt="Sponti Logo">
         <span>Sponti</span>
       </a>
+          <a class="account-header-link" href="profil.html" data-customer-profile-link>Anmelden</a>
 
     <button class="site-menu-trigger" type="button" data-site-menu-trigger aria-expanded="false" aria-controls="site-menu">
       <span>Menü</span><span class="site-menu-icon" aria-hidden="true"><i></i><i></i></span>
@@ -167,12 +169,15 @@
           <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
           <label>Wie möchtest du neue Kurse und Angebote erhalten?<select name="contact_channel" required aria-describedby="contact-channel-note"><option value="" disabled selected>Bitte auswählen</option><option>WhatsApp</option><option>E-Mail</option><option>Beides</option></select></label>
           <p id="contact-channel-note">Wir schicken dir Infos zu neuen Kursen und Angeboten über die von dir ausgewählten Kanäle. Du kannst diese jederzeit ändern.</p>
+          <p class="account-help">Schon ein Kundenkonto? <a href="profil.html">Anmelden und Profil bearbeiten →</a></p>
           <button class="button button-primary" type="submit">Auf dem Laufenden bleiben</button>
           <p id="form-error" role="alert" hidden></p>
         </form>
-        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee.</p>
+        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee. <a href="profil.html">Mein Profil einrichten →</a></p>
       </div>
     </div>
     <script src="script.js?v=contact-channel-20261003"></script>
+    <script type="module" src="customer-account.js?v=20261005"></script>
 </body>
 </html>
+
