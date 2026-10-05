@@ -10,23 +10,34 @@
 <section class="account-card" aria-labelledby="preferences-heading"><h2 id="preferences-heading">Deine Kursinfos.</h2><p>Wähle, welche Kurse dich interessieren, wo und wann sie passen und über welche Kanäle du Infos erhalten möchtest.</p><p class="account-help" data-preferences-status role="status" aria-live="polite"></p><form data-account-form="preferences"><label>Weitere Interessen (optional)<input name="interest" maxlength="500" placeholder="Zum Beispiel Yoga, Kochen oder Töpfern"></label><label>Kursinfos erhalten über<select name="channel" required><option value="" disabled>Bitte auswählen</option><option>WhatsApp</option><option>E-Mail</option><option>Beides</option><option value="Keine">Keine Kursinfos erhalten</option></select></label><p class="account-help">Du entscheidest, über welche Kanäle wir dich über Kurse informieren. Speichere deine Auswahl unten. Du kannst sie jederzeit ändern.</p><fieldset class="account-choice-group"><legend>Gewünschte Kategorien</legend><div class="account-choices"><label class="account-choice"><input type="checkbox" name="categories" value="yoga-wellness"><span>Yoga & Wellness</span></label><label class="account-choice"><input type="checkbox" name="categories" value="kochen-geniessen"><span>Kochen & Geniessen</span></label><label class="account-choice"><input type="checkbox" name="categories" value="kunst-handwerk"><span>Kunst & Handwerk</span></label><label class="account-choice"><input type="checkbox" name="categories" value="fotografie-design"><span>Fotografie & Design</span></label><label class="account-choice"><input type="checkbox" name="categories" value="tanz-bewegung"><span>Tanz & Bewegung</span></label><label class="account-choice"><input type="checkbox" name="categories" value="natur-draussen"><span>Natur & Draussen</span></label></div></fieldset><div class="account-form-grid"><label>Region<select name="region"><option value="">Alle Regionen</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="schwyz">Schwyz</option><option value="aargau">Aargau</option><option value="andere">Andere Region</option></select></label><label>Dein Ausgangsort / PLZ<input name="locality" maxlength="200" placeholder="Zum Beispiel 6300 Zug"></label><label>Gewünschter Umkreis<select name="radius_km"><option value="">Keine Einschränkung</option><option value="5">5 km</option><option value="10">10 km</option><option value="20">20 km</option><option value="30">30 km</option><option value="50">50 km</option><option value="100">100 km</option></select></label></div><fieldset class="account-choice-group"><legend>Bevorzugte Wochentage</legend><div class="account-choices"><label class="account-choice"><input type="checkbox" name="preferred_days" value="mo"><span>Montag</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="di"><span>Dienstag</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="mi"><span>Mittwoch</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="do"><span>Donnerstag</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="fr"><span>Freitag</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="sa"><span>Samstag</span></label><label class="account-choice"><input type="checkbox" name="preferred_days" value="so"><span>Sonntag</span></label></div></fieldset><fieldset class="account-choice-group"><legend>Bevorzugte Tageszeiten</legend><div class="account-choices"><label class="account-choice"><input type="checkbox" name="preferred_times" value="morning"><span>Vormittag</span></label><label class="account-choice"><input type="checkbox" name="preferred_times" value="afternoon"><span>Nachmittag</span></label><label class="account-choice"><input type="checkbox" name="preferred_times" value="evening"><span>Abend</span></label></div></fieldset><p class="account-help">Mehrere Antworten sind möglich. Ohne Kategorieauswahl interessieren dich alle Kategorien; ohne Zeitauswahl bist du flexibel. Der Umkreis wird als Wunsch gespeichert.</p><button class="button button-primary" type="submit">Kursinfos speichern</button></form></section>
 <section class="account-card" aria-labelledby="bookings-heading"><h2 id="bookings-heading">Meine Buchungen.</h2><p>Hier findest du Buchungen, die Sponti deinem Konto zugeordnet hat.</p><p data-bookings-status role="status" aria-live="polite">Buchungen werden geladen …</p><div data-bookings-list></div><div data-bookings-empty hidden><a class="button account-secondary" href="kurse.html">Kurse entdecken</a></div><p class="account-help">Buchungen auf externen Anbieter-Websites werden hier nicht automatisch übernommen.</p></section>
 <section class="account-card"><div data-account-recovery hidden><h2>Wähle ein neues Passwort.</h2><p>Dein Link wurde bestätigt. Lege jetzt dein neues Passwort fest.</p></div><h2>Passwort ändern.</h2><form data-account-form="password"><div class="account-form-grid"><label>Neues Passwort<input name="password" type="password" autocomplete="new-password" minlength="12" required></label><label>Passwort wiederholen<input name="confirm" type="password" autocomplete="new-password" minlength="12" required></label></div><button class="button account-secondary" type="submit">Passwort speichern</button></form></section></div><noscript>Bitte aktiviere JavaScript, um dein Kundenprofil zu verwenden.</noscript></main><footer class="site-footer">
-      <a class="logo" href="/"><span>Sponti</span></a>
-      <span>Kurzfristig freie Kursplätze für neugierige Menschen.</span>
-      <div class="footer-link-groups">
-        <nav class="footer-socials" aria-label="Social Media">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-        </nav>
-        <nav class="footer-socials footer-info" aria-label="Informationen">
-          <a href="datenschutz.html">Datenschutz</a>
-          <a href="agb.html">AGB</a>
-          <a href="rechtliches.html">Rechtliches</a>
-          <a href="warum.html">About</a>
-          <a href="kontakt.html">Kontakt</a>
-        </nav>
-      </div>
-      <span>© 2026 Sponti</span>
-    </footer><script type="module" src="customer-account.js?v=booking-history-20261005"></script></body></html>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="logo" href="/" aria-label="Sponti Startseite"><span>Sponti</span></a>
+      <p>Kurzfristig freie Kursplätze.<br>Entdecken, entscheiden, spontan erleben.</p>
+    </div>
+    <div class="footer-nav">
+      <nav class="footer-column" aria-label="Sponti">
+        <strong>Sponti</strong>
+        <a href="kurse.html">Kurse entdecken</a>
+        <a href="kursanbieter.html">Für Kursanbieter</a>
+        <a href="warum.html">Über Sponti</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <nav class="footer-column" aria-label="Rechtliches">
+        <strong>Rechtliches</strong>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="rechtliches.html">Rechtliches</a>
+      </nav>
+      <nav class="footer-column" aria-label="Social Media">
+        <strong>Folge uns</strong>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Sponti</span><span>Schweiz</span></div>
+</footer><script type="module" src="customer-account.js?v=booking-history-20261005"></script></body></html>
 
 
