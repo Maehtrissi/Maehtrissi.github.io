@@ -273,3 +273,31 @@ if (siteMenu && siteMenuTrigger) {
     }
   });
 }
+
+
+/* Cookie / privacy notice */
+(() => {
+  const key = "sponti_cookie_notice_v1";
+  if (localStorage.getItem(key)) return;
+
+  const banner = document.createElement("section");
+  banner.className = "cookie-banner";
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-label", "Cookie- und Datenschutzhinweis");
+  banner.innerHTML = `
+    <div class="cookie-banner-copy">
+      <strong>Datenschutz bei Sponti</strong>
+      <p>Wir verwenden derzeit nur technisch notwendige Browser-Speicherfunktionen für Anmeldung, Sicherheit und Einstellungen. Analyse- und Marketing-Tracking ist aktuell nicht aktiviert.</p>
+      <a href="datenschutz.html">Mehr zum Datenschutz</a>
+    </div>
+    <div class="cookie-banner-actions">
+      <button class="button button-primary cookie-banner-ok" type="button">Verstanden</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  banner.querySelector(".cookie-banner-ok").addEventListener("click", () => {
+    localStorage.setItem(key, "acknowledged");
+    banner.remove();
+  });
+})();
