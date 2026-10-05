@@ -55,6 +55,8 @@ if(root){
  }));
  function setMode(mode){root.querySelectorAll('[data-account-panel]').forEach(panel=>panel.hidden=panel.dataset.accountPanel!==mode);root.querySelectorAll('[data-account-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.accountMode===mode)));message(status?.textContent||'');}
  root.querySelectorAll('[data-account-mode]').forEach(button=>button.addEventListener('click',()=>{message('');setMode(button.dataset.accountMode);root.querySelector(`[data-account-panel="${button.dataset.accountMode}"] input`)?.focus();}));
+ if(new URLSearchParams(location.search).get('mode')==='register')setMode('register');
  root.querySelector('[data-account-logout]').addEventListener('click',async()=>{if(busy)return;try{const r=await client.auth.signOut({scope:'local'});if(r.error)throw r.error;}catch(error){message(friendly(error),true);}});
 }
 loadUser().catch(error=>{draw();message(friendly(error),true);});
+

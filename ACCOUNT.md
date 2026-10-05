@@ -20,6 +20,7 @@ SDK-Versionen sind in package.json und package-lock.json festgelegt. customer-ac
 
 Die Invoker-RPC public.customer_profile ruft eine eng begrenzte private Definer-Funktion auf. Diese prüft auth.uid(), verwirft anonyme Benutzer und verlangt eine serverseitig bestätigte E-Mail aus auth.users. Nur eigene Profilfelder werden zurückgegeben. ID, E-Mail, Rollen oder CRM-Notizen sind keine zulässigen Updatefelder. Bestehende Einträge werden nach bestätigter E-Mail verknüpft. Ohne vorhandenen Eintrag wird bei erster Speicherung ein Profil angelegt. Archivierte verknüpfte Profile können nicht durch Kunden aktiviert werden.
 
-Die bisherigen Sponti-beitreten-Formulare bleiben Kursinfo-Anmeldungen und verlinken das eigenständige Kundenkonto. Sie erstellen keinen Auth-Zugang ohne bestätigte Registrierung.
+Sponti beitreten führt auf allen öffentlichen Seiten direkt zur Kontoerstellung (profil.html?mode=register). Anmelden öffnet den Login für bestehende Konten. Die alten separaten Kursinfo-Formulare wurden entfernt. Die bestehenden Kursanbieter-Formulare bleiben erhalten. Name, Telefon, Interessen und Kontaktkanäle werden erst nach bestätigter Registrierung im eigenen CRM-Profil gespeichert. Bestehende frühere Kursinfo-Einträge werden per bestätigter E-Mail übernommen.
 
 Tests liegen im Mitarbeiterrepository unter supabase/tests/customer_profiles.sql. Eigentums-, Legacy-, Opt-out- und Datenschutzprüfungen laufen in einer Transaktion mit Rollback.
+

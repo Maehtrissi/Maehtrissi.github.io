@@ -41,7 +41,7 @@
       <section class="site-menu-panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
         <div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schließen">×</button></div>
         <nav class="site-menu-links" aria-label="Hauptnavigation"><a href="/">Startseite</a><a href="kurse.html">Kurs entdecken</a><a href="kursanbieter.html">Für Kursanbieter</a><a href="warum.html">Motivation</a><a href="erfahrungen.html">Erfahrungen</a></nav>
-        <button class="button button-primary site-menu-cta" type="button" data-open-booking>Sponti beitreten</button>
+        <a class="button button-primary site-menu-cta" data-open-booking href="profil.html?mode=register">Sponti beitreten</a>
       </section>
     </div>
     <main>
@@ -101,30 +101,12 @@
       <span>© 2026 Sponti</span>
     </footer>
 
-    <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <button class="modal-close" data-close-booking aria-label="Anmeldeformular schließen">×</button>
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Sei als Erstes dabei</div>
-        <h2 id="modal-title">Sponti beitreten.</h2>
-        <p>Verrate uns, wer du bist und was du magst. Wir schicken dir neue Kurse mit freien Plätzen.</p>
-        <form id="demo-form">
-          <label>Vor- und Nachname<input name="name" required placeholder="Dein Name" /></label>
-          <label>E-Mail-Adresse<input name="email" type="email" required placeholder="du@beispiel.de" /></label>
-          <label>Telefonnummer<input name="phone" type="tel" autocomplete="tel" required maxlength="30" placeholder="z. B. +41 79 123 45 67" /></label>
-          <label>Wofür interessierst du dich?<select name="business"><option>Ein bisschen von allem</option><option>Bewegung &amp; Wellness</option><option>Essen &amp; Trinken</option><option>Kunst &amp; Handwerk</option></select></label>
-          <label>Wie möchtest du neue Kurse und Angebote erhalten?<select name="contact_channel" required aria-describedby="contact-channel-note"><option value="" disabled selected>Bitte auswählen</option><option>WhatsApp</option><option>E-Mail</option><option>Beides</option></select></label>
-          <p id="contact-channel-note">Wir schicken dir Infos zu neuen Kursen und Angeboten über die von dir ausgewählten Kanäle. Du kannst diese jederzeit ändern.</p>
-          <p class="account-help">Schon ein Kundenkonto? <a href="profil.html">Anmelden und Profil bearbeiten →</a></p>
-          <button class="button button-primary" type="submit">Auf dem Laufenden bleiben</button>
-          <p id="form-error" role="alert" hidden></p>
-        </form>
-        <p class="form-success" id="form-success" hidden>Du bist dabei! Wir schicken dir die nächste gute Idee. <a href="profil.html">Mein Profil einrichten →</a></p>
-      </div>
-    </div>
-    <script src="script.js?v=contact-channel-20261003"></script>
+    
+    <script src="script.js?v=unified-join-20261005"></script>
     <script src="courses.js?v=20261004"></script>
-      <script type="module" src="customer-account.js?v=20261005"></script>
+      <script type="module" src="customer-account.js?v=unified-join-20261005"></script>
 </body>
 </html>
+
 
 
