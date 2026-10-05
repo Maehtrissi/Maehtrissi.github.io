@@ -85,11 +85,12 @@ document.querySelectorAll("[data-partner-form]").forEach((partnerForm) => {
       contact: String(data.get("contact") || "").trim(),
       email: String(data.get("email") || "").trim(),
       phone: String(data.get("phone") || "").trim(),
+      location: String(data.get("location") || "").trim(),
       offer_type: String(data.get("offer_type") || "").trim(),
       category: String(data.get("category") || "").trim(),
       message: String(data.get("message") || "").trim()
     };
-    if (!submission.company || !submission.contact || !submission.email || !["Einzelne Kurse", "Mehrere Kurse", "Beides"].includes(submission.offer_type)) {
+    if (!submission.company || !submission.contact || !submission.email || !submission.location || submission.location.length > 300 || !["Einzelne Kurse", "Mehrere Kurse", "Beides"].includes(submission.offer_type)) {
       partnerError.textContent = "Bitte fülle die Pflichtfelder aus und wähle aus, was du anbieten möchtest.";
       partnerError.hidden = false;
       return;
@@ -272,4 +273,3 @@ if (siteMenu && siteMenuTrigger) {
     }
   });
 }
-
