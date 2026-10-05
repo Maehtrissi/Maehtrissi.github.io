@@ -24,3 +24,13 @@ Sponti beitreten führt auf allen öffentlichen Seiten direkt zur Kontoerstellun
 
 Tests liegen im Mitarbeiterrepository unter supabase/tests/customer_profiles.sql. Eigentums-, Legacy-, Opt-out- und Datenschutzprüfungen laufen in einer Transaktion mit Rollback.
 
+
+## Course information settings and bookings
+
+The member profile has separate cards for personal details, course information preferences, bookings and password changes. Course preferences include contact channel (WhatsApp, E-Mail, Beides or Keine), six course categories, optional further interests, region, starting locality/PLZ, radius, weekdays and times. Empty category or time selections mean flexible preferences.
+
+customer_preferences is owned by auth.users.id. save_course_preferences saves these fields and the existing CRM contact channel/interest atomically under caller RLS. A radius requires a locality; it is a stored preference and does not implement automatic geographic filtering or message dispatch. CRM staff can read preferences; customers can only read/edit their own records.
+
+The bookings card reads actual rows from public.bookings, grouped by upcoming/past date in Europe/Zurich, with status, venue, seats and total CHF price. Only registered active employees can create/update bookings in the database. Customers can read only their own bookings. No external provider import, payment or booking management UI is included. Empty and loading-error states are distinct.
+
+Migrations: 20261005190530_customer_preferences_and_bookings.sql and 20261005191027_customer_course_info_settings.sql. Transactional ownership/validation/atomicity tests: supabase/tests/customer_preferences.sql in Sponti-Mitarbeiter.
