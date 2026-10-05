@@ -71,10 +71,11 @@ function renderBookings(rows){
  const now=Date.now(),upcoming=rows.filter(row=>new Date(row.starts_at).getTime()>=now).reverse(),past=rows.filter(row=>new Date(row.starts_at).getTime()<now);
  const date=new Intl.DateTimeFormat('de-CH',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Zurich'});
  const money=new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'});
- for(const [title,items] of [['Kommende Buchungen',upcoming],['Vergangene Buchungen',past]]){
-  if(!items.length)continue;
-  const heading=document.createElement('h3');heading.textContent=title;container.append(heading);
-  const list=document.createElement('ul');list.className='account-bookings';container.append(list);
+ for(const [key,title,items,empty] of [['upcoming','Kommende Buchungen',upcoming,'Du hast aktuell keine kommenden Buchungen.'],['past','Vergangene Buchungen',past,'Du hast noch keine vergangenen Buchungen.']]){
+  const section=document.createElement('section');section.className='account-booking-section';section.setAttribute('aria-labelledby',key+'-bookings-heading');
+  const heading=document.createElement('h3');heading.id=key+'-bookings-heading';heading.textContent=title;section.append(heading);container.append(section);
+  if(!items.length){const hint=document.createElement('p');hint.className='account-help';hint.textContent=empty;section.append(hint);continue;}
+  const list=document.createElement('ul');list.className='account-bookings';section.append(list);
   for(const row of items){
    const item=document.createElement('li'),name=document.createElement('h4'),info=document.createElement('p'),state=document.createElement('span');
    name.textContent=row.course_title;

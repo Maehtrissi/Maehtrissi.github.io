@@ -34,3 +34,5 @@ customer_preferences is owned by auth.users.id. save_course_preferences saves th
 The bookings card reads actual rows from public.bookings, grouped by upcoming/past date in Europe/Zurich, with status, venue, seats and total CHF price. Only registered active employees can create/update bookings in the database. Customers can read only their own bookings. No external provider import, payment or booking management UI is included. Empty and loading-error states are distinct.
 
 Migrations: 20261005190530_customer_preferences_and_bookings.sql and 20261005191027_customer_course_info_settings.sql. Transactional ownership/validation/atomicity tests: supabase/tests/customer_preferences.sql in Sponti-Mitarbeiter.
+
+The bookings card always shows separate upcoming and past sections after successful loading, each with its own empty state. Past means the scheduled start is in the past; it does not imply confirmed attendance. Cancellation/request status remains visible.
