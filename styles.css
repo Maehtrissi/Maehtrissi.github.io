@@ -1539,3 +1539,13 @@ button > span[aria-hidden="true"] {
     justify-self: start;
   }
 }
+
+/* Motivation: full-width, centred invitation matching the homepage. */
+.why-closing h2 { max-width: 1000px; margin: 22px auto; }
+.why-closing-copy { position: relative; max-width: 720px; margin: 0 auto; }
+.why-closing-copy p { margin: 0 0 20px; line-height: 1.65; }
+.why-closing-copy .button { margin-top: 10px; }
+@media (max-width: 760px) {
+  .why-closing { padding: 70px 24px; }
+  .why-closing h2 { font-size: clamp(36px, 8vw, 53px); line-height: 1.08; overflow-wrap: break-word; }
+}
