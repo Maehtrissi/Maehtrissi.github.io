@@ -838,7 +838,7 @@ transform: translateY(-2px) scale(1.07);
 }
 
 .site-menu-panel:has(.site-menu-provider-cta) .site-menu-cta {
-  margin-top: auto;
+  margin-top: auto !important;
 }
 
 .site-menu-panel:has(.site-menu-provider-cta) .site-menu-cta,
