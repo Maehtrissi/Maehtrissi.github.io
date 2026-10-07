@@ -1590,25 +1590,21 @@ button > span[aria-hidden="true"] {
 
 
 /* Sponti logo micro-animation */
-.site-header .logo img {
+.site-header .logo {
   transform-origin: center;
   animation: sponti-logo-pop .55s cubic-bezier(.2,.85,.35,1.25) both;
   transition: transform .22s ease;
 }
-.site-header .logo span {
-  display: inline-block;
-  transition: transform .22s ease;
-}
 @media (hover: hover) {
-  .site-header .logo:hover img { transform: translateY(-2px) rotate(-3deg) scale(1.06); }
-  .site-header .logo:hover span { transform: translateX(3px); }
+  .site-header .logo:hover {
+    transform: translateY(-2px) rotate(-2deg) scale(1.04);
+  }
 }
 @keyframes sponti-logo-pop {
-  0% { transform: scale(.82); opacity: .45; }
-  65% { transform: scale(1.08); opacity: 1; }
+  0% { transform: scale(.88); opacity: .5; }
+  65% { transform: scale(1.05); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-header .logo img { animation: none; transition: none; }
-  .site-header .logo span { transition: none; }
+  .site-header .logo { animation: none; transition: none; }
 }
