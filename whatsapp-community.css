@@ -11,3 +11,11 @@
 .whatsapp-community-qr img{display:block;width:100%;height:auto;border-radius:10px}
 .whatsapp-community-qr span{display:block;padding:12px 5px 2px;text-align:center;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 @media(max-width:760px){.whatsapp-community{padding:0 20px}.whatsapp-community-card{grid-template-columns:1fr;gap:34px;padding:42px 28px}.whatsapp-community-qr{justify-self:center;width:min(230px,100%);transform:none}.whatsapp-community-actions .button{width:100%}.whatsapp-community-note{width:100%;text-align:center}}
+
+/* WhatsApp announcement bar */
+.top-announcement{display:flex;align-items:center;justify-content:center;min-height:40px;padding:9px 20px;color:var(--white);background:var(--ink);font-size:12px;font-weight:500;letter-spacing:.01em;text-align:center;transition:background-color .2s ease}
+.top-announcement strong{color:var(--lime);font-weight:700}
+.top-announcement:hover{background:#24463c}
+.top-announcement:focus-visible{outline:3px solid var(--orange);outline-offset:-3px}
+.top-announcement-mobile{display:none}
+@media(max-width:620px){.top-announcement{min-height:36px;padding:8px 14px;font-size:11px}.top-announcement-desktop{display:none}.top-announcement-mobile{display:inline}}
