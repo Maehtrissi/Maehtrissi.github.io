@@ -1,0 +1,12 @@
+.course-guide{max-width:1176px;margin:0 auto 90px;padding:40px 32px;border-top:1px solid var(--line)}
+.course-guide h2{max-width:800px;font-size:clamp(32px,4vw,48px);line-height:1.12;margin:0 0 24px}
+.course-guide h3{font-size:19px;line-height:1.35;margin:0 0 14px}
+.course-guide p{color:var(--muted);font-size:15px;line-height:1.75;margin:0 0 24px;max-width:850px}
+.course-guide-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin:32px 0}
+.course-guide-links{display:flex;flex-wrap:wrap;gap:12px 20px}
+.course-guide a{text-decoration:underline;text-underline-offset:4px}
+.course-guide a:focus-visible,.course-guide summary:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+.course-guide details{border-top:1px solid var(--line);padding:20px 0}
+.course-guide summary{cursor:pointer;font-weight:700;line-height:1.5}
+.course-guide details p{margin:18px 0 0}
+@media(max-width:760px){.course-guide{padding:32px 20px;margin-bottom:60px}.course-guide-columns{grid-template-columns:1fr;gap:28px}}

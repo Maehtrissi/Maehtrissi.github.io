@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Finde auf Sponti Kurse mit freien Plätzen in der Schweiz: Yoga, Kochen, Töpfern und mehr. Entdecke Angebote nach Kategorie, Ort und Zeitpunkt." />
-    <title>Kurse &amp; Erlebnisse in der Schweiz entdecken | Sponti</title>
+    <meta name="description" content="Kurse in der Schweiz finden: Entdecke mit Sponti freie Plätze für Yoga, Kochkurse, Töpfern und mehr. Filtere nach Kategorie, Ort, Wochentag und Uhrzeit." />
+    <title>Kurse Schweiz: freie Plätze entdecken | Sponti</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
@@ -14,17 +14,18 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Sponti Schweiz" />
     <meta property="og:locale" content="de_CH" />
-    <meta property="og:title" content="Kurse &amp; Erlebnisse in der Schweiz entdecken | Sponti" />
-    <meta property="og:description" content="Finde auf Sponti Kurse mit freien Plätzen in der Schweiz: Yoga, Kochen, Töpfern und mehr. Entdecke Angebote nach Kategorie, Ort und Zeitpunkt." />
+    <meta property="og:title" content="Kurse Schweiz: freie Plätze entdecken | Sponti" />
+    <meta property="og:description" content="Kurse in der Schweiz finden: Entdecke mit Sponti freie Plätze für Yoga, Kochkurse, Töpfern und mehr. Filtere nach Kategorie, Ort, Wochentag und Uhrzeit." />
     <meta property="og:url" content="https://sponti-switzerland.ch/kurse.html" />
     <meta property="og:image" content="https://sponti-switzerland.ch/logo.png" />
     <meta property="og:image:alt" content="Sponti Schweiz Logo" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Kurse &amp; Erlebnisse in der Schweiz entdecken | Sponti" />
-    <meta name="twitter:description" content="Finde auf Sponti Kurse mit freien Plätzen in der Schweiz: Yoga, Kochen, Töpfern und mehr. Entdecke Angebote nach Kategorie, Ort und Zeitpunkt." />
+    <meta name="twitter:title" content="Kurse Schweiz: freie Plätze entdecken | Sponti" />
+    <meta name="twitter:description" content="Kurse in der Schweiz finden: Entdecke mit Sponti freie Plätze für Yoga, Kochkurse, Töpfern und mehr. Filtere nach Kategorie, Ort, Wochentag und Uhrzeit." />
     <meta name="twitter:image" content="https://sponti-switzerland.ch/logo.png" />
     <link rel="stylesheet" href="customer-account.css?v=20261005" />
     <link rel="stylesheet" href="whatsapp-community.css?v=20261007" />
+    <link rel="stylesheet" href="course-guide.css?v=20261007" />
 </head>
     <body class="courses-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -52,8 +53,8 @@
     <main>
       <section class="courses-heading">
         <div class="eyebrow"><span class="eyebrow-dot"></span> Kurzfristig freie Plätze</div>
-        <h1>Finde deinen<br /><em>nächsten Kurs.</em></h1>
-        <p>Entdecke kommende Kurse mit freien Plätzen in der Schweiz.</p>
+        <h1>Kurse in der<br /><em>Schweiz entdecken.</em></h1>
+        <p>Finde mit Sponti kurzfristig freie Kursplätze in Zug, Zürich, Luzern, Schwyz und Aargau. Wähle deine Kategorie, deinen Ort und die passende Zeit.</p>
         <div class="course-filters" aria-label="Kurse filtern">
           <button class="filter active" data-filter="alle">Alle Kurse</button>
           <button class="filter" data-filter="yoga-wellness">Yoga &amp; Wellness</button>
@@ -93,6 +94,39 @@
 
       <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
       <section class="course-grid" aria-label="Verfügbare Kurse" aria-busy="true"></section>
+
+      <section class="course-guide" aria-labelledby="course-guide-title">
+        <h2 id="course-guide-title">Sponti Kurse: <em>Finde dein nächstes Erlebnis.</em></h2>
+        <p>Du möchtest etwas Neues ausprobieren oder spontan einen freien Abend gestalten? Sponti macht kurzfristig freie Plätze bei Kursanbietern in der Schweiz sichtbar. In der Übersicht findest du die veröffentlichten Angebote mit Termin, Standort, Preis und freien Plätzen.</p>
+        <div class="course-guide-columns">
+          <div>
+            <h3>Welche Kurse interessieren dich?</h3>
+            <p>Entdecke Bewegung, kreative Aktivitäten und gemeinsame Erlebnisse. Mit den Kategorien grenzt du die Kursauswahl nach deinen Interessen ein.</p>
+            <nav class="course-guide-links" aria-label="Kurse nach Kategorie entdecken">
+              <a href="kurse.html?filter=yoga-wellness">Yoga und Wellness</a>
+              <a href="kurse.html?filter=kochen-geniessen">Kochkurse und Genuss</a>
+              <a href="kurse.html?filter=kunst-handwerk">Töpfern, Kunst und Handwerk</a>
+              <a href="kurse.html?filter=fotografie-design">Fotografie und Design</a>
+              <a href="kurse.html?filter=tanz-bewegung">Tanz und Bewegung</a>
+              <a href="kurse.html?filter=natur-draussen">Natur und Outdoor-Erlebnisse</a>
+            </nav>
+          </div>
+          <div>
+            <h3>Kurse in deiner Nähe finden</h3>
+            <p>Nutze die Standortfilter für Zug, Zürich, Luzern, Schwyz und Aargau oder wähle weitere Orte. Kombiniere den Ort mit deinem gewünschten Wochentag und der Uhrzeit. Welche Kurse verfügbar sind, hängt von den aktuell veröffentlichten Angeboten ab.</p>
+            <h3>Wie komme ich zu meinem Kursplatz?</h3>
+            <p>Prüfe die Angaben zum Kurs und folge dem Buchungslink beim Angebot. Falls kein Buchungslink hinterlegt ist, kannst du über «Infos erhalten» zum Sponti-Konto gelangen. Die Kursübersicht allein reserviert noch keinen Platz.</p>
+          </div>
+        </div>
+        <details>
+          <summary>Was mache ich, wenn gerade kein passender Kurs dabei ist?</summary>
+          <p>Ändere deine Filter oder schau später wieder vorbei. Über dein <a href="profil.html">Sponti-Konto</a> kannst du deine Interessen und gewünschten Kanäle für Kursinfos einstellen.</p>
+        </details>
+        <details>
+          <summary>Kann ich als Kursanbieter freie Plätze einreichen?</summary>
+          <p>Ja. Über das <a href="kursanbieter.html#mitmachen">Formular für Kursanbieter</a> kannst du dein Unternehmen und dein Angebot vorstellen. Das Sponti-Team prüft deine Anfrage und nimmt mit dir Kontakt auf.</p>
+        </details>
+      </section>
     </main>
 
         <footer class="site-footer">
