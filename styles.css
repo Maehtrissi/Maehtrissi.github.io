@@ -1552,3 +1552,7 @@ button > span[aria-hidden="true"] {
 
 /* Sponti last-minute course signals */
 .course-urgency{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}.course-countdown,.course-spots{border-radius:999px;font-size:10px;font-weight:700;padding:6px 9px}.course-countdown{background:var(--ink);color:var(--white)}.course-spots{background:var(--sage);color:#3f6b48}.course-spots-low{background:#fff0e7;color:#a34f2f}.course-policy{color:var(--muted);font-size:10px;line-height:1.4;padding-top:11px}.course-policy:before{content:"✓ ";color:#5f9d6a;font-weight:700}
+
+/* Provider account action in navigation */
+.site-menu-provider-cta{margin-top:10px;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.site-menu-provider-cta:hover{background:var(--ink);color:var(--white)}
