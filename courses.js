@@ -21,6 +21,8 @@
   applyFilters();
  }));
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
+ const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
+ const cancellationText=(start)=>start-Date.now()<=86400000?'Buchung verbindlich · keine kostenlose Stornierung':'Kostenlose Stornierung bis 24 h vor Beginn';
  function render(course){
   const card=element('article','course-card'),start=new Date(course.starts_at);
   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(start).map(p=>[p.type,p.value]));
@@ -29,13 +31,20 @@
   Object.assign(card.dataset,{category:course.category,location:course.region,day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend'});
   const image=element('div',`course-image course-image-${category[1]}`);
   image.append(element('span','course-category',category[0]),element('span','course-date',new Intl.DateTimeFormat('de-CH',{timeZone:'Europe/Zurich',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(start)));
-  const body=element('div','course-card-body');body.append(element('h2','',course.title),element('p','',course.description));
+  const body=element('div','course-card-body');
+  const urgency=element('div','course-urgency');
+  const countdown=element('span','course-countdown',countdownText(start));
+  countdown.dataset.startsAt=course.starts_at;
+  const seats=element('span',Number(course.seats)<=2?'course-spots course-spots-low':'course-spots',course.seats===1?'Letzter Platz':`Noch ${course.seats} Plätze`);
+  urgency.append(countdown,seats);
+  body.append(urgency,element('h2','',course.title),element('p','',course.description));
   const details=element('div','course-details');details.append(element('span','','📍 '+course.venue),element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   let booking=null;
   try{if(course.booking_url){const url=new URL(course.booking_url);if(['https:','http:'].includes(url.protocol)&&!url.username&&!url.password){booking=element('a','course-book','Zur Buchung');booking.href=url.href;booking.target='_blank';booking.rel='noopener noreferrer';booking.style.textDecoration='none';}}}catch{/* Ignore invalid legacy links. */}
   if(!booking){booking=element('button','course-book','Infos erhalten');booking.type='button';booking.addEventListener('click',()=>document.querySelector('[data-open-booking]')?.click());}
-  bottom.append(booking);body.append(details,bottom);card.append(image,body);return card;
+  const policy=element('div','course-policy',cancellationText(start));
+  bottom.append(booking);body.append(details,policy,bottom);card.append(image,body);return card;
  }
  async function load(){
   grid.setAttribute('aria-busy','true');message.textContent='Kurse werden geladen …';
@@ -54,4 +63,5 @@
   finally{grid.setAttribute('aria-busy','false');}
  }
  load();
+ window.setInterval(()=>document.querySelectorAll('.course-countdown[data-starts-at]').forEach(el=>{const start=new Date(el.dataset.startsAt);el.textContent=countdownText(start);const policy=el.closest('.course-card')?.querySelector('.course-policy');if(policy)policy.textContent=cancellationText(start);}),60000);
 })();
