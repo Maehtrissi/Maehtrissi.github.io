@@ -302,15 +302,25 @@ if (siteMenu && siteMenuTrigger) {
   });
 })();
 
-// Close account dropdown when clicking outside, pressing Escape, or opening main navigation.
-document.addEventListener("pointerdown", (event) => {
-  document.querySelectorAll(".account-selector[open]").forEach((selector) => {
-    if (!selector.contains(event.target)) selector.open = false;
-  });
-});
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") document.querySelectorAll(".account-selector[open]").forEach((selector) => { selector.open = false; selector.querySelector("summary")?.focus(); });
-});
-document.querySelectorAll("[data-site-menu-trigger]").forEach((trigger) => trigger.addEventListener("click", () => {
-  document.querySelectorAll(".account-selector[open]").forEach((selector) => { selector.open = false; });
-}));
+// Keep the login dropdown in sync with clicks anywhere on the page.
+(function () {
+  function closeSelectors(except) {
+    document.querySelectorAll("details.account-selector[open]").forEach((item) => {
+      if (item !== except) item.open = false;
+    });
+  }
+  document.addEventListener("click", (event) => {
+    const selector = event.target.closest("details.account-selector");
+    if (!selector) closeSelectors();
+    else if (event.target.closest("summary")) closeSelectors(selector);
+  }, true);
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const open = document.querySelector("details.account-selector[open]");
+    closeSelectors();
+    if (open) { open.open = false; open.querySelector("summary")?.focus(); }
+  }, true);
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-site-menu-trigger]")) closeSelectors();
+  }, true);
+})();
