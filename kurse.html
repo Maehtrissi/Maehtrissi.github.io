@@ -92,7 +92,8 @@
         </div>
       </section>
 
-      <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
+<div class="course-extra-filters"><label><input id="filter-today" type="checkbox"> Heute noch verfügbar</label><label for="filter-price">Maximalpreis: <output id="filter-price-value">Alle Preise</output><input id="filter-price" type="range" min="0" max="500" step="10" value="500"></label></div>
+            <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
       <section class="course-grid" aria-label="Verfügbare Kurse" aria-busy="true"></section>
 
       <section class="provider-directory" id="anbieter-entdecken" aria-labelledby="provider-directory-title">
@@ -168,7 +169,7 @@
 
     
     <script src="script.js?v=login-close-20261010"></script>
-    <script src="courses.js?v=last-minute-20261007"></script>
+    <script src="courses.js?v=today-price-20261010"></script>
       <script type="module" src="customer-account.js?v=unified-join-20261005"></script>
 <script type="module" src="provider-directory.js?v=20261010"></script></body>
 </html>
