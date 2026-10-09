@@ -170,7 +170,7 @@
         <div class="eyebrow light"><span class="eyebrow-dot"></span> Interesse?</div>
         <h2 id="cta-title">Noch freie Plätze?<br><em>Lass sie uns füllen.</em></h2>
         <p>Mach dein Angebot auf Sponti sichtbar und erreiche Menschen, die spontan nach ihrem nächsten Erlebnis suchen.</p>
-        <button class="button button-primary" type="button" data-open-partner>Angebot einreichen</button>
+        <a class="button button-primary" href="#anbieter-anfrage">Angebot einreichen</a>
       </section>
     </main>
 
@@ -206,28 +206,6 @@
 </footer>
 
     
-    <div class="modal-backdrop" id="partner-modal" aria-hidden="true">
-      <div class="modal partner-modal" role="dialog" aria-modal="true" aria-labelledby="partner-modal-title" tabindex="-1">
-        <button class="modal-close" type="button" data-close-partner aria-label="Kursanbieterformular schliessen">×</button>
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Für Kursanbieter</div>
-        <h2 id="partner-modal-title">Angebot einreichen.</h2>
-        <p>Erzähl uns von deinem Angebot. Wir melden uns bei dir.</p>
-        <form class="partner-form" id="partner-form" data-partner-form>
-          <label>Name des Unternehmens<input name="company" autocomplete="organization" maxlength="200" required placeholder="z. B. Studio Blume" /></label>
-          <label>Ansprechperson<input name="contact" autocomplete="name" maxlength="200" required placeholder="Dein Name" /></label>
-          <label>E-Mail-Adresse<input name="email" type="email" autocomplete="email" maxlength="254" required placeholder="du@unternehmen.de" /></label>
-          <label>Standort / Adresse<input name="location" required maxlength="300" autocomplete="street-address" placeholder="Zum Beispiel 6300 Zug, Bahnhofstrasse 10" /></label>
-          <label>Telefonnummer (optional)<input name="phone" type="tel" autocomplete="tel" maxlength="100" placeholder="+41 79 123 45 67" /></label>
-          <label>Was möchtest du anbieten?<select name="offer_type" required><option value="" disabled selected>Bitte auswählen</option><option>Einzelne Kurse</option><option>Mehrere Kurse</option><option>Beides</option></select></label>
-          <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
-          <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="5000" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
-          <p class="account-help">Mit dem Absenden werden deine Angaben zur Bearbeitung deiner Anfrage gespeichert. Weitere Informationen findest du unter <a href="rechtliches.html">Datenschutz &amp; Rechtliches</a>.</p>
-          <button class="button button-primary" type="submit">Anfrage senden</button>
-          <p data-partner-error role="alert" hidden></p>
-          <p class="form-success" id="partner-success" data-partner-success role="status" tabindex="-1" hidden>Danke! Wir melden uns in Kürze bei dir.</p>
-        </form>
-      </div>
-    </div>
     <script src="script.js?v=login-close-20261010"></script>
       <script type="module" src="customer-account.js?v=unified-join-20261005"></script>
 </body>
