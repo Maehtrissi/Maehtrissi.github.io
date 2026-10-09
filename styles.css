@@ -1621,3 +1621,8 @@ button > span[aria-hidden="true"] {
 .site-header .account-selector-menu a:hover,.site-header .account-selector-menu a:focus-visible{background:#edf3eb}
 .site-header .account-selector>summary:focus-visible{outline:2px solid #19342d;outline-offset:3px}
 @media(max-width:520px){.site-header .account-selector{margin-right:8px}.site-header .account-selector>summary{padding:10px 12px;font-size:12px}.site-header .account-selector-menu{min-width:220px}}
+
+/* Align account selector with site menu button */
+.site-header .account-selector>summary{min-height:46px;box-sizing:border-box;padding:9px 16px;border:1px solid var(--ink);border-radius:999px;font:inherit;font-size:13px;font-weight:700;gap:12px;transition:color .2s ease,background-color .2s ease,transform .2s ease}
+.site-header .account-selector>summary:hover{transform:translateY(-2px)}
+.site-header .account-selector>summary::after{content:'⌄';font-size:19px;line-height:1;display:inline-block}
