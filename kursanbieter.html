@@ -128,6 +128,35 @@
         <p class="provider-other"><strong>Dein Angebot passt in keine Kategorie?</strong><br> Kein Problem. Sponti soll mit neuen Erlebnissen wachsen. Melde dich bei uns, damit wir unser Sortiment erweitern. Wir sind dir sehr dankbar.</p>
       </section>
 
+      <section class="partner-section" id="anbieter-anfrage">
+        <div class="partner-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Für Kursanbieter</div>
+          <h2>Hast du noch<br /><em>freie Plätze?</em></h2>
+          <p class="section-intro">Egal ob Yoga-Studio, Töpferwerkstatt oder Kochschule: Trag dich ein und wir melden uns, damit deine kurzfristig freien Kursplätze auf Sponti und in unseren Social-Media-Kanälen sichtbar werden.</p>
+          <ul class="partner-points">
+            <li><span class="partner-check">✓</span> Zwei Monate kostenlose Social-Media-Präsenz</li>
+            <li><span class="partner-check">✓</span> Neue Teilnehmer für spontane Termine</li>
+            <li><span class="partner-check">✓</span> Volle Kontrolle über deine Kurse</li>
+          </ul>
+          <p class="partner-offer-note">Danach entscheidest du freiwillig, ob du die Präsenz gegen eine monatliche Gebühr fortführen möchtest. Keine automatische Verlängerung.</p>
+          <p class="partner-direct">Lieber direkt melden? Schreib uns eine E-Mail an <a href="mailto:info.sponti@gmail.com">info.sponti@gmail.com</a> oder ruf uns an unter <a href="tel:+41794561683">+41 079 456 16 83</a>.</p>
+          <a class="text-link text-link-nav-motion" href="kursanbieter.html">Lass dich genauer informieren <span aria-hidden="true">→</span></a>
+        </div>
+        <form class="partner-form" id="partner-form" data-partner-form>
+          <label>Name des Unternehmens<input name="company" autocomplete="organization" maxlength="200" required placeholder="z. B. Studio Blume" /></label>
+          <label>Ansprechperson<input name="contact" autocomplete="name" maxlength="200" required placeholder="Dein Name" /></label>
+          <label>E-Mail-Adresse<input name="email" type="email" autocomplete="email" maxlength="254" required placeholder="du@unternehmen.de" /></label>
+          <label>Standort / Adresse<input name="location" required maxlength="300" autocomplete="street-address" placeholder="Zum Beispiel 6300 Zug, Bahnhofstrasse 10" /></label>
+          <label>Telefonnummer (optional)<input name="phone" type="tel" autocomplete="tel" maxlength="100" placeholder="+41 79 123 45 67" /></label>
+          <label>Was möchtest du anbieten?<select name="offer_type" required><option value="" disabled selected>Bitte auswählen</option><option>Einzelne Kurse</option><option>Mehrere Kurse</option><option>Beides</option></select></label>
+          <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
+          <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="5000" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
+          <button class="button button-primary" type="submit">Anfrage senden</button>
+          <p data-partner-error role="alert" hidden></p>
+          <p class="form-success" id="partner-success" data-partner-success role="status" tabindex="-1" hidden>Danke! Wir melden uns in Kürze bei dir.</p>
+        </form>
+      </section>
+
       <section class="provider-costs" aria-labelledby="costs-title">
         <div class="eyebrow"><span class="eyebrow-dot"></span> Dein Startangebot</div>
         <h2 id="costs-title">Zwei Monate<br><em>kostenlos sichtbar.</em></h2>
