@@ -1626,3 +1626,6 @@ button > span[aria-hidden="true"] {
 .site-header .account-selector>summary{min-height:46px;box-sizing:border-box;padding:9px 16px;border:1px solid var(--ink);border-radius:999px;font:inherit;font-size:13px;font-weight:700;gap:12px;transition:color .2s ease,background-color .2s ease,transform .2s ease}
 .site-header .account-selector>summary:hover{transform:translateY(-2px)}
 .site-header .account-selector>summary::after{content:'⌄';font-size:19px;line-height:1;display:inline-block}
+
+/* Public provider profile extensions */
+.provider-directory-logo{width:88px;height:88px;max-width:100%;object-fit:contain;background:#fff;border-radius:12px;padding:8px;box-sizing:border-box;margin:0 0 12px}.provider-directory-specialty,.provider-directory-course{padding:10px 0;border-top:1px solid rgba(25,52,45,.13)}.provider-directory-specialty p,.provider-directory-course p{margin:5px 0}.provider-directory-details h4{margin:18px 0 9px}.provider-directory-social-link{display:block;margin:7px 0}
