@@ -17,9 +17,9 @@ function card(p){
   img.alt='Profilbanner von '+p.company;img.src=imageURL(p.banner_path);banner.append(img);
  }else{
   banner.classList.add('is-default');
-  const mark=document.createElement('div');mark.className='provider-directory-default-mark';
-  const icon=document.createElement('img');icon.src='logo.png';icon.alt='Sponti';icon.loading='lazy';
-  mark.append(icon,text('span','Sponti','provider-directory-default-wordmark'));banner.append(mark);
+  const image=document.createElement('img');image.className='provider-directory-cover';
+  image.src='sponti-standard-banner.svg';image.alt='Sponti Standardbanner';image.loading='lazy';
+  banner.append(image);
  }
  el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
