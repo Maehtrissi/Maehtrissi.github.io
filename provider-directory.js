@@ -10,18 +10,27 @@ function link(label,value){const url=validURL(value);if(!url)return null;const a
 function card(p){
  const el=document.createElement('article');el.className='provider-directory-card';
  const photos=Array.isArray(p.photos)?p.photos.filter(safePath):[];
- if(photos.length){const img=document.createElement('img');img.className='provider-directory-cover';img.loading='lazy';img.alt='Einblick bei '+p.company;img.src=imageURL(photos[0]);el.append(img);}
- else el.append(text('div','Sponti Anbieter','provider-directory-placeholder'));
+ // The banner is independent from the photo gallery.
+ const banner=document.createElement('div');banner.className='provider-directory-banner';
+ if(safePath(p.banner_path)){
+  const img=document.createElement('img');img.className='provider-directory-cover';img.loading='lazy';
+  img.alt='Profilbanner von '+p.company;img.src=imageURL(p.banner_path);banner.append(img);
+ }else{
+  banner.classList.add('is-default');
+  const mark=document.createElement('div');mark.className='provider-directory-default-mark';
+  const icon=document.createElement('img');icon.src='logo.png';icon.alt='Sponti';icon.loading='lazy';
+  mark.append(icon,text('span','Sponti','provider-directory-default-wordmark'));banner.append(mark);
+ }
+ el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
  if(safePath(p.logo_path)){const logo=document.createElement('img');logo.className='provider-directory-logo';logo.alt='Logo von '+p.company;logo.loading='lazy';logo.src=imageURL(p.logo_path);body.append(logo);}
  body.append(text('h3',p.company),text('p',[p.category,p.location].filter(Boolean).join(' · '),'provider-directory-meta'));
- if(p.description)body.append(text('p',p.description.length>180?p.description.slice(0,177)+'…':p.description));
  const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Anbieter ansehen'));
- if(p.about_text)details.append(text('h4','Über uns'),text('p',p.about_text));
- else if(p.description)details.append(text('p',p.description));
+ const about=String(p.about_text||p.description||'').trim();
+ if(about)details.append(text('h4','Über uns'),text('p',about));
  const specialties=Array.isArray(p.specialties)?p.specialties:[];
  if(specialties.length){details.append(text('h4','Spezialgebiete und Angebote'));for(const s of specialties.slice(0,30)){if(!s||typeof s.name!=='string'||!s.name.trim())continue;const row=document.createElement('div');row.className='provider-directory-specialty';row.append(text('strong',s.name));if(s.description)row.append(text('p',s.description));details.append(row);}}
- if(photos.length>1){const gallery=document.createElement('div');gallery.className='provider-directory-photos';for(const path of photos.slice(1,5)){const img=document.createElement('img');img.loading='lazy';img.alt='Weiterer Einblick bei '+p.company;img.src=imageURL(path);gallery.append(img);}details.append(gallery);}
+ if(photos.length){details.append(text('h4','Einblicke'));const gallery=document.createElement('div');gallery.className='provider-directory-photos';for(const path of photos.slice(0,5)){const img=document.createElement('img');img.loading='lazy';img.alt='Einblick bei '+p.company;img.src=imageURL(path);gallery.append(img);}details.append(gallery);}
  const website=link('Website besuchen',p.website);if(website)details.append(website);
  for(const social of (Array.isArray(p.social_links)?p.social_links:[]).slice(0,20)){if(!social)continue;const a=link(String(social.label||'Link'),social.url);if(a){a.className='provider-directory-social-link';details.append(a);}}
  details.append(text('h4','Kurse dieses Anbieters'));
@@ -48,7 +57,7 @@ async function rpc(name){
 async function load(){
  try{
   const providers=await rpc('list_public_providers');
-  let extras=[];try{extras=await rpc('list_public_provider_extras');}catch{}
+  let extras=[];try{extras=await rpc('list_public_provider_extras_v2');}catch{try{extras=await rpc('list_public_provider_extras');}catch{}}
   const extraById=new Map((Array.isArray(extras)?extras:[]).map(x=>[String(x.provider_id),x]));
   list.replaceChildren();
   for(const p of providers){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
