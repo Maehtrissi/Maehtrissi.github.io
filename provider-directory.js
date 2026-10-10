@@ -26,7 +26,7 @@ function card(p){
  if(safePath(p.logo_path)){const logo=document.createElement('img');logo.className='provider-directory-logo';logo.alt='Logo von '+p.company;logo.loading='lazy';logo.src=imageURL(p.logo_path);body.append(logo);}
  body.append(text('h3',p.company),text('p',[p.category,p.location].filter(Boolean).join(' · '),'provider-directory-meta'));
  const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Anbieter ansehen'));
- const about=String(p.about_text||p.description||'').trim();
+ const about=String(p.about_text||'').trim();
  if(about)details.append(text('h4','Über uns'),text('p',about));
  const specialties=Array.isArray(p.specialties)?p.specialties:[];
  if(specialties.length){details.append(text('h4','Spezialgebiete und Angebote'));for(const s of specialties.slice(0,30)){if(!s||typeof s.name!=='string'||!s.name.trim())continue;const row=document.createElement('div');row.className='provider-directory-specialty';row.append(text('strong',s.name));if(s.description)row.append(text('p',s.description));details.append(row);}}
