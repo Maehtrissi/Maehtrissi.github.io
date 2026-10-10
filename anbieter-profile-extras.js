@@ -77,7 +77,7 @@ function renderPreviewExtras(){
  const banner=document.createElement('div');banner.dataset.providerBannerDisplay='';
  banner.className='provider-profile-preview-banner'+(bannerPath?'':' is-default');
  if(bannerPath){const img=document.createElement('img');img.src=photoUrl(bannerPath);img.alt='Profilbanner';banner.append(img);}
- else{const mark=document.createElement('div');mark.className='provider-default-mark';const img=document.createElement('img');img.src='logo.png';img.alt='Sponti';mark.append(img,text('strong','Sponti'));banner.append(mark);}
+ else{const img=document.createElement('img');img.src='sponti-standard-banner.svg';img.alt='Sponti Standardbanner';banner.append(img);}
  card.prepend(banner);
  const box=document.createElement('div');box.dataset.providerExtraPreview='';
  if(logoPath){const img=document.createElement('img');img.src=photoUrl(logoPath);img.alt='Firmenlogo';img.className='provider-logo-image';box.append(img);}
@@ -155,9 +155,8 @@ function renderBanner(){
  if(bannerPath){
   const img=document.createElement('img');img.src=photoUrl(bannerPath);img.alt='Aktueller Profilbanner';outer.append(img);
  }else{
-  const mark=document.createElement('div');mark.className='provider-default-mark';
-  const img=document.createElement('img');img.src='logo.png';img.alt='Sponti';mark.append(img,text('strong','Sponti'));
-  outer.append(mark);
+  const img=document.createElement('img');img.src='sponti-standard-banner.svg';img.alt='Sponti Standardbanner';
+  outer.append(img);
  }
  bannerPreview.append(outer);
  if(bannerPath){
