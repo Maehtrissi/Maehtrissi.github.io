@@ -5,3 +5,14 @@
 
 /* Erweiterte Anbieterprofile */
 .provider-extra-fields{display:grid;gap:14px;margin:18px 0;padding:20px;border:1px solid #d9e1da;border-radius:14px}.provider-extra-fields h3{margin:12px 0 0}.provider-extra-fields label{display:grid;gap:6px}.provider-extra-row{display:grid;grid-template-columns:1fr 2fr auto;gap:10px;align-items:end}.provider-extra-row input,.provider-extra-row textarea{width:100%;box-sizing:border-box}.provider-extra-row button{align-self:end}.provider-logo-image{max-width:180px;max-height:130px;object-fit:contain}.provider-public-specialties{display:grid;gap:10px;margin:12px 0}.provider-public-specialties article{padding:12px;background:rgba(255,255,255,.55);border-radius:10px}@media(max-width:700px){.provider-extra-row{grid-template-columns:1fr}.provider-extra-row button{justify-self:start}}
+
+/* Separater Banner: Sponti-Markendesign ohne Galeriefoto */
+.provider-banner-preview,.provider-profile-preview-banner{width:100%;height:170px;overflow:hidden;position:relative;border-radius:13px;background:#e5ecdf;margin:10px 0 12px}
+.provider-banner-preview img,.provider-profile-preview-banner img{display:block;width:100%;height:100%;object-fit:cover}
+.provider-banner-preview.is-default,.provider-profile-preview-banner.is-default{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 83% 4%,#d7f277 0 13%,transparent 45%),linear-gradient(145deg,#e4ede0,#f7f6ef 65%,#dfe9d8)}
+.provider-default-mark{position:relative;display:flex;align-items:center;gap:12px;padding:9px 18px;border-radius:14px;background:rgba(255,254,250,.86);border:1px solid rgba(25,52,45,.1)}
+.provider-default-mark img{width:38px;height:38px;object-fit:contain}
+.provider-default-mark strong{font:700 25px/1 "DM Sans",sans-serif;letter-spacing:-.06em;color:#19342d}
+.provider-profile-preview-banner{margin:-26px -26px 22px;width:calc(100% + 52px);border-radius:18px 18px 0 0;height:180px}
+.provider-remove-banner{display:inline-flex;cursor:pointer;margin:3px 0 12px;padding:9px 14px;border-radius:9px}
+@media(max-width:700px){.provider-banner-preview,.provider-profile-preview-banner{height:145px}}
