@@ -90,9 +90,11 @@
           <button class="filter time-filter" data-time="nachmittag">Nachmittag</button>
           <button class="filter time-filter" data-time="abend">Abend</button>
         </div>
+        <div class="course-extra-filters">
+          <label><input id="filter-today" type="checkbox"> Heute noch verfügbar</label>
+          <label for="filter-price">Maximalpreis: <output id="filter-price-value">Alle Preise</output><input id="filter-price" type="range" min="0" max="200" step="5" value="200"></label>
+        </div>
       </section>
-
-<div class="course-extra-filters"><label><input id="filter-today" type="checkbox"> Heute noch verfügbar</label><label for="filter-price">Maximalpreis: <output id="filter-price-value">Alle Preise</output><input id="filter-price" type="range" min="0" max="200" step="5" value="200"></label></div>
             <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
       <section class="course-grid" aria-label="Verfügbare Kurse" aria-busy="true"></section>
 
