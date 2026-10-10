@@ -46,3 +46,8 @@
 .provider-directory-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:8px}
 .provider-directory-photos img{border-radius:8px;object-fit:cover;width:100%;aspect-ratio:4/3}
 @media(max-width:650px){.provider-directory-banner{height:152px}.provider-directory-content{padding:18px}.provider-directory-photos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Render the approved banner artwork unchanged instead of the CSS placeholder. */
+.provider-directory-banner.is-default{display:block;background:transparent}
+.provider-directory-banner.is-default::before{content:none}
+.provider-directory-banner.is-default .provider-directory-cover{display:block;width:100%;height:100%;object-fit:cover}
