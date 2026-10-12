@@ -36,3 +36,16 @@ The bookings card reads actual rows from public.bookings, grouped by upcoming/pa
 Migrations: 20261005190530_customer_preferences_and_bookings.sql and 20261005191027_customer_course_info_settings.sql. Transactional ownership/validation/atomicity tests: supabase/tests/customer_preferences.sql in Sponti-Mitarbeiter.
 
 The bookings card always shows separate upcoming and past sections after successful loading, each with its own empty state. Past means the scheduled start is in the past; it does not imply confirmed attendance. Cancellation/request status remains visible.
+
+## Google- und Apple-Anmeldung für Teilnehmer
+
+Auf profil.html erscheinen die Zusatzbuttons im Login und der Registrierung **erst, wenn Supabase Auth den jeweiligen Provider als aktiviert meldet** (GET /auth/v1/settings). Bestehende E-Mail/Passwort-Anmeldung bleibt unverändert. Der Browser startet `supabase.auth.signInWithOAuth({provider, options:{redirectTo:'https://sponti-switzerland.ch/profil.html'}})`; bestehende Kunden-Session-Speicherung wird wiederverwendet. Mitarbeiter-CRM bleibt durch eigene app_metadata-Prüfung und crm_is_employee gesperrt; Anbieter-Konto bleibt unverändert.
+
+Neue OAuth-Konten müssen Name und Telefonnummer beim ersten Login ergänzen. Wenn kein Kontaktkanal vorliegt, wird ein Profil mit `Keine` gespeichert; es erfolgt **kein** Opt-in für Kursinfos. Nutzer können danach Kursinfos in den Präferenzen ausdrücklich aktivieren.
+
+Vor Live-Schaltung Provider konfigurieren:
+- Supabase Authentication → URL Configuration: https://sponti-switzerland.ch/profil.html unter Redirect URLs (bestehende URLs erhalten).
+- Supabase Authentication → Providers → Google: Google OAuth Web Client ID und Client Secret; die Callback-URL im Google-Projekt lautet https://ehifskiigrfpxeiruyxr.supabase.co/auth/v1/callback, erlaubter JS-Origin ist https://sponti-switzerland.ch.
+- Supabase Authentication → Providers → Apple: Services ID und Apple Developer Sign-In-Konfiguration samt Secret; dieselbe Supabase-Callback-URL in Apple Developer hinterlegen. Apple Client Secret nach Apple-Vorgaben regelmässig erneuern.
+- Secrets ausschliesslich in den Provider-Konfigurationen eingeben, nicht in Website-Dateien, GitHub oder Chat einfügen.
+- Testfälle: Google/Apple Neuanmeldung (Profil ergänzen), bestehende E-Mail-Anmeldung, bestehendes Teilnehmerkonto, Apple-Mail-Relay, Teilnehmer ohne CRM-Zugriff. Browser-Caches nach Deployment neu laden.
