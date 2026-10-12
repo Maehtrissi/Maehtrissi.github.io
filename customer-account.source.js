@@ -9,7 +9,7 @@ const forms=[...document.querySelectorAll('[data-account-form]')];
 const message=(text,error=false)=>{if(!status)return;status.textContent=text;status.classList.toggle('is-error',error);status.hidden=!text;};
 function friendly(error){if(error?.status===429)return 'Zu viele Versuche. Bitte warte etwas und versuche es erneut.';if(/Email not confirmed/i.test(error?.message||''))return 'Bitte bestätige zuerst deine E-Mail-Adresse über die Nachricht in deinem Postfach.';if(/Invalid login credentials/i.test(error?.message||''))return 'E-Mail oder Passwort stimmen nicht.';if(/authorized|smtp|sending.*email/i.test(error?.message||''))return 'Die Bestätigungs-E-Mail konnte gerade nicht versendet werden. Bitte versuche es später erneut oder kontaktiere Sponti.';return error?.message||'Das hat gerade nicht geklappt. Bitte versuche es erneut.';}
 function phoneValid(value){const digits=value.replace(/\D/g,'').length;return /^[+0-9 ()/.\-]+$/.test(value)&&digits>=7&&digits<=15&&(!value.includes('+')||value.indexOf('+')===0&&value.lastIndexOf('+')===0);}
-function getProfile(form){const data=new FormData(form);const value={name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),interest:String(data.get('interest')??profile?.interest??'').trim(),channel:String(data.get('channel')??profile?.channel??'')};if(!value.name||!phoneValid(value.phone)||!['WhatsApp','E-Mail','Beides','Keine'].includes(value.channel))throw new Error('Bitte prüfe deinen Namen, deine Telefonnummer und den gewünschten Kontaktkanal.');return value;}
+function getProfile(form){const data=new FormData(form);const value={name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),interest:String(data.get('interest')??profile?.interest??'').trim(),channel:String(data.get('channel')??(profile?.saved===false?'Keine':profile?.channel??''))};if(!value.name||!phoneValid(value.phone)||!['WhatsApp','E-Mail','Beides','Keine'].includes(value.channel))throw new Error('Bitte prüfe deinen Namen, deine Telefonnummer und den gewünschten Kontaktkanal.');return value;}
 function draw(){
  links.forEach(link=>{link.textContent=user?'Mein Profil':'Anmelden';link.setAttribute('aria-label',user?'Mein Kundenprofil öffnen':'Zum Kundenkonto anmelden');});
  if(!root)return;
@@ -17,7 +17,7 @@ function draw(){
  root.querySelector('[data-account-guest]').hidden=!!user;
  root.querySelector('[data-account-member]').hidden=!user;
  if(user){root.querySelector('[data-account-name]').textContent=profile?.name?`Hallo, ${profile.name.split(' ')[0]}.`:'Dein Profil.';root.querySelector('[data-account-email]').textContent=user.email||'';}
- const recoveryBox=root.querySelector('[data-account-recovery]');if(recoveryBox)recoveryBox.hidden=!user||!recovery;
+ const recoveryBox=root.querySelector('[data-account-recovery]');if(recoveryBox)recoveryBox.hidden=!user||!recovery;const onboarding=root.querySelector('[data-account-onboarding]');if(onboarding)onboarding.hidden=!user||profile?.saved!==false;
 }
 function fillProfile(value){const form=document.querySelector('[data-account-form="profile"]');if(!form)return;for(const key of ['name','phone','interest','channel']){const field=form.elements.namedItem(key);if(field)field.value=value?.[key]||'';}form.querySelector('button[type="submit"]').disabled=false;}
 async function loadUser(){
@@ -118,3 +118,46 @@ if(root){
 }
 loadUser().catch(error=>{draw();message(friendly(error),true);});
 
+
+/**
+ * OAuth is enabled by the Supabase Auth provider configuration. The buttons
+ * remain hidden until the server confirms a provider is available, preventing
+ * broken sign-in routes from being offered to visitors during setup.
+ */
+async function setupSocialAuth(){
+ const buttons=[...document.querySelectorAll('[data-social-provider]')];
+ if(!buttons.length)return;
+ try{
+  const response=await fetch('https://ehifskiigrfpxeiruyxr.supabase.co/auth/v1/settings',{
+   headers:{apikey:'sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy'},cache:'no-store'
+  });
+  if(!response.ok)throw new Error('Provider status unavailable');
+  const settings=await response.json();
+  const enabled=settings?.external||{};
+  for(const button of buttons){
+   const provider=button.dataset.socialProvider;
+   button.hidden=enabled[provider]!==true;
+  }
+  document.querySelectorAll('[data-social-auth]').forEach(group=>{
+   group.hidden=![...group.querySelectorAll('[data-social-provider]')].some(button=>!button.hidden);
+  });
+ }catch(error){
+  console.warn('Sponti social login is awaiting provider configuration.',error);
+  return;
+ }
+ for(const button of buttons){
+  if(button.hidden)continue;
+  button.addEventListener('click',async()=>{
+   if(busy)return;
+   button.disabled=true;
+   message('');
+   try{
+    const provider=button.dataset.socialProvider;
+    if(provider!=='google'&&provider!=='apple')throw new Error('Unbekannter Anmeldeanbieter.');
+    const {error}=await client.auth.signInWithOAuth({provider,options:{redirectTo}});
+    if(error)throw error;
+   }catch(error){message(friendly(error),true);button.disabled=false;}
+  });
+ }
+}
+void setupSocialAuth();
