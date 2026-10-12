@@ -11,7 +11,7 @@ function friendly(error){if(error?.status===429)return 'Zu viele Versuche. Bitte
 function phoneValid(value){const digits=value.replace(/\D/g,'').length;return /^[+0-9 ()/.\-]+$/.test(value)&&digits>=7&&digits<=15&&(!value.includes('+')||value.indexOf('+')===0&&value.lastIndexOf('+')===0);}
 function getProfile(form){const data=new FormData(form);const value={name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),interest:String(data.get('interest')??profile?.interest??'').trim(),channel:String(data.get('channel')??(profile?.saved===false?'Keine':profile?.channel??''))};if(!value.name||!phoneValid(value.phone)||!['WhatsApp','E-Mail','Beides','Keine'].includes(value.channel))throw new Error('Bitte prüfe deinen Namen, deine Telefonnummer und den gewünschten Kontaktkanal.');return value;}
 function draw(){
- links.forEach(link=>{link.textContent=user?'Mein Profil':'Anmelden';link.setAttribute('aria-label',user?'Mein Kundenprofil öffnen':'Zum Kundenkonto anmelden');});
+ links.forEach(link=>{link.textContent=user?'Mein Kundenprofil':'Als Kunde anmelden';link.setAttribute('aria-label',user?'Mein Kundenprofil öffnen':'Zum Kundenkonto anmelden');});
  if(!root)return;
  root.querySelector('[data-account-loading]').hidden=true;
  root.querySelector('[data-account-guest]').hidden=!!user;
