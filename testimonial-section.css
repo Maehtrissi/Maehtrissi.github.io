@@ -1,0 +1,47 @@
+/* Startseite: sanfter Blau-Grau-Verlauf und Ringe im Erfahrungen-Bereich.
+   Die übrigen Abschnitte und Unterseiten bleiben unverändert. */
+#stories.testimonial-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 100% at -8% 10%, rgba(183, 202, 201, .28), transparent 78%),
+    radial-gradient(ellipse 58% 92% at 108% 92%, rgba(181, 204, 212, .24), transparent 80%),
+    linear-gradient(125deg, #dfe9e8 0%, #e5ece9 49%, #d5e2e5 100%);
+}
+#stories.testimonial-section::before,
+#stories.testimonial-section::after {
+  content: "";
+  position: absolute;
+  width: min(38vw, 510px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(25, 52, 45, .12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 54px rgba(255, 254, 250, .16),
+              0 0 0 108px rgba(255, 254, 250, .085);
+  pointer-events: none;
+  z-index: 0;
+}
+#stories.testimonial-section::before {
+  top: -295px;
+  right: -165px;
+}
+#stories.testimonial-section::after {
+  bottom: -310px;
+  left: -205px;
+  border-color: rgba(73, 113, 120, .12);
+}
+#stories.testimonial-section > * {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  #stories.testimonial-section::before,
+  #stories.testimonial-section::after {
+    width: 290px;
+    box-shadow: 0 0 0 34px rgba(255, 254, 250, .12),
+                0 0 0 70px rgba(255, 254, 250, .07);
+  }
+  #stories.testimonial-section::before { top: -175px; right: -175px; }
+  #stories.testimonial-section::after { bottom: -185px; left: -200px; }
+}
