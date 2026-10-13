@@ -1,0 +1,44 @@
+/* Sponti homepage news board: employee-managed entries replace the sample course card. */
+.hero-art .hero-news-board{
+  left:0;
+  top:74px;
+  width:min(290px,65%);
+  box-sizing:border-box;
+  padding:19px 20px 15px;
+  border:1px solid rgba(25,52,45,.1);
+  border-radius:18px;
+  background:#fffefa;
+  box-shadow:0 19px 47px rgba(25,52,45,.16);
+  color:var(--ink);
+}
+.hero-news-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:14px}
+.hero-news-eyebrow{font-size:10px;letter-spacing:.095em;font-weight:800;color:#244e3c;display:flex;align-items:center;gap:7px}
+.hero-news-indicator{width:7px;height:7px;border-radius:50%;background:#ed8d59;flex:none}
+.hero-news-fresh{font-size:9px;font-weight:800;letter-spacing:.08em;color:#b26b46}
+.hero-news-board h2{margin:0 0 13px;font-size:clamp(20px,2vw,26px);line-height:1.12;letter-spacing:-.04em}
+.hero-news-board h2 em{font-style:italic;color:#ba764c}
+.hero-news-list{display:grid;gap:0;min-height:63px}
+.hero-news-entry{display:block;padding:10px 0;border-top:1px solid rgba(25,52,45,.12);color:#19342d;text-decoration:none;min-width:0}
+.hero-news-entry:first-child{border-top:1px solid rgba(25,52,45,.12)}
+.hero-news-entry-label{display:block;color:#a56a42;font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.hero-news-entry-title{display:block;font:700 12px/1.35 'DM Sans',sans-serif;overflow-wrap:anywhere}
+.hero-news-entry-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#62736a;font-size:10px;line-height:1.5;margin:4px 0 0;overflow-wrap:anywhere}
+a.hero-news-entry:hover .hero-news-entry-title,
+a.hero-news-entry:focus-visible .hero-news-entry-title{color:#b56f46}
+a.hero-news-entry:focus-visible{outline:2px solid #ed8d59;outline-offset:3px;border-radius:5px}
+.hero-news-entry-arrow{display:inline-block;margin-left:5px;color:#bf764c}
+.hero-news-empty{font-size:11px;line-height:1.5;color:#64756b;margin:6px 0 10px}
+.hero-news-footer{display:flex;justify-content:space-between;align-items:center;padding-top:9px;border-top:1px solid rgba(25,52,45,.1);font-size:10px;color:#617269;font-weight:700}
+.hero-news-footer[hidden]{display:none}
+.hero-news-controls{display:flex;gap:8px}
+.hero-news-controls button{border:1px solid rgba(25,52,45,.2);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;background:white;color:#19342d;cursor:pointer;transition:background .15s ease,transform .15s ease}
+.hero-news-controls button:not(:disabled):hover{background:#e5eddb;transform:translateY(-2px)}
+.hero-news-controls button:disabled{opacity:.3;cursor:default}
+@media(max-width:760px){
+  .hero-art .hero-news-board{left:0;top:70px;width:min(282px,76%);padding:16px 17px 13px}
+}
+@media(max-width:420px){
+  .hero-art .hero-news-board{width:min(254px,83%);top:85px}
+  .hero-news-board h2{font-size:22px}
+}
+@media(prefers-reduced-motion:reduce){.hero-news-controls button{transition:none}}

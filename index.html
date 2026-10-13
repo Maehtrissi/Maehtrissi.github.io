@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="styles.css?v=login-menu-match-20261010" />
     <link rel="stylesheet" href="whatsapp-community.css?v=qr-hover-20261013" />
+    <link rel="stylesheet" href="homepage-news.css?v=20261013" />
       <link rel="canonical" href="https://sponti-switzerland.ch/" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta property="og:type" content="website" />
@@ -109,16 +110,25 @@
             <p><strong>Jeden Tag neu.</strong> Freie Plätze bei Orten, die du schon liebst.</p>
           </div>
         </div>
-        <div class="hero-art" aria-label="Eine Auswahl spontaner Kurse, die über Sponti verfügbar sind">
+        <div class="hero-art" aria-label="Aktuelle Sponti-Neuigkeiten und Kursinspiration">
           <div class="sun-shape"></div>
-          <div class="hero-card card-calendar">
-            <div class="mini-label">Diesen Donnerstag</div>
-            <div class="booking-row">
-              <div class="booking-icon">✦</div>
-              <div><strong>Ton &amp; Kaffee</strong><span>4 Plätze frei · 18:00 Uhr</span></div>
-              <span class="status-dot"></span>
+          <section class="hero-card hero-news-board" aria-labelledby="home-news-title">
+            <div class="hero-news-top">
+              <div class="hero-news-eyebrow"><span class="hero-news-indicator" aria-hidden="true"></span> SPONTI BOARD</div>
+              <span class="hero-news-fresh">AKTUELL</span>
             </div>
-          </div>
+            <h2 id="home-news-title">Neues bei <em>Sponti.</em></h2>
+            <div class="hero-news-list" data-home-news-list aria-live="polite">
+              <p class="hero-news-empty">Hier findest du bald Neuigkeiten von Sponti.</p>
+            </div>
+            <div class="hero-news-footer" data-home-news-pager hidden>
+              <span data-home-news-count>1 / 1</span>
+              <div class="hero-news-controls">
+                <button type="button" data-home-news-prev aria-label="Vorherige News">←</button>
+                <button type="button" data-home-news-next aria-label="Weitere News">→</button>
+              </div>
+            </div>
+          </section>
           <div class="hero-photo">
             <div class="photo-overlay"></div>
             <div class="photo-copy"><span>Probier etwas Neues</span><strong>Töpfern für Anfänger</strong></div>
@@ -285,6 +295,7 @@
 
     
     <script src="script.js?v=login-close-20261010"></script>
+    <script defer src="homepage-news.js?v=20261013"></script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
 </body>
 </html>
