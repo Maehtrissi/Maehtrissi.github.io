@@ -1,0 +1,51 @@
+/* Whole-section backdrop behind the six category cards.
+   Keep the cards' existing original colors and interactions untouched. */
+.categories-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 44% 58% at -6% 4%,rgba(166,191,153,.48),transparent 78%),
+    radial-gradient(ellipse 42% 55% at 103% 96%,rgba(237,173,132,.27),transparent 77%),
+    linear-gradient(130deg,#e4ecdf 0%,#eef0e6 48%,#e4e9df 100%);
+  border-top:1px solid rgba(25,52,45,.075);
+  border-bottom:1px solid rgba(25,52,45,.085);
+}
+.categories-section::before,
+.categories-section::after{
+  content:"";
+  position:absolute;
+  width:min(38vw,530px);
+  aspect-ratio:1;
+  border:1px solid rgba(25,52,45,.10);
+  border-radius:50%;
+  box-shadow:0 0 0 55px rgba(255,254,250,.14),
+             0 0 0 111px rgba(255,254,250,.075);
+  pointer-events:none;
+  z-index:0;
+}
+.categories-section::before{
+  top:-290px;
+  right:-190px;
+}
+.categories-section::after{
+  left:-275px;
+  bottom:-315px;
+  border-color:rgba(25,52,45,.065);
+}
+.categories-section > .eyebrow,
+.categories-section > h2,
+.categories-section > .category-grid{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:760px){
+  .categories-section::before,
+  .categories-section::after{
+    width:290px;
+    box-shadow:0 0 0 35px rgba(255,254,250,.10),
+               0 0 0 72px rgba(255,254,250,.06);
+  }
+  .categories-section::before{top:-175px;right:-165px}
+  .categories-section::after{bottom:-165px;left:-210px}
+}
