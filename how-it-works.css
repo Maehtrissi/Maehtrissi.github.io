@@ -1,0 +1,10 @@
+/* Warm full-width background for the separate "So funktioniert's" section. */
+.how-section-band{
+  position:relative;
+  background:
+    radial-gradient(ellipse 48% 85% at 100% 0%,rgba(237,141,89,.12),transparent 78%),
+    radial-gradient(ellipse 42% 65% at 0% 100%,rgba(216,188,142,.16),transparent 80%),
+    linear-gradient(115deg,#faf4eb 0%,#f6ede4 52%,#f3e9df 100%);
+  border-top:1px solid rgba(145,102,71,.10);
+  border-bottom:1px solid rgba(145,102,71,.10);
+}
