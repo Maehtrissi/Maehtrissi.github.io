@@ -1,10 +1,63 @@
-/* Warm full-width background for the separate "So funktioniert's" section. */
-.how-section-band{
-  position:relative;
+/* Homepage: distinct gradient and decorative rings behind "So funktioniert's". */
+.how-section-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse 48% 85% at 100% 0%,rgba(237,141,89,.12),transparent 78%),
-    radial-gradient(ellipse 42% 65% at 0% 100%,rgba(216,188,142,.16),transparent 80%),
-    linear-gradient(115deg,#faf4eb 0%,#f6ede4 52%,#f3e9df 100%);
-  border-top:1px solid rgba(145,102,71,.10);
-  border-bottom:1px solid rgba(145,102,71,.10);
+    radial-gradient(ellipse 52% 83% at -7% 12%, rgba(151, 184, 148, .38) 0%, transparent 78%),
+    radial-gradient(ellipse 53% 76% at 106% 91%, rgba(225, 151, 113, .35) 0%, transparent 78%),
+    linear-gradient(120deg, #e4eade 0%, #f4e5d7 48%, #eac9b7 100%);
+  border-top: 1px solid rgba(100, 88, 69, .09);
+  border-bottom: 1px solid rgba(100, 88, 69, .09);
+}
+
+/* Decorative circular accents, like the six category cards section. */
+.how-section-band::before,
+.how-section-band::after {
+  content: "";
+  position: absolute;
+  width: min(38vw, 520px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(95, 113, 95, .18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 55px rgba(255, 253, 247, .19),
+              0 0 0 108px rgba(255, 253, 247, .10);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.how-section-band::before {
+  top: -290px;
+  right: -160px;
+}
+
+.how-section-band::after {
+  bottom: -310px;
+  left: -180px;
+  border-color: rgba(163, 106, 80, .15);
+}
+
+/* Keep the heading, links and all three steps above the decorative rings. */
+.how-section-band > #how-it-works {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .how-section-band::before,
+  .how-section-band::after {
+    width: 290px;
+    box-shadow: 0 0 0 34px rgba(255, 253, 247, .14),
+                0 0 0 70px rgba(255, 253, 247, .08);
+  }
+
+  .how-section-band::before {
+    top: -170px;
+    right: -170px;
+  }
+
+  .how-section-band::after {
+    bottom: -175px;
+    left: -195px;
+  }
 }
