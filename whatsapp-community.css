@@ -1,6 +1,6 @@
 /* Sponti WhatsApp community */
 .whatsapp-community{max-width:1176px;margin:40px auto;padding:0 32px}
-.whatsapp-community-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:64px;align-items:center;padding:64px 70px;border-radius:28px;background:var(--sage);box-shadow:0 10px 30px rgb(25 52 45 / 7%)}
+.whatsapp-community-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:64px;align-items:center;padding:64px 70px;border-radius:28px;background:var(--sage);box-shadow:0 12px 34px rgb(25 52 45 / 11%)}
 .whatsapp-community-card:after{position:absolute;right:-95px;bottom:-130px;width:330px;height:330px;border:1px solid rgb(25 52 45 / 12%);border-radius:50%;content:"";pointer-events:none}
 .whatsapp-community-copy{position:relative;z-index:1}
 .whatsapp-community-copy h2{max-width:650px;margin:18px 0 20px;font-size:clamp(42px,5vw,64px);line-height:1}
