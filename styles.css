@@ -1629,3 +1629,67 @@ button > span[aria-hidden="true"] {
 
 /* Public provider profile extensions */
 .provider-directory-logo{width:88px;height:88px;max-width:100%;object-fit:contain;background:#fff;border-radius:12px;padding:8px;box-sizing:border-box;margin:0 0 12px}.provider-directory-specialty,.provider-directory-course{padding:10px 0;border-top:1px solid rgba(25,52,45,.13)}.provider-directory-specialty p,.provider-directory-course p{margin:5px 0}.provider-directory-details h4{margin:18px 0 9px}.provider-directory-social-link{display:block;margin:7px 0}
+
+
+/* Shared deep-green section treatment: dark gradients and rings across public pages. */
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 110% at 102% 0%, rgba(105,151,121,.23), transparent 72%),
+    radial-gradient(ellipse 56% 100% at -5% 100%, rgba(70,112,92,.24), transparent 75%),
+    linear-gradient(120deg, #122c25 0%, #1b3d32 48%, #244b3b 100%);
+}
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::before,
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::after {
+  content: "";
+  position: absolute;
+  width: min(42vw, 560px);
+  aspect-ratio: 1;
+  height: auto;
+  border: 1px solid rgba(222,243,223,.19);
+  border-radius: 50%;
+  box-shadow: 0 0 0 56px rgba(220,244,219,.055),
+              0 0 0 114px rgba(220,244,219,.03);
+  pointer-events: none;
+  z-index: 0;
+}
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::before {
+  top: -365px;
+  right: -180px;
+  bottom: auto;
+  left: auto;
+}
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::after {
+  right: auto;
+  top: auto;
+  bottom: -390px;
+  left: -235px;
+  border-color: rgba(225,235,212,.15);
+}
+:is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment) > * {
+  position: relative;
+  z-index: 1;
+}
+/* The older leaf decoration is replaced by the circular accents. */
+.cta-section > .cta-leaf { display: none; }
+/* Keep the booking card's existing lift effect while retaining its gradient on hover. */
+@media (hover: hover) {
+  .provider-booking-highlight:hover {
+    background:
+      radial-gradient(ellipse 60% 110% at 102% 0%, rgba(105,151,121,.26), transparent 72%),
+      radial-gradient(ellipse 56% 100% at -5% 100%, rgba(70,112,92,.25), transparent 75%),
+      linear-gradient(120deg, #19382f 0%, #24483a 48%, #2b5542 100%);
+  }
+}
+@media (max-width: 760px) {
+  :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::before,
+  :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::after {
+    width: 300px;
+    box-shadow: 0 0 0 34px rgba(220,244,219,.045),
+                0 0 0 74px rgba(220,244,219,.025);
+  }
+  :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::before { top: -195px; right: -205px; }
+  :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::after { bottom: -225px; left: -210px; }
+}
