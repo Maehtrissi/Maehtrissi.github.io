@@ -12,6 +12,31 @@
 .whatsapp-community-qr span{display:block;padding:12px 5px 2px;text-align:center;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 @media(max-width:760px){.whatsapp-community{padding:0 20px}.whatsapp-community-card{grid-template-columns:1fr;gap:34px;padding:42px 28px}.whatsapp-community-qr{justify-self:center;width:min(230px,100%);transform:none}.whatsapp-community-actions .button{width:100%}.whatsapp-community-note{width:100%;text-align:center}}
 
+/* Interactive QR card: gentle lift without reducing scan contrast. */
+.whatsapp-community-qr{
+  cursor:pointer;
+  transform-origin:center center;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease;
+  will-change:transform;
+}
+.whatsapp-community-qr span{transition:color .25s ease}
+@media(hover:hover) and (pointer:fine){
+  .whatsapp-community-qr:hover{
+    transform:translateY(-9px) rotate(0deg) scale(1.04);
+    box-shadow:0 25px 52px rgb(25 52 45 / 21%),0 0 0 2px rgb(237 141 89 / 55%);
+  }
+  .whatsapp-community-qr:hover span{color:var(--ink)}
+}
+.whatsapp-community-qr:focus-visible{
+  outline:3px solid var(--orange);
+  outline-offset:5px;
+  transform:translateY(-5px) rotate(0deg);
+  box-shadow:0 22px 45px rgb(25 52 45 / 18%);
+}
+@media(prefers-reduced-motion:reduce){
+  .whatsapp-community-qr,.whatsapp-community-qr span{transition:none}
+}
+
 /* WhatsApp announcement bar */
 .top-announcement{display:flex;align-items:center;justify-content:center;min-height:40px;padding:9px 20px;color:var(--white);background:var(--ink);font-size:12px;font-weight:500;letter-spacing:.01em;text-align:center;transition:background-color .2s ease}
 .top-announcement strong{color:var(--lime);font-weight:700}
