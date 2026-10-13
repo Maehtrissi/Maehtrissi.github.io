@@ -1,0 +1,44 @@
+/* Homepage closing banner: dark green gradient with restrained decorative rings. */
+#join.cta-section {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 60% 110% at 102% 0%, rgba(105, 151, 121, .23), transparent 72%),
+    radial-gradient(ellipse 56% 100% at -5% 100%, rgba(70, 112, 92, .24), transparent 75%),
+    linear-gradient(120deg, #122c25 0%, #1b3d32 48%, #244b3b 100%);
+}
+#join.cta-section::before,
+#join.cta-section::after {
+  content: "";
+  position: absolute;
+  width: min(42vw, 560px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(222, 243, 223, .19);
+  border-radius: 50%;
+  box-shadow: 0 0 0 56px rgba(220, 244, 219, .055),
+              0 0 0 114px rgba(220, 244, 219, .03);
+  pointer-events: none;
+  z-index: 0;
+}
+#join.cta-section::before {
+  top: -365px;
+  right: -180px;
+}
+#join.cta-section::after {
+  bottom: -390px;
+  left: -235px;
+  border-color: rgba(225, 235, 212, .15);
+}
+#join.cta-section > * {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  #join.cta-section::before,
+  #join.cta-section::after {
+    width: 300px;
+    box-shadow: 0 0 0 34px rgba(220, 244, 219, .045),
+                0 0 0 74px rgba(220, 244, 219, .025);
+  }
+  #join.cta-section::before { top: -195px; right: -205px; }
+  #join.cta-section::after { bottom: -225px; left: -210px; }
+}
