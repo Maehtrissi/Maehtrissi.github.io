@@ -20,7 +20,8 @@
           <label>Telefonnummer (optional)<input name="phone" type="tel" autocomplete="tel" maxlength="100" placeholder="+41 79 123 45 67" /></label>
           <label>Was möchtest du anbieten?<select name="offer_type" required><option value="" disabled selected>Bitte auswählen</option><option>Einzelne Kurse</option><option>Mehrere Kurse</option><option>Beides</option></select></label>
           <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
-          <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="5000" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
+          <label>Wie viele Plätze bleiben bei dir durchschnittlich pro Kurs frei? (optional)<input name="average_free_seats" type="number" min="0" step="1" inputmode="numeric" placeholder="z. B. 3" aria-describedby="provider-free-seats-help" /><small id="provider-free-seats-help" style="font-weight:400;line-height:1.5;color:#56665e">Eine ungefähre Schätzung reicht. Falls du es noch nicht weisst, lass das Feld einfach leer.</small></label>
+          <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="4800" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
           <p class="account-help">Mit dem Absenden werden deine Angaben zur Bearbeitung deiner Anfrage gespeichert. Weitere Informationen findest du unter <a href="rechtliches.html">Datenschutz &amp; Rechtliches</a>.</p>
           <button class="button button-primary" type="submit">Anfrage senden</button>
           <p data-partner-error role="alert" hidden></p>
@@ -31,6 +32,15 @@
 (() => {
  const form=document.getElementById('provider-application-form');
  if(!form)return;
+ // Keep the estimate with the existing CRM request without changing its schema.
+ form.addEventListener('formdata',event=>{
+  const seats=String(event.formData.get('average_free_seats')||'').trim();
+  if(seats!==''){
+   const note='Durchschnittlich freie Plätze pro Kurs (Schätzung): '+seats;
+   const message=String(event.formData.get('message')||'').trim();
+   event.formData.set('message',message?message+'\n\n'+note:note);
+  }
+ });
  const labels=[...form.children].filter(el=>el.tagName==='LABEL');
  const submit=form.querySelector('[type="submit"]'),help=form.querySelector('.account-help');
  const success=form.querySelector('[data-partner-success]');
@@ -40,7 +50,7 @@
  const progress=document.createElement('div');progress.className='provider-wizard-progress';
  progress.innerHTML='<span aria-live="polite"></span><progress max="4" value="1" aria-label="Fortschritt deiner Anfrage"></progress>';
  form.prepend(progress);
- const groups=[[labels[0],labels[1]],[labels[3],labels[2],labels[4]],[labels[5],labels[6],labels[7]],[]];
+ const groups=[[labels[0],labels[1]],[labels[3],labels[2],labels[4]],[labels[5],labels[6],labels[7],labels[8]],[]];
  const titles=['Dein Unternehmen','So erreichen wir dich','Dein Angebot','Angaben prüfen'];
  const steps=groups.map((fields,i)=>{const panel=document.createElement('section');panel.className='provider-wizard-step';panel.setAttribute('aria-labelledby','join-step-'+i);const heading=document.createElement('h3');heading.id='join-step-'+i;heading.tabIndex=-1;heading.textContent=titles[i];panel.append(heading,...fields);form.insertBefore(panel,submit);return panel;});
  const review=document.createElement('dl');review.className='provider-wizard-review';steps[3].append(review,help);
