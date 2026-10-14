@@ -1693,3 +1693,36 @@ button > span[aria-hidden="true"] {
   :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::before { top: -195px; right: -205px; }
   :is(.cta-section, .provider-costs, .provider-booking-highlight, .why-path-provide, .why-team-voice-lead, .why-commitment)::after { bottom: -225px; left: -210px; }
 }
+
+/* Kursanbieter: sanfter Sponti-Verlauf und dezente Kreise im Abschlussbanner. */
+.provider-page .provider-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(118deg, #dce9dc 0%, #e9e9dc 46%, #f4dfcf 100%);
+}
+.provider-page .provider-cta::before,
+.provider-page .provider-cta::after {
+  content: "";
+  position: absolute;
+  width: min(39vw, 470px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(30, 74, 57, .16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 44px rgba(57, 107, 80, .055),
+              0 0 0 92px rgba(57, 107, 80, .028);
+  pointer-events: none;
+  z-index: -1;
+}
+.provider-page .provider-cta::before { top: -285px; right: -110px; }
+.provider-page .provider-cta::after { bottom: -345px; left: -130px; }
+@media (max-width: 760px) {
+  .provider-page .provider-cta::before,
+  .provider-page .provider-cta::after {
+    width: 280px;
+    box-shadow: 0 0 0 30px rgba(57,107,80,.045),
+                0 0 0 65px rgba(57,107,80,.025);
+  }
+  .provider-page .provider-cta::before { top: -200px; right: -180px; }
+  .provider-page .provider-cta::after { bottom: -205px; left: -195px; }
+}
