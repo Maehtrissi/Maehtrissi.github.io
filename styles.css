@@ -1773,3 +1773,7 @@ button > span[aria-hidden="true"] {
 /* Footer brand: slightly larger logo without affecting header navigation. */
 .site-footer .footer-brand .logo img { height: 46px; width: auto; }
 @media (max-width: 760px) { .site-footer .footer-brand .logo img { height: 42px; } }
+
+/* Slightly larger Sponti mark in the top navigation. */
+.site-header .logo img { height: 44px; width: auto; }
+@media (max-width: 760px) { .site-header .logo img { height: 40px; } }
