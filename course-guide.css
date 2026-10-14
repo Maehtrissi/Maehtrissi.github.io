@@ -105,3 +105,13 @@
 .course-guide-links a:hover{background:#19342d;color:#fff;border-color:#19342d;transform:translateY(-2px);box-shadow:0 5px 14px rgba(25,52,45,.14)}
 .course-guide-links a:focus-visible{outline:3px solid #ed8d59;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.course-guide-links a{transition:none}.course-guide-links a:hover{transform:none}}
+
+/* Die sechs Kurskategorie-Buttons übernehmen die Pastellfarben der Startseite. */
+.course-guide-links a{color:#234137;border-color:rgba(35,65,55,.12);background:linear-gradient(135deg,var(--cat-start),var(--cat-end));box-shadow:0 4px 12px rgba(32,58,48,.06)}
+.course-guide-links a:nth-child(1){--cat-start:#E9F0E5;--cat-end:#CEDECA}
+.course-guide-links a:nth-child(2){--cat-start:#F8EEE2;--cat-end:#EBD3B5}
+.course-guide-links a:nth-child(3){--cat-start:#F6EAE5;--cat-end:#E5C5BA}
+.course-guide-links a:nth-child(4){--cat-start:#EAF0F0;--cat-end:#CCDDE0}
+.course-guide-links a:nth-child(5){--cat-start:#F0EBF2;--cat-end:#DACFE5}
+.course-guide-links a:nth-child(6){--cat-start:#EBF1E4;--cat-end:#D1DDBE}
+.course-guide-links a:hover{color:#234137;border-color:rgba(35,65,55,.28);background:linear-gradient(135deg,var(--cat-start),var(--cat-end));transform:translateY(-3px);box-shadow:0 9px 20px rgba(32,58,48,.15)}
