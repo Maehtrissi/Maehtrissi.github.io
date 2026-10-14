@@ -44,3 +44,13 @@
 
 /* Match the main site's 1176px content width on the provider account page. */
 .account-shell.provider-account-shell { max-width: 1176px; box-sizing: border-box; width: 100%; }
+
+/* Klarere Gliederung der Anbieter-Eingaben. */
+.provider-live-layout [data-provider-form="profile"] > h3 { margin: 24px 0 3px; padding-top: 15px; border-top: 1px solid rgba(25,52,45,.15); font-size: 18px; letter-spacing: -.02em; }
+.provider-live-layout [data-provider-form="profile"] > h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.provider-live-layout [data-provider-form="profile"] .provider-extra-fields { display: grid; gap: 10px; }
+.provider-live-layout [data-provider-form="profile"] .provider-extra-fields > h3 { margin: 14px 0 0; font-size: 15px; }
+.provider-live-layout [data-provider-form="profile"] .provider-extra-fields > h3:first-child { font-size: 18px; margin-top: 8px; }
+.provider-live-layout [data-provider-form="profile"] .provider-extra-fields > h4,
+.provider-live-layout [data-provider-form="profile"] .provider-gallery-manager > h4 { margin: 14px 0 0; font-size: 15px; }
+.provider-live-layout [data-provider-form="profile"] > .button-primary { margin-top: 15px; justify-self: start; }
