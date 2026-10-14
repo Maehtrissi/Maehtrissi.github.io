@@ -1726,3 +1726,46 @@ button > span[aria-hidden="true"] {
   .provider-page .provider-cta::before { top: -200px; right: -180px; }
   .provider-page .provider-cta::after { bottom: -205px; left: -195px; }
 }
+
+/* Warum-Seite: aufeinander abgestimmte Pastellverläufe und Kreise. */
+.why-page :is(.why-path-discover, .why-team-voices) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(120deg, #dbe9dc 0%, #e9e8dc 48%, #f2ddcf 100%);
+}
+.why-page :is(.why-path-discover, .why-team-voices)::before,
+.why-page :is(.why-path-discover, .why-team-voices)::after {
+  content: "";
+  position: absolute;
+  width: min(38vw, 440px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(30,74,57,.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 43px rgba(57,107,80,.05),
+              0 0 0 90px rgba(57,107,80,.025);
+  pointer-events: none;
+  z-index: 0;
+}
+.why-page :is(.why-path-discover, .why-team-voices)::before {
+  top: -250px;
+  right: -155px;
+}
+.why-page :is(.why-path-discover, .why-team-voices)::after {
+  bottom: -290px;
+  left: -170px;
+}
+.why-page :is(.why-path-discover, .why-team-voices) > * {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 760px) {
+  .why-page :is(.why-path-discover, .why-team-voices)::before,
+  .why-page :is(.why-path-discover, .why-team-voices)::after {
+    width: 270px;
+    box-shadow: 0 0 0 28px rgba(57,107,80,.045),
+                0 0 0 62px rgba(57,107,80,.025);
+  }
+  .why-page :is(.why-path-discover, .why-team-voices)::before { top: -185px; right: -195px; }
+  .why-page :is(.why-path-discover, .why-team-voices)::after { bottom: -210px; left: -195px; }
+}
