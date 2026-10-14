@@ -101,3 +101,12 @@
 .flatpickr-time{background:#f2f7ee!important}
 .flatpickr-time input:hover,.flatpickr-time input:focus{background:#dcebd7!important}
 .flatpickr-calendar.arrowTop:before,.flatpickr-calendar.arrowTop:after{display:none}
+
+/* Datei-Uploads im gleichen Schriftbild wie das Sponti-Anbieterformular. */
+.provider-account-shell [data-provider-form="profile"] input[type="file"],
+.provider-account-shell [data-gallery-input]{display:block;max-width:100%;width:100%;box-sizing:border-box;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:500;line-height:1.5;color:#52695e;cursor:pointer}
+.provider-account-shell [data-provider-form="profile"] input[type="file"]::file-selector-button,
+.provider-account-shell [data-gallery-input]::file-selector-button{font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;background:#e8f0e3;color:#19342d;border:1px solid #cbdcc8;border-radius:9px;padding:10px 14px;margin-right:12px;cursor:pointer;transition:background .18s ease,border-color .18s ease}
+.provider-account-shell [data-provider-form="profile"] input[type="file"]::file-selector-button:hover,
+.provider-account-shell [data-gallery-input]::file-selector-button:hover{background:#d5e6cf;border-color:#abc6a7}
+.provider-account-shell [data-provider-form="profile"] .provider-internal-notes{display:grid;gap:7px}
