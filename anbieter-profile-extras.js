@@ -53,6 +53,8 @@ function readFields(){
 }
 window.SpontiProviderExtras={readFields};
 form?.elements.about_text?.addEventListener('input',renderPreviewExtras);
+form?.elements.public_email?.addEventListener('input',renderPreviewExtras);
+form?.elements.public_phone?.addEventListener('input',renderPreviewExtras);
 function renderLogo(){
  logoPreview.replaceChildren();
  if(!logoPath)return;
