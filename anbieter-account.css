@@ -76,3 +76,10 @@
 
 /* Einheitlicher Abstand zwischen Profilbearbeitung/Vorschau und «Deine Kurse». */
 .provider-live-layout + .provider-courses-card { margin-top: 28px; }
+
+/* Kursstart: klares Datum-/Uhrzeitfeld passend zum Anbieter-Konto. */
+.provider-account-shell [data-provider-form="course"] .provider-course-date-label{display:flex;flex-direction:column;gap:7px;padding:13px 15px;border:1px solid #d7e3d7;border-radius:14px;background:#f2f7ee;min-width:0}
+.provider-account-shell [data-provider-form="course"] .provider-course-date-label>span{font-size:12px;font-weight:700;color:#19342d}
+.provider-account-shell [data-provider-form="course"] input[name="starts_at"]{width:100%;min-width:0;min-height:45px;box-sizing:border-box;padding:10px 12px;border:1px solid #bacfbd;border-radius:9px;background:#fff;color:#19342d;font:inherit;color-scheme:light;cursor:pointer}
+.provider-account-shell [data-provider-form="course"] input[name="starts_at"]:focus-visible{outline:3px solid #accba5;outline-offset:2px;border-color:#406a53}
+.provider-account-shell [data-provider-form="course"] .provider-course-date-label small{font-size:11px;font-weight:400;line-height:1.4;color:#61736c}
