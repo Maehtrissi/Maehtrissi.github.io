@@ -124,3 +124,12 @@
 .course-guide details[open]{background:#f0f5ed}
 .course-guide details p{margin:0 0 20px}
 @media(prefers-reduced-motion:reduce){.course-guide details,.course-guide details summary{transition:none}.course-guide details:hover summary{transform:none}}
+
+/* Deutlich erkennbare, individuelle Startseitenfarben ohne Variablen-Abhängigkeit. */
+.course-guide .course-guide-links > a:nth-child(1){background:#D5E5CF;border-color:#ACCBA5}
+.course-guide .course-guide-links > a:nth-child(2){background:#F2DFC6;border-color:#DFC09B}
+.course-guide .course-guide-links > a:nth-child(3){background:#EED4CB;border-color:#D9AEA0}
+.course-guide .course-guide-links > a:nth-child(4){background:#D8E8EA;border-color:#AACBD0}
+.course-guide .course-guide-links > a:nth-child(5){background:#E5D8EC;border-color:#C7B0D5}
+.course-guide .course-guide-links > a:nth-child(6){background:#DDE9CF;border-color:#B6CE9C}
+.course-guide .course-guide-links > a:hover{filter:saturate(1.15) brightness(.97);color:#19342d;transform:translateY(-3px);box-shadow:0 9px 20px rgba(32,58,48,.16)}
