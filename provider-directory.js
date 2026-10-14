@@ -21,10 +21,14 @@ function card(p){
   image.src='sponti-standard-banner.svg';image.alt='Sponti Standardbanner';image.loading='lazy';
   banner.append(image);
  }
+ const identity=document.createElement('div');identity.className='provider-directory-identity';
+ if(safePath(p.logo_path)){const logo=document.createElement('img');logo.className='provider-directory-logo';logo.alt='Logo von '+p.company;logo.loading='lazy';logo.src=imageURL(p.logo_path);identity.append(logo);}
+ else{const fallback=text('span','S','provider-directory-logo provider-directory-logo-fallback');identity.append(fallback);}
+ const heading=document.createElement('div');heading.className='provider-directory-heading-overlay';
+ const providerName=text('h3');const nameLink=text('a',p.company);nameLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));providerName.append(nameLink);heading.append(providerName,text('p',p.category||'Kursanbieter','provider-directory-meta'));identity.append(heading);banner.append(identity);
  el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
- if(safePath(p.logo_path)){const logo=document.createElement('img');logo.className='provider-directory-logo';logo.alt='Logo von '+p.company;logo.loading='lazy';logo.src=imageURL(p.logo_path);body.append(logo);}
- const providerName=text('h3');const nameLink=text('a',p.company);nameLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));providerName.append(nameLink);body.append(providerName,text('p',[p.category,p.location].filter(Boolean).join(' · '),'provider-directory-meta'));
+ if(p.location)body.append(text('p',p.location,'provider-directory-location'));
  const profileLink=text('a','Anbieterprofil ansehen ↗','provider-directory-profile-link');profileLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));body.append(profileLink);
  const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Weitere Details aufklappen'));
  const about=String(p.about_text||'').trim();
