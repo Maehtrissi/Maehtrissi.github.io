@@ -28,3 +28,16 @@
 .provider-live-layout .account-form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:1000px){.provider-live-layout{grid-template-columns:minmax(0,1fr)}.provider-live-layout>.provider-preview{position:static;max-height:none;overflow:visible}}
 @media(max-width:560px){.provider-live-layout .account-form-grid{grid-template-columns:1fr}}
+
+/* Compact editor only; guest registration and public preview are unchanged. */
+.provider-live-layout > .account-card:first-child { padding: 24px; }
+.provider-live-layout [data-provider-form="profile"] { gap: 11px; }
+.provider-live-layout [data-provider-form="profile"] h3 { margin: 12px 0 5px; font-size: 17px; }
+.provider-live-layout [data-provider-form="profile"] .account-help { margin: 2px 0 8px; line-height: 1.4; font-size: 12px; }
+.provider-live-layout [data-provider-form="profile"] .account-form-grid { gap: 10px 14px; }
+.provider-live-layout [data-provider-form="profile"] label { gap: 5px; }
+.provider-live-layout [data-provider-form="profile"] :is(input:not([type="checkbox"]):not([type="file"]),select,textarea) { padding: 9px 11px; min-height: 0; box-sizing: border-box; }
+.provider-live-layout [data-provider-form="profile"] textarea { min-height: 75px; }
+.provider-live-layout [data-provider-form="profile"] :is(.provider-extra-fields,.provider-gallery-manager) { margin-top: 10px; }
+.provider-live-layout [data-provider-form="profile"] hr { margin: 12px 0; }
+@media(max-width:600px) { .provider-live-layout > .account-card:first-child { padding: 18px; } }
