@@ -54,3 +54,22 @@
 .provider-live-layout [data-provider-form="profile"] .provider-extra-fields > h4,
 .provider-live-layout [data-provider-form="profile"] .provider-gallery-manager > h4 { margin: 14px 0 0; font-size: 15px; }
 .provider-live-layout [data-provider-form="profile"] > .button-primary { margin-top: 15px; justify-self: start; }
+
+/* Public provider preview: banner with overlaid identity, then clear info sections. */
+.provider-preview .provider-public-card{padding:0;overflow:hidden;background:#f7f8f4;border:1px solid rgba(25,52,45,.10)}
+.provider-preview .provider-profile-hero{position:relative;min-height:245px;display:flex;align-items:flex-end;isolation:isolate;padding:24px;box-sizing:border-box;color:#fff;background:#1c4033}
+.provider-preview .provider-profile-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,29,23,.02) 25%,rgba(12,29,23,.84) 100%);z-index:-1;pointer-events:none}
+.provider-preview .provider-profile-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.provider-preview .provider-profile-identity{display:flex;align-items:center;gap:16px;min-width:0}
+.provider-preview .provider-profile-round-logo{display:flex;align-items:center;justify-content:center;flex:none;width:76px;height:76px;box-sizing:border-box;border-radius:50%;border:3px solid white;object-fit:cover;background:#fff;box-shadow:0 7px 18px rgba(0,0,0,.2)}
+.provider-preview .provider-profile-logo-placeholder{background:#e4ede0;color:#19342d;font-size:33px;font-weight:800}
+.provider-preview .provider-profile-heading{min-width:0}
+.provider-preview .provider-profile-heading h3{color:white;font-size:clamp(25px,2.6vw,34px);margin:0 0 5px;overflow-wrap:anywhere}
+.provider-preview .provider-profile-heading [data-provider-category]{color:#f0f3e9;font-size:13px;margin:0}
+.provider-preview .provider-profile-sections{padding:24px;display:grid;gap:18px}
+.provider-preview .provider-profile-section{min-width:0}
+.provider-preview .provider-profile-section+.provider-profile-section{padding-top:17px;border-top:1px solid rgba(25,52,45,.12)}
+.provider-preview .provider-profile-section h4{margin:0 0 9px;font-size:17px;color:#19342d}
+.provider-preview .provider-profile-section p{margin:0 0 8px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.provider-preview .provider-profile-section a{color:#1b5b49;overflow-wrap:anywhere}
+@media(max-width:560px){.provider-preview .provider-profile-hero{min-height:215px;padding:18px}.provider-preview .provider-profile-round-logo{width:60px;height:60px}.provider-preview .provider-profile-identity{gap:11px}.provider-preview .provider-profile-sections{padding:18px}}
