@@ -73,3 +73,6 @@
 .provider-preview .provider-profile-section p{margin:0 0 8px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 .provider-preview .provider-profile-section a{color:#1b5b49;overflow-wrap:anywhere}
 @media(max-width:560px){.provider-preview .provider-profile-hero{min-height:215px;padding:18px}.provider-preview .provider-profile-round-logo{width:60px;height:60px}.provider-preview .provider-profile-identity{gap:11px}.provider-preview .provider-profile-sections{padding:18px}}
+
+/* Einheitlicher Abstand zwischen Profilbearbeitung/Vorschau und «Deine Kurse». */
+.provider-live-layout + .provider-courses-card { margin-top: 28px; }
