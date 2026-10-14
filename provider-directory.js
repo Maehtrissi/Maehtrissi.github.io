@@ -24,7 +24,7 @@ function card(p){
  el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
  if(safePath(p.logo_path)){const logo=document.createElement('img');logo.className='provider-directory-logo';logo.alt='Logo von '+p.company;logo.loading='lazy';logo.src=imageURL(p.logo_path);body.append(logo);}
- body.append(text('h3',p.company),text('p',[p.category,p.location].filter(Boolean).join(' · '),'provider-directory-meta'));
+ const providerName=text('h3');const nameLink=text('a',p.company);nameLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));providerName.append(nameLink);body.append(providerName,text('p',[p.category,p.location].filter(Boolean).join(' · '),'provider-directory-meta'));
  const profileLink=text('a','Anbieterprofil ansehen ↗','provider-directory-profile-link');profileLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));body.append(profileLink);
  const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Weitere Details aufklappen'));
  const about=String(p.about_text||'').trim();
