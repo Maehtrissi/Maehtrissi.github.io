@@ -41,3 +41,6 @@
 .provider-live-layout [data-provider-form="profile"] :is(.provider-extra-fields,.provider-gallery-manager) { margin-top: 10px; }
 .provider-live-layout [data-provider-form="profile"] hr { margin: 12px 0; }
 @media(max-width:600px) { .provider-live-layout > .account-card:first-child { padding: 18px; } }
+
+/* Match the main site's 1176px content width on the provider account page. */
+.account-shell.provider-account-shell { max-width: 1176px; box-sizing: border-box; width: 100%; }
