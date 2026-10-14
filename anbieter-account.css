@@ -110,3 +110,8 @@
 .provider-account-shell [data-provider-form="profile"] input[type="file"]::file-selector-button:hover,
 .provider-account-shell [data-gallery-input]::file-selector-button:hover{background:#d5e6cf;border-color:#abc6a7}
 .provider-account-shell [data-provider-form="profile"] .provider-internal-notes{display:grid;gap:7px}
+
+/* Kompakte Angebots-Chips oberhalb von Über uns. */
+.provider-offer-pills{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.provider-offer-pill{display:inline-flex;align-items:center;padding:8px 13px;border-radius:999px;background:#e2eddc;border:1px solid #c8dabe;color:#19342d;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;line-height:1.3}
+.provider-offers-section h4{margin-bottom:12px}
