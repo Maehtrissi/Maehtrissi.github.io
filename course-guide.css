@@ -90,3 +90,11 @@
 .provider-directory-heading-overlay h3 a:hover{text-decoration:underline}
 .provider-directory-heading-overlay .provider-directory-meta{color:#f3f5ee;opacity:1;font-size:12px;margin:0}
 .provider-directory-location{font-size:12px;color:#61736c;margin:0 0 6px}
+
+/* Alle Kursanbieter ansehen */
+.provider-directory-more{text-align:center;margin:32px auto 0}
+.provider-directory-more-button{display:inline-flex;justify-content:center;align-items:center;gap:14px;padding:17px 34px;min-height:54px;box-sizing:border-box;border-radius:999px;background:#19342d;color:#fff;text-decoration:none;font-size:15px;font-weight:700;box-shadow:0 8px 20px rgba(25,52,45,.13);transition:transform .2s ease,background .2s ease}
+.provider-directory-more-button:hover{background:#2e5947;transform:translateY(-2px)}
+.provider-directory-more-button:focus-visible{outline:3px solid #ed8d59;outline-offset:4px}
+.provider-directory-all{min-height:55vh;padding-top:48px}
+@media(max-width:600px){.provider-directory-more-button{width:100%;max-width:390px}}
