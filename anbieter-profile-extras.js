@@ -36,7 +36,7 @@ function row(target,fields,values={}){
  wrap.append(remove);target.append(wrap);
  wrap.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',renderPreviewExtras));
 }
-function addSpecialty(value={}){if(specialties.children.length>=30){notify('Maximal 30 Spezialgebiete.');return;}row(specialties,[['name','Bezeichnung',false],['description','Beschreibung',true]],value);}
+function addSpecialty(value={}){if(specialties.children.length>=30){notify('Maximal 30 Angebote.');return;}row(specialties,[['name','Angebot',false]],value);}
 function addLink(value={}){if(links.children.length>=20){notify('Maximal 20 Links.');return;}row(links,[['label','Name',false],['url','Link (https://...)',false]],value);}
 root?.querySelector('[data-add-specialty]')?.addEventListener('click',()=>addSpecialty());
 root?.querySelector('[data-add-link]')?.addEventListener('click',()=>addLink());
@@ -97,7 +97,7 @@ function renderPreviewExtras(){
  const phone=form?.elements.public_phone?.value.trim();if(phone){const a=document.createElement('a');a.href='tel:'+phone.replace(/[^+0-9]/g,'');a.textContent=phone;a.style.display='block';details.append(a);}
  box.append(details);
  const specialtiesValue=readRows(specialties,['name','description']).filter(x=>x.name);
- if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-public-specialties';for(const item of specialtiesValue){const article=document.createElement('article');article.append(text('strong',item.name));if(item.description)article.append(text('p',item.description));list.append(article);}section.append(list);box.append(section);}
+ if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section provider-offers-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-offer-pills';for(const item of specialtiesValue){list.append(text('span',item.name,'provider-offer-pill'));}section.append(list);box.prepend(section);}
  const linksValue=readRows(links,['label','url']).filter(x=>x.label&&safeLink(x.url));
  if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label+' ↗';a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
  // The old generic description and website button are replaced by structured sections.
