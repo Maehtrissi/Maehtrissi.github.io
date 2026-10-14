@@ -91,6 +91,8 @@ function renderPreviewExtras(){
  const details=document.createElement('section');details.className='provider-profile-section';details.append(text('h4','Weitere Informationen'));
  const location=text('p',form?.elements.location?.value||'Standort ergänzen');location.dataset.liveProviderLocation='';details.append(location);
  const website=form?.elements.website?.value?.trim();if(website&&safeLink(website)){const a=document.createElement('a');a.href=safeLink(website);a.textContent='Website besuchen ↗';a.target='_blank';a.rel='noopener noreferrer';a.dataset.liveProviderWebsite='';details.append(a);}
+ const email=form?.elements.public_email?.value.trim();if(email){const a=document.createElement('a');a.href='mailto:'+email;a.textContent=email;a.style.display='block';details.append(a);}
+ const phone=form?.elements.public_phone?.value.trim();if(phone){const a=document.createElement('a');a.href='tel:'+phone.replace(/[^+0-9]/g,'');a.textContent=phone;a.style.display='block';details.append(a);}
  box.append(details);
  const specialtiesValue=readRows(specialties,['name','description']).filter(x=>x.name);
  if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-public-specialties';for(const item of specialtiesValue){const article=document.createElement('article');article.append(text('strong',item.name));if(item.description)article.append(text('p',item.description));list.append(article);}section.append(list);box.append(section);}
