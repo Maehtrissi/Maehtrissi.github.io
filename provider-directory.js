@@ -1,6 +1,7 @@
 const API='https://ehifskiigrfpxeiruyxr.supabase.co';
 const KEY='sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy';
 const list=document.querySelector('[data-provider-directory-list]');
+const compact=list?.dataset.previewLimit==='2';
 const status=document.querySelector('[data-provider-directory-status]');
 const text=(tag,value,cls)=>{const e=document.createElement(tag);e.textContent=value||'';if(cls)e.className=cls;return e;};
 const validURL=value=>{try{const url=new URL(value);return ['https:','http:'].includes(url.protocol)&&!url.username&&!url.password?url.href:null;}catch{return null;}};
@@ -65,7 +66,7 @@ async function load(){
   let extras=[];try{extras=await rpc('list_public_provider_extras_v2');}catch{try{extras=await rpc('list_public_provider_extras');}catch{}}
   const extraById=new Map((Array.isArray(extras)?extras:[]).map(x=>[String(x.provider_id),x]));
   list.replaceChildren();
-  for(const p of providers){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
+  for(const p of (compact?providers.slice(0,2):providers)){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
   status.textContent=providers.length?'':'Noch keine Anbieterprofile verfügbar.';
  }catch{status.textContent='Anbieterprofile sind momentan nicht verfügbar.';}
 }
