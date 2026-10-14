@@ -98,3 +98,10 @@
 .provider-directory-more-button:focus-visible{outline:3px solid #ed8d59;outline-offset:4px}
 .provider-directory-all{min-height:55vh;padding-top:48px}
 @media(max-width:600px){.provider-directory-more-button{width:100%;max-width:390px}}
+
+/* Kategorien im Ratgeber als interaktive Buttons */
+.course-guide-links{display:flex;flex-wrap:wrap;gap:10px}
+.course-guide-links a{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;min-height:42px;box-sizing:border-box;border:1px solid rgba(25,52,45,.22);border-radius:999px;background:#f3f6ef;color:#19342d;text-decoration:none;font-size:13px;font-weight:700;line-height:1.35;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.course-guide-links a:hover{background:#19342d;color:#fff;border-color:#19342d;transform:translateY(-2px);box-shadow:0 5px 14px rgba(25,52,45,.14)}
+.course-guide-links a:focus-visible{outline:3px solid #ed8d59;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.course-guide-links a{transition:none}.course-guide-links a:hover{transform:none}}
