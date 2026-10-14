@@ -115,3 +115,12 @@
 .course-guide-links a:nth-child(5){--cat-start:#F0EBF2;--cat-end:#DACFE5}
 .course-guide-links a:nth-child(6){--cat-start:#EBF1E4;--cat-end:#D1DDBE}
 .course-guide-links a:hover{color:#234137;border-color:rgba(35,65,55,.28);background:linear-gradient(135deg,var(--cat-start),var(--cat-end));transform:translateY(-3px);box-shadow:0 9px 20px rgba(32,58,48,.15)}
+
+/* Dezenter Hover-Effekt für die beiden FAQ-Fragen am Ende der Kursseite. */
+.course-guide details{border-radius:12px;padding:0 16px;transition:background-color .2s ease,box-shadow .2s ease}
+.course-guide details summary{padding:20px 0;transition:color .2s ease,transform .2s ease}
+.course-guide details:hover{background:#eaf1e8;box-shadow:0 5px 16px rgba(25,52,45,.07)}
+.course-guide details:hover summary{color:#19342d;transform:translateX(4px)}
+.course-guide details[open]{background:#f0f5ed}
+.course-guide details p{margin:0 0 20px}
+@media(prefers-reduced-motion:reduce){.course-guide details,.course-guide details summary{transition:none}.course-guide details:hover summary{transform:none}}
