@@ -71,26 +71,34 @@ function renderLogo(){
 }
 function renderPreviewExtras(){
  const card=publicPreview?.querySelector('.provider-public-card');if(!card)return;
- card.querySelector('[data-provider-extra-preview]')?.remove();
- // Keep the banner above the company name and independent from other photos.
  card.querySelector('[data-provider-banner-display]')?.remove();
- const banner=document.createElement('div');banner.dataset.providerBannerDisplay='';
- banner.className='provider-profile-preview-banner'+(bannerPath?'':' is-default');
- if(bannerPath){const img=document.createElement('img');img.src=photoUrl(bannerPath);img.alt='Profilbanner';banner.append(img);}
- else{const img=document.createElement('img');img.src='sponti-standard-banner.svg';img.alt='Sponti Standardbanner';banner.append(img);}
- card.prepend(banner);
- const box=document.createElement('div');box.dataset.providerExtraPreview='';
- if(logoPath){const img=document.createElement('img');img.src=photoUrl(logoPath);img.alt='Firmenlogo';img.className='provider-logo-image';box.append(img);}
- const about=form?.elements.about_text?.value.trim();if(about){box.append(text('h4','Über uns'),text('p',about));}
+ card.querySelector('[data-provider-extra-preview]')?.remove();
+ const hero=document.createElement('div');hero.dataset.providerBannerDisplay='';
+ hero.className='provider-profile-hero';
+ const background=document.createElement('img');background.src=bannerPath?photoUrl(bannerPath):'sponti-standard-banner.svg';background.alt='Profilbanner';background.className='provider-profile-hero-image';hero.append(background);
+ const identity=document.createElement('div');identity.className='provider-profile-identity';
+ if(logoPath){const logo=document.createElement('img');logo.src=photoUrl(logoPath);logo.alt='Firmenlogo';logo.className='provider-profile-round-logo';identity.append(logo);}
+ else{const icon=document.createElement('span');icon.className='provider-profile-round-logo provider-profile-logo-placeholder';icon.textContent='S';identity.append(icon);}
+ const heading=document.createElement('div');heading.className='provider-profile-heading';
+ const name=card.querySelector('h3')||text('h3','Dein Unternehmen');
+ const category=Array.from(card.children).find(el=>el.tagName==='P')||text('p','Kategorie ergänzen');
+ category.dataset.providerCategory='';
+ heading.append(name,category);identity.append(heading);hero.append(identity);card.prepend(hero);
+ const box=document.createElement('div');box.dataset.providerExtraPreview='';box.className='provider-profile-sections';
+ const about=form?.elements.about_text?.value.trim();
+ const aboutSection=document.createElement('section');aboutSection.className='provider-profile-section';
+ aboutSection.append(text('h4','Über uns'),text('p',about||'Hier erfährst du mehr über diesen Anbieter.'));box.append(aboutSection);
+ const details=document.createElement('section');details.className='provider-profile-section';details.append(text('h4','Weitere Informationen'));
+ const location=text('p',form?.elements.location?.value||'Standort ergänzen');location.dataset.liveProviderLocation='';details.append(location);
+ const website=form?.elements.website?.value?.trim();if(website&&safeLink(website)){const a=document.createElement('a');a.href=safeLink(website);a.textContent='Website besuchen ↗';a.target='_blank';a.rel='noopener noreferrer';a.dataset.liveProviderWebsite='';details.append(a);}
+ box.append(details);
  const specialtiesValue=readRows(specialties,['name','description']).filter(x=>x.name);
- if(specialtiesValue.length){
-  box.append(text('h4','Unsere Angebote'));
-  const container=document.createElement('div');container.className='provider-public-specialties';
-  for(const item of specialtiesValue){const article=document.createElement('article');article.append(text('strong',item.name));if(item.description)article.append(text('p',item.description));container.append(article);}
-  box.append(container);
- }
+ if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-public-specialties';for(const item of specialtiesValue){const article=document.createElement('article');article.append(text('strong',item.name));if(item.description)article.append(text('p',item.description));list.append(article);}section.append(list);box.append(section);}
  const linksValue=readRows(links,['label','url']).filter(x=>x.label&&safeLink(x.url));
- if(linksValue.length){box.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label+' ↗';a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';box.append(a);}}
+ if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label+' ↗';a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
+ // The old generic description and website button are replaced by structured sections.
+ Array.from(card.children).filter(el=>el.tagName==='P').forEach(el=>el.remove());
+ card.querySelector('a.button.account-secondary')?.remove();
  card.append(box);
 }
 const observer=new MutationObserver(renderPreviewExtras);
