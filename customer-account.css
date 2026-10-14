@@ -12,3 +12,12 @@
 .account-card .account-social-button:focus-visible{outline:3px solid #db641f;outline-offset:2px}
 .account-social-google-mark{font:700 20px/1 Arial,sans-serif;color:#4285f4}
 @media(max-width:600px){.account-social-actions{grid-template-columns:1fr}}
+
+/* Interaktive Auswahlchips: weiss im Ruhezustand, farbig bei Auswahl. */
+.account-card .account-choice{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:10px 16px;border:1px solid #d7e2d7;border-radius:999px;background:#fff;color:#19342d;font-weight:600;box-shadow:0 2px 5px rgba(25,52,45,.035);transition:background .18s,border-color .18s,box-shadow .18s,transform .18s}
+.account-card .account-choice input[type="checkbox"]{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.account-card .account-choice:hover{background:#f2f7ef;border-color:#a6c2a4;transform:translateY(-1px)}
+.account-card .account-choice:has(input:checked){background:#d6e7ce;border-color:#87af80;color:#19342d;box-shadow:0 3px 10px rgba(45,93,55,.12)}
+.account-card .account-choice:has(input:checked):hover{background:#c9e0bf}
+.account-card .account-choice:has(input:focus-visible){outline:3px solid #93b99b;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.account-card .account-choice{transition:none}.account-card .account-choice:hover{transform:none}}
