@@ -1769,3 +1769,7 @@ button > span[aria-hidden="true"] {
   .why-page :is(.why-path-discover, .why-team-voices)::before { top: -185px; right: -195px; }
   .why-page :is(.why-path-discover, .why-team-voices)::after { bottom: -210px; left: -195px; }
 }
+
+/* Footer brand: slightly larger logo without affecting header navigation. */
+.site-footer .footer-brand .logo img { height: 46px; width: auto; }
+@media (max-width: 760px) { .site-footer .footer-brand .logo img { height: 42px; } }
