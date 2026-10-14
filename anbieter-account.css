@@ -83,3 +83,21 @@
 .provider-account-shell [data-provider-form="course"] input[name="starts_at"]{width:100%;min-width:0;min-height:45px;box-sizing:border-box;padding:10px 12px;border:1px solid #bacfbd;border-radius:9px;background:#fff;color:#19342d;font:inherit;color-scheme:light;cursor:pointer}
 .provider-account-shell [data-provider-form="course"] input[name="starts_at"]:focus-visible{outline:3px solid #accba5;outline-offset:2px;border-color:#406a53}
 .provider-account-shell [data-provider-form="course"] .provider-course-date-label small{font-size:11px;font-weight:400;line-height:1.4;color:#61736c}
+
+/* Einheitliches Design für alle Eingaben beim Kurserstellen. */
+.provider-account-shell [data-provider-form="course"] .account-form-grid>label,
+.provider-account-shell [data-provider-form="course"]>label:not(.provider-active){display:flex;flex-direction:column;gap:7px;padding:13px 15px;border:1px solid #d7e3d7;border-radius:14px;background:#f2f7ee;min-width:0;font-size:12px;font-weight:700;color:#19342d}
+.provider-account-shell [data-provider-form="course"] :is(input:not([type="hidden"]):not([type="checkbox"]),select,textarea){width:100%;box-sizing:border-box;min-width:0;min-height:45px;padding:10px 12px;border:1px solid #bacfbd;border-radius:9px;background:#fff;color:#19342d;font:inherit;font-weight:500}
+.provider-account-shell [data-provider-form="course"] :is(input,select,textarea):focus-visible{outline:3px solid #accba5;outline-offset:2px;border-color:#406a53}
+.provider-account-shell [data-provider-form="course"] textarea{min-height:110px}
+.provider-account-shell [data-provider-form="course"] .provider-course-date-label small{font-size:11px;font-weight:400}
+/* Kalender-Popup im Sponti-Look */
+.flatpickr-calendar{font-family:"DM Sans",sans-serif!important;border:1px solid #d7e3d7!important;border-radius:16px!important;box-shadow:0 18px 44px rgba(25,52,45,.2)!important;overflow:hidden}
+.flatpickr-months,.flatpickr-weekdays{background:#edf4e9!important}
+.flatpickr-current-month,.flatpickr-weekday{color:#19342d!important}
+.flatpickr-day{border-radius:9px!important}
+.flatpickr-day:hover,.flatpickr-day:focus{background:#d7e9d0!important;border-color:#d7e9d0!important;color:#19342d!important}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:#19342d!important;border-color:#19342d!important;color:#fff!important}
+.flatpickr-time{background:#f2f7ee!important}
+.flatpickr-time input:hover,.flatpickr-time input:focus{background:#dcebd7!important}
+.flatpickr-calendar.arrowTop:before,.flatpickr-calendar.arrowTop:after{display:none}
