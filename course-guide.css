@@ -77,3 +77,16 @@
 .provider-directory-content .provider-directory-profile-link{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:18px;padding:11px 16px;border-radius:999px;background:#19342d;color:#fff;text-decoration:none;font-size:13px;font-weight:700;transition:background .2s ease,transform .2s ease}
 .provider-directory-content .provider-directory-profile-link:hover{background:#2c5745;transform:translateY(-2px)}
 .provider-directory-content .provider-directory-profile-link:focus-visible{outline:3px solid #ed8d59;outline-offset:3px}
+
+/* Anbieterkarte: Logo und Titel gut lesbar auf dem Banner. */
+.provider-directory-banner{height:205px;isolation:isolate}
+.provider-directory-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,34,24,0) 14%,rgba(12,34,24,.86) 100%);z-index:0;pointer-events:none}
+.provider-directory-banner .provider-directory-identity{position:absolute;left:18px;right:18px;bottom:17px;z-index:2;display:flex;align-items:center;gap:12px;min-width:0}
+.provider-directory-banner .provider-directory-logo{width:61px;height:61px;flex:none;box-sizing:border-box;border:3px solid #fff;border-radius:50%;padding:0;margin:0;object-fit:cover;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.provider-directory-banner .provider-directory-logo-fallback{display:grid;place-items:center;background:#e2edde;color:#19342d;font-size:26px;font-weight:700}
+.provider-directory-heading-overlay{min-width:0}
+.provider-directory-heading-overlay h3{margin:0 0 3px;font-family:"Playfair Display",Georgia,serif;font-size:22px;line-height:1.1;overflow-wrap:anywhere}
+.provider-directory-heading-overlay h3 a{color:#fff;text-decoration:none}
+.provider-directory-heading-overlay h3 a:hover{text-decoration:underline}
+.provider-directory-heading-overlay .provider-directory-meta{color:#f3f5ee;opacity:1;font-size:12px;margin:0}
+.provider-directory-location{font-size:12px;color:#61736c;margin:0 0 6px}
