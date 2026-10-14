@@ -9,16 +9,19 @@ if(form&&preview){
  editor.before(layout);layout.append(editor,preview);
  const update=()=>{
   const card=preview.querySelector('.provider-public-card');if(!card)return;
-  const name=form.elements.namedItem('company')?.value.trim();
-  const category=form.elements.namedItem('category')?.value.trim();
-  const location=form.elements.namedItem('location')?.value.trim();
-  const website=form.elements.namedItem('website')?.value.trim();
+  const get=name=>form.elements.namedItem(name)?.value.trim()||'';
+  const name=get('company'), category=get('category'), location=get('location'), website=get('website');
   const title=card.querySelector('h3');if(title)title.textContent=name||'Dein Unternehmen';
-  const paragraphs=Array.from(card.children).filter(e=>e.tagName==='P');
-  if(paragraphs[0])paragraphs[0].textContent=category||'Kategorie ergänzen';
-  if(paragraphs[1])paragraphs[1].textContent=location||'Standort ergänzen';
-  const link=Array.from(card.children).find(e=>e.tagName==='A');
-  if(link){if(/^https?:\/\//i.test(website)){link.href=website;link.textContent=website;link.hidden=false;}else if(!website){link.hidden=true;}}
+  const description=Array.from(card.children).find(el=>el.tagName==='P');
+  if(description)description.textContent=category||'Kategorie ergänzen';
+  let locationLine=card.querySelector('[data-live-provider-location]');
+  if(!locationLine){locationLine=document.createElement('p');locationLine.dataset.liveProviderLocation='';if(description)description.after(locationLine);else card.append(locationLine);}
+  locationLine.textContent=location||'Standort ergänzen';
+  let link=card.querySelector('a.button.account-secondary');
+  if(/^https?:\/\//i.test(website)){
+    if(!link){link=document.createElement('a');link.className='button account-secondary';link.target='_blank';link.rel='noopener noreferrer';card.append(link);}
+    link.href=website;link.textContent='Website besuchen';link.hidden=false;
+  }else if(link){link.hidden=true;}
  };
  form.addEventListener('input',update);form.addEventListener('change',update);
  const target=member.querySelector('[data-provider-preview]');
