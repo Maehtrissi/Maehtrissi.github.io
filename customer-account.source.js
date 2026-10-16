@@ -39,7 +39,7 @@ function sectionMessage(selector,text,error=false){const el=root?.querySelector(
 function preferencesControls(disabled){root?.querySelectorAll('[data-account-form="preferences"] input,[data-account-form="preferences"] select,[data-account-form="preferences"] button').forEach(el=>el.disabled=disabled);}
 function fillPreferences(value){
  const form=root.querySelector('[data-account-form="preferences"]');
- form.reset();form.elements.namedItem('channel').value=profile?.channel||'Keine';form.elements.namedItem('interest').value=profile?.interest||'';
+ form.reset();form.elements.namedItem('channel').value=profile?.channel||'Keine';if(form.elements.namedItem('interest'))form.elements.namedItem('interest').value=profile?.interest||'';
  for(const key of ['region','locality','radius_km'])form.elements.namedItem(key).value=value?.[key]??'';
  for(const key of ['categories','preferred_days','preferred_times'])form.querySelectorAll('input[name="'+key+'"]').forEach(input=>input.checked=(value?.[key]||[]).includes(input.value));
 }
@@ -103,7 +103,7 @@ if(root){
    if(type==='preferences'){
     const radius=String(data.get('radius_km')||''),locality=String(data.get('locality')||'').trim();
     if(radius&&!locality)throw new Error('Bitte gib einen Ausgangsort oder eine PLZ für deinen Umkreis an.');
-    const values={channel:String(data.get('channel')||''),interest:String(data.get('interest')||'').trim(),categories:data.getAll('categories').map(String),region:String(data.get('region')||''),locality,radius_km:radius?Number(radius):null,preferred_days:data.getAll('preferred_days').map(String),preferred_times:data.getAll('preferred_times').map(String)};
+    const values={channel:String(data.get('channel')||''),interest:String(data.get('interest')??profile?.interest??'').trim(),categories:data.getAll('categories').map(String),region:String(data.get('region')||''),locality,radius_km:radius?Number(radius):null,preferred_days:data.getAll('preferred_days').map(String),preferred_times:data.getAll('preferred_times').map(String)};
     const r=await client.rpc('save_course_preferences',{settings:values});
     if(r.error)throw r.error;profile={...profile,interest:values.interest,channel:values.channel};sectionMessage('[data-preferences-status]','Deine Kursinfos-Einstellungen wurden gespeichert.');message('Deine Auswahl wurde gespeichert.');
    }
