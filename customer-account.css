@@ -23,7 +23,7 @@
 @media(prefers-reduced-motion:reduce){.account-card .account-choice{transition:none}.account-card .account-choice:hover{transform:none}}
 
 /* Tighter spacing within the desired-regions section only. */
-.account-card .region-preferences legend{margin-bottom:10px}
+.account-card .region-preferences legend{margin-bottom:10px;margin-left:2px}
 .account-card .region-preferences .account-form-grid label{margin-bottom:8px}
 .account-card .region-preferences .account-help{margin:8px 0 14px}
 .account-card .region-preferences .account-choices{gap:10px}
