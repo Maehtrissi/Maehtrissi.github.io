@@ -21,3 +21,9 @@
 .account-card .account-choice:has(input:checked):hover{background:#c9e0bf}
 .account-card .account-choice:has(input:focus-visible){outline:3px solid #93b99b;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.account-card .account-choice{transition:none}.account-card .account-choice:hover{transform:none}}
+
+/* Tighter spacing within the desired-regions section only. */
+.account-card .region-preferences legend{margin-bottom:10px}
+.account-card .region-preferences .account-form-grid label{margin-bottom:8px}
+.account-card .region-preferences .account-help{margin:8px 0 14px}
+.account-card .region-preferences .account-choices{gap:10px}
