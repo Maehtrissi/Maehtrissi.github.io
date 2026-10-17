@@ -1839,3 +1839,30 @@ button > span[aria-hidden="true"] {
 /* Unified lightly tinted footer on every Sponti page. */
 .site-footer,.provider-page .site-footer{background:#e6ece3;border-top:1px solid #cfd9cd}
 .site-footer .footer-bottom{border-top-color:#c6d3c4}
+
+/* Sponti footer: soft gradient with subtle decorative rings across all pages. */
+.site-footer,
+.provider-page .site-footer{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 16% 15%,rgba(215,242,119,.24) 0%,transparent 34%),
+    radial-gradient(circle at 87% 85%,rgba(237,141,89,.13) 0%,transparent 32%),
+    linear-gradient(155deg,#eaf0e6 0%,#e3ebdf 52%,#dfe8db 100%);
+  border-top:1px solid #cbd8c8;
+}
+.site-footer::before,
+.site-footer::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  pointer-events:none;
+  border:1px solid rgba(25,52,45,.12);
+  border-radius:50%;
+}
+.site-footer::before{width:450px;height:450px;top:-310px;right:-120px;box-shadow:0 0 0 64px rgba(25,52,45,.035),0 0 0 125px rgba(25,52,45,.025)}
+.site-footer::after{width:320px;height:320px;bottom:-225px;left:-120px;box-shadow:0 0 0 52px rgba(25,52,45,.035),0 0 0 105px rgba(25,52,45,.02)}
+.site-footer .footer-main,.site-footer .footer-bottom{position:relative;z-index:1}
+.site-footer .footer-bottom{border-top-color:rgba(25,52,45,.15)}
+@media(max-width:640px){.site-footer::before{width:300px;height:300px;top:-205px;right:-170px}.site-footer::after{width:240px;height:240px;bottom:-175px;left:-150px}}
