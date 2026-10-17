@@ -31,6 +31,38 @@
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
  const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
  const cancellationText=(start)=>start-Date.now()<=86400000?'Buchung verbindlich · keine kostenlose Stornierung':'Kostenlose Stornierung bis 24 h vor Beginn';
+
+ function openGuestForm(course){
+  const overlay=element('div','guest-signup-overlay');
+  const panel=element('section','guest-signup-panel');
+  panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','guest-form-title');
+  const close=element('button','guest-signup-close','×');close.type='button';close.setAttribute('aria-label','Schliessen');
+  const title=element('h2','','Ohne Konto anmelden');title.id='guest-form-title';
+  const subtitle=element('p','',course.title+' – Deine Anfrage wird an Sponti übermittelt.');
+  const form=element('form','guest-signup-form');
+  const field=(labelText,name,type,required)=>{const label=element('label','',labelText);const input=element('input','');input.name=name;input.type=type;input.required=required;input.maxLength=name==='email'?254:120;label.append(input);return label;};
+  form.append(field('Vor- und Nachname','name','text',true),field('E-Mail-Adresse','email','email',true),field('Telefon (optional)','phone','tel',false));
+  const qty=element('label','','Anzahl Plätze');const select=element('select','');select.name='quantity';
+  for(let i=1;i<=Math.min(10,Math.max(1,Number(course.seats)));i++){const option=element('option','',String(i));option.value=String(i);select.append(option);}qty.append(select);form.append(qty);
+  const note=element('p','guest-signup-note','Du brauchst kein Konto. Deine Anfrage ist erst nach einer Bestätigung verbindlich. Wir verwenden deine Angaben zur Bearbeitung dieser Kursanfrage.');
+  const feedback=element('p','guest-signup-feedback');feedback.setAttribute('role','status');
+  const submit=element('button','course-book','Anfrage senden');submit.type='submit';
+  form.append(note,feedback,submit);panel.append(close,title,subtitle,form);overlay.append(panel);document.body.append(overlay);
+  const oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';
+  const dismiss=()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=oldOverflow;overlay.remove();};
+  const onKey=e=>{if(e.key==='Escape')dismiss();};document.addEventListener('keydown',onKey);
+  close.addEventListener('click',dismiss);overlay.addEventListener('click',e=>{if(e.target===overlay)dismiss();});
+  form.addEventListener('submit',async e=>{e.preventDefault();submit.disabled=true;feedback.textContent='Anfrage wird gesendet …';
+   const fields=new FormData(form);
+   try{
+    const response=await fetch('https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/rpc/submit_guest_course_request',{method:'POST',headers:{apikey:'sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy','Content-Type':'application/json'},body:JSON.stringify({p_course_id:course.id,p_name:String(fields.get('name')).trim(),p_email:String(fields.get('email')).trim(),p_phone:String(fields.get('phone')||'').trim(),p_quantity:Number(fields.get('quantity'))})});
+    const result=await response.json();
+    if(!response.ok)throw new Error(result.message||'Die Anfrage konnte nicht gesendet werden.');
+    form.replaceChildren(element('p','guest-signup-success','Deine Anfrage ist eingegangen. Sponti meldet sich bei dir zur Bestätigung.'));
+   }catch(err){feedback.textContent=err.message||'Bitte versuche es erneut.';submit.disabled=false;}
+  });
+  form.querySelector('input')?.focus();
+ }
  function render(course){
   const card=element('article','course-card'),start=new Date(course.starts_at);
   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(start).map(p=>[p.type,p.value]));
@@ -50,7 +82,7 @@
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   let booking=null;
   try{if(course.booking_url){const url=new URL(course.booking_url);if(['https:','http:'].includes(url.protocol)&&!url.username&&!url.password){booking=element('a','course-book','Zur Buchung');booking.href=url.href;booking.target='_blank';booking.rel='noopener noreferrer';booking.style.textDecoration='none';}}}catch{/* Ignore invalid legacy links. */}
-  if(!booking){booking=element('button','course-book','Infos erhalten');booking.type='button';booking.addEventListener('click',()=>document.querySelector('[data-open-booking]')?.click());}
+  if(!booking){booking=element('button','course-book','Als Gast anmelden');booking.type='button';booking.addEventListener('click',()=>openGuestForm(course));}
   const policy=element('div','course-policy',cancellationText(start));
   bottom.append(booking);body.append(details,policy,bottom);card.append(image,body);return card;
  }
