@@ -32,6 +32,34 @@
  const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
  const cancellationText=(start)=>start-Date.now()<=86400000?'Buchung verbindlich · keine kostenlose Stornierung':'Kostenlose Stornierung bis 24 h vor Beginn';
 
+ function openBookingChoice(course){
+  const overlay=element('div','guest-signup-overlay');
+  const panel=element('section','guest-signup-panel booking-choice-panel');
+  panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','booking-choice-title');
+  const close=element('button','guest-signup-close','×');close.type='button';close.setAttribute('aria-label','Schliessen');
+  const title=element('h2','','Wie möchtest du fortfahren?');title.id='booking-choice-title';
+  const subtitle=element('p','',course.title);
+  const options=element('div','booking-choice-options');
+  const guest=element('button','booking-choice-option','Als Gast fortfahren');
+  guest.type='button';
+  guest.append(element('small','','Ohne Konto eine Kursanfrage senden'));
+  const login=element('a','booking-choice-option','Anmelden');
+  login.href='/profil?mode=login&course='+encodeURIComponent(course.id);
+  login.append(element('small','','Mit deinem bestehenden Sponti-Konto'));
+  const register=element('a','booking-choice-option','Registrieren');
+  register.href='/profil?mode=register&course='+encodeURIComponent(course.id);
+  register.append(element('small','','Kostenloses Konto erstellen'));
+  options.append(guest,login,register);panel.append(close,title,subtitle,options);overlay.append(panel);
+  document.body.append(overlay);
+  const original=document.body.style.overflow;document.body.style.overflow='hidden';
+  const dismiss=()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=original;overlay.remove();};
+  const onKey=e=>{if(e.key==='Escape')dismiss();};
+  document.addEventListener('keydown',onKey);
+  close.addEventListener('click',dismiss);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)dismiss();});
+  guest.addEventListener('click',()=>{dismiss();openGuestForm(course);});
+  guest.focus();
+ }
  function openGuestForm(course){
   const overlay=element('div','guest-signup-overlay');
   const panel=element('section','guest-signup-panel');
@@ -82,7 +110,7 @@
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   let booking=null;
   try{if(course.booking_url){const url=new URL(course.booking_url);if(['https:','http:'].includes(url.protocol)&&!url.username&&!url.password){booking=element('a','course-book','Zur Buchung');booking.href=url.href;booking.target='_blank';booking.rel='noopener noreferrer';booking.style.textDecoration='none';}}}catch{/* Ignore invalid legacy links. */}
-  if(!booking){booking=element('button','course-book','Als Gast anmelden');booking.type='button';booking.addEventListener('click',()=>openGuestForm(course));}
+  if(!booking){booking=element('button','course-book','Kurs anfragen');booking.type='button';booking.addEventListener('click',()=>openBookingChoice(course));}
   const policy=element('div','course-policy',cancellationText(start));
   bottom.append(booking);body.append(details,policy,bottom);card.append(image,body);return card;
  }
