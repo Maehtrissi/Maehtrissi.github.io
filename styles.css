@@ -1835,3 +1835,7 @@ button > span[aria-hidden="true"] {
 .sponti-faq::before{display:none}
 .sponti-faq-help a{gap:0;border-bottom:1px solid rgba(25,52,45,.35);transition:color .22s ease,border-color .22s ease,background-size .25s ease;background-image:linear-gradient(rgba(237,141,89,.12),rgba(237,141,89,.12));background-size:0% 100%;background-repeat:no-repeat}
 .sponti-faq-help a:hover{gap:0;color:var(--ink);border-color:var(--orange);background-size:100% 100%}
+
+/* Unified lightly tinted footer on every Sponti page. */
+.site-footer,.provider-page .site-footer{background:#e6ece3;border-top:1px solid #cfd9cd}
+.site-footer .footer-bottom{border-top-color:#c6d3c4}
