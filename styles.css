@@ -1883,3 +1883,12 @@ button > span[aria-hidden="true"] {
 .course-guide .course-faq-item>p{padding:0 12px 24px 4px;margin:0;transform:translateY(-12px);transition:transform .42s ease}
 .course-guide .course-faq-item[open]>p{transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.course-guide .course-faq-item summary,.course-guide .course-faq-item summary span,.course-guide .course-faq-item::details-content,.course-guide .course-faq-item>p{transition:none!important;transform:none!important}}
+
+/* Provider detail cards: same smooth accordion motion as the homepage FAQ. */
+.provider-directory-details{interpolate-size:allow-keywords}
+.provider-directory-details::details-content{height:0;opacity:0;overflow:hidden;transition:height .48s cubic-bezier(.22,1,.36,1),opacity .35s ease,content-visibility .48s allow-discrete}
+.provider-directory-details[open]::details-content{height:auto;opacity:1}
+.provider-directory-details>summary{cursor:pointer;transition:color .25s ease,padding .32s ease,background-color .25s ease}
+.provider-directory-details>summary:hover{color:#b56636;background:rgba(223,233,216,.38);padding-left:12px}
+.provider-directory-details>summary:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.provider-directory-details::details-content,.provider-directory-details>summary{transition:none!important}}
