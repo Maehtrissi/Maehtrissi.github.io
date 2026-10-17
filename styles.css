@@ -1815,3 +1815,17 @@ button > span[aria-hidden="true"] {
 .sponti-faq-items details p{transform:translateY(-5px);transition:transform .35s ease}
 .sponti-faq-items details[open] p{transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){.sponti-faq-items details::details-content,.sponti-faq-items details p,.sponti-faq-items summary{transition:none}}
+
+/* FAQ interactions: hover lift, sliding answers and animated contact link */
+.sponti-faq-items summary{position:relative;transition:color .25s ease,padding .34s ease,background-color .25s ease}
+.sponti-faq-items summary:hover{padding-left:12px;padding-right:8px;background:rgba(223,233,216,.38)}
+.sponti-faq-items summary span{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .25s,border-color .25s}
+.sponti-faq-items summary:hover span{background:#e4ece0;border-color:#8fa997;transform:scale(1.1)}
+.sponti-faq-items details[open] summary:hover span{transform:rotate(45deg) scale(1.1)}
+.sponti-faq-items details::details-content{transition:height .48s cubic-bezier(.22,1,.36,1),opacity .35s ease,content-visibility .48s allow-discrete}
+.sponti-faq-items details p{transform:translateY(-12px);transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.sponti-faq-help a{position:relative;gap:10px;transition:color .25s ease,gap .3s ease,border-color .25s ease}
+.sponti-faq-help a span{display:inline-block;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.sponti-faq-help a:hover{color:#b56636;gap:16px;border-color:#b56636}
+.sponti-faq-help a:hover span{transform:translate(4px,-4px)}
+@media(prefers-reduced-motion:reduce){.sponti-faq-items summary,.sponti-faq-items summary span,.sponti-faq-items details::details-content,.sponti-faq-items details p,.sponti-faq-help a,.sponti-faq-help a span{transition:none!important;transform:none!important}}
