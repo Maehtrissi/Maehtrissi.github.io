@@ -1805,3 +1805,13 @@ button > span[aria-hidden="true"] {
 @media(max-width:520px){.sponti-faq{padding:65px 22px 76px}.sponti-faq-inner{gap:28px}.sponti-faq-heading .eyebrow{margin-bottom:15px}.sponti-faq-heading h2{font-size:47px}.sponti-faq-items summary{padding:20px 0;font-size:15.5px;gap:12px}.sponti-faq-items summary span{flex-basis:30px;width:30px;height:30px}.sponti-faq-items details p{margin:0 10px 22px 0;font-size:14px}}
 @media(prefers-reduced-motion:reduce){.sponti-faq-items summary,.sponti-faq-items summary span{transition:none}}
 
+
+/* Smooth native FAQ accordion: animated content height and opacity. */
+.sponti-faq-items{interpolate-size:allow-keywords}
+.sponti-faq-items details::details-content{height:0;opacity:0;overflow:hidden;transition:height .38s cubic-bezier(.22,1,.36,1),opacity .25s ease,content-visibility .38s allow-discrete}
+.sponti-faq-items details[open]::details-content{height:auto;opacity:1}
+.sponti-faq-items details[open] summary{padding-bottom:20px}
+.sponti-faq-items summary{transition:color .2s ease,padding-bottom .35s ease}
+.sponti-faq-items details p{transform:translateY(-5px);transition:transform .35s ease}
+.sponti-faq-items details[open] p{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.sponti-faq-items details::details-content,.sponti-faq-items details p,.sponti-faq-items summary{transition:none}}
