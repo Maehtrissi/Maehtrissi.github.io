@@ -1829,3 +1829,9 @@ button > span[aria-hidden="true"] {
 .sponti-faq-help a:hover{color:#b56636;gap:16px;border-color:#b56636}
 .sponti-faq-help a:hover span{transform:translate(4px,-4px)}
 @media(prefers-reduced-motion:reduce){.sponti-faq-items summary,.sponti-faq-items summary span,.sponti-faq-items details::details-content,.sponti-faq-items details p,.sponti-faq-help a,.sponti-faq-help a span{transition:none!important;transform:none!important}}
+
+/* FAQ aligned with the site's soft background and understated link interaction */
+.sponti-faq{background-color:transparent;background-image:radial-gradient(circle at 96% 15%,rgba(215,242,119,.15),transparent 32%),radial-gradient(circle at 5% 85%,rgba(223,233,216,.3),transparent 38%)}
+.sponti-faq::before{display:none}
+.sponti-faq-help a{gap:0;border-bottom:1px solid rgba(25,52,45,.35);transition:color .22s ease,border-color .22s ease,background-size .25s ease;background-image:linear-gradient(rgba(237,141,89,.12),rgba(237,141,89,.12));background-size:0% 100%;background-repeat:no-repeat}
+.sponti-faq-help a:hover{gap:0;color:var(--ink);border-color:var(--orange);background-size:100% 100%}
