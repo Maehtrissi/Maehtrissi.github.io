@@ -136,3 +136,10 @@
 
 /* Course provider category (e.g. Yoga) styled as a compact pill. */
 .provider-directory-heading-overlay .provider-directory-meta{display:inline-flex;align-items:center;width:max-content;max-width:100%;margin:10px 0 0;padding:6px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,254,250,.92);color:#19342d;font:600 12px/1.35 'DM Sans',sans-serif;letter-spacing:.01em;opacity:1;box-shadow:0 2px 9px rgba(20,46,32,.1)}
+
+/* Course filters: solid, clearly separated pills on the warm hero background. */
+.course-filters .filter{background:#f6f5e9!important;border:1px solid #c8d1bc!important;color:#284539!important;box-shadow:0 2px 7px rgba(25,52,45,.07);opacity:1!important;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.course-filters .filter:hover{background:#e2ebd9!important;border-color:#8ba88f!important;transform:translateY(-2px);box-shadow:0 5px 13px rgba(25,52,45,.12)}
+.course-filters .filter.active{background:#193b30!important;border-color:#193b30!important;color:#fff!important;box-shadow:0 3px 11px rgba(25,52,45,.16)}
+.course-filters .filter.active:hover{background:#2a5845!important}
+@media(prefers-reduced-motion:reduce){.course-filters .filter{transition:none}.course-filters .filter:hover{transform:none}}
