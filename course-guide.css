@@ -133,3 +133,6 @@
 .course-guide .course-guide-links > a:nth-child(5){background:#E5D8EC;border-color:#C7B0D5}
 .course-guide .course-guide-links > a:nth-child(6){background:#DDE9CF;border-color:#B6CE9C}
 .course-guide .course-guide-links > a:hover{filter:saturate(1.15) brightness(.97);color:#19342d;transform:translateY(-3px);box-shadow:0 9px 20px rgba(32,58,48,.16)}
+
+/* Course provider category (e.g. Yoga) styled as a compact pill. */
+.provider-directory-heading-overlay .provider-directory-meta{display:inline-flex;align-items:center;width:max-content;max-width:100%;margin:10px 0 0;padding:6px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(255,254,250,.92);color:#19342d;font:600 12px/1.35 'DM Sans',sans-serif;letter-spacing:.01em;opacity:1;box-shadow:0 2px 9px rgba(20,46,32,.1)}
