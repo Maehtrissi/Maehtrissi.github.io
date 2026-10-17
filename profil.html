@@ -58,6 +58,32 @@
     </div>
   </div>
   <div class="footer-bottom"><span>© 2026 Sponti</span><span>Schweiz</span></div>
-</footer><script src="script.js?v=login-close-20261010"></script><script type="module" src="customer-account.js?v=preferences-fix-20261017"></script></body></html>
+</footer><script src="script.js?v=login-close-20261010"></script><script type="module" src="customer-account.js?v=preferences-fix-20261017"></script><script type="module">
+  // Resume a course request after successful login or registration.
+  const requestedCourse=new URLSearchParams(location.search).get('course');
+  if(requestedCourse && /^[0-9a-f-]{36}$/i.test(requestedCourse)){
+    sessionStorage.setItem('sponti-pending-course',requestedCourse);
+  }
+  const pendingCourse=sessionStorage.getItem('sponti-pending-course');
+  if(pendingCourse && /^[0-9a-f-]{36}$/i.test(pendingCourse)){
+    const notice=document.createElement('p');
+    notice.className='account-notice';
+    notice.textContent='Melde dich an oder registriere dich. Anschliessend kommst du direkt zur Kursanfrage zurück.';
+    document.querySelector('[data-customer-account]')?.prepend(notice);
+    const {createClient}=await import('https://esm.sh/@supabase/supabase-js@2.57.0');
+    const client=createClient('https://ehifskiigrfpxeiruyxr.supabase.co','sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy',{auth:{storageKey:'sponti-customer-auth',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'implicit'}});
+    let moved=false;
+    const resume=async()=>{
+      if(moved)return;
+      const {data:{user}}=await client.auth.getUser();
+      if(user&&!moved){
+        moved=true;sessionStorage.removeItem('sponti-pending-course');
+        location.assign('/kurse?course='+encodeURIComponent(pendingCourse));
+      }
+    };
+    client.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN')setTimeout(resume,0);});
+    resume();
+  }
+</script></body></html>
 
 
