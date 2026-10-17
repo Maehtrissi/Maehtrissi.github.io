@@ -60,19 +60,21 @@
   guest.addEventListener('click',()=>{dismiss();openGuestForm(course);});
   guest.focus();
  }
- function openGuestForm(course){
+ function openGuestForm(course,account=null){
+
   const overlay=element('div','guest-signup-overlay');
   const panel=element('section','guest-signup-panel');
   panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','guest-form-title');
   const close=element('button','guest-signup-close','×');close.type='button';close.setAttribute('aria-label','Schliessen');
-  const title=element('h2','','Ohne Konto anmelden');title.id='guest-form-title';
+  const title=element('h2','',account?'Mit Konto Kurs anfragen':'Ohne Konto anmelden');title.id='guest-form-title';
   const subtitle=element('p','',course.title+' – Deine Anfrage wird an Sponti übermittelt.');
   const form=element('form','guest-signup-form');
   const field=(labelText,name,type,required)=>{const label=element('label','',labelText);const input=element('input','');input.name=name;input.type=type;input.required=required;input.maxLength=name==='email'?254:120;label.append(input);return label;};
   form.append(field('Vor- und Nachname','name','text',true),field('E-Mail-Adresse','email','email',true),field('Telefon (optional)','phone','tel',false));
+  if(account){form.elements.name.value=account.name||'';form.elements.email.value=account.email||'';form.elements.phone.value=account.phone||'';form.elements.email.readOnly=true;}
   const qty=element('label','','Anzahl Plätze');const select=element('select','');select.name='quantity';
   for(let i=1;i<=Math.min(10,Math.max(1,Number(course.seats)));i++){const option=element('option','',String(i));option.value=String(i);select.append(option);}qty.append(select);form.append(qty);
-  const note=element('p','guest-signup-note','Du brauchst kein Konto. Deine Anfrage ist erst nach einer Bestätigung verbindlich. Wir verwenden deine Angaben zur Bearbeitung dieser Kursanfrage.');
+  const note=element('p','guest-signup-note',account?'Deine Kontodaten wurden vorausgefüllt. Deine Anfrage wird erst nach einer Bestätigung verbindlich.':'Du brauchst kein Konto. Deine Anfrage ist erst nach einer Bestätigung verbindlich. Wir verwenden deine Angaben zur Bearbeitung dieser Kursanfrage.');
   const feedback=element('p','guest-signup-feedback');feedback.setAttribute('role','status');
   const submit=element('button','course-book','Anfrage senden');submit.type='submit';
   form.append(note,feedback,submit);panel.append(close,title,subtitle,form);overlay.append(panel);document.body.append(overlay);
@@ -127,6 +129,20 @@
    cards=courses.map(render);grid.replaceChildren(...cards);
    const selected=new URLSearchParams(location.search).get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
    applyFilters();
+   const pending=new URLSearchParams(location.search).get('course');
+   if(pending && /^[0-9a-f-]{36}$/i.test(pending)){
+    const selectedCourse=courses.find(c=>String(c.id)===pending && !c.booking_url);
+    if(selectedCourse){
+      history.replaceState(null,'',location.pathname);
+      import('https://esm.sh/@supabase/supabase-js@2.57.0').then(async ({createClient})=>{
+        const client=createClient('https://ehifskiigrfpxeiruyxr.supabase.co','sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy',{auth:{storageKey:'sponti-customer-auth',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+        const {data:{user}}=await client.auth.getUser();
+        if(!user){openBookingChoice(selectedCourse);return;}
+        const {data:profile}=await client.rpc('customer_profile');
+        openGuestForm(selectedCourse,{name:profile?.name||user.user_metadata?.name||'',email:user.email||'',phone:profile?.phone||''});
+      }).catch(()=>openBookingChoice(selectedCourse));
+    }
+   }
   }catch{message.replaceChildren(document.createTextNode('Die Kurse konnten gerade nicht geladen werden. '));const retry=element('button','filter','Erneut versuchen');retry.type='button';retry.addEventListener('click',load);message.append(retry);}
   finally{grid.setAttribute('aria-busy','false');}
  }
