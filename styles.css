@@ -1892,3 +1892,12 @@ button > span[aria-hidden="true"] {
 .provider-directory-details>summary:hover{color:#b56636;background:rgba(223,233,216,.38);padding-left:12px}
 .provider-directory-details>summary:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
 @media(prefers-reduced-motion:reduce){.provider-directory-details::details-content,.provider-directory-details>summary{transition:none!important}}
+
+/* Mobile-only: compact header account and menu buttons. */
+@media(max-width:600px){
+ .site-header .account-selector{margin-right:5px}
+ .site-header .account-selector>summary{min-height:38px;padding:7px 11px;font-size:12px;gap:6px}
+ .site-header .account-selector>summary::after{font-size:15px}
+ .site-header .site-menu-trigger{min-height:38px;padding:7px 11px;font-size:12px;gap:10px}
+ .site-header .site-menu-icon{transform:scale(.82);transform-origin:center}
+}
