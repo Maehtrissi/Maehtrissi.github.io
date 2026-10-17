@@ -161,22 +161,42 @@
           .slice(0, 2)
           .toUpperCase();
 
-      reviewForm.addEventListener("submit", (event) => {
+      const reviewStatus = document.createElement("p");
+      reviewStatus.setAttribute("role", "status");
+      reviewStatus.setAttribute("aria-live", "polite");
+      reviewForm.append(reviewStatus);
+      reviewForm.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (!reviewForm.reportValidity()) return;
+        const button = reviewForm.querySelector('[type="submit"]');
         const data = new FormData(reviewForm);
-        const name = data.get("name").trim();
-        const course = data.get("course");
-        const review = data.get("review").trim();
-        if (!name || !course || !review) return;
-
-        const card = document.createElement("article");
-        card.className = "story-card";
-        card.innerHTML = `
-          <div class="testimonial-quote story-quote">„${review}“</div>
-          <div class="testimonial-meta"><div class="testimonial-avatar">${initials(name)}</div><div><strong>${name}</strong><span>${course}</span></div></div>
-        `;
-        storyGrid.prepend(card);
-        reviewForm.reset();
+        const name = String(data.get("name") || "").trim();
+        const course = String(data.get("course") || "").trim();
+        const review = String(data.get("review") || "").trim();
+        if (name.length < 2 || review.length < 10) {
+          reviewStatus.textContent = "Bitte gib einen Namen und eine Erfahrung mit mindestens 10 Zeichen ein.";
+          return;
+        }
+        button.disabled = true;
+        reviewStatus.textContent = "Erfahrung wird gespeichert …";
+        try {
+          const response = await fetch("https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/rpc/submit_course_review", {
+            method: "POST",
+            headers: {
+              apikey: "sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ p_name: name, p_course: course, p_review: review })
+          });
+          const result = await response.json();
+          if (!response.ok || !result.saved) throw new Error(result.message || "Speichern fehlgeschlagen.");
+          reviewForm.reset();
+          reviewStatus.textContent = "Deine Erfahrung wurde gespeichert und wird vor der Veröffentlichung geprüft.";
+        } catch (error) {
+          reviewStatus.textContent = "Deine Erfahrung konnte nicht gespeichert werden. Bitte versuche es erneut.";
+        } finally {
+          button.disabled = false;
+        }
       });
     </script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
