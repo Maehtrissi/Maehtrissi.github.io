@@ -1866,3 +1866,20 @@ button > span[aria-hidden="true"] {
 .site-footer .footer-main,.site-footer .footer-bottom{position:relative;z-index:1}
 .site-footer .footer-bottom{border-top-color:rgba(25,52,45,.15)}
 @media(max-width:640px){.site-footer::before{width:300px;height:300px;top:-205px;right:-170px}.site-footer::after{width:240px;height:240px;bottom:-175px;left:-150px}}
+
+/* Course page FAQ follows homepage accordion motion and hover behavior. */
+.course-guide .course-faq-item{border-bottom:1px solid #cbd5c9}
+.course-guide .course-faq-item:first-of-type{border-top:1px solid #cbd5c9}
+.course-guide .course-faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;cursor:pointer;padding:22px 4px;color:var(--ink);font-weight:600;transition:color .25s ease,padding .34s ease,background-color .25s ease}
+.course-guide .course-faq-item summary::-webkit-details-marker{display:none}
+.course-guide .course-faq-item summary:hover{padding-left:12px;padding-right:8px;color:#b56636;background:rgba(223,233,216,.38)}
+.course-guide .course-faq-item summary span{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:1px solid #c6d0c6;font-size:22px;font-weight:400;transition:transform .3s ease,background .25s}
+.course-guide .course-faq-item summary:hover span{background:#e4ece0;transform:scale(1.1)}
+.course-guide .course-faq-item[open] summary span{transform:rotate(45deg)}
+.course-guide .course-faq-item[open] summary:hover span{transform:rotate(45deg) scale(1.1)}
+.course-guide .course-faq-item{interpolate-size:allow-keywords}
+.course-guide .course-faq-item::details-content{height:0;opacity:0;overflow:hidden;transition:height .48s cubic-bezier(.22,1,.36,1),opacity .35s ease,content-visibility .48s allow-discrete}
+.course-guide .course-faq-item[open]::details-content{height:auto;opacity:1}
+.course-guide .course-faq-item>p{padding:0 12px 24px 4px;margin:0;transform:translateY(-12px);transition:transform .42s ease}
+.course-guide .course-faq-item[open]>p{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.course-guide .course-faq-item summary,.course-guide .course-faq-item summary span,.course-guide .course-faq-item::details-content,.course-guide .course-faq-item>p{transition:none!important;transform:none!important}}
