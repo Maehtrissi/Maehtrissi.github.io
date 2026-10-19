@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kursdetails, Ort, Termin und verfügbare Plätze bei Sponti." />
+    <title>Kursdetails | Sponti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=spacing-reverted-20261019" />
+      
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sponti Schweiz" />
+    <meta property="og:locale" content="de_CH" />
+    <meta property="og:title" content="Kurse Schweiz: freie Plätze entdecken | Sponti" />
+    <meta property="og:description" content="Kurse in der Schweiz finden: Entdecke mit Sponti freie Plätze für Yoga, Kochkurse, Töpfern und mehr. Filtere nach Kategorie, Ort, Wochentag und Uhrzeit." />
+    <meta property="og:url" content="https://sponti-switzerland.ch/kurse.html" />
+    <meta property="og:image" content="https://sponti-switzerland.ch/logo.png" />
+    <meta property="og:image:alt" content="Sponti Schweiz Logo" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Kurse Schweiz: freie Plätze entdecken | Sponti" />
+    <meta name="twitter:description" content="Kurse in der Schweiz finden: Entdecke mit Sponti freie Plätze für Yoga, Kochkurse, Töpfern und mehr. Filtere nach Kategorie, Ort, Wochentag und Uhrzeit." />
+    <meta name="twitter:image" content="https://sponti-switzerland.ch/logo.png" />
+    <link rel="stylesheet" href="customer-account.css?v=subpage-spacing-20261019" />
+    <link rel="stylesheet" href="whatsapp-community.css?v=20261007" />
+    <link rel="stylesheet" href="course-guide.css?v=subpage-spacing-20261019" />
+    <link rel="stylesheet" href="guest-signup.css?v=choice-20261017" />
+  <link rel="stylesheet" href="/booking-pages.css?v=1"></head>
+    <body class="sponti-detail-page">
+    <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
+      <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> ↗</span>
+      <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> ↗</span>
+    </a>
+      <header class="site-header">
+          <a class="logo" href="/" aria-label="Sponti Startseite">
+            <img src="logo.png" alt="Sponti Logo">
+            <span>Sponti</span>
+          </a>
+          <details class="account-selector"><summary>Anmelden</summary><div class="account-selector-menu"><a href="/profil" data-customer-profile-link>Als Kunde anmelden</a><a href="/anbieter">Als Kursanbieter anmelden</a></div></details>
+          <button class="site-menu-trigger" type="button" data-site-menu-trigger aria-expanded="false" aria-controls="site-menu">
+            <span>Menü</span><span class="site-menu-icon" aria-hidden="true"><i></i><i></i></span>
+          </button>
+    </header>
+    <div class="site-menu" id="site-menu" data-site-menu aria-hidden="true">
+      <button class="site-menu-scrim" type="button" data-site-menu-close aria-label="Menü schließen"></button>
+      <section class="site-menu-panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
+        <div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schließen">×</button></div>
+        <nav class="site-menu-links" aria-label="Hauptnavigation"><a href="/">Startseite</a><a href="/kurse">Kurs entdecken</a><a href="/kursanbieter">Für Kursanbieter</a><a href="/motivation">Motivation</a><a href="/erfahrungen">Erfahrungen</a></nav>
+        <a class="button button-primary site-menu-cta" data-open-booking href="/profil?mode=register">Sponti beitreten</a><a class="button site-menu-provider-cta" href="/anbieter?mode=register">Als Anbieter anmelden</a>
+      </section>
+    </div>
+    <main class="booking-main"><nav class="booking-breadcrumb"><a href="/kurse">← Alle Kurse</a><span> / </span><span id="course-breadcrumb">Kursdetails</span></nav><div id="detail-status" role="status">Kurs wird geladen …</div><section class="detail-shell" id="detail-shell" hidden><div class="detail-left"><div class="detail-visual" id="detail-visual"><span class="detail-category" id="detail-category"></span></div><p class="booking-eyebrow">DEIN NÄCHSTES ERLEBNIS</p><h1 id="detail-title"></h1><div class="detail-chips" id="detail-chips"></div><section class="detail-block"><h2>Über diesen Kurs</h2><p id="detail-description"></p></section><section class="detail-block"><h2>Gut zu wissen</h2><div id="detail-facts" class="detail-facts"></div></section><a class="booking-back" href="/kurse">← Weitere Kurse entdecken</a></div><aside class="booking-summary"><p class="booking-eyebrow">DEIN KURS</p><h2 id="detail-side-title"></h2><div class="summary-rows" id="detail-side-facts"></div><div class="summary-total"><span>Preis pro Person</span><strong id="detail-price"></strong></div><a class="booking-primary" id="detail-cta" href="#">Zur Buchung →</a><p class="booking-note">Die Online-Zahlung wird derzeit eingerichtet. Noch keine verbindliche Buchung.</p></aside></section></main><footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="logo" href="/" aria-label="Sponti Startseite"><span>Sponti</span></a>
+      <p>Kurzfristig freie Kursplätze.<br>Entdecken, entscheiden, spontan erleben.</p>
+    </div>
+    <div class="footer-nav">
+      <nav class="footer-column" aria-label="Sponti">
+        <strong>Sponti</strong>
+        <a href="/kurse">Kurse entdecken</a>
+        <a href="/kursanbieter">Für Kursanbieter</a>
+        <a href="/motivation">Über Sponti</a>
+        <a href="/kontakt">Kontakt</a>
+      </nav>
+      <nav class="footer-column" aria-label="Rechtliches">
+        <strong>Rechtliches</strong>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="/agb">AGB</a>
+        <a href="/rechtliches">Rechtliches</a>
+      </nav>
+      <nav class="footer-column" aria-label="Social Media">
+        <strong>Folge uns</strong>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer">WhatsApp Community <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Sponti</span><span>Schweiz</span></div>
+</footer>
+<script src="/script.js?v=login-close-20261010"></script>
+<script type="module" src="/customer-account.js?v=customer-dropdown-label-20261012"></script>
+<script type="module" src="/course-detail.js?v=1"></script></body></html>
