@@ -143,3 +143,21 @@
 .course-filters .filter.active{background:#193b30!important;border-color:#193b30!important;color:#fff!important;box-shadow:0 3px 11px rgba(25,52,45,.16)}
 .course-filters .filter.active:hover{background:#2a5845!important}
 @media(prefers-reduced-motion:reduce){.course-filters .filter{transition:none}.course-filters .filter:hover{transform:none}}
+
+/* Refined quick filters: today pill and accessible price slider. */
+.course-extra-filters{align-items:center;gap:20px}
+.course-extra-filters .today-filter-pill{display:inline-flex;position:relative;align-items:center;cursor:pointer;margin:0;gap:0}
+.course-extra-filters .today-filter-pill input{position:absolute;opacity:0;width:100%;height:100%;inset:0;margin:0;cursor:pointer}
+.course-extra-filters .today-filter-pill span{display:inline-flex;align-items:center;justify-content:center;min-height:39px;padding:9px 17px;background:#f6f5e9;border:1px solid #c8d1bc;border-radius:999px;color:#284539;font-size:12px;font-weight:700;box-shadow:0 2px 7px rgba(25,52,45,.07);transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.course-extra-filters .today-filter-pill:hover span{background:#e2ebd9;border-color:#8ba88f;transform:translateY(-2px)}
+.course-extra-filters .today-filter-pill input:checked+span{background:#193b30;border-color:#193b30;color:#fff}
+.course-extra-filters .today-filter-pill input:focus-visible+span{outline:3px solid #ed8d59;outline-offset:3px}
+.course-extra-filters .price-filter-label{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-width:210px;font-size:12px;font-weight:700;color:#284539}
+.course-extra-filters .price-filter-label>span{display:flex;align-items:center;justify-content:space-between;width:100%;gap:14px}
+.course-extra-filters .price-filter-label output{margin-left:auto;min-width:unset;color:#193b30;background:#e2ebd9;padding:4px 9px;border-radius:7px;font-size:12px}
+.course-extra-filters #filter-price{appearance:none;-webkit-appearance:none;width:min(260px,100%);height:7px;border:0;border-radius:999px;background:linear-gradient(90deg,#376b51 0%,#376b51 var(--price-progress,100%),#d4ddd1 var(--price-progress,100%),#d4ddd1 100%);cursor:pointer}
+.course-extra-filters #filter-price::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;border-radius:50%;background:#fff;border:5px solid #285940;box-shadow:0 2px 7px rgba(25,52,45,.19)}
+.course-extra-filters #filter-price::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:#fff;border:5px solid #285940;box-shadow:0 2px 7px rgba(25,52,45,.19)}
+.course-extra-filters #filter-price:focus-visible{outline:3px solid #ed8d59;outline-offset:5px}
+@media(max-width:600px){.course-extra-filters{gap:18px}.course-extra-filters .price-filter-label{width:min(100%,300px)}}
+@media(prefers-reduced-motion:reduce){.course-extra-filters .today-filter-pill span{transition:none;transform:none!important}}
