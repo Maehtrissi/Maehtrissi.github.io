@@ -164,3 +164,7 @@
 
 /* Keep quick filters visually connected to the category and location filters. */
 .course-extra-filters{border-top:0!important;border-bottom:0!important}
+
+/* Give the full provider directory the same opening breathing room. */
+.provider-directory-all{padding-top:112px}
+@media(max-width:760px){.provider-directory-all{padding-top:76px}}
