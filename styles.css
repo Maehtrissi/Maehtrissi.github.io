@@ -1998,3 +1998,13 @@ button > span[aria-hidden="true"] {
 @media(max-width:760px){.logo-strip{margin:0 18px;padding:23px 0 25px}.logo-strip>div{justify-content:flex-start;gap:9px}.logo-strip a{padding:10px 15px;min-height:40px}.logo-strip b,.logo-strip a:nth-child(2) b,.logo-strip a:nth-child(4) b{font-size:11px}}
 @media(max-width:600px){.logo-strip{padding-left:0!important;padding-right:0!important;margin:0 20px}.logo-strip>div{gap:8px}.logo-strip a{padding:9px 13px;min-height:38px}}
 @media(prefers-reduced-motion:reduce){.logo-strip a{transition:none}.logo-strip a:hover{transform:none}}
+
+/* Consistent visible left/right gutters for the homepage discovery sections. */
+@media(min-width:601px) and (max-width:1224px){
+ .logo-strip{width:calc(100% - 64px);max-width:1176px;margin-left:auto;margin-right:auto;padding-left:0;padding-right:0}
+ .categories-section{padding-left:32px;padding-right:32px}
+}
+@media(max-width:600px){
+ .logo-strip{width:calc(100% - 40px);margin-left:auto;margin-right:auto;padding-left:0!important;padding-right:0!important}
+ .categories-section{padding-left:20px!important;padding-right:20px!important}
+}
