@@ -1943,3 +1943,14 @@ button > span[aria-hidden="true"] {
 .hero-actions .button-primary{width:min(100%,340px);min-height:58px;justify-content:center;text-align:center}
 .hero-actions .text-link{align-self:flex-start}
 @media(max-width:600px){.hero-actions{gap:16px}.hero-actions .button-primary{width:min(100%,360px);min-height:56px}}
+
+/* Homepage hero: balanced paired calls-to-action on tablet and mobile. */
+.hero-actions{width:min(100%,340px);display:grid;grid-template-columns:1fr;gap:12px;align-items:stretch}
+.hero-actions .button-primary{width:100%;min-height:54px;border-radius:999px;font-size:15px;letter-spacing:.01em;box-shadow:0 7px 18px rgba(105,140,40,.16);transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.hero-actions .button-primary:hover{background:#cbed64;transform:translateY(-2px);box-shadow:0 10px 22px rgba(105,140,40,.22)}
+.hero-actions .text-link{width:100%;min-height:50px;padding:13px 20px;border:1.5px solid rgba(25,52,45,.4);border-radius:999px;display:flex;align-items:center;justify-content:center;gap:13px;font-size:14px;font-weight:700;text-decoration:none;background:rgba(255,254,250,.52);color:#19342d;transition:background .22s ease,transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.hero-actions .text-link:hover{background:#fffdf4;border-color:#19342d;transform:translateY(-2px);box-shadow:0 7px 15px rgba(25,52,45,.08)}
+.hero-actions .text-link span{display:inline-block;transition:transform .22s ease}
+.hero-actions .text-link:hover span{transform:translateY(3px)}
+@media(max-width:600px){.hero-actions{width:min(100%,340px);gap:11px}.hero-actions .button-primary{min-height:54px}.hero-actions .text-link{min-height:49px}}
+@media(prefers-reduced-motion:reduce){.hero-actions .button-primary,.hero-actions .text-link,.hero-actions .text-link span{transition:none!important;transform:none!important}}
