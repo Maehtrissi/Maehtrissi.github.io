@@ -2050,3 +2050,17 @@ main > .provider-directory-all{padding-top:68px}
  main.info-page{padding-top:56px}
  main > .provider-directory-all{padding-top:56px}
 }
+
+/* Consistent breathing room below the header across inner pages, based on Motivation. */
+@media(min-width:761px){
+ body.courses-page main>.courses-heading{margin-top:0;padding-top:120px}
+ main.info-page{padding-top:120px}
+ main>.provider-directory-all{padding-top:120px}
+ main.account-shell{padding-top:max(120px,7vw)}
+}
+@media(max-width:760px){
+ body.courses-page main>.courses-heading{margin-top:0;padding-top:74px}
+ main.info-page{padding-top:74px}
+ main>.provider-directory-all{padding-top:74px}
+ main.account-shell{padding-top:74px}
+}
