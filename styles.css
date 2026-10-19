@@ -1982,3 +1982,6 @@ button > span[aria-hidden="true"] {
 
 /* Center the underlined how-it-works link below the primary hero button. */
 .hero-actions .text-link{align-self:center;justify-content:center;text-align:center}
+
+/* Center the plain underlined hero link without an arrow. */
+.hero-actions .text-link{align-self:center;justify-content:center;text-align:center;gap:0}
