@@ -2065,27 +2065,3 @@ main > .provider-directory-all{padding-top:68px}
  main.account-shell{padding-top:74px}
 }
 
-/* Consistent top breathing room on editorial pages, matching Motivation. */
-@media (min-width: 761px) {
- body:has(.courses-heading):not(:has(.course-filters)) .courses-heading,
- body:has(.review-form-section) .courses-heading {margin-top:68px}
-}
-body:has(.review-form-section) .courses-heading {padding-top:0}
-@media (max-width:760px) {
- body:has(.review-form-section) .courses-heading {margin-top:68px}
-}
-
-/* Inner-page breathing room: match Motivation's 52px wrapper + 68px intro.
-   Only opening content areas; avoid touching the homepage or subsequent sections. */
-body.courses-page main > .courses-heading{margin-top:0;padding-top:120px}
-main.info-page{padding-top:120px}
-main > .provider-directory-all{padding-top:120px}
-main > .provider-hero{padding-top:70px}
-main.account-shell{padding-top:max(90px, 6vw)}
-@media(max-width:760px){
- body.courses-page main > .courses-heading{margin-top:0;padding-top:84px}
- main.info-page{padding-top:84px}
- main > .provider-directory-all{padding-top:84px}
- main > .provider-hero{padding-top:64px}
- main.account-shell{padding-top:72px}
-}
