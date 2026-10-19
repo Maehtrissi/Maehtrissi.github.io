@@ -1934,3 +1934,6 @@ button > span[aria-hidden="true"] {
   background-size:100% 100%;
  }
 }
+
+/* Hide header sign-in dropdown while the full-screen mobile navigation is open. */
+@media(max-width:760px){body:has(.site-menu.is-open) .site-header .account-selector{visibility:hidden;pointer-events:none}}
