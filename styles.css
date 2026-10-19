@@ -2048,3 +2048,6 @@ main > .provider-directory-all{padding-top:68px}
  main.account-shell{padding-top:74px}
 }
 
+
+/* Footer section titles: simple underlines instead of decorative labels. */
+.site-footer .footer-column>strong{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0 0 7px!important;margin-bottom:9px!important;border-bottom:1.5px solid currentColor!important;color:#193b30;text-decoration:none}
