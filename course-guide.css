@@ -161,3 +161,6 @@
 .course-extra-filters #filter-price:focus-visible{outline:3px solid #ed8d59;outline-offset:5px}
 @media(max-width:600px){.course-extra-filters{gap:18px}.course-extra-filters .price-filter-label{width:min(100%,300px)}}
 @media(prefers-reduced-motion:reduce){.course-extra-filters .today-filter-pill span{transition:none;transform:none!important}}
+
+/* Keep quick filters visually connected to the category and location filters. */
+.course-extra-filters{border-top:0!important;border-bottom:0!important}
