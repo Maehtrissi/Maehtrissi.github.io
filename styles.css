@@ -1989,3 +1989,7 @@ button > span[aria-hidden="true"] {
 /* Subtle background separation for the original text-only category strip. */
 .logo-strip{background:linear-gradient(110deg,rgba(224,235,216,.82),rgba(245,239,219,.88) 52%,rgba(232,222,208,.76));border-radius:15px;padding:24px 26px;border:1px solid rgba(25,52,45,.09)}
 @media(max-width:760px){.logo-strip{margin:0 20px;padding:22px 18px}}
+
+/* Full-width category band, matching the seamless page-section backgrounds. */
+.logo-strip{max-width:none;width:100%;margin:0;border:0;border-radius:0;padding:25px max(24px,calc((100% - 1176px)/2));background:linear-gradient(110deg,#e2eadb 0%,#edeedc 48%,#f0e3d5 100%);box-sizing:border-box}
+@media(max-width:760px){.logo-strip{margin:0;width:100%;padding:23px 24px;border-radius:0}}
