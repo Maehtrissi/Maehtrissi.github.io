@@ -10,7 +10,7 @@
  const priceSlider=document.getElementById('filter-price');
  const priceLabel=document.getElementById('filter-price-value');
  const zurichDay=(date)=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Zurich',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
- const updatePriceLabel=()=>{if(priceSlider&&priceLabel)priceLabel.textContent=priceSlider.value===priceSlider.max?'Alle Preise':`Bis CHF ${priceSlider.value}`;};
+ const updatePriceLabel=()=>{if(priceSlider&&priceLabel){priceLabel.textContent=priceSlider.value===priceSlider.max?'Alle Preise':`Bis CHF ${priceSlider.value}`;priceSlider.style.setProperty('--price-progress',`${(Number(priceSlider.value)-Number(priceSlider.min))/(Number(priceSlider.max)-Number(priceSlider.min))*100}%`);}};
  todayToggle?.addEventListener('change',applyFilters);
  priceSlider?.addEventListener('input',()=>{updatePriceLabel();applyFilters();});
  updatePriceLabel();
