@@ -1902,23 +1902,6 @@ button > span[aria-hidden="true"] {
  .site-header .site-menu-icon{transform:scale(.82);transform-origin:center}
 }
 
-/* Visually distinguish the footer navigation groups across all pages. */
-.site-footer .footer-column strong{
-  display:inline-flex;
-  align-items:center;
-  align-self:flex-start;
-  margin-bottom:10px;
-  padding:7px 12px;
-  border:1px solid rgba(25,52,45,.14);
-  border-radius:8px;
-  background:rgba(255,255,255,.46);
-  color:#193b30;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.085em;
-  box-shadow:0 3px 12px rgba(25,52,45,.035);
-}
-@media(max-width:430px){.site-footer .footer-column strong{margin-bottom:7px}}
 
 /* Mobile only: stronger, properly positioned gradients (iOS avoids fixed-background flattening). */
 @media(max-width:600px){
