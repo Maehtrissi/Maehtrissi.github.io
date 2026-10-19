@@ -1965,3 +1965,6 @@ button > span[aria-hidden="true"] {
 .hero-actions .text-link span{font-size:19px;line-height:1}
 @media(max-width:600px){.hero-actions{width:min(100%,350px)}.hero-actions .button-primary,.hero-actions .text-link{min-height:54px;font-size:14px}}
 @media(prefers-reduced-motion:reduce){.hero-actions .button-primary:hover,.hero-actions .text-link:hover{transform:none}}
+
+/* Mobile breathing room for the category strip and category section. */
+@media(max-width:600px){.logo-strip{padding-left:20px!important;padding-right:20px!important;box-sizing:border-box}.categories-section{padding-left:22px!important;padding-right:22px!important;box-sizing:border-box}}
