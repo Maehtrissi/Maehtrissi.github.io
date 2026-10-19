@@ -1979,3 +1979,6 @@ button > span[aria-hidden="true"] {
 .hero-actions .text-link:hover span{transform:translateY(3px)}
 @media(max-width:600px){.hero-actions{width:min(100%,350px);gap:14px}.hero-actions .button-primary{min-height:54px}.hero-actions .text-link{min-height:unset;font-size:14px}}
 @media(prefers-reduced-motion:reduce){.hero-actions .button-primary,.hero-actions .text-link span{transition:none}}
+
+/* Center the underlined how-it-works link below the primary hero button. */
+.hero-actions .text-link{align-self:center;justify-content:center;text-align:center}
