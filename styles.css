@@ -1985,3 +1985,16 @@ button > span[aria-hidden="true"] {
 
 /* Center the plain underlined hero link without an arrow. */
 .hero-actions .text-link{align-self:center;justify-content:center;text-align:center;gap:0}
+
+/* Refined course-category discovery strip below the homepage hero. */
+.logo-strip{max-width:1176px;margin:0 auto;padding:25px 22px 28px;border-top:1px solid rgba(25,52,45,.12);border-bottom:1px solid rgba(25,52,45,.12)}
+.logo-strip>span{font-size:10px;font-weight:700;letter-spacing:.13em;color:#687c6d;margin-bottom:15px}
+.logo-strip>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.logo-strip a{display:inline-flex;align-items:center;justify-content:center;flex:0 1 auto;min-height:44px;padding:11px 20px;border:1px solid rgba(25,52,45,.15);border-radius:999px;background:rgba(255,254,250,.65);color:#254738;box-shadow:0 3px 12px rgba(25,52,45,.035);text-decoration:none;opacity:1;transition:background .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease}
+.logo-strip a:hover{background:#e6eddc;border-color:#a1b49d;opacity:1;transform:translateY(-2px);box-shadow:0 6px 14px rgba(25,52,45,.1)}
+.logo-strip a:focus-visible{outline:3px solid #ed8d59;outline-offset:3px}
+.logo-strip b,.logo-strip a:nth-child(2) b,.logo-strip a:nth-child(4) b{font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.055em;line-height:1.2;text-transform:uppercase}
+.logo-strip .serif{font-family:"DM Sans",sans-serif;font-weight:700}
+@media(max-width:760px){.logo-strip{margin:0 18px;padding:23px 0 25px}.logo-strip>div{justify-content:flex-start;gap:9px}.logo-strip a{padding:10px 15px;min-height:40px}.logo-strip b,.logo-strip a:nth-child(2) b,.logo-strip a:nth-child(4) b{font-size:11px}}
+@media(max-width:600px){.logo-strip{padding-left:0!important;padding-right:0!important;margin:0 20px}.logo-strip>div{gap:8px}.logo-strip a{padding:9px 13px;min-height:38px}}
+@media(prefers-reduced-motion:reduce){.logo-strip a{transition:none}.logo-strip a:hover{transform:none}}
