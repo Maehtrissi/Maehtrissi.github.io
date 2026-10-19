@@ -1919,3 +1919,18 @@ button > span[aria-hidden="true"] {
   box-shadow:0 3px 12px rgba(25,52,45,.035);
 }
 @media(max-width:430px){.site-footer .footer-column strong{margin-bottom:7px}}
+
+/* Mobile only: stronger, properly positioned gradients (iOS avoids fixed-background flattening). */
+@media(max-width:600px){
+ body{
+  background-color:#f1edce;
+  background-image:
+    radial-gradient(ellipse 85% 22% at 4% 6%,rgba(215,242,119,.44) 0%,transparent 100%),
+    radial-gradient(ellipse 95% 26% at 100% 24%,rgba(237,141,89,.28) 0%,transparent 100%),
+    radial-gradient(ellipse 105% 25% at 0% 50%,rgba(191,216,182,.52) 0%,transparent 100%),
+    radial-gradient(ellipse 100% 26% at 96% 74%,rgba(215,242,119,.38) 0%,transparent 100%),
+    linear-gradient(160deg,#f1e7bb 0%,#ecedcf 27%,#e1eadb 55%,#f1e2cd 78%,#e3e9d6 100%);
+  background-attachment:scroll;
+  background-size:100% 100%;
+ }
+}
