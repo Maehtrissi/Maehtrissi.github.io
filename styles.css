@@ -2064,3 +2064,13 @@ main > .provider-directory-all{padding-top:68px}
  main>.provider-directory-all{padding-top:74px}
  main.account-shell{padding-top:74px}
 }
+
+/* Consistent top breathing room on editorial pages, matching Motivation. */
+@media (min-width: 761px) {
+ body:has(.courses-heading):not(:has(.course-filters)) .courses-heading,
+ body:has(.review-form-section) .courses-heading {margin-top:68px}
+}
+body:has(.review-form-section) .courses-heading {padding-top:0}
+@media (max-width:760px) {
+ body:has(.review-form-section) .courses-heading {margin-top:68px}
+}
