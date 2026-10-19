@@ -27,3 +27,7 @@
 .account-card .region-preferences .account-form-grid label{margin-bottom:8px}
 .account-card .region-preferences .account-help{margin:8px 0 14px}
 .account-card .region-preferences .account-choices{gap:10px}
+
+/* Align the customer and provider account introductions with other subpages. */
+.account-shell{padding-top:112px}
+@media(max-width:760px){.account-shell{padding-top:76px}}
