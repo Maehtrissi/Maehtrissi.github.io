@@ -1968,3 +1968,14 @@ button > span[aria-hidden="true"] {
 
 /* Mobile breathing room for the category strip and category section. */
 @media(max-width:600px){.logo-strip{padding-left:20px!important;padding-right:20px!important;box-sizing:border-box}.categories-section{padding-left:22px!important;padding-right:22px!important;box-sizing:border-box}}
+
+/* Hero CTA refinement: understated primary color and original underlined secondary link. */
+.hero-actions{width:min(100%,352px);display:flex;flex-direction:column;align-items:flex-start;gap:15px}
+.hero-actions .button-primary{width:100%;min-height:55px;padding:15px 24px;border-radius:16px;background:#dceca9;border:1px solid #cbdc9d;color:#19342d;box-shadow:0 4px 12px rgba(25,52,45,.065);font-weight:700}
+.hero-actions .button-primary:hover{background:#d2e798;box-shadow:0 7px 16px rgba(25,52,45,.11);transform:translateY(-2px)}
+.hero-actions .text-link{width:auto;min-height:unset;padding:0 0 6px;display:inline-flex;align-self:flex-start;justify-content:flex-start;gap:13px;border:0;border-bottom:1.5px solid #19342d;border-radius:0;background:transparent;box-shadow:none;color:#19342d;font-size:14px;font-weight:700;line-height:1.45;text-align:left;transition:color .2s ease,border-color .2s ease}
+.hero-actions .text-link:hover{background:transparent;box-shadow:none;transform:none;color:#ab633f;border-color:#ab633f}
+.hero-actions .text-link span{font-size:19px;transition:transform .2s ease}
+.hero-actions .text-link:hover span{transform:translateY(3px)}
+@media(max-width:600px){.hero-actions{width:min(100%,350px);gap:14px}.hero-actions .button-primary{min-height:54px}.hero-actions .text-link{min-height:unset;font-size:14px}}
+@media(prefers-reduced-motion:reduce){.hero-actions .button-primary,.hero-actions .text-link span{transition:none}}
