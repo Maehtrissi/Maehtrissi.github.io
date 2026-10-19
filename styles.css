@@ -2016,3 +2016,21 @@ body:has(> main .hero) .sponti-faq{
  background:radial-gradient(ellipse 65% 52% at 100% 0%,rgba(204,221,193,.2),transparent 80%),
  linear-gradient(155deg,#f4f1e8 0%,#eef0e8 100%);
 }
+
+/* Unified circular accents across homepage sections; existing featured rings remain. */
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq){position:relative;isolation:isolate;overflow:hidden}
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::before,
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::after{
+ content:"";display:block;position:absolute;pointer-events:none;z-index:0;border:1px solid rgba(25,52,45,.095);border-radius:50%;background:none;
+}
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::before{
+ width:360px;height:360px;right:-135px;top:-200px;box-shadow:0 0 0 55px rgba(25,52,45,.022),0 0 0 110px rgba(25,52,45,.013);
+}
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::after{
+ width:250px;height:250px;left:-105px;bottom:-150px;box-shadow:0 0 0 43px rgba(25,52,45,.022),0 0 0 86px rgba(25,52,45,.012);
+}
+body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)>*{position:relative;z-index:1}
+@media(max-width:760px){
+ body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::before{width:245px;height:245px;right:-125px;top:-130px}
+ body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::after{width:185px;height:185px;left:-105px;bottom:-110px}
+}
