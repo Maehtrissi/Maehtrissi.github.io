@@ -2034,3 +2034,8 @@ body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testim
  body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::before{width:245px;height:245px;right:-125px;top:-130px}
  body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testimonial-section,.sponti-faq)::after{width:185px;height:185px;left:-105px;bottom:-110px}
 }
+
+/* Consistent subpage opening spacing, based on the Motivation page. */
+body.courses-page main>.courses-heading{margin-top:112px}
+body:has(>main.info-page) main.info-page{padding-top:112px}
+@media(max-width:760px){body.courses-page main>.courses-heading{margin-top:76px}body:has(>main.info-page) main.info-page{padding-top:76px}}
