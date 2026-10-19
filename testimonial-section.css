@@ -15,10 +15,9 @@
   position: absolute;
   width: min(38vw, 510px);
   aspect-ratio: 1;
-  border: 1px solid rgba(25, 52, 45, .12);
+  border:1px solid rgba(25,52,45,.12);
   border-radius: 50%;
-  box-shadow: 0 0 0 54px rgba(255, 254, 250, .16),
-              0 0 0 108px rgba(255, 254, 250, .085);
+  box-shadow:0 0 0 64px rgba(25,52,45,.035),0 0 0 125px rgba(25,52,45,.025);
   pointer-events: none;
   z-index: 0;
 }
@@ -39,8 +38,7 @@
   #stories.testimonial-section::before,
   #stories.testimonial-section::after {
     width: 290px;
-    box-shadow: 0 0 0 34px rgba(255, 254, 250, .12),
-                0 0 0 70px rgba(255, 254, 250, .07);
+    box-shadow:0 0 0 34px rgba(25,52,45,.035),0 0 0 70px rgba(25,52,45,.025);
   }
   #stories.testimonial-section::before { top: -175px; right: -175px; }
   #stories.testimonial-section::after { bottom: -185px; left: -200px; }

@@ -17,22 +17,24 @@
   z-index: -1;
   pointer-events: none;
   border-radius: 50%;
-  border: 1px solid rgba(96,145,109,.13);
+  border:1px solid rgba(25,52,45,.12);
+
+  box-shadow:0 0 0 27px rgba(25,52,45,.035),0 0 0 55px rgba(25,52,45,.025);
 }
 .info-page .info-grid .info-card::before {
   width: 225px;
   height: 225px;
   top: -155px;
   right: -110px;
-  box-shadow: 0 0 0 27px rgba(120,159,114,.045), 0 0 0 55px rgba(120,159,114,.025);
+  box-shadow:0 0 0 27px rgba(25,52,45,.035),0 0 0 55px rgba(25,52,45,.025);
 }
 .info-page .info-grid .info-card::after {
   width: 170px;
   height: 170px;
   bottom: -132px;
   left: -112px;
-  border-color: rgba(205,149,113,.12);
-  box-shadow: 0 0 0 24px rgba(211,161,126,.035);
+  border-color:rgba(25,52,45,.12);
+  box-shadow:0 0 0 24px rgba(25,52,45,.035),0 0 0 49px rgba(25,52,45,.025);
 }
 .info-page .info-grid .info-card > * {
   position: relative;

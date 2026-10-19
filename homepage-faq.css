@@ -1,6 +1,8 @@
 /* Sponti homepage FAQ */
 .sponti-faq{position:relative;overflow:hidden;background:#f4f1e9;color:#183b30;padding:100px 6vw 108px;font-family:'DM Sans',sans-serif}
-.sponti-faq::before{content:"";position:absolute;width:540px;height:540px;border:1px solid rgba(31,77,59,.085);border-radius:50%;left:-360px;top:-280px;pointer-events:none}
+.sponti-faq::before{content:"";position:absolute;width:540px;height:540px;border:1px solid rgba(25,52,45,.12);border-radius:50%;left:-360px;top:-280px;pointer-events:none
+  box-shadow:0 0 0 64px rgba(25,52,45,.035),0 0 0 125px rgba(25,52,45,.025);
+}
 .sponti-faq-inner{width:min(1120px,100%);margin:auto;display:grid;grid-template-columns:minmax(220px,.78fr) minmax(0,1.35fr);align-items:start;gap:clamp(44px,7vw,112px)}
 .sponti-faq-heading{position:sticky;top:36px;text-align:left}
 .sponti-faq-heading .eyebrow{margin-bottom:22px}
