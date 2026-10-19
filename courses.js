@@ -107,10 +107,10 @@
   countdown.dataset.startsAt=course.starts_at;
   const seats=element('span',Number(course.seats)<=2?'course-spots course-spots-low':'course-spots',course.seats===1?'Letzter Platz':`Noch ${course.seats} Plätze`);
   urgency.append(countdown,seats);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,heading,element('p','',course.description));
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,heading,element('p','',course.description));
   const details=element('div','course-details');details.append(element('span','','📍 '+course.venue),element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
-  const booking=element('a','course-book','Details & buchen');booking.href='/kurs?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
+  const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
   const policy=element('div','course-policy',cancellationText(start));
   bottom.append(booking);body.append(details,policy,bottom);card.append(image,body);return card;
  }
