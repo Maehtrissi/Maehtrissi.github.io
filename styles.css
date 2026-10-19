@@ -2039,3 +2039,14 @@ body:has(> main .hero) :is(.logo-strip,.locations-section,.split-section,.testim
 body.courses-page main>.courses-heading{margin-top:112px}
 body:has(>main.info-page) main.info-page{padding-top:112px}
 @media(max-width:760px){body.courses-page main>.courses-heading{margin-top:76px}body:has(>main.info-page) main.info-page{padding-top:76px}}
+
+/* Harmonised inner-page opening space, matched to Motivation (68px).
+   Keep homepage hero, account dashboards and subsequent sections unchanged. */
+body.courses-page main > .courses-heading{margin-top:0;padding-top:68px}
+main.info-page{padding-top:max(68px, var(--info-original-top, 0px))}
+main > .provider-directory-all{padding-top:68px}
+@media(max-width:760px){
+ body.courses-page main > .courses-heading{margin-top:0;padding-top:56px}
+ main.info-page{padding-top:56px}
+ main > .provider-directory-all{padding-top:56px}
+}
