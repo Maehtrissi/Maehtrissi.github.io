@@ -2055,3 +2055,7 @@ main > .provider-directory-all{padding-top:68px}
 /* Homepage: rounded Sponti gradient CTA (only primary hero button). */
 .hero-actions .button-primary{border-radius:999px;background:linear-gradient(105deg,#ed967e 0%,#f6bc97 35%,#f3e0b2 62%,#adc99c 100%);border:1px solid rgba(25,52,45,.10);box-shadow:0 7px 19px rgba(25,52,45,.13);color:#19342d;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
 .hero-actions .button-primary:hover{background:linear-gradient(105deg,#ed967e 0%,#f6bc97 35%,#f3e0b2 62%,#adc99c 100%);filter:saturate(1.12) brightness(1.025);box-shadow:0 10px 23px rgba(25,52,45,.18)}
+
+/* Homepage CTA: coral-orange-apricot gradient requested by Sponti. */
+.hero-actions .button-primary,.hero-actions .button-primary:hover{background:linear-gradient(110deg,#F26055,#FF9168,#F8BC75);border-radius:9999px;color:#fff;border:none}
+.hero-actions .button-primary:hover{filter:brightness(1.045)}
