@@ -2139,3 +2139,19 @@ main > .provider-directory-all{padding-top:68px}
 .site-menu-scrim{z-index:1}
 body.site-menu-open .site-header .account-selector{visibility:hidden;pointer-events:none}
 body.site-menu-open .site-header .site-menu-trigger{visibility:hidden;pointer-events:none}
+
+/* Compact header pills on phones; keep the dark-green gradient and shadow. */
+@media (max-width: 600px) {
+  .site-header { gap: 7px !important; }
+  .site-header .account-selector > summary,
+  .site-header button.site-menu-trigger {
+    min-height: 38px !important;
+    padding: 8px 11px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 10px rgba(13,49,37,.19), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  }
+  .site-header .site-menu-icon { transform: scale(.78); transform-origin: center; }
+}
