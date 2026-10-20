@@ -2067,3 +2067,22 @@ main > .provider-directory-all{padding-top:68px}
 .site-header .account-selector>summary,.site-header .site-menu-trigger{background:#f0e1c9;border:1px solid transparent;border-radius:9999px;color:#19342d;box-shadow:none;padding:12px 19px;min-height:46px;transition:background-color .2s ease,transform .2s ease}
 .site-header .account-selector>summary:hover,.site-header .account-selector[open]>summary,.site-header .site-menu-trigger:hover{background:#e9d5b8;color:#19342d}
 .site-header .site-menu-icon i{background:currentColor}
+
+/* Kursanbieter: offer cards on the existing dark green background. */
+.provider-costs{background:var(--ink);color:#fff}
+.provider-costs-inner{max-width:1176px;margin-inline:auto}
+.provider-costs .provider-costs-intro{max-width:650px;color:#e1e9e2;margin:18px 0 26px}
+.provider-costs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:25px}
+.provider-cost-card{position:relative;overflow:hidden;isolation:isolate;min-height:252px;padding:25px 27px 28px;background:linear-gradient(135deg,#fff7ec 0%,#f8ead3 78%,#f5dfc3 100%);border:1px solid rgba(255,255,255,.6);border-radius:22px;color:#19342d;box-shadow:0 12px 25px rgba(0,0,0,.09)}
+.provider-cost-card::after{content:"";position:absolute;z-index:-1;right:-65px;bottom:-95px;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle at 45% 45%,rgba(255,153,99,.42),rgba(255,177,112,.12) 60%,transparent 70%)}
+.provider-cost-card:nth-child(2)::after{background:radial-gradient(circle at 45% 45%,rgba(134,169,132,.38),rgba(169,188,143,.13) 60%,transparent 70%)}
+.provider-cost-icon{width:53px;height:53px;border-radius:50%;display:grid;place-items:center;font-size:27px;margin-bottom:18px;font-family:Georgia,serif;font-weight:400}
+.provider-cost-icon-coral{background:#ffd4b6;color:#a93d29}
+.provider-cost-icon-sage{background:#d9dfc7;color:#19342d}
+.provider-cost-kicker{display:block;font-size:14px;font-weight:700;margin:0 0 7px}
+.provider-cost-card h3{font:700 clamp(24px,2.5vw,33px)/1.12 "Playfair Display",Georgia,serif;letter-spacing:-.03em;margin:0 0 12px;color:#19342d}
+.provider-cost-card p{font-size:15px;line-height:1.55;color:#56635b;max-width:none;margin:0}
+.provider-costs-note{display:flex;align-items:flex-start;gap:18px;margin-top:18px;padding:20px 24px;border:1px solid rgba(255,255,255,.15);border-radius:18px;background:rgba(255,255,255,.055)}
+.provider-costs-info{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border:2px solid #f0a16d;border-radius:50%;font:700 18px Georgia,serif;color:#f0a16d}
+.provider-costs .provider-costs-note p{max-width:none;margin:0;color:#e1e9e2;font-size:14px;line-height:1.55}
+@media(max-width:800px){.provider-costs-grid{grid-template-columns:1fr;gap:13px}.provider-cost-card{min-height:0;padding:24px}.provider-costs-note{padding:18px;gap:12px}}
