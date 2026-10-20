@@ -2086,3 +2086,7 @@ main > .provider-directory-all{padding-top:68px}
 .provider-costs-info{display:grid;place-items:center;flex:0 0 29px;width:29px;height:29px;border:2px solid #f0a16d;border-radius:50%;font:700 18px Georgia,serif;color:#f0a16d}
 .provider-costs .provider-costs-note p{max-width:none;margin:0;color:#e1e9e2;font-size:14px;line-height:1.55}
 @media(max-width:800px){.provider-costs-grid{grid-template-columns:1fr;gap:13px}.provider-cost-card{min-height:0;padding:24px}.provider-costs-note{padding:18px;gap:12px}}
+
+/* Solid beige header pills: force opaque fill on tablet/mobile and all states. */
+.site-header .account-selector > summary,.site-header button.site-menu-trigger{background:#EEDDC3!important;background-color:#EEDDC3!important;background-image:none!important;opacity:1!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important;border-radius:9999px!important;color:#19342d!important;box-shadow:none!important}
+.site-header .account-selector > summary:hover,.site-header .account-selector[open] > summary,.site-header button.site-menu-trigger:hover{background:#E5D0B2!important;background-color:#E5D0B2!important;color:#19342d!important}
