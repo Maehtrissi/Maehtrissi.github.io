@@ -85,23 +85,25 @@
     resume();
   }
 </script><script>
-/* Profile preferences: optional select-all chips, without changing saved field names. */
+/* Select-all controls are UI-only; individual checked options are persisted. */
 (() => {
-  const form = document.querySelector('form[data-account-form="preferences"]');
-  if (!form) return;
-  for (const all of form.querySelectorAll('[data-select-all]')) {
-    const name = all.dataset.selectAll;
-    const options = [...form.querySelectorAll('input[type="checkbox"][name="'+name+'"]')];
-    const sync = () => { all.checked = options.length > 0 && options.every(el => el.checked); all.indeterminate = false; };
-    all.addEventListener('change', () => { options.forEach(el => { el.checked = all.checked; el.dispatchEvent(new Event('change', {bubbles:true})); }); sync(); });
-    options.forEach(el => el.addEventListener('change', sync));
-    const observer = new MutationObserver(sync);
-    options.forEach(el => observer.observe(el, {attributes:true,attributeFilter:['checked']}));
-    form.addEventListener('reset', () => requestAnimationFrame(sync));
-    sync();
-    setTimeout(sync, 800);
-    setTimeout(sync, 2500);
-  }
+ const form=document.querySelector('form[data-account-form="preferences"]');
+ if(!form)return;
+ for(const all of form.querySelectorAll('input[data-select-all]')){
+  const group=all.dataset.selectAll;
+  const options=[...form.querySelectorAll('input[type="checkbox"][name="'+group+'"]')];
+  const sync=()=>{all.checked=options.length>0&&options.every(option=>option.checked);all.indeterminate=false;};
+  all.addEventListener('change',()=>{
+   const checked=all.checked;
+   for(const option of options){option.checked=checked;option.dispatchEvent(new Event('change',{bubbles:true}));}
+   sync();
+  });
+  options.forEach(option=>option.addEventListener('change',sync));
+  form.addEventListener('reset',()=>requestAnimationFrame(sync));
+  sync();
+  setTimeout(sync,800);
+  setTimeout(sync,2500);
+ }
 })();
 </script></body></html>
 
