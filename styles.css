@@ -2062,3 +2062,8 @@ main > .provider-directory-all{padding-top:68px}
 
 /* Footer social links: hide decorative external-link arrows, retain labels. */
 .site-footer .footer-column[aria-label="Social Media"] a span[aria-hidden="true"]{display:none!important}
+
+/* Header controls: warm beige filled pills, matching the supplied reference. */
+.site-header .account-selector>summary,.site-header .site-menu-trigger{background:#f0e1c9;border:1px solid transparent;border-radius:9999px;color:#19342d;box-shadow:none;padding:12px 19px;min-height:46px;transition:background-color .2s ease,transform .2s ease}
+.site-header .account-selector>summary:hover,.site-header .account-selector[open]>summary,.site-header .site-menu-trigger:hover{background:#e9d5b8;color:#19342d}
+.site-header .site-menu-icon i{background:currentColor}
