@@ -2132,3 +2132,10 @@ main > .provider-directory-all{padding-top:68px}
   box-shadow: 0 9px 20px rgba(13, 49, 37, .27), inset 0 1px 0 rgba(255, 255, 255, .17) !important;
 }
 .site-header .site-menu-icon i { background: currentColor !important; }
+
+/* Fix: navigation drawer must overlay the header login button on tablets/mobile. */
+.site-menu{z-index:2000!important}
+.site-menu-panel{z-index:2}
+.site-menu-scrim{z-index:1}
+body.site-menu-open .site-header .account-selector{visibility:hidden;pointer-events:none}
+body.site-menu-open .site-header .site-menu-trigger{visibility:hidden;pointer-events:none}
