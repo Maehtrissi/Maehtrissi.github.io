@@ -2051,3 +2051,7 @@ main > .provider-directory-all{padding-top:68px}
 
 /* Footer section titles: simple underlines instead of decorative labels. */
 .site-footer .footer-column>strong{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0 0 7px!important;margin-bottom:9px!important;border-bottom:1.5px solid currentColor!important;color:#193b30;text-decoration:none}
+
+/* Homepage: rounded Sponti gradient CTA (only primary hero button). */
+.hero-actions .button-primary{border-radius:999px;background:linear-gradient(105deg,#ed967e 0%,#f6bc97 35%,#f3e0b2 62%,#adc99c 100%);border:1px solid rgba(25,52,45,.10);box-shadow:0 7px 19px rgba(25,52,45,.13);color:#19342d;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.hero-actions .button-primary:hover{background:linear-gradient(105deg,#ed967e 0%,#f6bc97 35%,#f3e0b2 62%,#adc99c 100%);filter:saturate(1.12) brightness(1.025);box-shadow:0 10px 23px rgba(25,52,45,.18)}
