@@ -2113,3 +2113,22 @@ main > .provider-directory-all{padding-top:68px}
   box-shadow: 0 9px 20px rgba(96, 67, 32, .2), inset 0 1px 0 rgba(255, 255, 255, .5) !important;
 }
 .site-header .site-menu-icon i { background: currentColor !important; }
+
+/* Header controls: deep Sponti green gradient with subtle dimensional shadow. */
+.site-header .account-selector > summary,
+.site-header button.site-menu-trigger {
+  background: linear-gradient(115deg, #244c3e 0%, #193e32 52%, #103025 100%) !important;
+  background-color: #193e32 !important;
+  color: #fffaf0 !important;
+  border: 1px solid rgba(10, 39, 30, .28) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 7px 17px rgba(13, 49, 37, .22), inset 0 1px 0 rgba(255, 255, 255, .14) !important;
+}
+.site-header .account-selector > summary:hover,
+.site-header .account-selector[open] > summary,
+.site-header button.site-menu-trigger:hover {
+  background: linear-gradient(115deg, #2c5949 0%, #214839 52%, #15382c 100%) !important;
+  color: #fffaf0 !important;
+  box-shadow: 0 9px 20px rgba(13, 49, 37, .27), inset 0 1px 0 rgba(255, 255, 255, .17) !important;
+}
+.site-header .site-menu-icon i { background: currentColor !important; }
