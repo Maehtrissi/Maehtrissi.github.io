@@ -24,8 +24,13 @@
   const attr=['filter','location','day','time'].find(key=>button.dataset[key]);if(!attr)return;
   const group=buttons.filter(b=>b.dataset[attr]);
   if(attr==='location'){group.forEach(b=>b.classList.remove('active'));button.classList.add('active');}
-  else if(button.dataset[attr]==='alle'){group.forEach(b=>b.classList.remove('active'));button.classList.add('active');}
-  else{button.classList.toggle('active');if(attr==='filter')group.find(b=>b.dataset.filter==='alle')?.classList.toggle('active',active('filter').length===0);}
+  else if(['alle','all'].includes(button.dataset[attr])){group.forEach(b=>b.classList.remove('active'));button.classList.add('active');}
+  else{
+   button.classList.toggle('active');
+   const allButton=group.find(b=>['alle','all'].includes(b.dataset[attr]));
+   if(attr==='filter')allButton?.classList.toggle('active',active('filter').length===0);
+   if(attr==='day'||attr==='time')allButton?.classList.toggle('active',active(attr).length===0);
+  }
   applyFilters();
  }));
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
