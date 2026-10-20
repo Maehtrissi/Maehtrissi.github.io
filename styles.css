@@ -2059,3 +2059,6 @@ main > .provider-directory-all{padding-top:68px}
 /* Homepage CTA: coral-orange-apricot gradient requested by Sponti. */
 .hero-actions .button-primary,.hero-actions .button-primary:hover{background:linear-gradient(110deg,#F26055,#FF9168,#F8BC75);border-radius:9999px;color:#fff;border:none}
 .hero-actions .button-primary:hover{filter:brightness(1.045)}
+
+/* Footer social links: hide decorative external-link arrows, retain labels. */
+.site-footer .footer-column[aria-label="Social Media"] a span[aria-hidden="true"]{display:none!important}
