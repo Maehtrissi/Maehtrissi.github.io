@@ -51,6 +51,19 @@ body.account-page .provider-preview .provider-profile-section:first-child{border
 body.account-page .provider-preview .provider-offer-pill{background:linear-gradient(120deg,#e4efdf,#f4eddd);border-color:#d2e1ca;color:#28523e}
 body.account-page .provider-preview [data-provider-preview-courses]{background:linear-gradient(120deg,#e9f2e5,#faf3e8);border-color:#d7e5d4}
 @media(max-width:600px){body.account-page .provider-preview .provider-profile-hero-image{height:155px}body.account-page .provider-preview .provider-profile-identity{padding:18px;gap:12px}}
+
+/* Public profile links as quiet, rounded actions. */
+body.account-page .provider-preview .provider-profile-sections a:not([hidden]){
+ display:inline-flex!important;align-items:center;max-width:100%;box-sizing:border-box;
+ margin:3px 7px 4px 0;padding:9px 15px;border:1px solid #cadbc9;border-radius:999px;
+ background:linear-gradient(120deg,#edf4e9,#f7f1e5);color:#285541;
+ font:600 13px/1.35 "DM Sans",sans-serif;text-decoration:none;overflow-wrap:anywhere;
+ transition:background .2s,box-shadow .2s,transform .2s;
+}
+body.account-page .provider-preview .provider-profile-sections a:hover{
+ background:#dcebd9;box-shadow:0 4px 10px rgba(25,62,52,.1);transform:translateY(-1px)
+}
+body.account-page .provider-preview .provider-profile-sections a:focus-visible{outline:2px solid #285541;outline-offset:3px}
 </style></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> ↗</span>
       <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> ↗</span>
@@ -109,7 +122,7 @@ root.querySelectorAll('[data-profile-tab]').forEach(b=>b.addEventListener('click
 root.querySelectorAll('[data-profile-view]').forEach(v=>v.classList.toggle('profile-view-inactive',v.dataset.profileView!=='general'));
 const form=root.querySelector('[data-provider-form="profile"]');form?.addEventListener('invalid',e=>{const view=e.target.closest('[data-profile-view]');if(view){switchGroup('data-board-tab','data-board-view','profile','board-view-inactive');switchGroup('data-profile-tab','data-profile-view',view.dataset.profileView,'profile-view-inactive');}},true);
 })();
-</script><script defer src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/de.js"></script><script defer src="anbieter-date-picker.js?v=20261014"></script><script type="module" src="anbieter-account.js?v=profile-save-fix-20261014"></script><script src="script.js?v=login-close-20261010"></script><script>document.querySelectorAll("[data-provider-tab]").forEach(b=>b.addEventListener("click",()=>{const m=b.dataset.providerTab;document.querySelectorAll("[data-provider-panel]").forEach(p=>p.hidden=p.dataset.providerPanel!==m);document.querySelectorAll("[data-provider-tab]").forEach(t=>t.setAttribute("aria-pressed",String(t.dataset.providerTab===m)));history.replaceState(null,"",m==="register"?"?mode=register":"anbieter.html")}));if(new URLSearchParams(location.search).get("mode")==="register")document.querySelector('[data-provider-tab="register"]')?.click();</script><script type="module" src="anbieter-gallery.js?v=20261010"></script><script type="module" src="anbieter-profile-extras.js?v=offer-chips-20261014"></script><script defer src="board-live-preview.js?v=20261026"></script><script>
+</script><script defer src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/de.js"></script><script defer src="anbieter-date-picker.js?v=20261014"></script><script type="module" src="anbieter-account.js?v=profile-save-fix-20261014"></script><script src="script.js?v=login-close-20261010"></script><script>document.querySelectorAll("[data-provider-tab]").forEach(b=>b.addEventListener("click",()=>{const m=b.dataset.providerTab;document.querySelectorAll("[data-provider-panel]").forEach(p=>p.hidden=p.dataset.providerPanel!==m);document.querySelectorAll("[data-provider-tab]").forEach(t=>t.setAttribute("aria-pressed",String(t.dataset.providerTab===m)));history.replaceState(null,"",m==="register"?"?mode=register":"anbieter.html")}));if(new URLSearchParams(location.search).get("mode")==="register")document.querySelector('[data-provider-tab="register"]')?.click();</script><script type="module" src="anbieter-gallery.js?v=20261010"></script><script type="module" src="anbieter-profile-extras.js?v=preview-links-20261026"></script><script defer src="board-live-preview.js?v=preview-links-20261026"></script><script>
 (() => {
  const form=document.getElementById('provider-application-form');
  if(!form)return;
