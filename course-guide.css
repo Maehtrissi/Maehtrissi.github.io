@@ -178,3 +178,21 @@
  .courses-heading .course-extra-filters .price-filter-label{margin:0;min-width:0;width:min(100%,320px);align-self:flex-start}
  .courses-heading .course-extra-filters #filter-price{width:100%;box-sizing:border-box}
 }
+
+/* Provider cards echo the public profile: cover, then a light identity area. */
+.provider-directory-card{border:1px solid #dce6da;border-radius:18px;background:#fffdf8;overflow:hidden;box-shadow:0 8px 24px rgba(30,63,45,.07)}
+.provider-directory-banner,.provider-directory-banner.is-default{height:auto;display:flex;flex-direction:column;isolation:auto;background:#fffdf8}
+.provider-directory-banner::after,.provider-directory-banner.is-default::before{content:none}
+.provider-directory-banner .provider-directory-cover,.provider-directory-banner.is-default .provider-directory-cover{position:static;display:block;width:100%;height:160px;object-fit:cover}
+.provider-directory-banner .provider-directory-identity{position:static;display:flex;align-items:center;gap:13px;padding:17px 20px;background:linear-gradient(115deg,#f2f7ee,#fff9f0)}
+.provider-directory-banner .provider-directory-logo{width:57px;height:57px;border:3px solid #fffdf8;box-shadow:0 3px 10px rgba(25,62,52,.1)}
+.provider-directory-heading-overlay h3 a{color:#193e34}
+.provider-directory-heading-overlay .provider-directory-meta{margin:5px 0 0;padding:0;border:0;box-shadow:none;background:transparent;color:#718577;font-size:12px}
+.provider-directory-content{padding:18px 20px 20px}
+.provider-directory-location{font-size:13px;color:#61766a}
+.provider-directory-content .provider-directory-profile-link{background:linear-gradient(115deg,#e0ecdd,#f1eedf);color:#285541;border:1px solid #cbdcc8;margin-top:13px}
+.provider-directory-content .provider-directory-profile-link:hover{background:#d1e3d0;color:#193e34}
+.provider-directory-details{margin-top:16px;border-top:1px solid #e4ebe1;padding-top:14px}
+.provider-directory-details summary{font-size:13px}
+.provider-directory-more-button{background:linear-gradient(115deg,#244c3e,#193e32);color:#fff}
+@media(max-width:600px){.provider-directory-banner .provider-directory-cover,.provider-directory-banner.is-default .provider-directory-cover{height:140px}.provider-directory-banner .provider-directory-identity{padding:14px 17px}.provider-directory-content{padding:16px 17px 18px}}
