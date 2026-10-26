@@ -41,6 +41,16 @@ body.account-page .provider-preview [data-provider-preview-courses]{margin-top:2
 body.account-page .provider-preview [data-provider-preview-courses] h3{font:600 22px/1.2 "Playfair Display",serif;color:#193e34;margin:0 0 10px}
 body.account-page .provider-preview [data-provider-preview-courses] p{color:#64786c;line-height:1.6}
 @media(max-width:600px){body.account-page .provider-preview .provider-profile-hero-image{height:145px}body.account-page .provider-preview .provider-profile-identity{padding:0 18px 18px;gap:12px}body.account-page .provider-preview .provider-profile-round-logo{width:64px;height:64px}body.account-page .provider-preview .provider-profile-sections{padding:4px 18px 18px}body.account-page .provider-preview [data-provider-preview-courses]{padding:18px}}
+
+/* Keep the banner visible and bring Sponti's gentle colours into the preview. */
+body.account-page .provider-preview .provider-profile-hero-image{position:relative;z-index:0;background:linear-gradient(120deg,#d9e8d5,#f5e9d7 56%,#efcbb1);height:210px;object-fit:cover}
+body.account-page .provider-preview .provider-profile-identity{z-index:1;background:linear-gradient(115deg,#f5f8ef,#fffaf3);margin-top:0;padding:20px 28px 24px}
+body.account-page .provider-preview .provider-profile-heading{padding-top:0}
+body.account-page .provider-preview .provider-profile-sections{background:#fffdf8;padding-top:8px}
+body.account-page .provider-preview .provider-profile-section:first-child{border-top:0}
+body.account-page .provider-preview .provider-offer-pill{background:linear-gradient(120deg,#e4efdf,#f4eddd);border-color:#d2e1ca;color:#28523e}
+body.account-page .provider-preview [data-provider-preview-courses]{background:linear-gradient(120deg,#e9f2e5,#faf3e8);border-color:#d7e5d4}
+@media(max-width:600px){body.account-page .provider-preview .provider-profile-hero-image{height:155px}body.account-page .provider-preview .provider-profile-identity{padding:18px;gap:12px}}
 </style></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> ↗</span>
       <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> ↗</span>
