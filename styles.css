@@ -2182,3 +2182,10 @@ body.account-page :is(.board-nav,.board-subnav,.customer-board-nav) button[aria-
  background:linear-gradient(115deg,#89a88d,#72967a)!important;color:#fff!important;border-color:#719178!important;
  box-shadow:0 3px 9px rgba(35,71,53,.14)!important;
 }
+
+/* Keep the location background continuous across the viewport. */
+body:has(> main .hero) .locations-section{max-width:none;width:100%;box-sizing:border-box;padding-inline:max(20px,calc((100% - 1176px)/2))}
+body:has(> main .hero) .how-section-band #how-it-works{background:transparent}
+body:has(> main .hero) .how-section-band #how-it-works::before,
+body:has(> main .hero) .how-section-band #how-it-works::after{content:none}
+@media(max-width:760px){body:has(> main .hero) .locations-section{padding-inline:0}}
