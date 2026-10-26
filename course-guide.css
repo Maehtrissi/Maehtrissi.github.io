@@ -196,3 +196,7 @@
 .provider-directory-details summary{font-size:13px}
 .provider-directory-more-button{background:linear-gradient(115deg,#244c3e,#193e32);color:#fff}
 @media(max-width:600px){.provider-directory-banner .provider-directory-cover,.provider-directory-banner.is-default .provider-directory-cover{height:140px}.provider-directory-banner .provider-directory-identity{padding:14px 17px}.provider-directory-content{padding:16px 17px 18px}}
+
+/* Keep the provider identity aligned with the full-width banner. */
+.provider-directory-banner,.provider-directory-banner.is-default{align-items:stretch;justify-content:flex-start}
+.provider-directory-banner .provider-directory-identity{align-self:stretch;width:100%;box-sizing:border-box;text-align:left}
