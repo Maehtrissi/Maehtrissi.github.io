@@ -36,8 +36,8 @@ function row(target,fields,values={}){
  wrap.append(remove);target.append(wrap);
  wrap.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',renderPreviewExtras));
 }
-function addSpecialty(value={}){if(specialties.children.length>=30){notify('Maximal 30 Angebote.');return;}row(specialties,[['name','Angebot',false]],value);}
-function addLink(value={}){if(links.children.length>=20){notify('Maximal 20 Links.');return;}row(links,[['label','Name',false],['url','Link (https://...)',false]],value);}
+function addSpecialty(value={}){if(specialties.children.length>=30){notify('Maximal 30 Angebote.');return;}row(specialties,[['name','Name der Kursart',false]],value);}
+function addLink(value={}){if(links.children.length>=20){notify('Maximal 20 Links.');return;}row(links,[['label','Button-Beschriftung (z. B. Instagram)',false],['url','Vollständige Webadresse (https://...)',false]],value);}
 root?.querySelector('[data-add-specialty]')?.addEventListener('click',()=>addSpecialty());
 root?.querySelector('[data-add-link]')?.addEventListener('click',()=>addLink());
 function readRows(parent,keys){
