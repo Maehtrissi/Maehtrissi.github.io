@@ -21,6 +21,26 @@ body.account-page form[data-provider-form="profile"] nav.board-subnav button[ari
 
 /* Hide the profile section frame when both of its panels are inactive. */
 .provider-extra-fields:not(:has([data-profile-view]:not(.profile-view-inactive))){display:none!important}
+
+/* A clear, spacious preview with the identity below the cover image. */
+body.account-page .provider-preview [data-provider-preview] .provider-public-card{border:1px solid #dce6da;border-radius:20px;background:#fffdf8;box-shadow:0 12px 32px rgba(30,63,45,.07);overflow:hidden}
+body.account-page .provider-preview .provider-profile-hero{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:0;background:#fffdf8;color:#193e34;isolation:auto}
+body.account-page .provider-preview .provider-profile-hero::after{display:none}
+body.account-page .provider-preview .provider-profile-hero-image{position:static;display:block;width:100%;height:190px;object-fit:cover}
+body.account-page .provider-preview .provider-profile-identity{position:relative;display:flex;align-items:center;gap:16px;padding:0 28px 22px;margin-top:-25px}
+body.account-page .provider-preview .provider-profile-round-logo{width:76px;height:76px;border:4px solid #fffdf8;box-shadow:0 4px 14px rgba(25,62,52,.14);background:#e6eee1}
+body.account-page .provider-preview .provider-profile-heading{padding-top:25px}
+body.account-page .provider-preview .provider-profile-heading h3{color:#193e34;font:600 clamp(25px,3vw,34px)/1.15 "Playfair Display",serif;margin:0 0 5px}
+body.account-page .provider-preview .provider-profile-heading [data-provider-category]{color:#687d70;font-size:13px}
+body.account-page .provider-preview .provider-profile-sections{padding:4px 28px 28px;display:grid;gap:0}
+body.account-page .provider-preview .provider-profile-section{padding:20px 0;border-top:1px solid #e7ece4}
+body.account-page .provider-preview .provider-profile-section h4{font:700 13px/1.4 "DM Sans",sans-serif;letter-spacing:.03em;color:#315d4b;margin:0 0 10px}
+body.account-page .provider-preview .provider-profile-section p{color:#536c60;line-height:1.75}
+body.account-page .provider-preview .provider-offer-pill{background:#e9f0e5;color:#315d4b;border:1px solid #d4e3d2;padding:7px 13px;border-radius:999px}
+body.account-page .provider-preview [data-provider-preview-courses]{margin-top:22px;padding:22px 26px;border:1px solid #dce6da;border-radius:16px;background:#f4f7f0}
+body.account-page .provider-preview [data-provider-preview-courses] h3{font:600 22px/1.2 "Playfair Display",serif;color:#193e34;margin:0 0 10px}
+body.account-page .provider-preview [data-provider-preview-courses] p{color:#64786c;line-height:1.6}
+@media(max-width:600px){body.account-page .provider-preview .provider-profile-hero-image{height:145px}body.account-page .provider-preview .provider-profile-identity{padding:0 18px 18px;gap:12px}body.account-page .provider-preview .provider-profile-round-logo{width:64px;height:64px}body.account-page .provider-preview .provider-profile-sections{padding:4px 18px 18px}body.account-page .provider-preview [data-provider-preview-courses]{padding:18px}}
 </style></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> ↗</span>
       <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> ↗</span>
