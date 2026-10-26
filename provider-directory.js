@@ -30,8 +30,8 @@ function card(p){
  el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
  if(p.location)body.append(text('p',p.location,'provider-directory-location'));
- const profileLink=text('a','Anbieterprofil ansehen ↗','provider-directory-profile-link');profileLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));body.append(profileLink);
- const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Weitere Details aufklappen'));
+ const profileLink=text('a','Anbieterprofil ansehen','provider-directory-profile-link');profileLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));body.append(profileLink);
+ const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Mehr über den Anbieter'));
  const about=String(p.about_text||'').trim();
  if(about)details.append(text('h4','Über uns'),text('p',about));
  const specialties=Array.isArray(p.specialties)?p.specialties:[];
