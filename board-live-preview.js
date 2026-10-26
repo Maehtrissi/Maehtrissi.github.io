@@ -14,7 +14,7 @@ if(form&&preview){
   const details=card.querySelector('.provider-profile-sections .provider-profile-section:nth-child(2)');
   if(details){
    let link=details.querySelector('[data-live-provider-website]');
-   if(/^https?:\/\//i.test(website)){if(!link){link=document.createElement('a');link.dataset.liveProviderWebsite='';link.target='_blank';link.rel='noopener noreferrer';details.append(link);}link.href=website;link.textContent='Website besuchen ↗';link.hidden=false;}
+   if(/^https?:\/\//i.test(website)){if(!link){link=document.createElement('a');link.dataset.liveProviderWebsite='';link.target='_blank';link.rel='noopener noreferrer';details.append(link);}link.href=website;link.textContent='Website besuchen';link.hidden=false;}
    else if(link)link.hidden=true;
   }
  };
