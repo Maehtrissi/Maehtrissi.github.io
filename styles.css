@@ -2167,3 +2167,18 @@ opacity:1!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!
 body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button:hover{transform:translateY(-2px);background:linear-gradient(115deg,#2c5949 0%,#214839 52%,#15382c 100%)!important;color:#fffaf0!important;box-shadow:0 9px 20px rgba(13,49,37,.27),inset 0 1px 0 rgba(255,255,255,.17)!important}
 body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button:focus-visible{outline:2px solid #19342d;outline-offset:3px}
 @media(max-width:600px){body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button{min-height:38px!important;padding:8px 11px!important;font-size:12px!important;line-height:1.2!important;gap:6px!important;white-space:nowrap!important;box-shadow:0 4px 10px rgba(13,49,37,.19),inset 0 1px 0 rgba(255,255,255,.12)!important}}
+
+/* Softer board navigation, with a clear selected state. */
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav) button{
+ background:linear-gradient(115deg,#e3eadb,#d4e1d0)!important;background-color:#dce6d7!important;
+ color:#24483a!important;border-color:#c1d2bf!important;
+ box-shadow:0 3px 9px rgba(35,71,53,.09),inset 0 1px 0 rgba(255,255,255,.6)!important;
+}
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav) button:hover{
+ background:linear-gradient(115deg,#d5e3d2,#c5d8c5)!important;color:#193e32!important;
+ box-shadow:0 5px 12px rgba(35,71,53,.13)!important;
+}
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav) button[aria-pressed="true"]{
+ background:linear-gradient(115deg,#89a88d,#72967a)!important;color:#fff!important;border-color:#719178!important;
+ box-shadow:0 3px 9px rgba(35,71,53,.14)!important;
+}
