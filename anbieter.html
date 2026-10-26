@@ -18,6 +18,9 @@ body.account-page form[data-provider-form="profile"] nav.board-subnav button{fle
 body.account-page form[data-provider-form="profile"] nav.board-subnav button:hover{background:#e2eadd!important;color:#193e34!important;box-shadow:none!important;transform:none!important}
 body.account-page form[data-provider-form="profile"] nav.board-subnav button[aria-pressed="true"]{background:#fffdf7!important;color:#193e34!important;border-color:#cddbc9!important;box-shadow:0 2px 5px rgba(25,62,52,.07)!important;font-weight:700!important}
 @media(max-width:600px){body.account-page form[data-provider-form="profile"] nav.board-subnav{flex-wrap:wrap}body.account-page form[data-provider-form="profile"] nav.board-subnav button{flex:1 1 calc(50% - 4px);font-size:12px!important}}
+
+/* Hide the profile section frame when both of its panels are inactive. */
+.provider-extra-fields:not(:has([data-profile-view]:not(.profile-view-inactive))){display:none!important}
 </style></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> ↗</span>
       <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> ↗</span>
