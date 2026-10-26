@@ -99,7 +99,7 @@ function renderPreviewExtras(){
  const specialtiesValue=readRows(specialties,['name','description']).filter(x=>x.name);
  if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section provider-offers-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-offer-pills';for(const item of specialtiesValue){list.append(text('span',item.name,'provider-offer-pill'));}section.append(list);box.prepend(section);}
  const linksValue=readRows(links,['label','url']).filter(x=>x.label&&safeLink(x.url));
- if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label;a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
+ if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label;a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
  // The old generic description and website button are replaced by structured sections.
  Array.from(card.children).filter(el=>el.tagName==='P').forEach(el=>el.remove());
  card.querySelector('a.button.account-secondary')?.remove();
