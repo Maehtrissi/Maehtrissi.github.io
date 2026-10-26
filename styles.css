@@ -2155,3 +2155,15 @@ body.site-menu-open .site-header .site-menu-trigger{visibility:hidden;pointer-ev
   }
   .site-header .site-menu-icon { transform: scale(.78); transform-origin: center; }
 }
+
+/* Board navigation uses the exact header control appearance. */
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button{
+font:700 13px/1.2 "DM Sans",sans-serif!important;min-height:46px!important;box-sizing:border-box;padding:12px 19px!important;
+background:linear-gradient(115deg,#244c3e 0%,#193e32 52%,#103025 100%)!important;background-color:#193e32!important;color:#fffaf0!important;
+border:1px solid rgba(10,39,30,.28)!important;border-radius:9999px!important;
+box-shadow:0 7px 17px rgba(13,49,37,.22),inset 0 1px 0 rgba(255,255,255,.14)!important;
+opacity:1!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important;
+}
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button:hover{transform:translateY(-2px);background:linear-gradient(115deg,#2c5949 0%,#214839 52%,#15382c 100%)!important;color:#fffaf0!important;box-shadow:0 9px 20px rgba(13,49,37,.27),inset 0 1px 0 rgba(255,255,255,.17)!important}
+body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button:focus-visible{outline:2px solid #19342d;outline-offset:3px}
+@media(max-width:600px){body.account-page :is(.board-nav,.board-subnav,.customer-board-nav,.customer-board-subnav) button{min-height:38px!important;padding:8px 11px!important;font-size:12px!important;line-height:1.2!important;gap:6px!important;white-space:nowrap!important;box-shadow:0 4px 10px rgba(13,49,37,.19),inset 0 1px 0 rgba(255,255,255,.12)!important}}
