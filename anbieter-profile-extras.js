@@ -92,14 +92,14 @@ function renderPreviewExtras(){
  aboutSection.append(text('h4','Über uns'),text('p',about||'Hier erfährst du mehr über diesen Anbieter.'));box.append(aboutSection);
  const details=document.createElement('section');details.className='provider-profile-section';details.append(text('h4','Weitere Informationen'));
  const location=text('p',form?.elements.location?.value||'Standort ergänzen');location.dataset.liveProviderLocation='';details.append(location);
- const website=form?.elements.website?.value?.trim();if(website&&safeLink(website)){const a=document.createElement('a');a.href=safeLink(website);a.textContent='Website besuchen ↗';a.target='_blank';a.rel='noopener noreferrer';a.dataset.liveProviderWebsite='';details.append(a);}
+ const website=form?.elements.website?.value?.trim();if(website&&safeLink(website)){const a=document.createElement('a');a.href=safeLink(website);a.textContent='Website besuchen';a.target='_blank';a.rel='noopener noreferrer';a.dataset.liveProviderWebsite='';details.append(a);}
  const email=form?.elements.public_email?.value.trim();if(email){const a=document.createElement('a');a.href='mailto:'+email;a.textContent=email;a.style.display='block';details.append(a);}
  const phone=form?.elements.public_phone?.value.trim();if(phone){const a=document.createElement('a');a.href='tel:'+phone.replace(/[^+0-9]/g,'');a.textContent=phone;a.style.display='block';details.append(a);}
  box.append(details);
  const specialtiesValue=readRows(specialties,['name','description']).filter(x=>x.name);
  if(specialtiesValue.length){const section=document.createElement('section');section.className='provider-profile-section provider-offers-section';section.append(text('h4','Unsere Angebote'));const list=document.createElement('div');list.className='provider-offer-pills';for(const item of specialtiesValue){list.append(text('span',item.name,'provider-offer-pill'));}section.append(list);box.prepend(section);}
  const linksValue=readRows(links,['label','url']).filter(x=>x.label&&safeLink(x.url));
- if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label+' ↗';a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
+ if(linksValue.length){const section=document.createElement('section');section.className='provider-profile-section';section.append(text('h4','Weitere Links'));for(const item of linksValue){const a=document.createElement('a');a.textContent=item.label;a.href=safeLink(item.url);a.target='_blank';a.rel='noopener noreferrer';a.style.display='block';section.append(a);}box.append(section);}
  // The old generic description and website button are replaced by structured sections.
  Array.from(card.children).filter(el=>el.tagName==='P').forEach(el=>el.remove());
  card.querySelector('a.button.account-secondary')?.remove();
