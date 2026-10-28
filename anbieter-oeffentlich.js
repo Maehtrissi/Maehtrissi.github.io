@@ -18,12 +18,12 @@ function render(p){
  const about=section('Über uns');about.append(el('p',p.about_text||'Dieser Anbieter hat noch keine Beschreibung hinterlegt.'));
  const info=section('Weitere Informationen');
  if(p.location)info.append(el('p','Standort: '+p.location));
- if(p.public_email){const a=el('a',p.public_email);a.href='mailto:'+p.public_email;info.append(a);}
- if(p.public_phone){const a=el('a',p.public_phone);a.href='tel:'+p.public_phone.replace(/[^+0-9]/g,'');info.append(a);}
- const website=link('Website besuchen',p.website);if(website)info.append(website);
+ if(p.public_email){const a=el('a',p.public_email);a.href='mailto:'+p.public_email;a.className='public-provider-contact';const row=el('p',undefined,'public-provider-contact-row');row.append(el('span','E-Mail'),a);info.append(row);}
+ if(p.public_phone){const a=el('a',p.public_phone);a.href='tel:'+p.public_phone.replace(/[^+0-9]/g,'');a.className='public-provider-contact';const row=el('p',undefined,'public-provider-contact-row');row.append(el('span','Telefon'),a);info.append(row);}
+ const website=link('Website besuchen',p.website);
  const specialties=Array.isArray(p.specialties)?p.specialties:[];if(specialties.some(item=>item?.name)){const s=section('Unsere Angebote');s.classList.add('public-provider-offers');const row=el('div',undefined,'provider-offer-pills');for(const item of specialties.slice(0,30)){if(item?.name)row.append(el('span',item.name,'provider-offer-pill'));}s.append(row);output.insertBefore(s,about);}
  const photos=(Array.isArray(p.photos)?p.photos:[]).filter(safePath).slice(0,5);if(photos.length){const s=section('Einblicke'),gallery=el('div',undefined,'public-provider-gallery');for(const path of photos){const photo=document.createElement('img');photo.src=imageUrl(path);photo.alt='Einblick bei '+p.company;photo.loading='lazy';gallery.append(photo);}s.append(gallery);}
- const socials=(Array.isArray(p.social_links)?p.social_links:[]);if(socials.length){const s=section('Links');for(const entry of socials.slice(0,20)){const a=link(entry.label||'Link',entry.url);if(a)s.append(a);}}
+ const socials=(Array.isArray(p.social_links)?p.social_links:[]);if(website||socials.some(entry=>safeUrl(entry?.url))){const s=section('Links');if(website)s.append(website);for(const entry of socials.slice(0,20)){const a=link(entry.label||'Link',entry.url);if(a)s.append(a);}}
  const courses=section('Kurse dieses Anbieters');const rows=Array.isArray(p.courses)?p.courses:[];if(!rows.length)courses.append(el('p','Momentan sind keine Kurse veröffentlicht.'));
  const fmt=new Intl.DateTimeFormat('de-CH',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Zurich'});
  for(const course of rows.slice(0,40)){const box=el('article',undefined,'public-provider-item');box.append(el('h3',course.title||'Kurs'));if(course.starts_at){const date=new Date(course.starts_at);if(!Number.isNaN(date.getTime()))box.append(el('p',fmt.format(date)+' · '+(course.venue||'')+' · CHF '+Number(course.price||0).toFixed(2)));}if(course.description)box.append(el('p',course.description));const book=link('Zur Buchung',course.booking_url);if(book)box.append(book);courses.append(box);}
