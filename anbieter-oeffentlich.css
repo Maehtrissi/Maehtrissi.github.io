@@ -29,3 +29,5 @@
 .public-provider-gallery img{height:190px;border-radius:14px}
 .public-provider-item{padding:18px;border:1px solid #dce6da;border-radius:14px;background:linear-gradient(120deg,#f2f7ef,#fffaf2);margin-top:10px}
 @media(max-width:600px){.public-provider-page{padding:28px 16px 70px}.public-provider-hero>img{height:170px}.public-provider-identity{padding:18px;gap:12px}.public-provider-logo{width:64px;height:64px}.public-provider-section{margin:0 18px;padding:20px 0}.public-provider-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.public-provider-gallery img{height:140px}}
+
+.public-provider-contact-row{display:grid;grid-template-columns:85px minmax(0,1fr);gap:12px;align-items:baseline;margin:10px 0}.public-provider-contact-row>span{font-weight:600;color:#687d70}.public-provider-section a.public-provider-contact{display:inline;padding:0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;font-size:15px;font-weight:400;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.public-provider-section a.public-provider-contact:hover{background:none;box-shadow:none;color:#193e34}
