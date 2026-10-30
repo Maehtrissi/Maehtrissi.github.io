@@ -62,7 +62,7 @@ async function rpc(name){
 }
 async function load(){
  try{
-  const providers=await rpc('list_public_providers');
+  const providers=await rpc('list_public_course_providers');
   let extras=[];try{extras=await rpc('list_public_provider_extras_v2');}catch{try{extras=await rpc('list_public_provider_extras');}catch{}}
   const extraById=new Map((Array.isArray(extras)?extras:[]).map(x=>[String(x.provider_id),x]));
   list.replaceChildren();
