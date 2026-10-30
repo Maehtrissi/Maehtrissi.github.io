@@ -66,8 +66,9 @@ async function load(){
   let extras=[];try{extras=await rpc('list_public_provider_extras_v2');}catch{try{extras=await rpc('list_public_provider_extras');}catch{}}
   const extraById=new Map((Array.isArray(extras)?extras:[]).map(x=>[String(x.provider_id),x]));
   list.replaceChildren();
-  for(const p of (compact?providers.slice(0,2):providers)){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
-  status.textContent=providers.length?'':'Noch keine Anbieterprofile verfügbar.';
+  const activeProviders=providers.filter(p=>Array.isArray(p.courses)&&p.courses.some(c=>c.starts_at&&new Date(c.starts_at).getTime()>Date.now()));
+  for(const p of (compact?activeProviders.slice(0,2):activeProviders)){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
+  status.textContent=activeProviders.length?'':'Noch keine Anbieter mit aktuellen Kursen verfügbar.';
  }catch{status.textContent='Anbieterprofile sind momentan nicht verfügbar.';}
 }
 load();
