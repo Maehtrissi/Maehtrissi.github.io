@@ -17,7 +17,7 @@
  function applyFilters(){
   const filters=[['filter','category'],['location','location'],['day','day'],['time','time']].map(([button,card])=>({values:active(button),card}));
   let shown=0;
-  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const visible=filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
+  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0;const visible=bookable&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
   message.textContent=cards.length===0?'Aktuell sind keine Kurse veröffentlicht. Schau bald wieder vorbei oder tritt Sponti bei, um Kursinfos zu erhalten.':shown===0?'Für diese Auswahl gibt es aktuell keine Kurse. Ändere die Filter.':`${shown} ${shown===1?'Kurs':'Kurse'} verfügbar`;
  }
  buttons.forEach(button=>button.addEventListener('click',()=>{
@@ -35,7 +35,7 @@
  }));
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
  const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
- const cancellationText=(start)=>start-Date.now()<=86400000?'Buchung verbindlich · keine kostenlose Stornierung':'Kostenlose Stornierung bis 24 h vor Beginn';
+ const cancellationText=()=> 'Stornobedingungen beim Kurs prüfen';
 
  function openBookingChoice(course){
   const overlay=element('div','guest-signup-overlay');
@@ -129,8 +129,9 @@
     if(!response.ok)throw new Error('Kurse konnten nicht geladen werden.');
     const data=await response.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort.');courses.push(...data);if(data.length<500)break;
    }
-   cards=courses.map(render);grid.replaceChildren(...cards);
-   const selected=new URLSearchParams(location.search).get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
+   cards=courses.filter(c=>new Date(c.starts_at).getTime()>Date.now()&&Number(c.seats)>0).map(render);grid.replaceChildren(...cards);
+   const queryParams=new URLSearchParams(location.search);const selected=queryParams.get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
+   const requestedPlace=queryParams.get('ort');const placeButton=buttons.find(b=>b.dataset.location===requestedPlace);if(placeButton){buttons.filter(b=>b.dataset.location).forEach(b=>b.classList.remove('active'));placeButton.classList.add('active');}
    applyFilters();
    const pending=new URLSearchParams(location.search).get('course');
    if(pending && /^[0-9a-f-]{36}$/i.test(pending)){
