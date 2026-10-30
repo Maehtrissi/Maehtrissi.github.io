@@ -112,7 +112,7 @@
   countdown.dataset.startsAt=course.starts_at;
   const seats=element('span',Number(course.seats)<=2?'course-spots course-spots-low':'course-spots',course.seats===1?'Letzter Platz':`Noch ${course.seats} Plätze`);
   urgency.append(countdown,seats);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,heading,element('p','',course.description));
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,heading,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
   const details=element('div','course-details');details.append(element('span','','📍 '+course.venue),element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
@@ -124,7 +124,7 @@
   try{
    const courses=[];
    for(let offset=0;;offset+=500){
-    const query=new URLSearchParams({select:'id,title,description,category,region,venue,starts_at,price,seats,booking_url',order:'starts_at.asc,id.asc',limit:'500',offset:String(offset)});
+    const query=new URLSearchParams({select:'id,title,description,short_description,category,region,venue,starts_at,price,seats,booking_url',order:'starts_at.asc,id.asc',limit:'500',offset:String(offset)});
     const response=await fetch('https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/courses?'+query,{headers:{apikey:'sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy'},signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw new Error('Kurse konnten nicht geladen werden.');
     const data=await response.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort.');courses.push(...data);if(data.length<500)break;
