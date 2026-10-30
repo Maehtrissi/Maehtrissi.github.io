@@ -17,7 +17,7 @@ async function refresh(){try{
  if(!c||c.archived_at||c.status!=='published'||Number(c.seats)<=0||new Date(c.starts_at).getTime()<=Date.now()){fallback();return;}
  eyebrow.textContent='Jetzt entdecken';
  title.textContent=c.title;
- link.href='/kurs?id='+encodeURIComponent(c.id);
+ link.href='/kurs.html?id='+encodeURIComponent(c.id);
  link.textContent='Details & buchen ↗';
 }catch(e){fallback();console.warn('Startseiten-Kurs konnte nicht geladen werden.',e);}}
 void refresh();
