@@ -124,7 +124,7 @@
   try{
    const courses=[];
    for(let offset=0;;offset+=500){
-    const query=new URLSearchParams({select:'id,title,description,short_description,category,region,venue,starts_at,price,seats,booking_url',order:'starts_at.asc,id.asc',limit:'500',offset:String(offset)});
+    const query=new URLSearchParams({select:'*',order:'starts_at.asc,id.asc',limit:'500',offset:String(offset)});
     const response=await fetch('https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/courses?'+query,{headers:{apikey:'sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy'},signal:AbortSignal.timeout(15000)});
     if(!response.ok)throw new Error('Kurse konnten nicht geladen werden.');
     const data=await response.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort.');courses.push(...data);if(data.length<500)break;
