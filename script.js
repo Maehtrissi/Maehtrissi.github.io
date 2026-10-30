@@ -324,3 +324,25 @@ if (siteMenu && siteMenuTrigger) {
     if (event.target.closest("[data-site-menu-trigger]")) closeSelectors();
   }, true);
 })();
+
+// Schreibweise von Orts- und Adressangaben vereinheitlichen.
+(() => {
+  const selector = 'input[name="city"], input[name="location"], input[name="venue"], input[name="meeting_point"], textarea[name="location"], textarea[name="venue"], textarea[name="meeting_point"]';
+  const formatPlace = value => value.replace(/(^|[\\s,;/-])([\\p{L}])/gu, (_, sep, initial) => sep + initial.toLocaleUpperCase('de-CH'));
+  const normalize = field => {
+    if (!field?.matches?.(selector) || field.readOnly || field.disabled) return;
+    const formatted = formatPlace(field.value);
+    if (formatted !== field.value) {
+      field.value = formatted;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      field.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  };
+  document.addEventListener('focusout', event => normalize(event.target), true);
+  document.addEventListener('submit', event => {
+    event.target.querySelectorAll?.(selector).forEach(normalize);
+  }, true);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll(selector).forEach(field => field.setAttribute('autocapitalize', 'words'));
+  });
+})();
