@@ -3,6 +3,14 @@
  const featured=document.getElementById('stories');
  if(!grid&&!featured)return;
  const make=(tag,className,text)=>{const e=document.createElement(tag);if(className)e.className=className;if(text!==undefined)e.textContent=text;return e;};
+ function emptyState(home=false){
+  const box=make('div','sponti-reviews-empty');
+  box.append(make('h2','','Noch keine Bewertungen'),
+   make('p','','Im Moment sind noch keine Bewertungen vorhanden. Du hast einen Kurs über Sponti besucht? Wir laden dich herzlich ein, deine Erfahrung zu teilen und die erste Bewertung zu schreiben.'));
+  const link=make('a','text-link','Jetzt eine Bewertung schreiben');
+  link.href=home?'/erfahrungen#review-form':'#review-form';
+  box.append(link);return box;
+ }
  function card(row,home=false){
   const article=make('article',home?'':'story-card');
   const quote=make('div',home?'testimonial-quote':'testimonial-quote story-quote',row.review);
@@ -23,8 +31,8 @@
     if(!response.ok)throw Error('Erfahrungen konnten nicht geladen werden.');
     const batch=await response.json();if(!Array.isArray(batch))throw Error('Ungültige Antwort.');rows.push(...batch);if(batch.length<500||!grid)break;
    }
-   if(grid)grid.replaceChildren(...(rows.length?rows.map(row=>card(row)):[make('p','','Noch keine Erfahrungen veröffentlicht. Teile gerne deine Erfahrung mit Sponti.')]));
-   if(featured){featured.hidden=!rows.length;if(rows.length){featured.replaceChildren(card(rows[0],true));const link=make('a','text-link testimonial-link','Alle Erfahrungen ansehen');link.href='/erfahrungen';featured.append(link);}}
+   if(grid)grid.replaceChildren(...(rows.length?rows.map(row=>card(row)):[emptyState()]));
+   if(featured){featured.hidden=false;if(!rows.length)featured.replaceChildren(emptyState(true));else{featured.replaceChildren(card(rows[0],true));const link=make('a','text-link testimonial-link','Alle Erfahrungen ansehen');link.href='/erfahrungen';featured.append(link);}}
   }catch{if(featured)featured.hidden=true;if(grid){const message=make('p','','Erfahrungen konnten gerade nicht geladen werden. '),retry=make('button','button','Erneut versuchen');retry.type='button';retry.addEventListener('click',load);message.append(retry);grid.replaceChildren(message);}}
   finally{grid?.removeAttribute('aria-busy');}
  }

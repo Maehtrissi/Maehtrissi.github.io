@@ -25,7 +25,7 @@
     <meta name="twitter:image" content="https://sponti-switzerland.ch/logo.png" />
     <link rel="stylesheet" href="customer-account.css?v=subpage-spacing-20261019" />
     <link rel="stylesheet" href="whatsapp-community.css?v=20261007" />
-  <link rel="stylesheet" href="sponti-reviews.css?v=20261031" />
+  <link rel="stylesheet" href="sponti-reviews.css?v=20261031-empty-state" />
 </head>
   <body class="courses-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -55,7 +55,7 @@
       <section class="courses-heading">
         <div class="eyebrow"><span class="eyebrow-dot"></span> Aus der Sponti-Community</div>
         <h1>Erfahrungen<br /><em>unserer Mitglieder.</em></h1>
-        <p>Echte Geschichten von Menschen, die spontan einen Kurs gebucht haben.</p>
+        <p>Hier ist Platz für echte Erfahrungen. Hast du einen Kurs besucht? Teile deine Meinung mit der Sponti-Community.</p>
       </section>
 
       <section class="review-form-section">
@@ -64,15 +64,7 @@
         <form class="review-form" id="review-form">
           <label>Dein Name<input name="name" required placeholder="Dein Name" /></label>
           <label>Welchen Kurs hast du gemacht?
-            <select name="course" required>
-              <option value="" disabled selected>Kurs auswählen</option>
-              <option value="Ton &amp; Kaffee">Ton &amp; Kaffee</option>
-              <option value="Morning Flow">Morning Flow</option>
-              <option value="Pasta selber machen">Pasta selber machen</option>
-              <option value="City Photo Walk">City Photo Walk</option>
-              <option value="Blumen arrangieren">Blumen arrangieren</option>
-              <option value="Dance Basics">Dance Basics</option>
-            </select>
+            <input name="course" required minlength="2" maxlength="150" placeholder="Name deines besuchten Kurses" />
           </label>
           <label>Deine Erfahrung<textarea name="review" rows="3" required placeholder="Wie war dein Kurs?"></textarea></label>
           <button class="button button-primary" type="submit">Erfahrung teilen</button>
@@ -176,7 +168,7 @@
       });
     </script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
-  <script defer src="sponti-reviews.js?v=20261031"></script>
+  <script defer src="sponti-reviews.js?v=20261031-empty-state"></script>
 </body>
 </html>
 
