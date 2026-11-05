@@ -200,3 +200,22 @@
 /* Keep the provider identity aligned with the full-width banner. */
 .provider-directory-banner,.provider-directory-banner.is-default{align-items:stretch;justify-content:flex-start}
 .provider-directory-banner .provider-directory-identity{align-self:stretch;width:100%;box-sizing:border-box;text-align:left}
+
+
+/* Mobile course filters and provider cards — 2026-11-05. */
+@media (max-width:760px) {
+ .course-guide,.course-guide-columns,.provider-directory,.provider-directory-grid,.provider-directory-card,.course-extra-filters { min-width:0; max-width:100%; }
+ .course-guide-columns { grid-template-columns:minmax(0,1fr); }
+ .provider-directory-grid { grid-template-columns:minmax(0,1fr); }
+ .provider-directory { padding-inline:clamp(14px,4vw,22px); }
+ .course-extra-filters { display:flex; flex-wrap:wrap; align-items:stretch; gap:12px; }
+ .course-extra-filters label { flex:1 1 180px; min-width:0; max-width:100%; }
+ .course-extra-filters input[type=range] { max-width:100%; width:min(100%,240px); }
+ .provider-directory-content,.provider-directory-identity,.provider-directory-heading-overlay { min-width:0; }
+ .provider-directory-card :is(h2,h3,p,a) { overflow-wrap:anywhere; }
+ .provider-directory-content .provider-directory-profile-link { max-width:100%; white-space:normal; text-align:center; }
+}
+@media (max-width:420px) {
+ .course-extra-filters label { flex-basis:100%; }
+ .provider-directory-photos { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
