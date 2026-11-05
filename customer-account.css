@@ -31,3 +31,35 @@
 /* Align the customer and provider account introductions with other subpages. */
 .account-shell{padding-top:112px}
 @media(max-width:760px){.account-shell{padding-top:76px}}
+
+
+/* Mobile customer-board and registration overflow fixes — 2026-11-05. */
+@media (max-width:760px) {
+ .account-shell,.account-card,.account-form-grid,.account-card-heading,.account-choice-group { min-width:0; max-width:100%; }
+ .account-shell { width:100%; padding-inline:clamp(14px,4vw,22px); }
+ .account-card { padding:clamp(17px,4vw,24px); }
+ .account-form-grid { grid-template-columns:minmax(0,1fr); }
+ .account-card :is(input,select,textarea,button) { max-width:100%; }
+ .account-card :is(p,h2,h3,h4,label,legend) { overflow-wrap:anywhere; }
+ .account-tabs,.account-card-heading { flex-wrap:wrap; }
+ .account-tabs button { flex:1 1 135px; white-space:normal; min-width:0; }
+ .account-card .account-choices { display:flex; flex-wrap:wrap; gap:8px; }
+ .account-card .account-choice { min-width:0; max-width:100%; white-space:normal; text-align:center; }
+ .account-bookings li { min-width:0; padding:16px; }
+ .account-bookings h4,.account-bookings p { overflow-wrap:anywhere; }
+ .booking-state { margin:8px 0 0; }
+ .account-card .account-social-actions { grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:600px) {
+ body.account-page :is(.customer-board-nav,.customer-board-subnav,.board-nav,.board-subnav) { display:flex; flex-wrap:wrap; gap:8px; min-width:0; }
+ body.account-page :is(.customer-board-nav,.customer-board-subnav,.board-nav,.board-subnav) button { flex:1 1 calc(50% - 8px); min-width:0; max-width:100%; white-space:normal!important; overflow-wrap:anywhere; text-align:center; line-height:1.35!important; }
+ body.account-page form[data-account-form="preferences"] nav.customer-board-subnav { flex-wrap:wrap; }
+ body.account-page form[data-account-form="preferences"] nav.customer-board-subnav button { flex:1 1 calc(50% - 4px); font-size:12px!important; padding:10px 7px!important; }
+ .account-card-heading { align-items:stretch; }
+ .account-card-heading .button { width:100%; }
+}
+@media (max-width:380px) {
+ body.account-page :is(.customer-board-nav,.board-nav) button { flex-basis:100%; }
+ .account-shell { padding-inline:12px; }
+ .account-card { padding:16px; border-radius:17px; }
+}
