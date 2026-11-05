@@ -52,7 +52,15 @@
   const seats=element('span',Number(course.seats)<=2?'course-spots course-spots-low':'course-spots',course.seats===1?'Letzter Platz':`Noch ${course.seats} Plätze`);
   urgency.append(countdown,seats);
   const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,heading,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
-  const details=element('div','course-details');details.append(element('span','','📍 '+course.venue),element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
+  const details=element('div','course-details');
+  const locationText=element('span','course-location',course.venue);
+  locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
+  const locationIcon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  locationIcon.setAttribute('viewBox','0 0 24 24');locationIcon.setAttribute('width','15');locationIcon.setAttribute('height','15');locationIcon.setAttribute('fill','none');locationIcon.setAttribute('stroke','currentColor');locationIcon.setAttribute('stroke-width','1.8');locationIcon.setAttribute('stroke-linecap','round');locationIcon.setAttribute('stroke-linejoin','round');locationIcon.setAttribute('aria-hidden','true');
+  const pinOutline=document.createElementNS('http://www.w3.org/2000/svg','path');pinOutline.setAttribute('d','M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z');
+  const pinCenter=document.createElementNS('http://www.w3.org/2000/svg','circle');pinCenter.setAttribute('cx','12');pinCenter.setAttribute('cy','10');pinCenter.setAttribute('r','2.5');
+  locationIcon.append(pinOutline,pinCenter);locationText.prepend(locationIcon);
+  details.append(locationText,element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
   const policy=element('div','course-policy',cancellationText(start));
