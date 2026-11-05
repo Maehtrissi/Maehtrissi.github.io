@@ -1,0 +1,20 @@
+/* Sponti Kurs-UX – 2026-11-05 */
+.courses-page .course-card{cursor:pointer;position:relative;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;will-change:transform}
+.courses-page .course-card:hover,.courses-page .course-card:focus-visible,.courses-page .course-card:focus-within{transform:translateY(-5px);box-shadow:0 18px 40px rgba(25,52,45,.16);outline-offset:4px}
+.courses-page .course-card:focus-visible{outline:3px solid #e88357}
+.courses-page .course-image{transition:filter .24s ease}
+.courses-page .course-card:hover .course-image{filter:saturate(1.07)}
+.courses-page .course-availability{margin:12px 0 5px;font-size:12px;color:#19342d;font-weight:650}
+.courses-page .course-availability-label{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:6px}
+.courses-page .course-availability-track{height:5px;border-radius:999px;background:#dce7d9;overflow:hidden}
+.courses-page .course-availability-fill{display:block;height:100%;border-radius:999px;background:#4a8765;width:100%}
+.courses-page .course-availability.is-low .course-availability-fill{background:#e28c64;width:40%}
+.courses-page .course-availability.is-last .course-availability-fill{background:#ce7057;width:20%}
+.sponti-detail-page .booking-summary{transition:box-shadow .2s ease}
+@media (max-width:800px){
+ .sponti-detail-page .booking-main{padding-bottom:110px}
+ .sponti-detail-page .mobile-booking-dock{position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(247,246,239,.97);border-top:1px solid #d7e2d7;padding:12px max(16px,env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(25,52,45,.1)}
+ .sponti-detail-page .mobile-booking-dock .booking-primary{display:flex;width:100%;box-sizing:border-box;min-height:48px}
+}
+@media (min-width:801px){.sponti-detail-page .mobile-booking-dock{display:none}}
+@media (prefers-reduced-motion:reduce){.courses-page .course-card,.courses-page .course-image{transition:none}.courses-page .course-card:hover,.courses-page .course-card:focus-visible,.courses-page .course-card:focus-within{transform:none}}
