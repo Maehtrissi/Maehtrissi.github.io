@@ -2207,3 +2207,47 @@ body:has(> main .hero) .how-section-band #how-it-works::after{content:none}
 @media (max-width:480px) {
   .course-card .course-bottom .course-book {min-height:46px;padding:12px 16px;font-size:12px;}
 }
+
+
+/* Mobile layout refinement — 2026-11-05. Keep desktop layout unchanged. */
+@media (max-width: 760px) {
+  html,body { max-width:100%; }
+  body { overflow-x:clip; }
+  main,main > section, .site-footer,.site-header { min-width:0; }
+  :is(.hero,.hero-copy,.hero-art,.courses-heading,.courses-section,.course-grid,.course-card,.course-guide,.provider-directory,.provider-directory-grid,.provider-costs,.provider-costs-inner,.provider-cost-card,.footer-main,.footer-nav,.split-section,.account-shell,.account-card) { min-width:0; max-width:100%; }
+  :is(.hero-copy,.courses-heading,.course-card,.provider-cost-card,.account-card,.provider-directory-card,.footer-column) :is(h1,h2,h3,h4,p,a,span,strong) { overflow-wrap:break-word; }
+  :is(.site-footer,.course-guide,.provider-directory) img { max-width:100%; height:auto; }
+  .site-header { width:100%; padding-inline:clamp(12px,4vw,22px); gap:8px; }
+  .site-header .logo { min-width:0; flex:0 1 auto; }
+  .site-header .logo img { max-width:100%; }
+  .site-header .account-selector { flex-shrink:0; }
+  .site-header .account-selector-menu { max-width:min(290px,calc(100vw - 24px)); min-width:0; }
+  .hero { width:100%; }
+  .hero-copy,.hero-actions { max-width:100%; }
+  .hero-actions .button,.hero-actions .button-primary { max-width:100%; white-space:normal; text-align:center; }
+  .provider-costs-grid { grid-template-columns:minmax(0,1fr); }
+  .provider-costs-note { min-width:0; }
+  .site-footer .footer-main { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .site-footer .footer-nav { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 18px; }
+  .site-footer .footer-column { min-width:0; }
+  .site-footer .footer-column a { overflow-wrap:anywhere; }
+  .course-card,.provider-directory-card { width:100%; }
+  .course-card .course-bottom { flex-wrap:wrap; gap:12px; }
+  .course-card .course-bottom .course-book { max-width:100%; white-space:normal; text-align:center; }
+  :is(input,select,textarea,button) { max-width:100%; }
+}
+@media (max-width: 480px) {
+  .site-header { padding-inline:12px; }
+  .site-header .account-selector > summary,.site-header button.site-menu-trigger { padding:8px 9px!important; font-size:11px!important; }
+  .hero h1 { font-size:clamp(38px,11vw,52px); line-height:1.07; }
+  .site-footer .footer-main { padding-inline:18px; }
+  .site-footer .footer-nav { gap:22px 13px; }
+  .site-footer .footer-column a { font-size:12px; line-height:1.55; }
+  .provider-cost-card { padding:20px; }
+  .provider-costs-note { flex-wrap:wrap; padding:16px; }
+  .course-card .course-bottom .course-book { flex:1 1 auto; min-width:0; }
+}
+@media (max-width: 350px) {
+  .site-footer .footer-nav { grid-template-columns:minmax(0,1fr); }
+  .site-header .logo span { font-size:clamp(17px,6vw,24px); }
+}
