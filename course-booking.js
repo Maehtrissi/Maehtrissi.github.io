@@ -10,7 +10,7 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
  submitting=true;next.disabled=true;const previousText=next.textContent;next.textContent='Stripe-Testcheckout wird vorbereitet …';
  try{
   const payload={course_id:c.id,quantity:Number(select.value),guest_name:(form.elements.first_name.value+' '+form.elements.last_name.value).trim(),guest_email:form.elements.email.value.trim(),guest_phone:form.elements.phone.value.trim()};
-  const response=await fetch(URL_BASE+'/functions/v1/sponti-create-checkout',{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(payload),signal:AbortSignal.timeout(25000)});
+  const {createClient:clientFactory}=await import('https://esm.sh/@supabase/supabase-js@2.117.2');const qaAuth=clientFactory(URL_BASE,KEY,{auth:{storageKey:'sponti-customer-auth',persistSession:true,autoRefreshToken:true}});const {data:{session:qaSession}}=await qaAuth.auth.getSession();const requestHeaders={'Content-Type':'application/json','apikey':KEY};if(qaSession?.access_token)requestHeaders.Authorization='Bearer '+qaSession.access_token;const response=await fetch(URL_BASE+'/functions/v1/sponti-create-checkout',{method:'POST',headers:requestHeaders,body:JSON.stringify(payload),signal:AbortSignal.timeout(25000)});
   const result=await response.json().catch(()=>({}));
   if(!response.ok||!result.checkout_url)throw Error(result.error||'Stripe-Testcheckout ist noch nicht freigeschaltet.');
   const destination=new URL(result.checkout_url);
