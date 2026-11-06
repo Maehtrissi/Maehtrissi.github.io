@@ -5,18 +5,6 @@ const panel=document.querySelector("#sponti-connect-sandbox");
 const status=panel?.querySelector("[data-connect-status]");
 const button=panel?.querySelector("[data-connect-action]");
 const api="https://ehifskiigrfpxeiruyxr.supabase.co/functions/v1/sponti-connect-onboarding-test";
-const courseButton=document.querySelector("[data-new-course]");
-const courseEditor=document.querySelector("[data-course-editor]");
-const courseGate=document.createElement("p");
-courseGate.setAttribute("role","status");courseGate.className="account-help";
-courseGate.textContent="Kurse können erst nach CRM-Freigabe und erfolgreich abgeschlossenem Stripe-Onboarding erstellt werden.";
-courseButton?.insertAdjacentElement("afterend",courseGate);
-function gate(allowed,message){
- if(courseButton){courseButton.disabled=!allowed;courseButton.setAttribute("aria-disabled",String(!allowed));courseButton.title=allowed?"":message;}
- courseGate.hidden=!!allowed;courseGate.textContent=message;
- if(!allowed&&courseEditor)courseEditor.hidden=true;
-}
-gate(false,"Stripe-Connect-Status wird geprüft. Kursanlage bis zur Freigabe gesperrt.");
 async function request(action){
  const {data:{session},error}=await sb.auth.getSession();if(error||!session?.access_token)throw Error("Bitte als Kursanbieter anmelden.");
  const res=await fetch(api,{method:"POST",headers:{"authorization":"Bearer "+session.access_token,"apikey":"sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy","content-type":"application/json"},body:JSON.stringify({action})});
@@ -26,14 +14,14 @@ async function refresh(){
  if(!panel)return;
  try{
   const {data:{user}}=await sb.auth.getUser();
-  if(!user){panel.hidden=true;gate(false,"Bitte zuerst als Kursanbieter anmelden.");return;}
+  if(!user){panel.hidden=true;return;}
   const data=await request("status");panel.hidden=false;
-  gate(false,"CRM-Freigabe und Stripe-Live-Verifizierung für die Kursanlage sind noch nicht abgeschlossen. Die Sandbox-Verifizierung allein reicht nicht.");
+  
   if(data.connected){
    status.textContent=data.transfers_enabled&&data.onboarding_complete?"Testkonto verbunden und verifiziert (Sandbox).":data.onboarding_complete?"Angaben übermittelt; Stripe prüft die Voraussetzungen.":"Stripe-Testkonto erstellt. Bitte Registrierung bei Stripe abschliessen.";
    button.textContent=data.transfers_enabled&&data.onboarding_complete?"Angaben bei Stripe prüfen":"Stripe Connect Registrierung fortsetzen";
   }else{status.textContent="Noch kein Stripe-Testkonto verbunden.";button.textContent="Stripe Connect Testkonto verbinden";}
- }catch(e){if(e.message.includes("Kein verifiziertes")){panel.hidden=true;gate(false,"Bitte zuerst im Sponti-CRM freischalten lassen.");return;}panel.hidden=false;status.textContent=e.message||"Status konnte nicht geladen werden.";}
+ }catch(e){if(e.message.includes("Kein verifiziertes")){panel.hidden=true;return;}panel.hidden=false;status.textContent=e.message||"Status konnte nicht geladen werden.";}
 }
 if(panel&&button){
  button.addEventListener("click",async()=>{button.disabled=true;status.textContent="Sicherer Stripe-Link wird erstellt …";try{
