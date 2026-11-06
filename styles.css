@@ -1591,24 +1591,45 @@ button > span[aria-hidden="true"] {
 .site-menu-provider-cta:hover{background:var(--ink);color:var(--white)}
 
 
-/* Sponti logo micro-animation */
+/* Brand entrance: short, staggered motion without changing layout. */
 .site-header .logo {
   transform-origin: center;
-  animation: sponti-logo-pop .55s cubic-bezier(.2,.85,.35,1.25) both;
   transition: transform .22s ease;
 }
-@media (hover: hover) {
+@media (prefers-reduced-motion: no-preference) {
+  .site-header .logo > img {
+    animation: sponti-brand-arrive .7s cubic-bezier(.22,1,.36,1) backwards;
+  }
+  .site-header .logo > span {
+    animation: sponti-title-arrive .65s cubic-bezier(.22,1,.36,1) .12s backwards;
+  }
+  .hero-copy > h1 {
+    animation: sponti-title-arrive .8s cubic-bezier(.22,1,.36,1) .18s backwards;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .site-header .logo:hover {
     transform: translateY(-2px) rotate(-2deg) scale(1.04);
   }
 }
-@keyframes sponti-logo-pop {
-  0% { transform: scale(.88); opacity: .5; }
-  65% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes sponti-brand-arrive {
+  from { opacity: 0; transform: translateY(6px) rotate(-8deg) scale(.9); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sponti-title-arrive {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-header .logo { animation: none; transition: none; }
+  .site-header .logo,
+  .site-header .logo:hover,
+  .site-header .logo > img,
+  .site-header .logo > span,
+  .hero-copy > h1 {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
 }
 
 /* Shared account selector */
