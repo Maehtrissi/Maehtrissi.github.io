@@ -37,3 +37,29 @@ Keine Stripe-API-Schlüssel, Connect-Kontonummern oder Kundendaten in diesem Rep
 - Stripe-Berichte und eigener Finanzabgleich: PaymentIntent, Charge, Balance Transaction, Refund, Transfer, Payout mit Kurs-, Buchungs- und Anbieter-ID verbinden. Keine vertraulichen Kundendaten in Metadaten.
 - Tests mindestens: nicht angemeldeter Anbieter, unfreigegebener Anbieter, Connect abgebrochen, `requirements.currently_due`, Auszahlung gesperrt, zwei Anbieter mit drei Kursen, parallele Buchungen, Refund, Kursausfall, doppelte Webhooks und erneute Übertragung.
 - Keine echten Keys oder Transfers aktivieren, bis Stripe-/Rechtsprüfung und vollständiger Sandbox-End-to-End-Test abgeschlossen sind.
+
+## Technischer Zwischenstand – 6. November 2026 (aktualisiert)
+
+**Weiterhin KEINE Live-Freigabe.**
+
+Umgesetzt und in Supabase geprüft:
+- `private.sponti_connect_live_accounts` mit aktivierter RLS und Zugriff nur für Server-Rolle, getrennt vom Testkonto-Mapping.
+- Serverfunktionen `private.sponti_provider_live_ready` und `private.sponti_provider_can_create`. Voraussetzung: CRM-Status Partner, bestätigtes eigenes Konto, Stripe Live-Transfers und Payouts aktiv, keine offenen Stripe-Anforderungen, letzte Prüfung jünger als 24 Stunden.
+- Serverseitige Sperre in `provider_courses`-RLS und in der sicherheitsprivilegierten Anbieter-Kurs-RPC. Vorhandene Kursdatensätze werden beibehalten.
+- Anbieter-Onboarding-Checkliste, CRM-/Live-Stripe-Status und blockierte Kursanlage in `anbieter.html` **nur im GitHub-Test-Branch**, nicht auf der öffentlichen Website.
+- Zwei neue Edge Functions: `sponti-connect-onboarding-live` und `sponti-connect-webhook-live`, beide fail-closed (nur mit `SPONTI_CONNECT_LIVE_ENABLED=true` und getrennten Stripe-Live-Secrets). Ohne diese Konfiguration keine echten Accounts oder Zahlungen.
+- Stripe Checkout Testendpunkt aktualisiert: Sponti-Buchungs-ID, Kurs-ID und gegebenenfalls Anbieter-ID in Checkout-/PaymentIntent-Metadaten; weiterhin nur Mitarbeitende/Testschlüssel.
+- Privates Journal `private.sponti_transfer_ledger` für Buchungsanteile und `public.crm_sponti_finance_summary` für berechtigte Mitarbeitende; kein Stripe-Transfer wird ausgelöst.
+- Vier bestehende gespiegelte Anbieter-Kurse in `public.courses` dem richtigen CRM-Anbieter zugeordnet, ohne sie zu veröffentlichen. Mirror-Trigger kontrolliert Live-Stripe-Bereitschaft.
+
+Noch nicht fertig:
+- Stripe Live-Connect-Accountmodell mit Nutzer und Anwalt final wählen. Stripe empfiehlt für neue Plattformen neue Accounts-v2-Integration zu prüfen; der derzeit vorbereitete Express-Onboarding-Code darf ohne diese Entscheidung nicht aktiviert werden.
+- In Stripe Dashboard Connect aktivieren, Unternehmensprüfung und benötigte Berechtigungen/Bankkonto abschliessen; getrennte Live-Secrets und signierten Webhook konfigurieren.
+- Echten Anbieter-Test mit authentifiziertem Konto und Testdaten durchspielen; Webhook-Signatur, Verifizierung/Entzug, CRM-Sperre, Zahlungs- und Rückerstattungsfälle prüfen.
+- Vollständige spätere Transferausführung mit Verhinderung doppelter Transfers und Abgleich von Charge/Balance-Transaction/Refund/Payout implementieren. Journal allein ist **keine** automatische Auszahlung.
+- Auszahlungen nur nach dokumentierter Kursdurchführung und unter den Stripe-/Schweizer Regeln; Zahlungsfluss und Verantwortung bei Stornos/Kursausfall festlegen.
+- CRM-Finanzübersicht sichtbar anbinden und Stripe-Zahlungsberichte mit Datenbank abgleichen; bisher nur gesicherte Berichtsfunktion.
+- Einladungs-/Freigabemail nach öffentlicher Freigabe anpassen: Anbieter sollen den **stabilen Link zum Sponti-Anbieterboard** erhalten, nicht einen kurzlebigen Stripe Account Link per E-Mail. Der Einmallink wird erst nach authentifiziertem Klick erzeugt.
+- Code-Review, vollständige E2E-Tests und Merge der Test-Branch-Oberfläche. Bis dahin keine Live-Transaktionen.
+
+Docs: https://docs.stripe.com/connect/express-accounts ; https://docs.stripe.com/stripe-reports
