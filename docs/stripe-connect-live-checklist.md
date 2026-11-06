@@ -26,3 +26,14 @@ Status: **NICHT LIVE FREIGEBEN**. Diese Datei dokumentiert die Vorbereitung; sie
 14. Erst anschliessend mit geprüftem GitHub-PR veröffentlichen. Kein direkter Test-Branch-Merge in die öffentliche Seite ohne Review.
 
 Keine Stripe-API-Schlüssel, Connect-Kontonummern oder Kundendaten in diesem Repository speichern.
+
+## Anbieter-Onboarding: verbindliche Freigabe (noch umzusetzen)
+- Registrierung in Sponti → manuelle Prüfung und CRM-Freigabe → Stripe Connect Express Onboarding → Stripe-Kontostatus serverseitig prüfen → Kursanlage und Veröffentlichung erlauben.
+- **Wichtig:** `details_submitted` allein reicht nicht. Capabilities für den gewählten Connect-Zahlungsfluss und Einschränkungen prüfen. Sandbox-Status ist keine Live-Freigabe.
+- Kurs-INSERT und UPDATE in `provider_courses` über RLS/Serverfunktion gegen verifizierten Stripe-**Live**-Status und CRM-Freigabe absichern. Vorhandene RLS-Policies sind permissiv/ODER-verknüpft; besonders `Providers manage own courses` erlaubt aktuell auch aktive Kurse ohne Connect. Vor einer Änderung auf Produktionsdatenbank alle Policies konsolidieren und Tests für API-Umgehung durchführen.
+- Beim Connect-Testendpunkt `private.provider_accounts.public_enabled` und den CRM-Status nicht mit `provider_accounts`-Existenz verwechseln: aktuell wird nur ein bestehender Anbieter-Account geprüft.
+- Der UI-Test-Branch deaktiviert vorsorglich den Button `Neuen Kurs erstellen`; diese reine UI-Sperre ist **keine** Sicherheitskontrolle. Bis zur serverseitigen Durchsetzung keine Produktionsfreigabe.
+- Für Stripe Connect: Zahlungsfluss (z.B. Separate Charges and Transfers), Transfergruppe, idempotente Transfers, Refund-/Kursausfall-Logik, Reconciliation, Haftung, Gebührenmodell und Schweizer Fristen prüfen.
+- Stripe-Berichte und eigener Finanzabgleich: PaymentIntent, Charge, Balance Transaction, Refund, Transfer, Payout mit Kurs-, Buchungs- und Anbieter-ID verbinden. Keine vertraulichen Kundendaten in Metadaten.
+- Tests mindestens: nicht angemeldeter Anbieter, unfreigegebener Anbieter, Connect abgebrochen, `requirements.currently_due`, Auszahlung gesperrt, zwei Anbieter mit drei Kursen, parallele Buchungen, Refund, Kursausfall, doppelte Webhooks und erneute Übertragung.
+- Keine echten Keys oder Transfers aktivieren, bis Stripe-/Rechtsprüfung und vollständiger Sandbox-End-to-End-Test abgeschlossen sind.
