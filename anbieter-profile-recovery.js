@@ -12,6 +12,15 @@ const form = box?.querySelector("[data-provider-recovery-form]");
 const info = box?.querySelector("[data-recovery-message]");
 const emailLabel = box?.querySelector("[data-recovery-email]");
 const newAccount = box?.querySelector("[data-provider-new-account]");
+const legacyStatus = document.querySelector("[data-provider-status]");
+function hideOldMissingProfileError() {
+  if (box?.hidden || !legacyStatus) return;
+  if ((legacyStatus.textContent || "").includes("noch kein Anbieterprofil verfügbar") && !legacyStatus.hidden)
+    legacyStatus.hidden = true;
+}
+if (legacyStatus) new MutationObserver(hideOldMissingProfileError)
+  .observe(legacyStatus, { attributes:true, childList:true, subtree:true, characterData:true });
+
 let currentUser = null;
 let checking = false;
 
@@ -40,6 +49,7 @@ async function refresh() {
     if (profileError) throw profileError;
     if (existing) { box.hidden = true; return; }
     box.hidden = false;
+    hideOldMissingProfileError();
     emailLabel.textContent = user.email || "deinem bestehenden Login";
     // This RPC only links an existing CRM record with the same verified login email.
     // Without a CRM record it returns saved=false; no new applicant is created on page load.
