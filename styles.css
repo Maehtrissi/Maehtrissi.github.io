@@ -2272,3 +2272,42 @@ body:has(> main .hero) .how-section-band #how-it-works::after{content:none}
   .site-footer .footer-nav { grid-template-columns:minmax(0,1fr); }
   .site-header .logo span { font-size:clamp(17px,6vw,24px); }
 }
+
+/* Brand hover: pointer devices only, with a calm reduced-motion fallback. */
+@media (hover: hover) and (pointer: fine) {
+  .site-header .logo > span,
+  .hero-copy > h1 em {
+    transition: color .25s ease;
+  }
+  .site-header .logo:is(:hover, :focus-visible) > span {
+    color: var(--orange);
+  }
+  .hero-copy > h1:hover em {
+    color: #bd6338;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .site-header .logo > img {
+    transition: transform .35s cubic-bezier(.22,1,.36,1);
+  }
+  .site-header .logo:is(:hover, :focus-visible) {
+    transform: translateY(-2px);
+  }
+  .site-header .logo:is(:hover, :focus-visible) > img {
+    transform: rotate(-7deg) scale(1.08);
+  }
+  .hero-copy > h1 {
+    transform-origin: left center;
+    transition: transform .35s cubic-bezier(.22,1,.36,1);
+  }
+  .hero-copy > h1:hover {
+    transform: translateY(-3px) scale(1.015);
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .site-header .logo:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .logo > span,
+  .hero-copy > h1 em { transition: none; }
+}
