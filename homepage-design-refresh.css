@@ -74,3 +74,10 @@ body:has(.hero) .feature-item:hover { transform:translateY(-2px); }
   body:has(.hero) .feature-item,
   body:has(.hero) .text-link { transition:none!important; transform:none!important; }
 }
+
+/* Slightly larger desktop header branding; mobile stays unchanged. */
+@media (min-width:901px) {
+  body:has(.hero) .site-header .logo { gap:14px; }
+  body:has(.hero) .site-header .logo img { height:64px; width:auto; }
+  body:has(.hero) .site-header .logo span { font-size:28px; }
+}
