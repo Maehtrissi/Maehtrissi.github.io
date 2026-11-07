@@ -2351,3 +2351,15 @@ body:has(> main .hero) .how-section-band #how-it-works::after{content:none}
     transform:none!important;
   }
 }
+
+/* Shared Sponti page canvas (07.11.2026).
+   One consistent, subtle background on pages using the common stylesheet.
+   Section surfaces, cards, menus and forms keep their own backgrounds. */
+html { background-color:#f7f7f1; }
+body {
+  background-color:#f7f7f1;
+  background-image:
+    radial-gradient(circle at 91% 5%,rgba(237,141,89,.10),transparent 34%),
+    radial-gradient(circle at 7% 56%,rgba(215,242,119,.10),transparent 30%);
+  background-attachment:scroll;
+}
