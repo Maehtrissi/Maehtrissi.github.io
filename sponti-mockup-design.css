@@ -823,3 +823,41 @@ html body > a.top-announcement:focus-visible strong {background:#e9efdc!importan
 @media(max-width:620px) {
   html body > a.top-announcement {min-height:42px!important;padding:7px 10px!important;font-size:11px!important;}
 }
+
+/* Consistent outline SVG symbols instead of font-dependent pictograms. */
+html body .sponti-inline-icon {
+ display:inline-block;
+ width:1.1em;
+ height:1.1em;
+ fill:none;
+ stroke:currentColor;
+ stroke-width:2;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+ flex-shrink:0;
+ vertical-align:-.16em;
+}
+html body .partner-check {
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+}
+html body .partner-check .sponti-inline-icon{
+ width:17px;
+ height:17px;
+}
+html body .provider-cost-icon .sponti-inline-icon{
+ width:28px;
+ height:28px;
+}
+html body .booking-fact-icon{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:21px;
+ height:21px;
+ color:#15554d;
+ flex-shrink:0;
+ margin-right:7px;
+ vertical-align:middle;
+}
