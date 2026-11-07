@@ -346,3 +346,62 @@ if (siteMenu && siteMenuTrigger) {
     document.querySelectorAll(selector).forEach(field => field.setAttribute('autocapitalize', 'words'));
   });
 })();
+
+
+/* Sponti unified desktop/mobile navigation — 2026-11-07.
+   Reuses the existing account selector and routes; leaves authentication intact. */
+(() => {
+ function initGlobalHeader() {
+  const header=document.querySelector('.site-header');
+  if(!header || header.dataset.spontiNavReady==='1')return;
+  header.dataset.spontiNavReady='1';
+  header.classList.add('sponti-unified-header');
+  const logo=header.querySelector('.logo');
+  if(logo&&!logo.querySelector('img')) {
+   const img=document.createElement('img');img.src='/logo.png';img.alt='Sponti Logo';logo.prepend(img);
+  }
+  const account=header.querySelector('details.account-selector');
+  const oldMenu=header.querySelector('[data-site-menu-trigger]');
+  if(oldMenu)oldMenu.remove();
+  // Hide/remove only the site-menu drawer; profile dropdown stays available.
+  const drawer=document.querySelector('[data-site-menu]');
+  if(drawer){drawer.remove();document.body.classList.remove('site-menu-open');}
+  const oldNav=header.querySelector('.detail-header-nav');
+  if(oldNav)oldNav.remove();
+  const links=[
+   ['/', 'Startseite'],
+   ['/kurse','Kurse entdecken'],
+   ['/kursanbieter','Für Kursanbieter'],
+   ['/motivation','Motivation'],
+   ['/erfahrungen','Erfahrungen']
+  ];
+  const nav=document.createElement('nav');nav.className='sponti-global-nav';nav.setAttribute('aria-label','Hauptnavigation');
+  const pathname=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
+  for(const [href,label] of links){
+   const a=document.createElement('a');a.href=href;a.textContent=label;
+   if(pathname===href||(href==='/kurse'&&pathname==='/kurs'))a.setAttribute('aria-current','page');
+   nav.append(a);
+  }
+  const actions=document.createElement('div');actions.className='sponti-header-actions';
+  const search=document.createElement('div');search.className='sponti-header-search';
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='sponti-search-trigger';toggle.setAttribute('aria-label','Kurse suchen');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','sponti-search-panel');
+  toggle.innerHTML='<svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>';
+  const panel=document.createElement('form');panel.className='sponti-search-panel';panel.id='sponti-search-panel';panel.role='search';panel.hidden=true;panel.action='/kurse';panel.method='get';
+  const input=document.createElement('input');input.type='search';input.name='suche';input.placeholder='Yoga, Pilates, Töpfern …';input.setAttribute('aria-label','Kurse nach Stichwort suchen');input.autocomplete='off';input.required=true;
+  const submit=document.createElement('button');submit.type='submit';submit.textContent='Suchen';
+  panel.append(input,submit);search.append(toggle,panel);
+  function closeSearch(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+  toggle.addEventListener('click',()=>{
+   const opening=panel.hidden;panel.hidden=!opening;toggle.setAttribute('aria-expanded',String(opening));
+   if(opening)input.focus();
+  });
+  document.addEventListener('click',e=>{if(!search.contains(e.target))closeSearch();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){closeSearch();toggle.focus();}});
+  if(account)header.removeChild(account);
+  actions.append(search);
+  if(account){account.setAttribute('aria-label','Mein Profil');actions.append(account);}
+  header.append(nav,actions);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGlobalHeader);
+ else initGlobalHeader();
+})();
