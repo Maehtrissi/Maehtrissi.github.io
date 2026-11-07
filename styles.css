@@ -2377,3 +2377,124 @@ body:not(:has(.hero)) {
     radial-gradient(circle at 7% 56%,rgba(215,242,119,.10),transparent 30%);
   background-attachment:scroll;
 }
+
+
+/* Unified Sponti visual system / main navigation — 07 Nov 2026 */
+.site-header.sponti-unified-header {
+ position:relative;z-index:40;box-sizing:border-box;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:clamp(12px,2vw,30px);
+ width:calc(100% - 48px);max-width:1260px;
+ min-height:82px;margin:22px auto 22px;
+ padding:12px 23px;
+ background:rgba(255,255,255,.85);
+ border:1px solid rgba(255,255,255,.85);
+ border-radius:27px;
+ box-shadow:0 12px 42px rgba(47,61,49,.065);
+ backdrop-filter:blur(12px);
+}
+.site-header.sponti-unified-header .logo {
+ display:inline-flex;align-items:center;gap:12px;
+ margin:0;min-width:0;flex:0 0 auto;
+}
+.site-header.sponti-unified-header .logo img {
+ width:auto;height:55px;max-width:none;object-fit:contain;
+}
+.site-header.sponti-unified-header .logo span {
+ color:#154f47;font-size:clamp(23px,2.1vw,30px);line-height:1.1;
+}
+.site-header.sponti-unified-header .sponti-global-nav {
+ display:flex;align-items:center;justify-content:center;
+ gap:clamp(12px,2.2vw,33px);margin:0 auto;min-width:0;
+}
+.sponti-global-nav a {
+ position:relative;display:inline-flex;align-items:center;
+ color:#4a6159;font-size:clamp(11px,1.05vw,14px);font-weight:700;
+ text-decoration:none;white-space:nowrap;padding:16px 2px;
+ transition:color .18s ease;
+}
+.sponti-global-nav a:hover,
+.sponti-global-nav a[aria-current=page] {color:#145047;}
+.sponti-global-nav a[aria-current=page]::after {
+ content:"";position:absolute;bottom:5px;left:0;right:0;
+ height:3px;background:#f47d4c;border-radius:3px;
+}
+.sponti-header-actions {display:flex;align-items:center;gap:12px;margin-left:auto;flex:0 0 auto;}
+.sponti-header-search {position:relative;display:flex;align-items:center;}
+.sponti-search-trigger {
+ display:grid;place-items:center;cursor:pointer;flex:none;
+ width:45px;height:45px;padding:0;border:1px solid rgba(25,76,66,.07);
+ border-radius:50%;color:#145047;background:rgba(245,245,238,.86);
+ transition:background .2s ease,transform .2s ease;
+}
+.sponti-search-trigger:hover,.sponti-search-trigger[aria-expanded=true]{background:#edf2e9;transform:translateY(-1px);}
+.sponti-search-trigger:focus-visible,.sponti-global-nav a:focus-visible{outline:2px solid #df7c49;outline-offset:3px;}
+.sponti-search-panel[hidden]{display:none!important;}
+.sponti-search-panel {
+ position:absolute;right:-70px;top:calc(100% + 15px);z-index:100;
+ display:flex;gap:8px;align-items:center;box-sizing:border-box;
+ width:min(380px,calc(100vw - 32px));padding:12px;
+ background:#fffefa;border:1px solid #d9e1d9;border-radius:18px;
+ box-shadow:0 18px 45px rgba(25,52,45,.15);
+}
+.sponti-search-panel input {
+ flex:1;min-width:0;min-height:42px;padding:10px 13px;
+ border:1px solid #d3dfd3;border-radius:11px;background:#fff;
+ color:#19342d;font:500 13px "DM Sans",sans-serif;
+}
+.sponti-search-panel button {
+ min-height:42px;border:0;border-radius:11px;padding:9px 13px;
+ color:white;background:#15574e;cursor:pointer;font-size:13px;font-weight:700;
+}
+.site-header.sponti-unified-header .account-selector {margin:0;flex:none;z-index:41;}
+.site-header.sponti-unified-header .account-selector>summary {
+ display:flex;align-items:center;justify-content:center;
+ width:46px;height:46px;min-width:46px;min-height:46px!important;
+ border-radius:50%!important;background:#edf0eb!important;
+ color:#155047!important;box-shadow:none!important;
+}
+.site-header.sponti-unified-header .account-selector>summary::before {
+ width:43px;height:43px;flex-basis:43px;
+}
+.site-header.sponti-unified-header .account-selector>summary:hover,
+.site-header.sponti-unified-header .account-selector[open]>summary{
+ background:#e4ece5!important;color:#ce744a!important;
+}
+.site-header .site-menu-trigger {display:none!important;}
+@media(max-width:1100px){
+ .site-header.sponti-unified-header {width:calc(100% - 32px);gap:13px;padding-inline:16px;}
+ .site-header.sponti-unified-header .sponti-global-nav {gap:clamp(9px,1.3vw,17px);}
+ .sponti-global-nav a{font-size:12px;}
+ .site-header.sponti-unified-header .logo img{height:46px;}
+ .site-header.sponti-unified-header .logo span{font-size:25px;}
+ .sponti-header-actions{gap:7px;}
+}
+@media(max-width:850px){
+ .site-header.sponti-unified-header {
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"brand actions" "nav nav";
+  row-gap:7px;margin:12px auto 19px;
+  width:calc(100% - 24px);padding:10px 14px 8px;
+  min-height:0;border-radius:22px;
+ }
+ .site-header.sponti-unified-header .logo{grid-area:brand;justify-self:start;}
+ .site-header.sponti-unified-header .sponti-header-actions{grid-area:actions;justify-self:end;}
+ .site-header.sponti-unified-header .sponti-global-nav{
+  grid-area:nav;justify-content:flex-start;gap:23px;
+  width:100%;overflow-x:auto;overscroll-behavior-x:contain;
+  scrollbar-width:thin;padding:1px 0 4px;
+ }
+ .sponti-global-nav a{font-size:12px;padding:12px 2px;flex:none;}
+ .sponti-search-panel{right:-54px;}
+}
+@media(max-width:480px){
+ .site-header.sponti-unified-header{padding:9px 11px 7px;}
+ .site-header.sponti-unified-header .logo img{height:39px;}
+ .site-header.sponti-unified-header .logo span{font-size:23px;}
+ .sponti-search-trigger,.site-header.sponti-unified-header .account-selector>summary{width:42px;height:42px;min-width:42px;min-height:42px!important;}
+ .sponti-search-panel{right:-53px;}
+ .sponti-global-nav a{font-size:12px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .sponti-search-trigger,.sponti-global-nav a{transition:none!important;transform:none!important;}
+}
