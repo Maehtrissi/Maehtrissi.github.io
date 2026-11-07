@@ -1,0 +1,76 @@
+/* Sponti design refinement — 07.11.2026.
+   Intentionally scoped to the home page; existing booking and account flows stay unchanged. */
+:root { --sponti-surface:#f7f7f1; --sponti-border:rgba(25,52,45,.12); }
+body:has(.hero) {
+  background-color:var(--sponti-surface);
+  background-image:radial-gradient(circle at 91% 5%,rgba(237,141,89,.10),transparent 34%),
+    radial-gradient(circle at 7% 56%,rgba(215,242,119,.10),transparent 30%);
+  background-attachment:scroll;
+}
+body:has(.hero) .site-header { padding-top:20px; padding-bottom:20px; }
+body:has(.hero) .hero {
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  column-gap:clamp(24px,4vw,72px);
+  min-height:530px;
+  padding-top:24px;
+  margin-top:16px;
+  margin-bottom:65px;
+}
+body:has(.hero) .hero-copy { padding-bottom:24px; }
+body:has(.hero) .eyebrow { letter-spacing:.075em; font-size:11px; color:#9d5c35; }
+body:has(.hero) .hero h1 { font-size:clamp(52px,6vw,82px); letter-spacing:-.045em; line-height:1.06; margin:20px 0; }
+body:has(.hero) .hero-text { max-width:465px; font-size:clamp(15px,1.5vw,17px); line-height:1.72; color:#53665e; }
+body:has(.hero) .hero-actions { gap:24px; margin-top:28px; flex-wrap:wrap; }
+body:has(.hero) .hero-actions .button-primary {
+  background:linear-gradient(110deg,#f26055,#ff9168 56%,#f8bc75);
+  color:#fff;
+  border-radius:999px;
+  box-shadow:0 8px 22px rgba(191,100,60,.17);
+  padding:17px 28px;
+  font-size:14px;
+}
+body:has(.hero) .hero-actions .button-primary:hover { box-shadow:0 10px 24px rgba(191,100,60,.20); }
+body:has(.hero) .hero-actions .text-link { font-size:14px; }
+body:has(.hero) .trusted {
+  margin-top:28px;
+  gap:8px;
+  padding-top:18px;
+  border-top:1px solid var(--sponti-border);
+  max-width:450px;
+}
+body:has(.hero) .trusted p { max-width:none; margin:0; font-size:12px; line-height:1.6; }
+body:has(.hero) .hero-art .sun-shape {
+  box-shadow:0 0 0 42px rgba(25,52,45,.022);
+  border-color:rgba(25,52,45,.07);
+}
+body:has(.hero) .hero-art .hero-card { box-shadow:0 14px 32px rgba(25,52,45,.10); }
+body:has(.hero) .hero-photo { box-shadow:0 14px 40px rgba(25,52,45,.09); }
+body:has(.hero) .section h2 { line-height:1.1; letter-spacing:-.04em; }
+body:has(.hero) .split-section { gap:clamp(38px,6vw,100px); padding-top:95px; padding-bottom:95px; }
+body:has(.hero) .feature-item:hover { transform:translateY(-2px); }
+@media (hover:hover) and (pointer:fine) {
+  body:has(.hero) .logo-strip a:hover,
+  body:has(.hero) .nav-links a:hover,
+  body:has(.hero) .text-link:hover { transform:translateY(-1px); }
+  body:has(.hero) .hero-copy > h1:hover { transform:none; }
+}
+@media (max-width:900px) {
+  body:has(.hero) .hero { grid-template-columns:minmax(0,1fr); padding-top:18px; margin-bottom:40px; min-height:0; }
+  body:has(.hero) .hero-copy { padding-bottom:0; }
+  body:has(.hero) .hero-art { width:100%; max-width:620px; margin:24px auto 0; }
+  body:has(.hero) .split-section { padding-top:65px; padding-bottom:65px; }
+}
+@media (max-width:600px) {
+  body:has(.hero) .hero { padding-inline:18px; gap:0; }
+  body:has(.hero) .hero h1 { font-size:clamp(40px,11vw,56px); margin:18px 0; }
+  body:has(.hero) .hero-text { font-size:15px; line-height:1.65; }
+  body:has(.hero) .hero-actions { gap:16px; align-items:stretch; }
+  body:has(.hero) .hero-actions .button-primary { min-height:48px; padding:14px 22px; }
+  body:has(.hero) .trusted { margin-top:20px; }
+  body:has(.hero) .hero-art { overflow:visible; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body:has(.hero) .button,
+  body:has(.hero) .feature-item,
+  body:has(.hero) .text-link { transition:none!important; transform:none!important; }
+}
