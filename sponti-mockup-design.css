@@ -795,3 +795,39 @@ html body > a.top-announcement:focus-visible {
  html body > a.top-announcement,
  html body > a.top-announcement strong{transition:none!important;}
 }
+
+/* High-visibility WhatsApp campaign ribbon — distinct from the cream page background. */
+html body > a.top-announcement {
+  min-height:48px!important;
+  padding:8px 18px!important;
+  background:linear-gradient(95deg,#f18e5f 0%,#f8a476 48%,#f5b589 100%)!important;
+  border-bottom:1px solid rgba(109,54,31,.16)!important;
+  color:#183f35!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  box-shadow:0 3px 14px rgba(155,82,41,.12)!important;
+}
+html body > a.top-announcement::before {
+  background:#185442!important;
+  box-shadow:0 0 0 5px rgba(25,84,66,.13)!important;
+}
+html body > a.top-announcement strong {
+  background:#15554d!important;
+  border:1px solid rgba(8,62,48,.24)!important;
+  color:#fffaf1!important;
+  box-shadow:0 5px 14px rgba(13,69,53,.17)!important;
+}
+html body > a.top-announcement:hover {
+  background:linear-gradient(95deg,#f6a173 0%,#ffb88c 48%,#fac39c 100%)!important;
+}
+html body > a.top-announcement:hover strong,
+html body > a.top-announcement:focus-visible strong {
+  background:#0d443a!important;
+}
+@media(max-width:620px){
+  html body > a.top-announcement{
+    min-height:44px!important;
+    padding:7px 9px!important;
+    font-size:11.5px!important;
+  }
+}
