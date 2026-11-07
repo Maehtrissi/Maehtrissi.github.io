@@ -297,3 +297,86 @@ html body :is(.cta-section,.testimonial-section,.provider-costs) button {
    border-radius:24px!important;padding:20px!important;
   }
 }
+
+/* FAQ: outer section must not mask the new sage–cream–peach panel.
+   Keep native <details> accordion, FAQ content and interactions unchanged. */
+html body .sponti-faq {
+  width:min(1280px,calc(100% - 40px));
+  max-width:1280px;
+  margin:clamp(35px,5vw,80px) auto!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:36px;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible;
+}
+html body .sponti-faq::before,
+html body .sponti-faq::after { content:none!important; display:none!important; }
+html body .sponti-faq-inner {
+  position:relative;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:clamp(28px,4.5vw,62px)!important;
+  box-sizing:border-box;
+  overflow:hidden;
+  border-radius:36px!important;
+  background:var(--sponti-section-background)!important;
+  border:1px solid var(--sponti-section-border)!important;
+  box-shadow:var(--sponti-section-shadow)!important;
+  grid-template-columns:minmax(225px,.8fr) minmax(0,1.4fr);
+  gap:clamp(28px,5vw,78px);
+}
+html body .sponti-faq-heading {min-width:0;}
+html body .sponti-faq-heading h2 {color:#15554d;}
+html body .sponti-faq-heading p {color:#526b5e;}
+html body .sponti-faq-items {
+  min-width:0;
+  border-top:0;
+  display:grid;
+  align-content:start;
+  gap:12px;
+}
+html body .sponti-faq-items details {
+  min-width:0;
+  margin:0;
+  padding:0 19px;
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:17px;
+  background:rgba(255,255,255,.85);
+  box-shadow:0 7px 19px rgba(78,67,54,.045);
+  overflow:hidden;
+}
+html body .sponti-faq-items summary {
+  padding:17px 0;
+  color:#1d5047;
+}
+html body .sponti-faq-items details[open] {
+  background:rgba(255,255,255,.94);
+  border-color:rgba(21,85,76,.17);
+}
+html body .sponti-faq-items details p {
+  margin:0 0 20px;
+  color:#51695e;
+  overflow-wrap:anywhere;
+}
+html body .sponti-faq-items summary span {
+  border-color:rgba(21,85,76,.19);
+  background:#f5f5ec;
+}
+@media(max-width:800px) {
+  html body .sponti-faq {width:calc(100% - 24px);border-radius:24px;}
+  html body .sponti-faq-inner {
+    grid-template-columns:minmax(0,1fr);
+    gap:25px;
+    padding:clamp(20px,4.5vw,32px)!important;
+    border-radius:24px!important;
+  }
+  html body .sponti-faq-heading {position:static;}
+}
+@media(max-width:520px) {
+  html body .sponti-faq-items details {padding:0 14px;border-radius:14px;}
+  html body .sponti-faq-items summary {padding:15px 0;font-size:15px;}
+  html body .sponti-faq-items details p {font-size:14px;margin-bottom:17px;}
+}
