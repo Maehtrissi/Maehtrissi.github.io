@@ -516,3 +516,65 @@ html body :is(.provider-directory-heading,.provider-section-heading,.locations-h
    padding-block:28px!important;
  }
 }
+
+/* Explicit homepage cleanup: override legacy page-specific section backgrounds and ring pseudo-elements.
+   CTA alone keeps the featured colored panel. */
+html body:has(> main .hero) main > :is(
+ .categories-section,.locations-section,.how-section-band,
+ .testimonial-section,.sponti-faq
+) {
+ background:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ box-shadow:none!important;
+ border-radius:0!important;
+ overflow:visible!important;
+}
+html body:has(> main .hero) main > :is(
+ .categories-section,.locations-section,.how-section-band,
+ .testimonial-section,.sponti-faq
+)::before,
+html body:has(> main .hero) main > :is(
+ .categories-section,.locations-section,.how-section-band,
+ .testimonial-section,.sponti-faq
+)::after{
+ content:none!important;
+ display:none!important;
+}
+html body:has(> main .hero) main > .sponti-faq .sponti-faq-inner{
+ background:transparent!important;
+ border:0!important;
+ box-shadow:none!important;
+ border-radius:0!important;
+ overflow:visible!important;
+ padding:20px 0!important;
+}
+html body:has(> main .hero) main > .how-section-band .split-section {
+ background:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ box-shadow:none!important;
+ border-radius:0!important;
+}
+html body:has(> main .hero) main > .how-section-band .split-section::before,
+html body:has(> main .hero) main > .how-section-band .split-section::after{
+ content:none!important;
+ display:none!important;
+}
+html body:has(> main .hero) main > :is(
+ .categories-section,.locations-section,.how-section-band,.sponti-faq
+){
+ padding:clamp(30px,4.5vw,64px) clamp(16px,3vw,45px)!important;
+}
+html body:has(> main .hero) main > .cta-section{
+ background:var(--sponti-section-background)!important;
+ border:1px solid var(--sponti-section-border)!important;
+ border-radius:36px!important;
+ box-shadow:var(--sponti-section-shadow)!important;
+}
+@media(max-width:800px){
+ html body:has(> main .hero) main > :is(
+  .categories-section,.locations-section,.how-section-band,.sponti-faq
+ ){padding:28px 12px!important;}
+ html body:has(> main .hero) main > .cta-section{border-radius:24px!important;}
+}
