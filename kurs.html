@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="guest-signup.css?v=choice-20261017" />
     <link rel="stylesheet" href="/course-ux.css?v=20261105" />
   <link rel="stylesheet" href="/booking-pages.css?v=demo-20261019"><link rel="stylesheet" href="/course-artwork.css?v=pastel-20261019" />
+    <link rel="stylesheet" href="/course-detail-redesign.css?v=20261107" />
   </head>
     <body class="sponti-detail-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -40,6 +41,7 @@
             <img src="logo.png" alt="Sponti Logo">
             <span>Sponti</span>
           </a>
+          <nav class="detail-header-nav" aria-label="Kursnavigation"><a href="/kurse" aria-current="page">Kurse entdecken</a><a href="/kursanbieter">Für Kursanbieter</a><a href="/motivation">Über Sponti</a></nav>
           <details class="account-selector"><summary>Anmelden</summary><div class="account-selector-menu"><a href="/profil" data-customer-profile-link>Als Kunde anmelden</a><a href="/anbieter">Als Kursanbieter anmelden</a></div></details>
           <button class="site-menu-trigger" type="button" data-site-menu-trigger aria-expanded="false" aria-controls="site-menu">
             <span>Menü</span><span class="site-menu-icon" aria-hidden="true"><i></i><i></i></span>
@@ -53,7 +55,34 @@
         <a class="button button-primary site-menu-cta" data-open-booking href="/profil?mode=register">Sponti beitreten</a><a class="button site-menu-provider-cta" href="/anbieter?mode=register">Als Anbieter anmelden</a>
       </section>
     </div>
-    <main class="booking-main"><nav class="booking-breadcrumb"><a href="/kurse">← Alle Kurse</a><span> / </span><span id="course-breadcrumb">Kursdetails</span></nav><div id="detail-status" role="status">Kurs wird geladen …</div><section class="detail-shell" id="detail-shell" hidden><div class="detail-left"><div class="detail-visual" id="detail-visual"><span class="detail-category" id="detail-category"></span></div><p class="booking-eyebrow">DEIN NÄCHSTES ERLEBNIS</p><h1 id="detail-title"></h1><div class="detail-chips" id="detail-chips"></div><section class="detail-block"><h2>Über diesen Kurs</h2><p id="detail-description"></p></section><section class="detail-block"><h2>Gut zu wissen</h2><div id="detail-facts" class="detail-facts"></div></section><a class="booking-back" href="/kurse">← Weitere Kurse entdecken</a></div><aside class="booking-summary"><p class="booking-eyebrow">DEIN KURS</p><h2 id="detail-side-title"></h2><div class="summary-rows" id="detail-side-facts"></div><div class="summary-total"><span>Preis pro Person</span><strong id="detail-price"></strong></div><a class="booking-primary" id="detail-cta" href="#">Zur Buchung →</a><p class="booking-note">Buchungsmöglichkeiten und Bedingungen richten sich nach diesem Angebot.</p></aside></section></main><footer class="site-footer">
+    <main class="booking-main">
+      <nav class="booking-breadcrumb" aria-label="Brotkrumennavigation"><a href="/kurse">← Alle Kurse</a><span>/</span><span id="course-breadcrumb">Kursdetails</span></nav>
+      <div id="detail-status" role="status">Kurs wird geladen …</div>
+      <section class="detail-shell" id="detail-shell" hidden>
+        <div class="detail-left">
+          <div class="detail-intro">
+            <p class="booking-eyebrow">Dein nächstes Erlebnis</p>
+            <h1 id="detail-title"></h1>
+            <div class="detail-chips" id="detail-chips"></div>
+          </div>
+          <div class="detail-media-card">
+            <div class="detail-visual" id="detail-visual"><span class="detail-category" id="detail-category"></span></div>
+            <div class="detail-media-caption"><strong>Entdecken. Entscheiden. Erleben.</strong><span>Mit Sponti</span></div>
+          </div>
+          <section class="detail-block"><h2>Über diesen Kurs</h2><p id="detail-description"></p></section>
+          <section class="detail-block"><h2>Gut zu wissen</h2><div id="detail-facts" class="detail-facts"></div></section>
+          <a class="booking-back" href="/kurse">← Weitere Kurse entdecken</a>
+        </div>
+        <aside class="booking-summary">
+          <p class="booking-eyebrow">Dein Kurs</p>
+          <h2 id="detail-side-title"></h2>
+          <div class="summary-rows" id="detail-side-facts"></div>
+          <div class="summary-total"><span>Preis pro Person</span><strong id="detail-price"></strong></div>
+          <a class="booking-primary" id="detail-cta" href="#">Zur Buchung →</a>
+          <p class="booking-note">Buchungsmöglichkeiten und Bedingungen richten sich nach diesem Angebot.</p>
+        </aside>
+      </section>
+    </main><footer class="site-footer">
   <div class="footer-main">
     <div class="footer-brand">
       <a class="logo" href="/" aria-label="Sponti Startseite"><span>Sponti</span></a>
