@@ -380,3 +380,43 @@ html body .sponti-faq-items summary span {
   html body .sponti-faq-items summary {padding:15px 0;font-size:15px;}
   html body .sponti-faq-items details p {font-size:14px;margin-bottom:17px;}
 }
+
+/* Unified side gutters for large section panels, as on the CTA/FAQ screenshot.
+   Only outer, top-level sections are constrained; nested cards and grids retain
+   their existing widths. */
+:root {
+  --sponti-section-gutter:clamp(22px,3vw,48px);
+  --sponti-section-max-width:1280px;
+}
+html body main > :is(
+  .categories-section,.locations-section,.how-section-band,.testimonial-section,
+  .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+  .why-values,.why-team-voices,.provider-costs,.review-form-section,
+  .courses-heading,.partner-section
+),
+html body main > .sponti-faq {
+  box-sizing:border-box!important;
+  width:min(var(--sponti-section-max-width),calc(100% - (2 * var(--sponti-section-gutter))))!important;
+  max-width:var(--sponti-section-max-width)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+/* FAQ content uses the same side gutter, avoiding the previous wider edge. */
+html body main > .sponti-faq .sponti-faq-inner {
+  width:100%;
+  max-width:100%;
+}
+@media(max-width:800px) {
+  :root {--sponti-section-gutter:12px;}
+  html body main > :is(
+    .categories-section,.locations-section,.how-section-band,.testimonial-section,
+    .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+    .why-values,.why-team-voices,.provider-costs,.review-form-section,
+    .courses-heading,.partner-section
+  ),
+  html body main > .sponti-faq {
+    width:calc(100% - 24px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
