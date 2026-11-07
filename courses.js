@@ -6,6 +6,7 @@
  const buttons=[...document.querySelectorAll('.course-filters .filter')];
  const active=(attr)=>buttons.filter(b=>b.classList.contains('active')&&b.dataset[attr]&& !['alle','all'].includes(b.dataset[attr])).map(b=>b.dataset[attr]);
  const message=document.getElementById('course-status');
+ const searchTerm=(new URLSearchParams(location.search).get('suche')||'').trim().toLocaleLowerCase('de-CH');
  const todayToggle=document.getElementById('filter-today');
  const priceSlider=document.getElementById('filter-price');
  const priceLabel=document.getElementById('filter-price-value');
@@ -17,8 +18,8 @@
  function applyFilters(){
   const filters=[['filter','category'],['location','location'],['day','day'],['time','time']].map(([button,card])=>({values:active(button),card}));
   let shown=0;
-  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0;const visible=bookable&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
-  message.textContent=cards.length===0?'Aktuell sind keine Kurse veröffentlicht. Schau bald wieder vorbei oder tritt Sponti bei, um Kursinfos zu erhalten.':shown===0?'Für diese Auswahl gibt es aktuell keine Kurse. Ändere die Filter.':`${shown} ${shown===1?'Kurs':'Kurse'} verfügbar`;
+  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0;const searchOk=!searchTerm||(card.dataset.searchText||'').includes(searchTerm);const visible=bookable&&searchOk&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
+  message.textContent=cards.length===0?'Aktuell sind keine Kurse veröffentlicht. Schau bald wieder vorbei oder tritt Sponti bei, um Kursinfos zu erhalten.':shown===0?(searchTerm?'Keine Kurse für diese Suche gefunden. Versuche einen anderen Begriff.':'Für diese Auswahl gibt es aktuell keine Kurse. Ändere die Filter.'):`${shown} ${shown===1?'Kurs':'Kurse'} verfügbar`;
  }
  buttons.forEach(button=>button.addEventListener('click',()=>{
   const attr=['filter','location','day','time'].find(key=>button.dataset[key]);if(!attr)return;
@@ -46,7 +47,7 @@
   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(start).map(p=>[p.type,p.value]));
   const day={Mon:'mo',Tue:'th',Wed:'mi',Thu:'do',Fri:'fr',Sat:'sa',Sun:'so'}[parts.weekday];
   const category=categories[course.category]||[course.category,'clay'];
-  Object.assign(card.dataset,{category:course.category,location:course.region,day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats)});
+  Object.assign(card.dataset,{category:course.category,location:course.region,day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
   const image=element('div',`course-image course-image-${category[1]}`);
   image.append(element('span','course-category',category[0]),element('span','course-date',new Intl.DateTimeFormat('de-CH',{timeZone:'Europe/Zurich',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(start)));
   const body=element('div','course-card-body');
