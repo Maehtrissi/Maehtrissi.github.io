@@ -1,0 +1,140 @@
+/* SPONTI | Design System 2026-11-07
+   Approved mockup: cream canvas, fine green corner arcs, soft peach/lime glows,
+   floating white cards, dark-teal typography and restrained orange accents.
+   Keep existing page structure, forms and booking integrations intact. */
+:root{
+  --sponti-canvas:#f7f3ec;
+  --sponti-forest:#15554d;
+  --sponti-peach:#f8ac77;
+  --sponti-lime:#d9e9a4;
+  --sponti-paper:rgba(255,255,255,.88);
+  --sponti-edge:rgba(34,79,68,.10);
+  --sponti-shadow:0 18px 48px rgba(51,57,44,.085);
+}
+/* Use explicit high-specificity rules to supersede previous global background tests. */
+html{background:#f7f3ec!important;}
+html body,
+html body:has(.hero),
+html body:not(:has(.hero)),
+html body.sponti-detail-page,
+html body:not(.sponti-detail-page){
+  background-color:#f7f3ec!important;
+  background-image:
+    radial-gradient(circle 350px at -9% -1%,transparent 99.20%,rgba(19,85,76,.68) 99.42%,transparent 99.64%),
+    radial-gradient(circle 490px at -9% -1%,transparent 99.20%,rgba(19,85,76,.50) 99.42%,transparent 99.64%),
+    radial-gradient(circle 420px at 110% 107%,transparent 99.19%,rgba(19,85,76,.65) 99.40%,transparent 99.62%),
+    radial-gradient(circle 570px at 110% 107%,transparent 99.20%,rgba(19,85,76,.27) 99.42%,transparent 99.64%),
+    radial-gradient(ellipse 58% 61% at 107% 0%,rgba(255,171,102,.37),rgba(255,198,151,.13) 41%,transparent 79%),
+    radial-gradient(ellipse 58% 59% at -6% 99%,rgba(220,238,156,.38),rgba(220,238,156,.11) 43%,transparent 79%),
+    linear-gradient(120deg,#f8f5ef 0%,#f8f4ee 47%,#f8f2eb 100%)!important;
+  background-repeat:no-repeat!important;
+  background-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%!important;
+  background-attachment:fixed!important;
+}
+/* Navigation follows the reference: floating pill, glass-white, active orange line. */
+html body .site-header.sponti-unified-header{
+  max-width:1280px;
+  background:rgba(255,255,255,.84)!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:29px!important;
+  box-shadow:0 14px 44px rgba(59,58,46,.085)!important;
+  backdrop-filter:blur(16px);
+}
+html body .site-header.sponti-unified-header .logo span{color:#15554d!important}
+html body .site-header.sponti-unified-header .sponti-global-nav a[aria-current=page]::after{background:#f36d3f;}
+/* Typography & color across content, without overriding semantic control labels. */
+html body :is(.courses-heading h1,.info-page h1,.provider-hero h1,.account-intro h1,.why-intro h1,
+                .provider-directory-heading h2,.provider-section-heading h2,.locations-heading h2){
+  color:#15554d;
+  letter-spacing:-.04em;
+}
+html body :is(.courses-heading>p,.provider-hero p,.why-intro p,.account-intro p,.provider-section-heading p){
+  color:#596e65;line-height:1.72;
+}
+/* Consistent floating paper surfaces — do not change actual information or controls. */
+html body :is(.course-card,.provider-directory-card,.provider-benefit-card,.provider-cost-card,
+              .info-card,.account-card,.step-card,.story-card,.review-card,.provider-hero-card,
+              .hero-card,.whatsapp-community-card,.detail-media-card,.booking-summary,
+              .booking-step,.review-form-section,.provider-public-card){
+  background-color:rgba(255,255,255,.88)!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  border-radius:26px!important;
+  box-shadow:0 19px 48px rgba(48,60,49,.09)!important;
+}
+html body :is(.course-card,.provider-directory-card,.story-card,.provider-public-card){overflow:hidden;}
+html body :is(.account-card,.booking-step,.review-form-section,.info-card,.provider-cost-card,.provider-benefit-card){
+  backdrop-filter:blur(9px);
+}
+html body :is(.info-card,.provider-benefit-card,.provider-cost-card,.step-card,.review-form-section){
+  padding:clamp(20px,2.4vw,32px);
+}
+html body .courses-heading{
+  max-width:1220px;
+  background:rgba(255,255,255,.54)!important;
+  border:1px solid rgba(255,255,255,.66)!important;
+  border-radius:32px!important;
+  box-shadow:0 18px 49px rgba(48,60,49,.058)!important;
+}
+html body .course-grid{gap:clamp(18px,2.1vw,28px);}
+html body .course-card .course-card-body{padding:clamp(20px,2vw,27px);}
+html body .course-card .course-image{border-radius:22px 22px 0 0;}
+html body .course-card h2{color:#15554d;letter-spacing:-.025em;}
+html body .course-card .course-short-description{line-height:1.65;}
+html body :is(.course-filters .filter,.detail-chips span,.provider-offer-pill){
+  border-radius:999px;
+}
+html body :is(.booking-primary,.course-book,.provider-directory-more-button,.provider-hero .button-primary){
+  border-radius:999px!important;
+  background:linear-gradient(110deg,#14554c,#1a675b)!important;
+  color:#fff!important;
+  border:1px solid transparent!important;
+  box-shadow:0 9px 20px rgba(21,85,76,.14);
+}
+html body :is(.booking-primary,.course-book,.provider-directory-more-button):not(.is-disabled):hover{
+  background:linear-gradient(110deg,#216e60,#185a50)!important;
+}
+html body :is(.booking-primary,.course-book,.provider-directory-more-button,.button-primary,
+              .provider-hero .button-primary):focus-visible{
+  outline:3px solid #eb8455;outline-offset:3px;
+}
+html body :is(.info-grid,.provider-benefit-grid,.provider-costs-grid,.provider-directory-grid,.story-grid){
+  gap:clamp(18px,2.5vw,28px);
+}
+html body :is(.info-page,.account-shell,.provider-section,.provider-directory,.course-guide){
+  position:relative;z-index:1;
+}
+html body :is(.account-shell,.info-page,.provider-directory){max-width:1220px;}
+html body :is(.account-shell,.info-page) :is(input,textarea,select){
+  border-radius:12px;
+}
+/* Hero and supporting sections: soften the original dense color panels.
+   Reserve special illustrations, badges and colored cards intentionally. */
+html body .hero .hero-news-board{background:rgba(255,255,255,.92)!important;}
+html body :is(.categories-section,.testimonial-section,.cta-section,.how-section-band){
+  border-radius:30px;
+}
+html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.course-card,.provider-directory-card){
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.course-card,.provider-directory-card):hover{
+    transform:translateY(-3px);
+    box-shadow:0 24px 54px rgba(48,60,49,.13)!important;
+  }
+}
+@media(max-width:850px){
+  html body .site-header.sponti-unified-header{border-radius:22px!important;}
+  html body .courses-heading{margin:16px 12px 28px;border-radius:24px!important;padding:26px 18px;}
+  html body :is(.categories-section,.testimonial-section,.cta-section,.how-section-band){border-radius:22px;}
+  html body :is(.info-card,.provider-benefit-card,.provider-cost-card,.step-card,.review-form-section){padding:20px;}
+}
+@media(max-width:480px){
+  html body :is(.course-card,.provider-directory-card,.provider-benefit-card,.provider-cost-card,.info-card,.account-card,.step-card,
+                .story-card,.review-card,.detail-media-card,.booking-summary,.booking-step){border-radius:20px!important;}
+  html body .course-grid{gap:18px;}
+}
+@media(prefers-reduced-motion:reduce){
+  html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.course-card,.provider-directory-card){
+    transition:none!important;transform:none!important;
+  }
+}
