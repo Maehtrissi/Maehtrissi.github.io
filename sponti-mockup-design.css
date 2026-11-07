@@ -578,3 +578,134 @@ html body:has(> main .hero) main > .cta-section{
  ){padding:28px 12px!important;}
  html body:has(> main .hero) main > .cta-section{border-radius:24px!important;}
 }
+
+/* Deep green footer redesign – real brand symbol from /logo.png. */
+html body .site-footer,
+html body.provider-page .site-footer {
+  box-sizing:border-box;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0 clamp(22px,5vw,86px)!important;
+  border:0!important;
+  background:#193f37!important;
+  background-image:none!important;
+  color:#f6f1e8!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:hidden;
+}
+html body .site-footer::before,
+html body .site-footer::after {content:none!important;display:none!important;}
+html body .site-footer .footer-main{
+  display:grid;
+  grid-template-columns:minmax(230px,1fr) minmax(0,1.65fr);
+  gap:clamp(45px,8vw,145px);
+  align-items:start;
+  max-width:1380px;
+  margin-inline:auto;
+  padding:clamp(64px,7vw,106px) 0 clamp(46px,5vw,76px)!important;
+}
+html body .site-footer .footer-brand .logo{
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  text-decoration:none;
+  margin:0 0 20px;
+  color:#fbf5e9!important;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(37px,3.4vw,54px);
+  font-weight:700;
+  line-height:1.1;
+  letter-spacing:-.045em;
+}
+html body .site-footer .footer-brand .logo img{
+  display:block;
+  height:clamp(52px,5vw,74px)!important;
+  width:auto!important;
+  max-width:90px;
+  object-fit:contain;
+}
+html body .site-footer .footer-brand p{
+  max-width:395px;
+  margin:0;
+  color:#d7e3da!important;
+  font-size:clamp(14px,1.15vw,17px);
+  line-height:1.8;
+}
+html body .site-footer .footer-nav{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(20px,3vw,50px);
+  width:100%;
+}
+html body .site-footer .footer-column {
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  align-items:flex-start;
+  gap:13px;
+}
+html body .site-footer .footer-column > strong {
+  display:block;
+  margin:0 0 12px!important;
+  padding:0 0 12px!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:2px solid #f18b5f!important;
+  color:#faf4ea!important;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(19px,1.5vw,25px);
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:-.01em;
+  text-transform:none;
+}
+html body .site-footer .footer-column a {
+  color:#e3ebe4!important;
+  text-decoration:none;
+  font-size:clamp(13px,1.06vw,16px);
+  line-height:1.5;
+  font-weight:400;
+  transition:color .2s ease,transform .2s ease;
+}
+html body .site-footer .footer-column a:hover,
+html body .site-footer .footer-column a:focus-visible {
+  color:#ffaf83!important;
+}
+html body .site-footer .footer-column a:focus-visible {
+  outline:2px solid #ffaf83;
+  outline-offset:5px;
+  border-radius:3px;
+}
+html body .site-footer .footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  max-width:1380px;
+  margin:0 auto;
+  padding:23px 0 33px!important;
+  border-top:1px solid rgba(250,244,234,.38)!important;
+  color:#d7e3da!important;
+  font-size:12px;
+  letter-spacing:.015em;
+}
+html body .site-footer .footer-bottom span {color:inherit!important;}
+@media(max-width:1050px) {
+  html body .site-footer .footer-main{grid-template-columns:1fr;gap:40px;}
+  html body .site-footer .footer-nav{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:640px) {
+  html body .site-footer{padding:0 24px!important;}
+  html body .site-footer .footer-main {padding:54px 0 38px!important;gap:37px;}
+  html body .site-footer .footer-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 18px;}
+  html body .site-footer .footer-column:last-child{grid-column:1/-1;}
+  html body .site-footer .footer-column > strong{font-size:20px;}
+  html body .site-footer .footer-column a{font-size:14px;}
+  html body .site-footer .footer-bottom {padding:20px 0 27px!important;flex-wrap:wrap;}
+  html body .site-footer .footer-brand .logo img{height:55px!important;}
+}
+@media(max-width:370px) {
+  html body .site-footer .footer-nav {grid-template-columns:1fr;}
+  html body .site-footer .footer-column:last-child{grid-column:auto;}
+}
