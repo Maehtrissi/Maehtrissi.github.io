@@ -709,3 +709,89 @@ html body .site-footer .footer-bottom span {color:inherit!important;}
   html body .site-footer .footer-nav {grid-template-columns:1fr;}
   html body .site-footer .footer-column:last-child{grid-column:auto;}
 }
+
+/* Compact WhatsApp announcement, aligned with the refined Sponti visual language.
+   The full bar remains a single accessible link to the existing community. */
+html body > a.top-announcement {
+  display:flex!important;
+  box-sizing:border-box;
+  min-height:44px!important;
+  width:100%;
+  margin:0;
+  padding:7px 18px!important;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:0!important;
+  border-bottom:1px solid rgba(30,82,67,.10)!important;
+  background:linear-gradient(95deg,#e7eedc 0%,#f8f2e7 53%,#f4e6d8 100%)!important;
+  color:#215447!important;
+  font-family:'DM Sans',sans-serif;
+  font-size:12.5px!important;
+  font-weight:600;
+  letter-spacing:.004em!important;
+  line-height:1.4;
+  text-decoration:none!important;
+  transition:background .2s ease;
+}
+html body > a.top-announcement::before {
+  content:"";
+  display:inline-block;
+  width:8px;
+  height:8px;
+  flex:0 0 8px;
+  background:#3c8b68;
+  border-radius:50%;
+  box-shadow:0 0 0 4px rgba(60,139,104,.10);
+  margin-right:5px;
+}
+html body > a.top-announcement :is(.top-announcement-desktop,.top-announcement-mobile){
+  color:inherit!important;
+  line-height:1.4;
+}
+html body > a.top-announcement strong {
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  margin-left:6px;
+  padding:5px 13px;
+  border:1px solid rgba(30,82,67,.14);
+  border-radius:999px;
+  background:#1a5948;
+  color:#fffaf1!important;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  box-shadow:0 3px 9px rgba(24,75,58,.10);
+  transition:transform .2s ease,background .2s ease;
+}
+html body > a.top-announcement:hover {
+  background:linear-gradient(95deg,#dfead2 0%,#f5eddf 53%,#f1e0d0 100%)!important;
+}
+html body > a.top-announcement:hover strong,
+html body > a.top-announcement:focus-visible strong {
+  background:#124b3b;
+  transform:translateY(-1px);
+}
+html body > a.top-announcement:focus-visible {
+  outline:2px solid #ef8c5d;
+  outline-offset:-3px;
+}
+@media(max-width:620px) {
+  html body > a.top-announcement{
+    min-height:42px!important;
+    padding:6px 10px!important;
+    font-size:11.5px!important;
+  }
+  html body > a.top-announcement::before {width:7px;height:7px;flex-basis:7px;margin-right:0;}
+  html body > a.top-announcement strong{
+    min-height:26px;
+    padding:4px 11px;
+    font-size:11px;
+    margin-left:5px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+ html body > a.top-announcement,
+ html body > a.top-announcement strong{transition:none!important;}
+}
