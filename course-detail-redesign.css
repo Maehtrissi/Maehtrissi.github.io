@@ -1,0 +1,132 @@
+/* Sponti — premium course detail redesign | 2026-11-07.
+   Scope: only /kurs (individual course), preserve dynamic data and checkout links. */
+body.sponti-detail-page {
+  background-color:#f8f7f1;
+  background-image:
+    radial-gradient(circle 350px at -8% 5%,transparent 99.2%,rgba(21,79,71,.46) 99.5%,transparent 100%),
+    radial-gradient(circle 465px at -8% 5%,transparent 99.25%,rgba(21,79,71,.26) 99.5%,transparent 100%),
+    radial-gradient(circle 450px at 109% 84%,transparent 99.2%,rgba(21,79,71,.42) 99.5%,transparent 100%),
+    radial-gradient(circle 590px at 109% 84%,transparent 99.2%,rgba(21,79,71,.20) 99.5%,transparent 100%),
+    radial-gradient(ellipse at 100% 4%,rgba(255,167,103,.25),transparent 37%),
+    radial-gradient(ellipse at 0% 84%,rgba(215,242,119,.19),transparent 33%),
+    linear-gradient(145deg,#f8f7f1,#fffaf5 56%,#f8f7f1);
+  background-attachment:scroll;
+  color:#194d47;
+}
+.sponti-detail-page .top-announcement { position:relative;z-index:2; }
+.sponti-detail-page .site-header {
+  position:relative;z-index:30;
+  width:calc(100% - 48px);max-width:1260px;
+  margin:22px auto 0;padding:13px 24px;
+  min-height:84px;box-sizing:border-box;
+  background:rgba(255,255,255,.83);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:28px;
+  box-shadow:0 12px 42px rgba(47,61,49,.055);
+  backdrop-filter:blur(12px);
+  gap:22px;
+}
+.sponti-detail-page .site-header .logo {margin:0;flex-shrink:0;}
+.sponti-detail-page .site-header .logo img{height:55px;width:auto;}
+.sponti-detail-page .site-header .logo span{font-size:30px;color:#135048;}
+.sponti-detail-page .detail-header-nav{display:flex;align-items:center;gap:clamp(20px,3.5vw,55px);margin:auto;}
+.sponti-detail-page .detail-header-nav a{position:relative;padding:16px 3px;font-size:14px;font-weight:700;color:#47605a;white-space:nowrap;}
+.sponti-detail-page .detail-header-nav a[aria-current=page]{color:#154e46;}
+.sponti-detail-page .detail-header-nav a[aria-current=page]::after{position:absolute;content:"";bottom:7px;left:0;right:0;height:3px;background:#f47745;border-radius:4px;}
+.sponti-detail-page .detail-header-nav a:hover{color:#c16c47;}
+.sponti-detail-page .booking-main{max-width:1260px;padding:38px 34px 116px;}
+.sponti-detail-page .booking-breadcrumb{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:38px;font-size:13px;}
+.sponti-detail-page .booking-breadcrumb a{font-weight:700;text-decoration:none;color:#154e46;}
+.sponti-detail-page .booking-breadcrumb a:hover{text-decoration:underline;}
+.sponti-detail-page .detail-shell {
+  grid-template-columns:minmax(0,1.52fr) minmax(320px,.92fr);
+  gap:clamp(26px,4.5vw,64px);align-items:start;
+}
+.sponti-detail-page .detail-left {min-width:0;}
+.sponti-detail-page .detail-intro {padding:14px 2px 22px;}
+.sponti-detail-page .detail-intro .booking-eyebrow {
+  display:inline-flex;align-items:center;
+  color:#195049;background:rgba(199,220,150,.55);
+  padding:9px 16px;letter-spacing:.025em;border-radius:999px;
+  font-size:12px;margin:0 0 19px;
+}
+.sponti-detail-page .detail-left h1{font-family:"DM Sans",sans-serif;font-size:clamp(38px,4.35vw,61px);font-weight:700;line-height:1.12;letter-spacing:-.048em;margin:0 0 21px;color:#154f47;overflow-wrap:anywhere;}
+.sponti-detail-page .detail-chips{gap:10px;margin-top:18px;}
+.sponti-detail-page .detail-chips span{background:rgba(255,255,255,.75);border:1px solid rgba(25,67,56,.12);border-radius:999px;color:#345d4f;padding:10px 15px;font-size:12px;font-weight:650;}
+.sponti-detail-page .detail-media-card {
+  margin:22px 0 28px;padding:17px;
+  border:1px solid rgba(255,255,255,.86);
+  border-radius:29px;background:rgba(255,255,255,.83);
+  box-shadow:0 24px 60px rgba(50,63,49,.085);
+}
+.sponti-detail-page .detail-visual {
+  height:clamp(285px,30vw,425px);border-radius:23px;
+  background:radial-gradient(ellipse at 95% 10%,rgba(255,157,92,.45),transparent 55%),
+  radial-gradient(ellipse at 0% 91%,rgba(215,242,119,.54),transparent 47%),
+  linear-gradient(130deg,#f2f1e6,#f5e7d6 72%,#f8bb85);
+}
+.sponti-detail-page .detail-visual.detail-yoga-wellness {
+  background:radial-gradient(ellipse at 0% 90%,#dcebc0,transparent 59%),linear-gradient(130deg,#e8eee5,#f9e4d7);
+}
+.sponti-detail-page .detail-visual.detail-kochen-geniessen {
+  background:radial-gradient(ellipse at 95% 10%,#f5bd96,transparent 53%),linear-gradient(130deg,#f7ebdb,#e1ead7);
+}
+.sponti-detail-page .detail-visual::after {border-color:rgba(25,76,66,.10);box-shadow:0 0 0 50px rgba(255,255,255,.14),0 0 0 105px rgba(255,255,255,.09);}
+.sponti-detail-page .detail-category{left:20px;bottom:20px;background:rgba(255,254,250,.93);box-shadow:0 3px 18px rgba(28,57,45,.06);padding:12px 18px;}
+.sponti-detail-page .detail-media-caption{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 9px 3px;color:#355d53;font-size:13px;font-weight:600;}
+.sponti-detail-page .detail-media-caption strong{color:#154f47;}
+.sponti-detail-page .detail-block {margin:0 0 18px;padding:26px 30px;background:rgba(255,255,255,.8);border:1px solid rgba(25,67,56,.095);border-radius:22px;box-shadow:0 11px 34px rgba(41,62,45,.045);}
+.sponti-detail-page .detail-block h2 {font-family:"DM Sans",sans-serif;font-size:22px;letter-spacing:-.025em;line-height:1.25;color:#154f47;}
+.sponti-detail-page .detail-block p {color:#586e63;line-height:1.75;margin-bottom:0;overflow-wrap:anywhere;}
+.sponti-detail-page .detail-facts {gap:19px;}
+.sponti-detail-page .detail-fact strong {color:#254f44;}
+.sponti-detail-page .detail-fact span {overflow-wrap:anywhere;}
+.sponti-detail-page .booking-summary {
+  position:sticky;top:28px;padding:30px;
+  border:1px solid rgba(255,255,255,.85);border-radius:28px;
+  background:rgba(255,255,255,.88);
+  box-shadow:0 24px 60px rgba(50,63,49,.095);
+}
+.sponti-detail-page .booking-summary h2 {font-family:"DM Sans",sans-serif;font-size:clamp(22px,2.25vw,29px);letter-spacing:-.035em;line-height:1.2;overflow-wrap:anywhere;color:#154f47;}
+.sponti-detail-page .booking-summary .booking-eyebrow {color:#ae684b;}
+.sponti-detail-page .summary-row {align-items:start;line-height:1.55;}
+.sponti-detail-page .summary-row strong {overflow-wrap:anywhere;}
+.sponti-detail-page .summary-total strong {font-size:25px;color:#154f47;}
+.sponti-detail-page .booking-primary {
+  border:0;border-radius:999px;
+  background:linear-gradient(110deg,#15574e,#1f6558);
+  color:white;min-height:54px;box-shadow:0 9px 18px rgba(21,87,78,.17);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.sponti-detail-page .booking-primary:not(.is-disabled):hover {background:linear-gradient(110deg,#1e6b5e,#15574e);transform:translateY(-2px);box-shadow:0 13px 24px rgba(21,87,78,.21);}
+.sponti-detail-page .booking-note {margin:17px 0 0;}
+.sponti-detail-page .booking-back{color:#194d47;font-weight:700;}
+.sponti-detail-page #detail-status {padding:25px;border-radius:18px;background:rgba(255,255,255,.9);}
+@media (max-width:950px){
+  .sponti-detail-page .site-header{width:calc(100% - 32px);border-radius:22px;padding:12px 18px;}
+  .sponti-detail-page .detail-header-nav{gap:19px;}
+  .sponti-detail-page .detail-shell{grid-template-columns:minmax(0,1fr) minmax(260px,.80fr);gap:24px;}
+}
+@media (max-width:800px){
+  .sponti-detail-page .detail-header-nav{display:none;}
+  .sponti-detail-page .site-header{width:calc(100% - 24px);margin-top:12px;min-height:68px;border-radius:18px;padding:10px 13px;}
+  .sponti-detail-page .site-header .logo img{height:43px;}
+  .sponti-detail-page .site-header .logo span{font-size:24px;}
+  .sponti-detail-page .booking-main{padding:25px 18px 105px;}
+  .sponti-detail-page .booking-breadcrumb{margin-bottom:14px;}
+  .sponti-detail-page .detail-shell{grid-template-columns:1fr;}
+  .sponti-detail-page .booking-summary{position:static;}
+  .sponti-detail-page .detail-media-card{padding:12px;border-radius:23px;}
+  .sponti-detail-page .detail-visual{height:285px;border-radius:17px;}
+  .sponti-detail-page .detail-block{padding:22px;}
+  .sponti-detail-page .detail-left h1{font-size:clamp(34px,8vw,48px);}
+}
+@media (max-width:460px){
+  .sponti-detail-page .site-header{gap:8px;}
+  .sponti-detail-page .site-header .logo img{height:37px;}
+  .sponti-detail-page .site-header .logo span{font-size:21px;}
+  .sponti-detail-page .detail-visual{height:240px;}
+  .sponti-detail-page .detail-media-caption{font-size:12px;}
+  .sponti-detail-page .booking-summary{padding:24px;}
+}
+@media(prefers-reduced-motion:reduce){.sponti-detail-page .booking-primary{transition:none!important;transform:none!important;}}
