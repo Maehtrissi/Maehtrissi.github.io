@@ -217,3 +217,83 @@ html body .booking-main{padding-bottom:clamp(65px,8vw,120px);}
   html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.account-card,.review-form-section,.booking-step){padding:21px;}
   html body :is(.provider-benefit-grid,.provider-costs-grid,.provider-directory-grid,.info-grid,.story-grid,.why-values-grid){gap:17px;}
 }
+
+/* Section panels — approved warm sage/cream/peach sample, 07.11.2026.
+   Background layers replace decorative pseudo-elements to keep links, form controls
+   and interactive overlays clickable and accessible. */
+:root{
+ --sponti-section-border:rgba(182,157,138,.32);
+ --sponti-section-shadow:0 12px 32px rgba(82,70,56,.055);
+ --sponti-section-background:
+   radial-gradient(circle 520px at 110% 55%,transparent 76.4%,rgba(183,164,150,.23) 76.55%,transparent 76.8%),
+   radial-gradient(circle 670px at 110% 55%,transparent 76.4%,rgba(183,164,150,.14) 76.55%,transparent 76.8%),
+   radial-gradient(ellipse 34% 105% at 108% 50%,rgba(233,204,186,.53),transparent 90%),
+   radial-gradient(ellipse 33% 115% at -4% 52%,rgba(195,219,190,.62),transparent 90%),
+   linear-gradient(100deg,#e9ebdd 0%,#efe8de 35%,#efe5da 70%,#ecdacf 100%);
+}
+html body :is(
+  .categories-section,.locations-section,.how-section-band,.testimonial-section,
+  .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+  .why-values,.why-team-voices,.review-form-section,.provider-costs,.sponti-faq-inner,
+  .info-page > .info-grid,.account-shell > section
+) {
+  box-sizing:border-box;
+  border:1px solid var(--sponti-section-border)!important;
+  border-radius:36px!important;
+  background:var(--sponti-section-background)!important;
+  box-shadow:var(--sponti-section-shadow)!important;
+  background-repeat:no-repeat!important;
+}
+/* Main sections should have a visible breathing-space inset. Existing content remains. */
+html body :is(
+  .categories-section,.locations-section,.how-section-band,.testimonial-section,
+  .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+  .why-values,.why-team-voices,.provider-costs,.sponti-faq-inner
+) {
+  padding:clamp(28px,4vw,56px)!important;
+}
+html body :is(
+  .categories-section,.locations-section,.how-section-band,.testimonial-section,
+  .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+  .why-values,.why-team-voices,.provider-costs,.sponti-faq-inner
+) > * {max-width:100%;min-width:0;}
+html body :is(.info-page > .info-grid,.account-shell > section,.review-form-section) {
+  padding:clamp(20px,3vw,36px)!important;
+}
+html body :is(.categories-section,.locations-section,.how-section-band,.testimonial-section,
+  .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+  .why-values,.why-team-voices,.review-form-section,.provider-costs,.sponti-faq-inner)
+  :is(h2,h3,p) {max-width:100%;}
+/* Nested cards remain light for separation and readability. */
+html body :is(
+  .course-card,.provider-directory-card,.provider-benefit-card,.provider-cost-card,
+  .info-card,.account-card,.story-card,.review-card,.step-card,.booking-summary,
+  .booking-step,.provider-hero-card
+){
+  background:rgba(255,255,255,.88)!important;
+  border:1px solid rgba(255,255,255,.84)!important;
+  box-shadow:0 12px 29px rgba(78,67,54,.065)!important;
+  border-radius:24px!important;
+}
+html body :is(.testimonial-section,.cta-section,.why-problem,.why-values,
+ .why-team-voices,.provider-costs) :is(h2,h3) {color:#15554d;}
+html body :is(.testimonial-section,.cta-section,.why-problem,.why-values,
+ .why-team-voices,.provider-costs) p {color:#4e675c;}
+/* Keep controls and chips visually distinct from section canvas. */
+html body :is(.cta-section,.testimonial-section,.provider-costs) a.button,
+html body :is(.cta-section,.testimonial-section,.provider-costs) button {
+  position:relative;
+}
+@media(max-width:850px){
+  html body :is(
+   .categories-section,.locations-section,.how-section-band,.testimonial-section,
+   .cta-section,.provider-section,.provider-directory,.course-guide,.why-problem,
+   .why-values,.why-team-voices,.provider-costs,.sponti-faq-inner
+  ){
+   border-radius:24px!important;
+   padding:clamp(18px,4.5vw,28px)!important;
+  }
+  html body :is(.info-page > .info-grid,.account-shell > section,.review-form-section){
+   border-radius:24px!important;padding:20px!important;
+  }
+}
