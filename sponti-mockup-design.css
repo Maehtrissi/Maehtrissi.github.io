@@ -138,3 +138,82 @@ html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.
     transition:none!important;transform:none!important;
   }
 }
+
+/* V2: sampled from approved 1672×941 reference:
+   cream ~ #FAF4EC, peach glow ~ #FED7B6, lime ~ #E9EEBE.
+   Preserve legibility by keeping visual elements behind content. */
+html body,
+html body:has(.hero),
+html body:not(:has(.hero)),
+html body.sponti-detail-page,
+html body:not(.sponti-detail-page){
+  background-color:#faf4ec!important;
+  background-image:
+    radial-gradient(circle 425px at -15% -12%,transparent 99.48%,rgba(20,83,75,.70) 99.65%,transparent 99.85%),
+    radial-gradient(circle 590px at -15% -12%,transparent 99.48%,rgba(20,83,75,.52) 99.65%,transparent 99.85%),
+    radial-gradient(circle 480px at 116% 110%,transparent 99.48%,rgba(20,83,75,.70) 99.65%,transparent 99.85%),
+    radial-gradient(circle 620px at 116% 110%,transparent 99.48%,rgba(20,83,75,.28) 99.65%,transparent 99.85%),
+    radial-gradient(ellipse 55% 65% at 108% 8%,rgba(255,174,113,.47),rgba(255,205,169,.20) 45%,transparent 78%),
+    radial-gradient(ellipse 55% 65% at -8% 101%,rgba(215,234,145,.49),rgba(224,236,179,.19) 43%,transparent 77%),
+    linear-gradient(125deg,#faf4ec 0%,#f9f1e9 58%,#f8f0e7 100%)!important;
+}
+/* Consistent, readable rhythm between separate information groups. */
+html body main > :is(section,article):not(.hero):not(.courses-heading),
+html body main > .provider-directory {
+  margin-block:clamp(35px,5vw,84px);
+}
+html body main > :is(section,article):first-child {margin-top:0;}
+html body :is(.provider-section,.provider-directory,.course-guide,.review-form-section,.why-values,.why-team-voices) {
+  padding-block:clamp(34px,4.8vw,72px);
+}
+html body :is(.provider-section-heading,.provider-directory-heading,.why-values-heading,.why-team-voices-heading,
+              .locations-heading,.sponti-faq-heading) {
+  margin-bottom:clamp(20px,3vw,36px);
+}
+html body :is(.provider-section-heading,.provider-directory-heading,.why-values-heading,.why-team-voices-heading,
+              .locations-heading,.sponti-faq-heading) h2 {
+  color:#15554d;
+  font-size:clamp(29px,3.5vw,48px);
+  line-height:1.13;
+  letter-spacing:-.035em;
+}
+html body :is(.provider-benefit-grid,.provider-costs-grid,.provider-directory-grid,.info-grid,.story-grid,.why-values-grid){
+  align-items:stretch;
+  gap:clamp(16px,2.5vw,28px);
+}
+html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.account-card,.review-form-section,.booking-step){
+  padding:clamp(22px,2.7vw,36px);
+}
+html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.account-card,.review-form-section,.booking-step) :is(h2,h3){
+  color:#15554d;line-height:1.22;
+}
+html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.account-card) p{
+  line-height:1.72;
+}
+/* Keep panels distinct from the canvas, without overpowering the mockup's soft paper surfaces. */
+html body :is(.provider-hero-card,.course-card,.provider-directory-card,.info-card,.account-card,.provider-benefit-card,
+              .provider-cost-card,.booking-summary,.booking-step,.review-form-section){
+  background:rgba(255,255,255,.90)!important;
+  border:1px solid rgba(255,255,255,.86)!important;
+  box-shadow:0 17px 46px rgba(60,55,45,.085)!important;
+}
+html body :is(.course-card,.provider-directory-card,.provider-benefit-card,.provider-cost-card,.info-card,.account-card) {
+  min-width:0;
+}
+html body :is(.categories-section,.how-section-band,.testimonial-section,.cta-section,.provider-costs,.why-values){
+  margin-inline:auto;
+  max-width:1280px;
+}
+html body .course-grid{align-items:stretch;}
+html body .course-card{display:flex;flex-direction:column;}
+html body .course-card .course-card-body{display:flex;flex:1;flex-direction:column;}
+html body .course-card .course-bottom{margin-top:auto;}
+html body .account-shell{padding-bottom:clamp(50px,7vw,110px);}
+html body .info-page{padding-bottom:clamp(48px,6vw,94px);}
+html body .booking-main{padding-bottom:clamp(65px,8vw,120px);}
+@media(max-width:850px){
+  html body main > :is(section,article):not(.hero):not(.courses-heading){margin-block:34px;}
+  html body :is(.provider-section,.provider-directory,.course-guide,.why-values,.why-team-voices){padding-block:34px;}
+  html body :is(.provider-benefit-card,.provider-cost-card,.info-card,.step-card,.account-card,.review-form-section,.booking-step){padding:21px;}
+  html body :is(.provider-benefit-grid,.provider-costs-grid,.provider-directory-grid,.info-grid,.story-grid,.why-values-grid){gap:17px;}
+}
