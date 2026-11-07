@@ -420,3 +420,99 @@ html body main > .sponti-faq .sponti-faq-inner {
     margin-right:auto!important;
   }
 }
+
+/* Reduced editorial layout — 07.11.2026.
+   Keep the approved global background, floating navigation, and smaller cards.
+   Reserve the colored section panel only for focused calls to action. */
+html body main :is(
+ .categories-section,.locations-section,.how-section-band,.testimonial-section,
+ .provider-section,.provider-directory,.course-guide,.why-problem,.why-values,
+ .why-team-voices,.provider-costs,.partner-section
+),
+html body .sponti-faq-inner,
+html body .info-page > .info-grid,
+html body .account-shell > section,
+html body main > .review-form-section {
+ background:transparent!important;
+ background-image:none!important;
+ border-color:transparent!important;
+ border-width:0!important;
+ box-shadow:none!important;
+}
+/* Restore an open editorial canvas between major sections. */
+html body main > :is(
+ .categories-section,.locations-section,.how-section-band,.testimonial-section,
+ .provider-section,.provider-directory,.course-guide,.why-problem,.why-values,
+ .why-team-voices,.provider-costs,.partner-section
+),
+html body main > .sponti-faq {
+ border-radius:0!important;
+ overflow:visible!important;
+}
+html body main :is(
+ .categories-section,.locations-section,.how-section-band,.testimonial-section,
+ .provider-section,.provider-directory,.course-guide,.why-problem,.why-values,
+ .why-team-voices,.provider-costs,.partner-section
+)::before,
+html body main :is(
+ .categories-section,.locations-section,.how-section-band,.testimonial-section,
+ .provider-section,.provider-directory,.course-guide,.why-problem,.why-values,
+ .why-team-voices,.provider-costs,.partner-section
+)::after {
+ content:none!important;
+ display:none!important;
+}
+/* FAQ questions remain distinct white cards, but the enclosing panel is gone. */
+html body .sponti-faq {
+ background:transparent!important;
+ box-shadow:none!important;
+ border:0!important;
+ overflow:visible!important;
+}
+html body .sponti-faq-inner {
+ padding:clamp(16px,2vw,28px) 0!important;
+ border-radius:0!important;
+ overflow:visible!important;
+}
+html body .sponti-faq-items details{
+ background:rgba(255,255,255,.90)!important;
+ border:1px solid rgba(255,255,255,.85)!important;
+ box-shadow:0 10px 28px rgba(48,60,49,.07)!important;
+}
+/* Pricing and provider content now sit directly on the page background. */
+html body .provider-costs,
+html body .provider-section,
+html body .provider-directory {background:transparent!important;}
+/* Preserve the warm accent on the one large conversion banner. */
+html body .cta-section {
+ background:var(--sponti-section-background)!important;
+ border:1px solid var(--sponti-section-border)!important;
+ border-radius:36px!important;
+ box-shadow:var(--sponti-section-shadow)!important;
+ overflow:hidden!important;
+}
+html body .cta-section::before,
+html body .cta-section::after {pointer-events:none!important;}
+/* White elements inside the clean sections provide hierarchy. */
+html body :is(
+ .course-card,.category-card,.provider-directory-card,.provider-benefit-card,
+ .provider-cost-card,.info-card,.account-card,.story-card,.step-card,
+ .review-card,.booking-summary,.booking-step
+){
+ border-radius:24px!important;
+ box-shadow:0 12px 30px rgba(48,60,49,.065)!important;
+}
+html body :is(.course-guide,.provider-directory,.provider-section,.why-values,.why-team-voices){
+ padding-block:clamp(28px,4vw,58px)!important;
+}
+html body .sponti-faq-heading h2,
+html body :is(.provider-directory-heading,.provider-section-heading,.locations-heading) h2{
+ color:#15554d;
+}
+@media(max-width:800px){
+ html body .sponti-faq-inner{padding:14px 0!important;}
+ html body .cta-section{border-radius:24px!important;}
+ html body :is(.course-guide,.provider-directory,.provider-section,.why-values,.why-team-voices){
+   padding-block:28px!important;
+ }
+}
