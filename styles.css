@@ -2635,3 +2635,18 @@ body:not(.sponti-detail-page) :is(.account-shell,.info-page) :is(button,a,input,
   transition:none!important;transform:none!important;
  }
 }
+
+/* Sponti brand canvas — matched to the user-provided reference image (07.11.2026).
+   Shared across every HTML page using styles.css, including home, course,
+   booking, account and legal pages. Keep foreground cards unchanged. */
+:root { --sponti-page:#f6f1ea; }
+html, body,
+body:has(.hero),
+body:not(:has(.hero)),
+body.sponti-detail-page,
+body:not(.sponti-detail-page) {
+  background:#f6f1ea !important;
+  background-color:#f6f1ea !important;
+  background-image:none !important;
+  background-attachment:scroll !important;
+}
