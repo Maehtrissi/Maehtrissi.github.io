@@ -861,3 +861,17 @@ html body .booking-fact-icon{
  margin-right:7px;
  vertical-align:middle;
 }
+
+/* WhatsApp CTA arrow is a consistent SVG, not a font symbol. */
+html body > a.top-announcement .sponti-banner-arrow{
+  display:inline-block;
+  width:15px;
+  height:15px;
+  vertical-align:-3px;
+  margin-left:7px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
