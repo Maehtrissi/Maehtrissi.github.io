@@ -2363,3 +2363,17 @@ body {
     radial-gradient(circle at 7% 56%,rgba(215,242,119,.10),transparent 30%);
   background-attachment:scroll;
 }
+
+/* Keep decorative outline rings on all secondary pages.
+   The homepage stays intentionally calmer and ring-free in its page canvas. */
+body:not(:has(.hero)) {
+  background-color:#f7f7f1;
+  background-image:
+    radial-gradient(circle 360px at 102% 19%,transparent 99.25%,rgba(25,52,45,.12) 99.6%,transparent 100%),
+    radial-gradient(circle 260px at 102% 19%,transparent 99.05%,rgba(25,52,45,.10) 99.55%,transparent 100%),
+    radial-gradient(circle 325px at -5% 83%,transparent 99.2%,rgba(25,52,45,.12) 99.6%,transparent 100%),
+    radial-gradient(circle 220px at -5% 83%,transparent 99.1%,rgba(25,52,45,.10) 99.55%,transparent 100%),
+    radial-gradient(circle at 91% 5%,rgba(237,141,89,.10),transparent 34%),
+    radial-gradient(circle at 7% 56%,rgba(215,242,119,.10),transparent 30%);
+  background-attachment:scroll;
+}
