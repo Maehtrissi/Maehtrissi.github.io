@@ -2650,3 +2650,18 @@ body:not(.sponti-detail-page) {
   background-image:none !important;
   background-attachment:scroll !important;
 }
+
+/* Screenshot-matched canvas correction — subtle warm left-to-right variation.
+   Reference sampled: left #F7F3EB, right #F6F0E8. */
+:root { --sponti-page:#f6f1ea; }
+html, body,
+body:has(.hero),
+body:not(:has(.hero)),
+body.sponti-detail-page,
+body:not(.sponti-detail-page) {
+  background-color:#f6f1ea !important;
+  background-image:linear-gradient(100deg,#f7f3eb 0%,#f6f2eb 38%,#f6f0e8 100%) !important;
+  background-repeat:no-repeat !important;
+  background-size:cover !important;
+  background-attachment:fixed !important;
+}
