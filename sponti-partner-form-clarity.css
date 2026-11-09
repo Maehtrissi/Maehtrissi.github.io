@@ -1,0 +1,34 @@
+/* Clear provider inquiry layout; preserve existing form names and submission handlers. */
+.sponti-partner-clear{align-items:start!important;gap:clamp(28px,5vw,85px)!important}
+.sponti-partner-clear .partner-copy{max-width:590px}
+.sponti-partner-clear .partner-copy h2{margin-bottom:22px}
+.sponti-partner-clear .section-intro{font-size:16px;line-height:1.75;max-width:550px}
+.sponti-partner-info{margin-top:34px}
+.sponti-partner-info h3{font-size:19px;color:#123e31;margin:0 0 20px}
+.sponti-partner-process{padding:0;margin:0;list-style:none;display:grid;gap:20px}
+.sponti-partner-process li{display:flex;align-items:flex-start;gap:16px}
+.sponti-process-number{display:grid;place-items:center;flex:0 0 42px;height:42px;border-radius:14px;background:#e6efdf;color:#165447;font-size:13px;font-weight:800}
+.sponti-partner-process strong{font-size:15px;color:#153e32}
+.sponti-partner-process p{margin:5px 0 0;font-size:14px;line-height:1.6;color:#587166}
+.sponti-partner-pricing-note{margin-top:35px;padding:22px 24px;background:#f0f3e9;border:1px solid #dfe8d9;border-radius:20px}
+.sponti-partner-pricing-note strong{color:#16493b;font-size:16px}
+.sponti-partner-pricing-note p{font-size:14px;line-height:1.7;margin:10px 0}
+.sponti-partner-pricing-note a{font-weight:700;color:#145746;text-decoration:underline;text-underline-offset:4px}
+.sponti-partner-clear .partner-direct{font-size:14px;line-height:1.7;margin-top:25px}
+.sponti-partner-form{background:#fffefa!important;border:1px solid #e7e9e0!important;border-radius:26px!important;box-shadow:0 15px 35px rgba(20,60,45,.055)!important;padding:clamp(22px,3vw,36px)!important;display:block!important}
+.sponti-form-intro{margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid #e7e9e0}
+.sponti-form-eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#e8794e;font-weight:800}
+.sponti-form-intro h3{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,2.5vw,35px);line-height:1.2;color:#123e31;margin:8px 0}
+.sponti-form-intro p{font-size:14px;line-height:1.6;color:#587166;margin:0}
+.sponti-form-group{display:grid;gap:15px;min-width:0;border:0;padding:0 0 25px;margin:0 0 22px;border-bottom:1px solid #e7e9e0}
+.sponti-form-group legend{display:block;width:100%;font-size:16px;font-weight:800;color:#163f32;margin-bottom:19px;padding:0}
+.sponti-form-group legend span{display:inline-grid;place-items:center;width:29px;height:29px;margin-right:9px;border-radius:50%;background:#e6efdf;color:#175548;font-size:12px}
+.sponti-partner-form .sponti-form-group label{display:flex!important;flex-direction:column!important;gap:7px!important;font-size:13px;font-weight:700;color:#234c3f}
+.sponti-partner-form .sponti-form-group input,.sponti-partner-form .sponti-form-group select,.sponti-partner-form .sponti-form-group textarea{width:100%;min-height:48px;border:1px solid #d8e0d8;border-radius:11px;background:white;padding:12px 14px;color:#173e32;font-size:14px}
+.sponti-partner-form .sponti-form-group textarea{min-height:100px;resize:vertical}
+.sponti-partner-form .sponti-form-group input:focus,.sponti-partner-form .sponti-form-group select:focus,.sponti-partner-form .sponti-form-group textarea:focus{outline:2px solid #9bc3ad;outline-offset:1px}
+.sponti-required{color:#dd704a;display:inline}
+.sponti-form-required-note{font-size:12px;color:#62766a;line-height:1.5;margin:0 0 17px}
+.sponti-partner-form>button[type=submit]{width:100%;background:#175b4a!important;color:#fff!important;border-radius:999px!important;padding:16px!important;font-weight:750}
+.sponti-partner-form>button[type=submit]:hover{background:#0e4538!important}
+@media(max-width:780px){.sponti-partner-clear{grid-template-columns:1fr!important}.sponti-partner-clear .partner-copy{max-width:none}.sponti-partner-form{width:100%}}
