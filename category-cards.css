@@ -76,3 +76,12 @@
 @media(prefers-reduced-motion:reduce){
   .categories-section .category-card{transition:none}
 }
+
+/* 2026 Sponti category ring-and-icon design */
+.categories-section .category-card{overflow:hidden;isolation:isolate}
+.categories-section .category-card::before{inset:auto -84px -170px auto;width:360px;height:360px;border:1px solid color-mix(in srgb,var(--card-end) 75%,#ffffff);box-shadow:0 0 0 36px color-mix(in srgb,var(--card-end) 45%,transparent),0 0 0 74px color-mix(in srgb,var(--card-end) 24%,transparent)}
+.categories-section .category-card .category-icon-disc{position:absolute;right:24px;bottom:22px;display:flex;align-items:center;justify-content:center;width:104px;height:104px;border-radius:50%;background:rgba(255,250,243,.88);border:1px solid rgba(255,255,255,.75);color:#123e30;z-index:2;pointer-events:none;box-shadow:0 4px 16px rgba(29,59,47,.04)}
+.categories-section .category-card .category-icon-disc svg{width:58%;height:58%}
+.categories-section .category-card>strong{position:relative;z-index:3;max-width:60%}
+.categories-section .category-card>span:first-child{position:relative;z-index:3}
+@media(max-width:760px){.categories-section .category-card::before{width:225px;height:225px;right:-80px;bottom:-112px;box-shadow:0 0 0 24px color-mix(in srgb,var(--card-end) 40%,transparent),0 0 0 48px color-mix(in srgb,var(--card-end) 20%,transparent)}.categories-section .category-card .category-icon-disc{right:12px;bottom:12px;width:58px;height:58px}.categories-section .category-card>strong{max-width:70%}}
