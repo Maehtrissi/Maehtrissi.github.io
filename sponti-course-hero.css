@@ -62,3 +62,17 @@ html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo:ho
 
 /* Restore the original cream/peach hero background from before the seamless-background experiment. */
 html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradient(ellipse at 92% 12%,#ffe2d2aa,transparent 34%),radial-gradient(ellipse at 4% 94%,#e8eed8a8,transparent 35%),#fff8f1!important;background-image:radial-gradient(ellipse at 92% 12%,#ffe2d2aa,transparent 34%),radial-gradient(ellipse at 4% 94%,#e8eed8a8,transparent 35%)!important;background-color:#fff8f1!important}
+
+/* Homepage quick search above course category icons */
+.sponti-hero-search{position:relative;z-index:4;display:grid;grid-template-columns:1fr 1fr 1.25fr auto;align-items:stretch;max-width:1300px;margin:24px auto 12px;padding:9px;background:#fffdfb;border:1px solid #e9e6df;border-radius:999px;box-shadow:0 12px 28px rgba(33,62,48,.11)}
+.sponti-hero-search-field{display:flex;align-items:center;gap:13px;min-width:0;padding:8px 22px;border-right:1px solid #d8dfd7;color:#174d3d}
+.sponti-hero-search-field:nth-child(3){border-right:0}
+.sponti-search-field-icon{font-size:27px;line-height:1;color:#175543}
+.sponti-search-field-inner{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.sponti-search-label{font-size:12px;font-weight:800;color:#1d5545}
+.sponti-hero-search input,.sponti-hero-search select{display:block;width:100%;min-width:0;border:0;outline-offset:3px;background:transparent;color:#254c40;font:500 14px "DM Sans",sans-serif;padding:3px 0;box-shadow:none}
+.sponti-hero-search button{border:0;border-radius:999px;background:linear-gradient(110deg,#ff9c43,#ff703b);color:white;font:800 16px "DM Sans",sans-serif;padding:15px 30px;cursor:pointer;white-space:nowrap}
+.sponti-hero-search button span{margin-left:12px}
+.sponti-hero-quick-categories{margin-top:28px!important}
+@media(max-width:800px){.sponti-hero-search{grid-template-columns:1fr 1fr;border-radius:26px;gap:4px;padding:10px}.sponti-hero-search-field{border:0;padding:11px 13px}.sponti-hero-search-field:nth-child(1){border-right:1px solid #e2e5df}.sponti-hero-search-field:nth-child(3){grid-column:1/-1;border-top:1px solid #e2e5df}.sponti-hero-search button{grid-column:1/-1;width:100%;padding:15px}}
+@media(max-width:450px){.sponti-hero-search{grid-template-columns:1fr}.sponti-hero-search-field,.sponti-hero-search-field:nth-child(1){grid-column:1;border:0;border-bottom:1px solid #e2e5df}.sponti-hero-search-field:nth-child(3){border-top:0}}
