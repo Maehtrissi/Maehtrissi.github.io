@@ -875,3 +875,17 @@ html body > a.top-announcement .sponti-banner-arrow{
   stroke-linecap:round;
   stroke-linejoin:round;
 }
+
+/* Footer brand legibility: keep Sponti wordmark readable on dark green. */
+html body .site-footer .footer-brand a.logo,
+html body .site-footer .footer-brand a.logo span,
+html body.provider-page .site-footer .footer-brand a.logo,
+html body.provider-page .site-footer .footer-brand a.logo span {
+  color:#fff9ed!important;
+  -webkit-text-fill-color:#fff9ed!important;
+  opacity:1!important;
+  visibility:visible!important;
+  text-shadow:none!important;
+  background-image:none!important;
+  filter:none!important;
+}
