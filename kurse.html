@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/course-ux.css?v=20261105" />
   <link rel="stylesheet" href="/course-artwork.css?v=pastel-20261019" />
   <link rel="stylesheet" href="/sponti-mockup-design.css?v=20261107-arrow-svg" />
+  <link rel="stylesheet" href="/sponti-course-discovery.css?v=20261109" />
 </head>
     <body class="courses-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -55,11 +56,25 @@
       </section>
     </div>
     <main>
-      <section class="courses-heading">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Kurzfristig freie Plätze</div>
-        <h1>Kurse in der<br /><em>Schweiz entdecken.</em></h1>
-        <p>Finde mit Sponti kurzfristig freie Kursplätze in Zug, Zürich, Luzern, Schwyz und Aargau. Wähle deine Kategorie, deinen Ort und die passende Zeit.</p>
-        <div class="course-filters" aria-label="Kurse filtern">
+      <section class="courses-heading sponti-course-discovery">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Entdecke Sponti</div>
+        <h1>Dein nächstes<br><em>Erlebnis.</em></h1>
+        <p class="sponti-course-lead">Finde freie Kursplätze in deiner Nähe – spontan und unkompliziert.</p>
+        <form class="sponti-course-search" role="search" action="/kurse" method="get"><label for="sponti-course-query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/></svg><span class="sr-only">Kurs, Ort oder Aktivität suchen</span></label><input id="sponti-course-query" type="search" name="suche" placeholder="Kurs, Ort oder Aktivität suchen …" autocomplete="off"></form>
+        <div class="sponti-course-quick">
+          <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><select id="sponti-quick-location" aria-label="Standort wählen"><option value="all">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="schwyz">Schwyz</option><option value="aargau">Aargau</option><option value="andere">Weitere Orte</option></select></label>
+          <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><select id="sponti-quick-day" aria-label="Wochentag wählen"><option value="all">Alle Tage</option><option value="mo">Montag</option><option value="th">Dienstag</option><option value="mi">Mittwoch</option><option value="do">Donnerstag</option><option value="fr">Freitag</option><option value="sa">Samstag</option><option value="so">Sonntag</option></select></label>
+          <button type="button" class="sponti-quick-more" id="sponti-toggle-filters" aria-controls="sponti-advanced-filters" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg> Filter</button>
+        </div>
+        <button class="sponti-course-submit" type="button" id="sponti-show-courses">Kurse entdecken <span aria-hidden="true">→</span></button>
+        <div class="sponti-category-heading"><h2>Beliebte Kategorien</h2><button type="button" id="sponti-reset-categories">Alle anzeigen <span aria-hidden="true">→</span></button></div>
+        <div class="sponti-category-tiles"><button type="button" class="sponti-category-tile yoga" data-quick-category="yoga-wellness" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4-3-7-7-7-11 4 0 6 2 7 5 1-3 3-5 7-5 0 4-3 8-7 11Z"/><path d="M12 15c-3-4-3-8 0-12 3 4 3 8 0 12Z"/></svg><span>Yoga &amp; Wellness</span></button>
+<button type="button" class="sponti-category-tile dance" data-quick-category="tanz-bewegung" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="m8 10 5-3 3 4 4 1M13 7l-2 7-5 3M11 14l5 3 2 4M11 14l-2 7"/></svg><span>Tanz &amp; Bewegung</span></button>
+<button type="button" class="sponti-category-tile art" data-quick-category="kunst-handwerk" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 1-4 2 2 0 0 1 1-4h2a3 3 0 0 0 3-3 9 9 0 0 0-9-7Z"/><circle cx="7" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="16" cy="8" r="1"/></svg><span>Kunst &amp; Handwerk</span></button>
+<button type="button" class="sponti-category-tile food" data-quick-category="kochen-geniessen" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v18M16 21V3c4 2 5 6 5 10h-5"/></svg><span>Kochen &amp; Geniessen</span></button>
+<button type="button" class="sponti-category-tile photo" data-quick-category="fotografie-design" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="2"/><circle cx="12" cy="13.5" r="4"/><path d="M8 6l1-3h6l1 3"/></svg><span>Fotografie &amp; Design</span></button>
+<button type="button" class="sponti-category-tile nature" data-quick-category="natur-draussen" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 20 7-12 4 7 3-5 6 10H2Z"/></svg><span>Natur &amp; Draussen</span></button></div>
+        <div class="sponti-advanced-filters" id="sponti-advanced-filters" hidden>        <div class="course-filters" aria-label="Kurse filtern">
           <button class="filter active" data-filter="alle">Alle Kurse</button>
           <button class="filter" data-filter="yoga-wellness">Yoga &amp; Wellness</button>
           <button class="filter" data-filter="kochen-geniessen">Kochen &amp; Genießen</button>
@@ -100,6 +115,7 @@
           <label class="today-filter-pill"><input id="filter-today" type="checkbox"><span>Heute noch verfügbar</span></label>
           <label class="price-filter-label" for="filter-price"><span>Maximalpreis <output id="filter-price-value">Alle Preise</output></span><input id="filter-price" type="range" min="0" max="200" step="5" value="200"></label>
         </div>
+</div>
       </section>
             <p id="course-status" role="status" aria-live="polite" style="margin: 0 auto 24px; max-width: 1200px; padding: 0 24px">Kurse werden geladen …</p>
       <section class="course-grid" aria-label="Verfügbare Kurse" aria-busy="true"></section>
@@ -185,7 +201,8 @@
     <script src="script.js?v=global-header-20261107"></script>
     <script src="courses.js?v=search-20261107"></script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
-<script type="module" src="provider-directory.js?v=provider-cards-20261026"></script></body>
+<script type="module" src="provider-directory.js?v=provider-cards-20261026"></script>  <script src="/sponti-course-discovery.js?v=20261109" defer></script>
+</body>
 </html>
 
 
