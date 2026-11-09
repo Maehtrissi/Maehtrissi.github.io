@@ -60,6 +60,5 @@ html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo-ri
 html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo:hover{z-index:5!important;transform:translateY(-7px) rotate(0deg)!important}
 @media(max-width:600px){html body .sponti-course-hero .sponti-course-hero-gallery{height:270px!important;min-height:270px!important}html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo{border-width:4px!important;border-radius:22px!important}html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo-left{top:66px!important;height:180px!important}html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo-main{top:8px!important;height:245px!important}html body .sponti-course-hero .sponti-course-hero-gallery>a.sponti-hero-photo-right{top:70px!important;height:175px!important}}
 
-/* Breathing room below navigation without creating a separate background strip. */
-html body:has(.sponti-course-hero) .sponti-course-hero{padding-top:clamp(95px,9vw,145px)!important}
-@media(max-width:600px){html body:has(.sponti-course-hero) .sponti-course-hero{padding-top:65px!important}}
+/* Restore the original cream/peach hero background from before the seamless-background experiment. */
+html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradient(ellipse at 92% 12%,#ffe2d2aa,transparent 34%),radial-gradient(ellipse at 4% 94%,#e8eed8a8,transparent 35%),#fff8f1!important;background-image:radial-gradient(ellipse at 92% 12%,#ffe2d2aa,transparent 34%),radial-gradient(ellipse at 4% 94%,#e8eed8a8,transparent 35%)!important;background-color:#fff8f1!important}
