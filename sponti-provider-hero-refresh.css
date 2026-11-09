@@ -1,0 +1,17 @@
+/* Scoped redesign of provider landing hero; original CTA behavior retained */
+.provider-page .provider-hero-refresh{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:center!important;gap:clamp(24px,4vw,65px)!important;max-width:1240px!important;margin:0 auto!important;padding:clamp(55px,7vw,100px) 28px!important;min-height:0!important}
+.provider-hero-refresh .provider-content{min-width:0;max-width:600px}
+.provider-hero-refresh .provider-content h1{font-size:clamp(42px,4.3vw,68px)!important;line-height:1.12!important;letter-spacing:-.035em;overflow-wrap:normal}
+.provider-hero-refresh .provider-content h1 em{color:#ed885b}
+.provider-hero-refresh .provider-content p{max-width:520px;font-size:clamp(16px,1.55vw,20px)!important;line-height:1.6!important;margin:24px 0 32px!important}
+.provider-hero-refresh .provider-content .button{display:inline-flex;align-items:center;justify-content:center;gap:18px;max-width:100%;min-height:58px;border-radius:999px!important;padding:15px 25px!important;white-space:normal;text-align:center}
+.provider-value-panel{min-width:0;background:rgba(255,255,255,.95);border:1px solid rgba(232,229,218,.85);border-radius:30px;padding:clamp(22px,3vw,38px);box-shadow:0 18px 48px rgba(28,57,43,.07);transform:none!important}
+.provider-value-label{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#164537;font-size:12px;letter-spacing:.12em;font-weight:800}
+.provider-value-label svg{width:21px;height:21px;color:#eb8a58}
+.provider-value-panel h2{font-family:Georgia,serif;color:#173f33;font-size:clamp(28px,2.5vw,40px);line-height:1.17;letter-spacing:-.025em;margin:27px 0}
+.provider-value-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.provider-value-item{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-width:0;min-height:143px;border-radius:20px;padding:18px;color:#164537;font-weight:700;font-size:clamp(13px,1.2vw,16px);line-height:1.35}
+.provider-value-item svg{width:32px;height:32px;flex-shrink:0}
+.provider-value-item.green{background:#e5eee0}.provider-value-item.peach{background:#fbe6d8}.provider-value-item.lilac{background:#eee7f2}.provider-value-item.sand{background:#f5ecd9}
+@media(max-width:850px){.provider-page .provider-hero-refresh{grid-template-columns:minmax(0,1fr)!important;gap:35px!important;padding:52px 22px 65px!important}.provider-hero-refresh .provider-content h1{font-size:clamp(40px,8.4vw,66px)!important}.provider-value-panel{padding:24px}.provider-value-item{min-height:128px}}
+@media(max-width:480px){.provider-page .provider-hero-refresh{padding:45px 18px 55px!important;gap:29px!important}.provider-hero-refresh .provider-content h1{font-size:clamp(37px,9.5vw,48px)!important;letter-spacing:-.045em}.provider-hero-refresh .provider-content p{margin:19px 0 25px!important;font-size:16px!important}.provider-hero-refresh .provider-content .button{width:100%;font-size:15px!important;padding:15px 16px!important}.provider-value-panel{padding:20px;border-radius:25px}.provider-value-panel h2{font-size:clamp(26px,7vw,34px);margin:21px 0}.provider-value-grid{gap:10px}.provider-value-item{min-height:118px;padding:14px;border-radius:17px;gap:14px;font-size:13px}.provider-value-item svg{width:29px;height:29px}}
