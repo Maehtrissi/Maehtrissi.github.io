@@ -104,7 +104,7 @@
 @media(prefers-reduced-motion:reduce){.sponti-how-cta{transition:none}}
 
 </style>
-      <link rel="stylesheet" href="/sponti-course-hero.css?v=20261109-restore5" />
+      <link rel="stylesheet" href="/sponti-course-hero.css?v=20261109-search6" />
   </head>
   <body>
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -148,6 +148,12 @@
             <a class="sponti-hero-photo sponti-hero-photo-right" href="/kurse?filter=kunst-handwerk" aria-label="Kunst und Handwerkskurse entdecken"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="Töpferkurs" loading="eager" /><strong>Töpfern</strong></a>
           </div>
         </div>
+        <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
+          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><input name="ort" type="text" placeholder="z. B. Zug" autocomplete="address-level2" /></span></label>
+          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum</span><input name="datum" type="date" /></span></label>
+          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">☷</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Kategorie</span><select name="filter"><option value="">Alle Kategorien</option><option value="yoga-wellness">Yoga &amp; Wellness</option><option value="tanz-bewegung">Tanz &amp; Bewegung</option><option value="kunst-handwerk">Kunst &amp; Handwerk</option><option value="kochen-geniessen">Kochen &amp; Geniessen</option><option value="fotografie-design">Fotografie &amp; Design</option><option value="natur-draussen">Natur &amp; Draussen</option></select></span></label>
+          <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
+        </form>
         <nav class="sponti-hero-quick-categories" aria-label="Kurse nach Kategorie entdecken">
           <a href="/kurse?filter=yoga-wellness"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M12 4v6m-5 3 5-3 5 3M7 13l-4 7h18l-4-7M8 20l4-5 4 5"/></svg></span>Yoga &amp; Pilates</a>
           <a href="/kurse?filter=tanz-bewegung"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M3 9v6m3-8v10m12-10v10m3-8v6M6 12h12"/></svg></span>Fitness</a>
