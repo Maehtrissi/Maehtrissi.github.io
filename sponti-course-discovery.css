@@ -8,3 +8,22 @@
 .sponti-advanced-filters{margin-top:24px;padding:24px;border-radius:24px;background:#fff;border:1px solid #e6e8df}.sponti-advanced-filters[hidden]{display:none!important}.sponti-advanced-filters .course-filters{margin-bottom:18px}
 @media(max-width:700px){.courses-page .sponti-course-discovery{padding:40px 18px 26px!important;border-radius:0}.sponti-course-discovery h1{font-size:clamp(43px,10vw,60px)}.sponti-course-search{padding:15px}.sponti-course-search input{font-size:14px}.sponti-course-quick{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.sponti-course-quick label,.sponti-quick-more{padding:11px 8px;border-radius:14px;font-size:12px;gap:5px}.sponti-course-quick svg{width:17px;height:17px}.sponti-course-submit{font-size:17px;margin-bottom:34px}.sponti-category-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sponti-category-tile{min-height:125px;padding:16px;border-radius:20px;font-size:15px}.sponti-category-tile svg{width:30px;height:30px}.sponti-category-heading button{font-size:13px}.sponti-advanced-filters{padding:14px}}
 @media(prefers-reduced-motion:reduce){.sponti-category-tile{transition:none}}
+
+/* Mobile alignment corrections, November 2026 */
+.courses-page .sponti-course-discovery,.courses-page .sponti-course-discovery *{box-sizing:border-box}
+.sponti-course-search label{display:flex;align-items:center;justify-content:center;flex:0 0 26px;margin:0}
+.sponti-course-search input{display:block;flex:1 1 0;min-width:0;max-width:100%;margin:0;padding:0;line-height:1.5}
+@media(max-width:700px){
+.courses-page .sponti-course-discovery{width:100%;max-width:100%;overflow:hidden;padding-inline:clamp(16px,5vw,24px)!important}
+.sponti-course-search{width:100%;min-width:0;gap:12px;padding:14px 16px;overflow:hidden}
+.sponti-course-search label{flex-basis:24px}.sponti-course-search svg{width:23px;height:23px}
+.sponti-course-search input{font-size:16px!important;letter-spacing:0;text-overflow:ellipsis}
+.sponti-course-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sponti-course-quick label,.sponti-quick-more{width:100%;min-width:0;min-height:53px;padding:11px 12px;gap:8px;font-size:14px;justify-content:flex-start}
+.sponti-course-quick select{display:block;flex:1;min-width:0;width:100%;font-size:14px;line-height:1.4;appearance:none;-webkit-appearance:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23174536' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right center;padding-right:16px;text-overflow:ellipsis}
+.sponti-course-quick svg{width:19px;height:19px}
+.sponti-quick-more{grid-column:1/-1;justify-content:center}
+.sponti-category-tiles{width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sponti-category-tile{min-width:0;overflow:hidden;overflow-wrap:anywhere}
+.sponti-category-heading{align-items:baseline}.sponti-category-heading h2{font-size:clamp(18px,5.5vw,25px)}
+}
