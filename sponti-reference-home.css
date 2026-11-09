@@ -1,0 +1,28 @@
+/* Sponti reference design, homepage only. Other routes remain unchanged. */
+body:has(.sponti-reference-hero) .site-header{max-width:1280px;margin:0 auto}
+body:has(.sponti-reference-hero) .sponti-reference-hero{display:block!important;position:relative;min-height:0!important;max-width:none!important;width:100%;margin:0 auto 0!important;padding:90px 24px 65px!important;overflow:hidden;isolation:isolate;text-align:center;background:transparent!important;border-radius:0!important}
+.sponti-reference-content{position:relative;z-index:2;max-width:1060px;margin:auto}
+body:has(.sponti-reference-hero) .sponti-reference-hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(40px,5.3vw,74px)!important;line-height:1.16;letter-spacing:-.045em;color:#123f32;margin:0 0 22px}
+.sponti-reference-hero h1 span{position:relative;white-space:nowrap}.sponti-reference-hero h1 span::after{content:"";position:absolute;height:7px;border-radius:100%;background:linear-gradient(90deg,#ffad52,#f46c42);bottom:-12px;left:5%;right:4%;transform:rotate(-1deg)}
+.sponti-reference-hero p{font-size:clamp(15px,1.6vw,20px);color:#244c3f;line-height:1.65;margin:30px auto 36px}
+.sponti-home-search{display:flex;align-items:center;gap:0;max-width:1000px;margin:auto;padding:8px;border:1px solid #e3ddd2;border-radius:999px;background:rgba(255,255,255,.91);box-shadow:0 12px 28px #244b3d12}
+.sponti-home-search label{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;padding:5px 24px;gap:3px;text-align:left}
+.sponti-home-search label+label{border-left:1px solid #e5e0d8}
+.sponti-home-search label span{font-size:11px;font-weight:700;color:#69796f}
+.sponti-home-search select{border:0;outline-offset:4px;background:transparent;color:#173e32;font:600 15px "DM Sans",sans-serif;width:100%;min-height:27px}
+.sponti-search-submit{flex:0 0 auto;border:0;border-radius:999px;padding:18px 32px;background:linear-gradient(105deg,#f26055,#ff9168,#f8bc75);color:#fff;font:700 15px "DM Sans",sans-serif;cursor:pointer}
+.sponti-search-submit span{margin-left:12px}
+.sponti-hero-arcs{position:absolute;z-index:0;width:420px;height:420px;border-radius:50%;pointer-events:none;opacity:.65}
+.sponti-hero-arcs-left{top:-220px;left:-210px;border:2px solid #d2dfb7;box-shadow:0 0 0 45px #e1edce75,0 0 0 90px #d7e9bc45}
+.sponti-hero-arcs-right{top:-230px;right:-200px;border:2px solid #f5d5b7;box-shadow:0 0 0 45px #fbe0c56e,0 0 0 90px #ffe5d060}
+body:has(.sponti-reference-hero) .categories-section{padding-top:0!important;margin-top:0!important;background:transparent!important}
+body:has(.sponti-reference-hero) .categories-section>.eyebrow,body:has(.sponti-reference-hero) .categories-section>h2{display:none}
+body:has(.sponti-reference-hero) .category-grid{gap:20px}
+body:has(.sponti-reference-hero) .category-card{min-height:190px;border-radius:25px;overflow:hidden;isolation:isolate}
+body:has(.sponti-reference-hero) .category-card::before{inset:auto -78px -170px auto;width:360px;height:360px;border:1px solid color-mix(in srgb,var(--card-end) 75%,white);box-shadow:0 0 0 36px color-mix(in srgb,var(--card-end) 45%,transparent),0 0 0 74px color-mix(in srgb,var(--card-end) 25%,transparent)}
+body:has(.sponti-reference-hero) .category-card .category-icon-disc{position:absolute;right:22px;bottom:20px;width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,250,243,.9);border:1px solid #ffffffad;color:#123f32;z-index:2;pointer-events:none}
+.category-icon-disc svg{width:60%;height:60%}
+body:has(.sponti-reference-hero) .category-card>strong{position:relative;z-index:3;max-width:60%}
+body:has(.sponti-reference-hero) .category-card>span:first-child{position:relative;z-index:3}
+@media(max-width:800px){body:has(.sponti-reference-hero) .sponti-reference-hero{padding:65px 18px 40px!important}.sponti-home-search{border-radius:22px;flex-wrap:wrap;gap:8px;padding:12px}.sponti-home-search label{flex:1 1 45%;padding:8px 12px}.sponti-home-search label+label{border-left:0}.sponti-search-submit{width:100%}body:has(.sponti-reference-hero) .category-card .category-icon-disc{width:65px;height:65px;right:10px;bottom:12px}body:has(.sponti-reference-hero) .category-card::before{width:230px;height:230px;right:-75px;bottom:-115px;box-shadow:0 0 0 22px color-mix(in srgb,var(--card-end) 40%,transparent),0 0 0 45px color-mix(in srgb,var(--card-end) 20%,transparent)}body:has(.sponti-reference-hero) .category-card>strong{max-width:72%}}
+@media(max-width:450px){body:has(.sponti-reference-hero) .category-card .category-icon-disc{width:49px;height:49px;opacity:.85}body:has(.sponti-reference-hero) .category-card>strong{max-width:78%}}
