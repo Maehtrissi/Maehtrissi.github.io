@@ -33,3 +33,10 @@
 .location-control-next{grid-column:3!important}
 .location-control:hover{transform:scale(1.04)!important}
 }
+
+/* Refined carousel shadows: eliminate heavy dark strip under cards. */
+.locations-section .location-card{box-shadow:0 5px 15px rgba(25,52,45,.055)!important}
+.locations-section .location-card.is-active{box-shadow:0 9px 23px rgba(25,52,45,.105)!important}
+@media(hover:hover){.locations-section .location-card.is-active:hover{box-shadow:0 12px 26px rgba(25,52,45,.12)!important}}
+.locations-section .location-viewport{padding-bottom:38px!important}
+@media(max-width:760px){.locations-section .location-viewport{padding-bottom:24px!important}}
