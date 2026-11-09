@@ -1,0 +1,20 @@
+/* Sponti provider steps refresh: compact cards, responsive */
+.provider-page .provider-how-refresh{max-width:1240px!important;margin:0 auto!important;padding:68px 28px 85px!important;min-height:0!important}
+.provider-how-refresh .provider-section-heading{margin-bottom:30px!important}
+.provider-how-refresh .provider-section-heading h2{font-size:clamp(38px,4.5vw,62px)!important;line-height:1.13!important;margin:18px 0 17px!important}
+.provider-how-refresh .provider-how-lead{font:400 clamp(16px,1.6vw,20px)/1.6 "DM Sans",sans-serif;color:#60736a;max-width:700px;margin:0}
+.provider-how-refresh .provider-how-cards{list-style:none!important;padding:0!important;margin:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;counter-reset:none!important}
+.provider-how-refresh .provider-how-card{position:relative;display:flex!important;flex-direction:column!important;gap:26px!important;justify-content:space-between!important;min-width:0!important;min-height:238px!important;padding:25px!important;border:1px solid #e9e9e1!important;border-radius:26px!important;background:#fff!important;box-shadow:0 12px 30px rgba(24,55,40,.07)!important}
+.provider-how-refresh .provider-how-card::before,.provider-how-refresh .provider-how-card::after{display:none!important}
+.provider-how-refresh .provider-how-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.provider-how-refresh .provider-how-icon{width:65px;height:65px;border-radius:19px;display:grid;place-items:center;color:#174537;flex:0 0 auto}
+.provider-how-refresh .provider-how-icon.green{background:#e4eedd}.provider-how-refresh .provider-how-icon.peach{background:#fbe5d7}.provider-how-refresh .provider-how-icon.lilac{background:#eee6f1}
+.provider-how-refresh .provider-how-icon svg{width:33px;height:33px}
+.provider-how-refresh .provider-how-number{font:700 15px "DM Sans",sans-serif!important;color:#e88b60!important}
+.provider-how-refresh .provider-how-card h3{font:700 clamp(19px,1.85vw,24px)/1.25 "DM Sans",sans-serif!important;color:#174537!important;margin:0 0 9px!important}
+.provider-how-refresh .provider-how-card p{font:400 clamp(14px,1.2vw,16px)/1.55 "DM Sans",sans-serif!important;color:#60736a!important;margin:0!important}
+.provider-how-refresh .provider-how-cta{display:flex;align-items:center;justify-content:center;gap:16px;width:fit-content;max-width:100%;margin:33px auto 0;padding:18px 30px;border-radius:999px;background:#174f3d;color:#fff!important;font:700 17px "DM Sans",sans-serif;text-align:center;text-decoration:none}
+.provider-how-refresh .provider-how-cta:hover{background:#0f3d2e}
+@media(min-width:901px){.provider-how-refresh .provider-how-card:not(:last-child)::after{display:block!important;content:"";position:absolute;top:56px;left:100%;width:18px;height:2px;background:#c9d9c9;z-index:2}}
+@media(max-width:900px){.provider-page .provider-how-refresh{padding:48px 20px 62px!important}.provider-how-refresh .provider-how-cards{grid-template-columns:1fr!important;gap:13px!important}.provider-how-refresh .provider-how-card{min-height:0!important;gap:12px!important;padding:19px!important;border-radius:23px!important}.provider-how-refresh .provider-how-card-top{align-items:center}.provider-how-refresh .provider-how-icon{width:57px;height:57px;border-radius:17px}.provider-how-refresh .provider-how-icon svg{width:30px;height:30px}.provider-how-refresh .provider-how-card h3{font-size:20px!important}.provider-how-refresh .provider-how-card p{font-size:14px!important}.provider-how-refresh .provider-how-cta{width:100%;margin-top:24px}}
+@media(max-width:420px){.provider-page .provider-how-refresh{padding:42px 17px 52px!important}.provider-how-refresh .provider-section-heading h2{font-size:clamp(35px,9vw,45px)!important}.provider-how-refresh .provider-how-card{padding:17px!important}.provider-how-refresh .provider-how-card h3{font-size:19px!important}}
