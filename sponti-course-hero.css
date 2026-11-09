@@ -42,9 +42,6 @@ body:has(.sponti-course-hero) .sponti-course-hero h1{font-family:"Playfair Displ
 @media(max-width:600px){.sponti-course-hero-copy h1{padding-bottom:17px!important}.sponti-course-hero-copy h1::after{height:10px;width:78%}}
 
 /* Seamless header-to-hero canvas; restore original overlapping photo composition. */
-html body:has(.sponti-course-hero){background-color:#fff8f1!important;background-image:radial-gradient(ellipse at 93% 11%,#ffe2d2aa,transparent 38%),radial-gradient(ellipse at 4% 70%,#e8eed8a8,transparent 42%)!important;background-attachment:fixed!important}
-html body:has(.sponti-course-hero) .sponti-course-hero{background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important}
-html body:has(.sponti-course-hero) .sponti-course-hero::before{background:transparent!important}
 .sponti-course-hero-gallery{display:block!important;position:relative!important;min-height:445px!important;padding:0!important;overflow:visible!important}
 .sponti-course-hero-gallery .sponti-hero-photo{position:absolute!important;display:block!important;flex:none!important;inset:auto!important;width:42%!important;height:305px!important;border:7px solid #fff9f1!important;border-radius:45px!important;box-shadow:0 15px 35px #20493625!important;transition:transform .2s}
 .sponti-course-hero-gallery .sponti-hero-photo-left{left:0!important;top:90px!important;right:auto!important;width:42%!important;height:305px!important;transform:rotate(-6deg)!important;z-index:1}
