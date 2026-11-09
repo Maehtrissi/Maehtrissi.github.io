@@ -19,3 +19,17 @@
 .location-status{font-weight:700!important;color:#526c60!important}
 @media(max-width:760px){.locations-section{padding:60px 0 56px!important}.locations-heading{margin:0 22px 28px!important;text-align:left}.locations-heading .eyebrow{justify-content:flex-start}.locations-heading h2{font-size:clamp(38px,9vw,55px)!important}.locations-intro{text-align:left!important;font-size:16px}.location-viewport{padding:8px 11vw 20px!important}.location-card{width:78vw!important;border-radius:26px!important}.location-carousel{column-gap:14px!important}.location-status{margin:0 0 8px!important}.location-control{width:54px!important;height:54px!important;margin-top:0!important}.locations-section::before{left:-280px}.locations-section::after{right:-275px;bottom:-240px}}
 @media(prefers-reduced-motion:reduce){.location-card,.location-viewport{transition:none!important;scroll-behavior:auto!important}}
+
+/* Precise mobile carousel layout: compact single-row navigation, no oversized blank footer. */
+@media(max-width:760px){
+.locations-section{padding-top:56px!important;padding-bottom:40px!important}
+.locations-heading{margin-bottom:22px!important}
+.location-carousel{display:grid!important;grid-template-columns:52px minmax(0,1fr) 52px!important;column-gap:12px!important;row-gap:10px!important;align-items:center!important;padding:0 18px!important}
+.location-viewport{grid-column:1/-1!important;grid-row:1!important;width:calc(100% + 36px)!important;margin:0 -18px!important;padding:8px 11vw 15px!important}
+.location-card{width:78vw!important;aspect-ratio:1.32!important;border-radius:26px!important}
+.location-status{grid-column:2!important;grid-row:2!important;align-self:center!important;justify-self:center!important;margin:0!important;font-size:13px!important;line-height:1.3!important;white-space:nowrap}
+.location-control{position:static!important;top:auto!important;grid-row:2!important;margin:0!important;transform:none!important;width:46px!important;height:46px!important;justify-self:center!important;box-shadow:0 5px 15px rgba(28,59,46,.09)!important}
+.location-control-previous{grid-column:1!important}
+.location-control-next{grid-column:3!important}
+.location-control:hover{transform:scale(1.04)!important}
+}
