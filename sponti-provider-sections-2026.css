@@ -1,0 +1,31 @@
+/* Provider page: distinct process section and polished offer categories */
+.provider-page .provider-how-refresh{position:relative;overflow:hidden;padding-block:75px!important;background:#fffaf4}
+.provider-page .provider-how-refresh .provider-section-heading{max-width:900px}
+.provider-page .provider-how-refresh .provider-section-heading h2{font-size:clamp(36px,4.5vw,65px);line-height:1.13}
+.sponti-how-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);align-items:center;gap:clamp(25px,5vw,80px);margin-top:34px}
+.provider-page .sponti-how-left .provider-how-cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;padding:0;margin:0}
+.provider-page .sponti-how-left .provider-how-card{min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;background:transparent!important;box-shadow:none!important;border:0!important;padding:12px 4px!important}
+.provider-page .sponti-how-left .provider-how-card-top{position:relative;width:94px;height:94px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}
+.provider-page .sponti-how-left .provider-how-icon{width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.provider-page .sponti-how-left .provider-how-icon svg{width:39px;height:39px}
+.provider-page .sponti-how-left .provider-how-number{position:absolute;top:-5px;right:-7px;background:#f47745;color:white;border-radius:50%;width:35px;height:35px;display:grid;place-items:center;font-size:13px;font-weight:700}
+.provider-page .sponti-how-left .provider-how-card h3{font-size:clamp(16px,1.5vw,21px);margin:0 0 9px}
+.provider-page .sponti-how-left .provider-how-card p{font-size:14px;line-height:1.5}
+.provider-page .sponti-how-left .provider-how-cta{margin-top:24px;display:inline-flex;border-radius:999px;background:linear-gradient(110deg,#f26055,#ff9168);color:white;padding:16px 27px;text-decoration:none;font-weight:700}
+.sponti-how-visual{min-height:440px;aspect-ratio:1/1;border:10px solid #fff;border-radius:50%;background:linear-gradient(#f2caa433,#f2caa433),url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1100&q=85') center/cover;box-shadow:0 0 0 24px #f9dfc0,0 0 0 48px #f9e9d5}
+.provider-page .provider-categories{position:relative;overflow:hidden;background:radial-gradient(circle at 0 25%,#e5efdd 0,transparent 42%),radial-gradient(circle at 100% 30%,#f8ded2 0,transparent 48%),#fffaf5;border-radius:35px;padding:clamp(28px,5vw,65px)!important;margin-block:65px}
+.provider-page .provider-categories .provider-category-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:42px 0 28px;padding:0;list-style:none}
+.provider-page .provider-categories .sponti-offer-category{position:relative;overflow:hidden;display:flex;align-items:center;gap:17px;min-width:0;min-height:112px;padding:16px 20px;border-radius:24px;border:1px solid #ffffffd9;box-shadow:0 8px 20px #173f3010;background:linear-gradient(120deg,#f1f7e8,#d6eacb)}
+.provider-page .provider-categories .sponti-offer-category::after{content:"";position:absolute;right:-55px;bottom:-115px;width:220px;height:220px;border:1px solid #ffffffb3;border-radius:50%;box-shadow:0 0 0 25px #ffffff22;pointer-events:none}
+.provider-page .provider-categories .sponti-offer-category-2{background:linear-gradient(120deg,#fff1e3,#ffd5aa)}
+.provider-page .provider-categories .sponti-offer-category-3{background:linear-gradient(120deg,#fff0ef,#f8c9ce)}
+.provider-page .provider-categories .sponti-offer-category-4{background:linear-gradient(120deg,#eff9fc,#bfe3ef)}
+.provider-page .provider-categories .sponti-offer-category-5{background:linear-gradient(120deg,#f5eefb,#ddc9f2)}
+.provider-page .provider-categories .sponti-offer-category-6{background:linear-gradient(120deg,#f3f8e6,#d7e7b3)}
+.sponti-offer-icon{position:relative;z-index:1;flex:0 0 70px;width:70px;height:70px;display:grid;place-items:center;background:#ffffffa8;border-radius:50%;color:#124335}
+.sponti-offer-icon svg{width:39px;height:39px}
+.sponti-offer-copy{position:relative;z-index:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.sponti-offer-copy strong{font-size:clamp(15px,1.35vw,20px);line-height:1.2;color:#103e31}
+.sponti-offer-copy small{font-size:13px;line-height:1.35;color:#34564b}
+@media(max-width:950px){.sponti-how-layout{grid-template-columns:1fr}.sponti-how-visual{width:min(420px,78%);min-height:0;margin:30px auto 40px}.provider-page .provider-categories .provider-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.provider-page .sponti-how-left .provider-how-cards{grid-template-columns:1fr;gap:10px}.provider-page .sponti-how-left .provider-how-card{flex-direction:row;gap:18px;text-align:left}.provider-page .sponti-how-left .provider-how-card-top{flex:0 0 70px;width:70px;height:70px;margin:0}.provider-page .sponti-how-left .provider-how-icon{width:68px;height:68px}.provider-page .sponti-how-left .provider-how-icon svg{width:30px;height:30px}.provider-page .provider-categories .provider-category-grid{grid-template-columns:1fr}.provider-page .provider-categories .sponti-offer-category{min-height:92px}.sponti-offer-icon{flex-basis:58px;width:58px;height:58px}.sponti-offer-icon svg{width:32px;height:32px}.sponti-how-visual{width:75%}}
