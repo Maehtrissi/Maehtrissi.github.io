@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/sponti-provider-hero-refresh.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-provider-benefits-refresh.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-provider-how-refresh.css?v=20261109-1" />
+<style>.provider-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:28px}.provider-hero-actions .button{margin:0}.provider-pricing-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1.5px solid #175648!important;background:transparent!important;color:#175648!important;border-radius:999px;padding:15px 23px;font-weight:700;text-decoration:none}.provider-pricing-button:hover{background:#e7eee6!important}.provider-costs{scroll-margin-top:30px}@media(max-width:540px){.provider-hero-actions{align-items:stretch}.provider-hero-actions .button{width:100%;justify-content:center}}</style>
 </head>
   <body class="provider-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -60,7 +61,7 @@
           <div class="eyebrow"><span class="eyebrow-dot"></span> Für Kursanbieter</div>
           <h1 id="provider-title">Deine Kurse.<br><em>Mehr Teilnehmer.</em></h1>
           <p>Du hast noch freie Plätze? Erreiche spontan interessierte Menschen und mache aus freien Kapazitäten neue Buchungen.</p>
-          <button class="button button-primary" type="button" data-open-partner>Jetzt Kursanbieter werden <span aria-hidden="true">→</span></button>
+          <div class="provider-hero-actions"><button class="button button-primary" type="button" data-open-partner>Jetzt Kursanbieter werden <span aria-hidden="true">→</span></button><a class="button provider-pricing-button" href="#preise">Preise &amp; Pakete ansehen <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="provider-value-panel">
           <div class="provider-value-label"><span>SPONTI FÜR ANBIETER</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
@@ -144,7 +145,7 @@
         </form>
       </section>
 
-      <section class="provider-costs" aria-labelledby="costs-title">
+      <section class="provider-costs" id="preise" aria-labelledby="costs-title">
         <div class="provider-costs-inner">
           <div class="eyebrow"><span class="eyebrow-dot"></span> Dein Startangebot</div>
           <h2 id="costs-title">Zwei Monate<br><em>kostenlos sichtbar.</em></h2>
