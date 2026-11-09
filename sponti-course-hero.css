@@ -76,3 +76,13 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
 .sponti-hero-quick-categories{margin-top:28px!important}
 @media(max-width:800px){.sponti-hero-search{grid-template-columns:1fr 1fr;border-radius:26px;gap:4px;padding:10px}.sponti-hero-search-field{border:0;padding:11px 13px}.sponti-hero-search-field:nth-child(1){border-right:1px solid #e2e5df}.sponti-hero-search-field:nth-child(3){grid-column:1/-1;border-top:1px solid #e2e5df}.sponti-hero-search button{grid-column:1/-1;width:100%;padding:15px}}
 @media(max-width:450px){.sponti-hero-search{grid-template-columns:1fr}.sponti-hero-search-field,.sponti-hero-search-field:nth-child(1){grid-column:1;border:0;border-bottom:1px solid #e2e5df}.sponti-hero-search-field:nth-child(3){border-top:0}}
+
+/* Today-only quick filter replaces redundant category dropdown */
+.sponti-hero-search{grid-template-columns:1fr 1fr 1.25fr auto}
+.sponti-today-filter{display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;white-space:nowrap;min-width:0;padding:8px 18px;color:#145340;font:700 14px "DM Sans",sans-serif}
+.sponti-today-filter input{position:absolute;opacity:0;width:1px;height:1px}
+.sponti-today-filter>span{background:#e8f1e3;border-radius:999px;padding:13px 17px}
+.sponti-today-filter .sponti-today-icon{font-size:22px;padding:10px 0 10px 14px;border-radius:999px 0 0 999px;margin-right:-29px;z-index:1}
+.sponti-today-filter input:checked~span{background:#d5e9ce;color:#0c533a}
+.sponti-today-filter input:focus-visible~span{outline:2px solid #ff793c;outline-offset:3px}
+@media(max-width:800px){.sponti-today-filter{grid-column:1/-1;justify-content:flex-start;white-space:normal}}
