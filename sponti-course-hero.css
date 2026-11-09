@@ -1,0 +1,29 @@
+/* Sponti course-led homepage hero, retains existing header and other sections */
+body:has(.sponti-course-hero) .sponti-course-hero{padding:60px max(24px,calc((100vw - 1450px)/2)) 46px!important;text-align:left!important;background:radial-gradient(ellipse at 92% 12%,#ffe2d2aa,transparent 34%),radial-gradient(ellipse at 4% 94%,#e8eed8a8,transparent 35%),#fff8f1!important}
+.sponti-course-hero-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);gap:clamp(22px,4vw,72px);align-items:center;max-width:1380px;margin:auto}
+.sponti-course-hero-copy{padding:35px 0}
+.sponti-course-hero-copy .eyebrow{font-size:13px;color:#f07844;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+body:has(.sponti-course-hero) .sponti-course-hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(43px,5.6vw,83px)!important;line-height:1.08!important;letter-spacing:-.04em!important;color:#0d493a!important;margin:25px 0 24px!important}
+.sponti-course-hero h1 em{color:#f47e49;font-weight:600}
+.sponti-course-hero-copy>p{font-size:clamp(16px,1.6vw,22px)!important;line-height:1.58!important;color:#245346!important;margin:0 0 28px!important;max-width:580px}
+.sponti-course-hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:18px 32px;border-radius:999px;background:linear-gradient(110deg,#ff8a31,#ff7338);color:#fff!important;text-decoration:none;font-size:17px;font-weight:800;box-shadow:0 9px 20px #db79352b;transition:transform .2s}
+.sponti-course-hero-cta:hover{transform:translateY(-2px)}
+.sponti-course-hero-benefits{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:28px;color:#155341;font-size:13px;font-weight:650}
+.sponti-course-hero-gallery{position:relative;min-height:445px;isolation:isolate}
+.sponti-hero-photo{position:absolute;display:block;overflow:hidden;border:7px solid #fff9f1;border-radius:45px;box-shadow:0 15px 35px #20493625;text-decoration:none;transition:transform .2s;isolation:isolate}
+.sponti-hero-photo:hover{transform:translateY(-6px) rotate(0deg);z-index:5}
+.sponti-hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.sponti-hero-photo:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,#0c241caa);pointer-events:none}
+.sponti-hero-photo strong{position:absolute;z-index:2;bottom:25px;left:22px;color:#fff;font:700 clamp(23px,2.5vw,39px) "Playfair Display",Georgia,serif}
+.sponti-hero-photo-left{left:0;top:90px;width:42%;height:305px;transform:rotate(-6deg)}
+.sponti-hero-photo-main{left:27%;top:10px;width:48%;height:425px;z-index:3;transform:rotate(4deg)}
+.sponti-hero-photo-right{right:0;top:100px;width:40%;height:300px;transform:rotate(7deg)}
+.sponti-hero-quick-categories{position:relative;z-index:2;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;max-width:1300px;margin:35px auto 0}
+.sponti-hero-quick-categories a{display:flex;align-items:center;flex-direction:column;gap:10px;text-align:center;text-decoration:none;color:#154738;font-size:13px;font-weight:800;line-height:1.3}
+.sponti-quick-icon{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:#f9e6d7;border:1px solid #fff;transition:transform .2s}
+.sponti-hero-quick-categories a:nth-child(2n) .sponti-quick-icon{background:#e8ecda}
+.sponti-hero-quick-categories a:hover .sponti-quick-icon{transform:translateY(-4px)}
+.sponti-quick-icon svg{width:32px;height:32px;fill:none;stroke:#175342;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:1000px){.sponti-course-hero-layout{grid-template-columns:1fr}.sponti-course-hero-copy{padding:0}.sponti-course-hero-gallery{min-height:360px;max-width:650px;width:100%;margin:auto}.sponti-hero-photo-left{height:255px}.sponti-hero-photo-main{height:350px}.sponti-hero-photo-right{height:255px}.sponti-hero-quick-categories{grid-template-columns:repeat(4,1fr);row-gap:25px}}
+@media(max-width:600px){body:has(.sponti-course-hero) .sponti-course-hero{padding:42px 18px 35px!important}.sponti-course-hero h1{font-size:clamp(40px,10vw,58px)!important}.sponti-course-hero-gallery{min-height:250px}.sponti-hero-photo{border-width:4px;border-radius:23px}.sponti-hero-photo-left{top:65px;height:160px}.sponti-hero-photo-main{top:5px;height:245px}.sponti-hero-photo-right{top:65px;height:160px}.sponti-hero-photo strong{font-size:19px;bottom:12px;left:10px}.sponti-hero-quick-categories{grid-template-columns:repeat(4,1fr);gap:18px 8px}.sponti-quick-icon{width:56px;height:56px}.sponti-quick-icon svg{width:26px;height:26px}.sponti-hero-quick-categories a{font-size:11px}.sponti-course-hero-cta{width:100%}}
+@media(prefers-reduced-motion:reduce){.sponti-hero-photo,.sponti-course-hero-cta,.sponti-quick-icon{transition:none}}
