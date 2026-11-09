@@ -1,0 +1,22 @@
+/* Sponti homepage redesign – scoped to the homepage */
+:root{--sponti-forest:#073c2e;--sponti-orange:#f66a34;--sponti-cream:#fffaf3}
+body:has(>main .hero){background:var(--sponti-cream);color:var(--sponti-forest)}
+body:has(>main .hero) .site-header{background:rgba(255,250,243,.97);box-shadow:none;border-bottom:1px solid rgba(7,60,46,.08)}
+body:has(>main .hero) .logo img{object-fit:contain}
+body:has(>main .hero) .hero{position:relative;overflow:hidden;min-height:600px;align-items:center;gap:clamp(25px,5vw,80px);background:radial-gradient(circle at 90% 25%,#ffe5d2 0,transparent 40%),var(--sponti-cream);border-radius:0 0 48px 48px;padding-block:clamp(65px,8vw,125px)}
+body:has(>main .hero) .hero-copy{position:relative;z-index:2}
+body:has(>main .hero) .hero h1{color:var(--sponti-forest);font-size:clamp(2.7rem,5vw,5.4rem);letter-spacing:-.055em;line-height:1.09}
+body:has(>main .hero) .hero h1 em{color:var(--sponti-orange);font-style:normal}
+body:has(>main .hero) .hero-text{max-width:590px;line-height:1.65;font-size:clamp(1rem,1.45vw,1.23rem)}
+body:has(>main .hero) .hero-actions .button-primary{background:linear-gradient(110deg,#ff9a42,#f26055);border:0;border-radius:999px;box-shadow:0 10px 22px #f2605526}
+body:has(>main .hero) .hero-actions .text-link{border:1px solid var(--sponti-forest);border-radius:999px;padding:14px 23px;text-decoration:none}
+body:has(>main .hero) .hero-art{border-radius:42% 58% 53% 47%;overflow:hidden;isolation:isolate}
+body:has(>main .hero) .hero-photo{border-radius:36% 52% 42% 48%;overflow:hidden}
+body:has(>main .hero) .categories-section{background:transparent;padding-block:55px 70px}
+body:has(>main .hero) .category-grid{gap:16px}
+body:has(>main .hero) .category-card{border-radius:25px;border:1px solid #f4e9dc;box-shadow:none;transition:transform .2s,box-shadow .2s}
+body:has(>main .hero) .category-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #073c2e12}
+body:has(>main .hero) .how-section-band{background:#fffaf3}
+body:has(>main .hero) .feature-item{border-radius:18px}
+body:has(>main .hero) .feature-number{color:var(--sponti-orange)}
+@media(max-width:760px){body:has(>main .hero) .hero{padding:48px 20px 54px;border-radius:0 0 28px 28px;min-height:0}body:has(>main .hero) .hero h1{font-size:clamp(2.5rem,10vw,3.9rem)}body:has(>main .hero) .hero-art{border-radius:28px}body:has(>main .hero) .category-grid{gap:10px}body:has(>main .hero) .category-card{border-radius:18px}}
