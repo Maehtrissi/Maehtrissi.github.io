@@ -32,6 +32,7 @@
 <style>.provider-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:28px}.provider-hero-actions .button{margin:0}.provider-pricing-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1.5px solid #175648!important;background:transparent!important;color:#175648!important;border-radius:999px;padding:15px 23px;font-weight:700;text-decoration:none}.provider-pricing-button:hover{background:#e7eee6!important}.provider-costs{scroll-margin-top:30px}@media(max-width:540px){.provider-hero-actions{align-items:stretch}.provider-hero-actions .button{width:100%;justify-content:center}}</style>
   <link rel="stylesheet" href="/sponti-provider-sections-2026.css?v=20261109b" />
   <link rel="stylesheet" href="/sponti-partner-form-clarity.css?v=20261109" />
+  <link rel="stylesheet" href="/sponti-pricing-redesign.css?v=20261109" />
 </head>
   <body class="provider-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -152,33 +153,39 @@
         </form>
       </section>
 
-      <section class="provider-costs" id="preise" aria-labelledby="costs-title">
+      <section class="provider-costs sponti-pricing-redesign" id="preise" aria-labelledby="costs-title">
         <div class="provider-costs-inner">
           <div class="eyebrow"><span class="eyebrow-dot"></span> Dein Startangebot</div>
           <h2 id="costs-title">Zwei Monate<br><em>kostenlos sichtbar.</em></h2>
-          <p class="provider-costs-intro">Mit deiner Anmeldung macht Sponti über die eigene Website und die Social-Media-Kanäle auf dein Angebot aufmerksam.</p>
+          <p class="provider-costs-intro">Starte mit Sponti und profitiere von zusätzlicher Sichtbarkeit für dein Angebot. In der Startphase entfällt die monatliche Plattformgebühr.</p>
           <div class="provider-costs-grid">
-            <article class="provider-cost-card">
-              <span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3Z"/><path d="m19 17 .6 1.4L21 19l-1.4.6L19 21l-.6-1.4L17 19l1.4-.6L19 17Z"/></svg></span>
-              <h3>2 Monate kostenlos</h3>
-              <p>Stärkere Präsenz auf unseren Social-Media-Kanälen und zusätzliche Sichtbarkeit für dein Angebot.</p>
-            </article>
-            <article class="provider-cost-card">
-              <span class="provider-cost-icon provider-cost-icon-sage" aria-hidden="true">▦</span>
-              <span class="provider-cost-kicker">Danach</span>
-              <h3>CHF 10 / 30</h3>
-              <p>Pro Monat: Standard CHF 10 oder Promo CHF 30, nach ausdrücklicher Wahl.</p>
-            </article>
-            <article class="provider-cost-card">
-              <span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true">◇</span>
-              <span class="provider-cost-kicker">Pro Buchung</span>
-              <h3>13 %</h3>
-              <p>Provision auf erfolgreiche, nicht erstattete Buchungen.</p>
-            </article>
+            <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><path d="m12 3 1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3Z"/></svg></span><h3>2 Monate kostenlos</h3><p>Keine monatliche Plattformgebühr und zusätzliche Sichtbarkeit für dein Angebot. Die Buchungsprovision gilt weiterhin.</p></article>
+            <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-sage" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 18h2"/></svg></span><span class="provider-cost-kicker">Danach</span><h3>CHF 10 / 30</h3><p>Pro Monat: Standard für CHF 10 oder Promo für CHF 30, nur nach deiner ausdrücklichen Wahl.</p></article>
+            <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><path d="M12 3 21 8l-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="provider-cost-kicker">Pro Buchung</span><h3>13 %</h3><p>Provision auf jede erfolgreiche, nicht erstattete Buchung – auch während der Startphase.</p></article>
           </div>
-          <div class="provider-costs-note">
-            <span class="provider-costs-info" aria-hidden="true">i</span>
-            <p>Keine automatische Umstellung in ein kostenpflichtiges Abonnement. Die 13-%-Buchungsprovision gilt auch während der Einführungsphase. Die Auszahlungsbedingungen werden vor dem Start vereinbart. Buchung und Bezahlung sollen direkt über Sponti erfolgen; die Auszahlung ist 1 bis 3 Tage nach Kursabschluss vorgesehen. Die Zahlungsabwicklung ist noch in Vorbereitung.</p>
+          <div class="provider-costs-note"><span class="provider-costs-info" aria-hidden="true">i</span><p><strong>Wichtig:</strong> Die ersten zwei Monate sind nur von der monatlichen Plattformgebühr befreit. Die Provision von 13 % gilt ab der ersten erfolgreichen, nicht erstatteten Buchung. Es erfolgt keine automatische Umstellung auf ein kostenpflichtiges Paket.</p></div>
+          <div class="sponti-pricing-packages" aria-labelledby="sponti-package-heading">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Unsere Pakete</div>
+            <h3 id="sponti-package-heading">Unsere Pakete <em>im Überblick.</em></h3>
+            <p>Entscheide nach der Startphase, welches Paket zu deinem Angebot passt.</p>
+            <div class="sponti-package-grid">
+              <article class="sponti-package-card start"><div class="sponti-package-top"><span class="sponti-package-name">Startphase</span><h4>2 Monate kostenlos</h4></div><ul><li>Keine monatliche Plattformgebühr</li><li>Kurse auf Sponti präsentieren</li><li>Zusätzliche Sichtbarkeit in der Startphase</li><li>13 % Provision pro Buchung</li></ul></article>
+              <article class="sponti-package-card standard"><div class="sponti-package-top"><span class="sponti-package-name">Standard</span><h4>CHF 10 <small>/ Monat</small></h4></div><ul><li>Kurse auf Sponti präsentieren</li><li>Normale Plattform-Präsenz</li><li>Kurse und freie Plätze verwalten</li><li>13 % Provision pro Buchung</li></ul></article>
+              <article class="sponti-package-card promo"><div class="sponti-package-top"><span class="sponti-package-name">Promo</span><h4>CHF 30 <small>/ Monat</small></h4></div><ul><li>Alle Leistungen aus Standard</li><li>Erweiterte Werbung und Reichweite</li><li>Zusätzliche Newsletter-Präsenz</li><li>Instagram- und Community-Werbung nach Vereinbarung</li><li>13 % Provision pro Buchung</li></ul></article>
+            </div>
+            <p class="sponti-pricing-conditions">Die konkreten Werbeleistungen des Promo-Pakets werden vor Vertragsabschluss vereinbart. Eine Paketwahl erfolgt nicht automatisch.</p>
+          </div>
+          <div class="sponti-pricing-process" aria-labelledby="sponti-pricing-process-title">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> So funktioniert's</div>
+            <h3 id="sponti-pricing-process-title">So funktioniert die <em>Zusammenarbeit.</em></h3>
+            <p>Von der Anfrage bis zur Veröffentlichung deiner Kurse.</p>
+            <ol class="sponti-pricing-steps">
+              <li><span class="sponti-pricing-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h16M6 17V4h9l3 3v5M15 4v4h4M10 15l7-7 3 3-7 7-4 1z"/></svg></span><strong>Anfrage &amp; Registrierung</strong><p>Sende deine Angaben und registriere dich als Kursanbieter.</p></li>
+              <li><span class="sponti-pricing-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 11l2 2 4-4"/></svg></span><strong>Prüfung &amp; Freigabe</strong><p>Wir prüfen dein Anbieterprofil und begleiten dich beim Zahlungs-Onboarding.</p></li>
+              <li><span class="sponti-pricing-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18m-12 5 2 2 4-4"/></svg></span><strong>Kurse veröffentlichen</strong><p>Nach Freigabe und abgeschlossenem Zahlungs-Onboarding kannst du Kurse anbieten.</p></li>
+            </ol>
+            <p class="sponti-pricing-payment">Die Zahlungsabwicklung befindet sich noch in Vorbereitung. Die Auszahlungsbedingungen werden vor dem Start vereinbart; vorgesehen sind Auszahlungen 1 bis 3 Tage nach Kursabschluss.</p>
+            <a class="sponti-pricing-cta" href="#anbieter-anfrage">Jetzt unverbindlich anfragen <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
