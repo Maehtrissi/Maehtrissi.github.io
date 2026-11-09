@@ -75,7 +75,35 @@
   <link rel="stylesheet" href="/sponti-reference-home.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-header-spacing.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-regions-refresh.css?v=20261109" />
-    <link rel="stylesheet" href="/sponti-how-modern.css?v=20261109" />
+    <style id="sponti-how-modern-critical">
+/* Sponti 3-step section, inspired by approved reference */
+.sponti-how-modern{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 95% 5%,rgba(215,231,199,.35),transparent 32%),radial-gradient(ellipse at 0% 100%,rgba(252,205,172,.28),transparent 35%),#fffaf5}
+.sponti-how-modern::before,.sponti-how-modern::after{content:"";position:absolute;z-index:-1;pointer-events:none;width:300px;height:300px;border-radius:50%;border:1px solid rgba(199,221,185,.5);box-shadow:0 0 0 38px rgba(199,221,185,.24),0 0 0 78px rgba(251,204,167,.14)}
+.sponti-how-modern::before{right:-210px;top:-200px}.sponti-how-modern::after{left:-220px;bottom:-210px}
+.sponti-how-modern #how-it-works{display:flex!important;flex-direction:column!important;gap:0!important;max-width:980px!important;min-height:0!important;padding:78px 22px 88px!important;margin:auto}
+.sponti-how-heading h2{max-width:850px;font-size:clamp(39px,5vw,64px);line-height:1.14;margin:22px 0 18px}
+.sponti-how-heading h2 em{color:#ee885a}
+.sponti-how-heading .section-intro{max-width:850px!important;margin:0 0 38px!important;font-size:clamp(16px,1.7vw,20px);line-height:1.6}
+.sponti-how-steps{display:flex!important;flex-direction:column!important;gap:24px!important;width:100%;padding:0!important}
+.sponti-how-steps .feature-item{position:relative;display:grid!important;grid-template-columns:116px minmax(0,1fr)!important;align-items:center!important;gap:28px!important;min-height:158px;padding:22px 32px!important;background:rgba(255,255,255,.9)!important;border:1px solid rgba(255,255,255,.95)!important;border-radius:30px!important;box-shadow:0 13px 30px rgba(51,53,43,.075)!important}
+.sponti-how-steps .feature-item:not(:last-child)::after{content:"";position:absolute;left:89px;top:100%;height:26px;width:3px;background:#176046;z-index:2}
+.sponti-step-icon{width:112px;height:112px;border-radius:32px;display:grid;place-items:center;color:#123e30}
+.sponti-step-icon svg{width:59px;height:59px}
+.sponti-step-green{background:#e4eed9}.sponti-step-peach{background:#ffe3d2}.sponti-step-lilac{background:#e9e1f0}
+.sponti-step-content{min-width:0}
+.sponti-how-steps .feature-number{display:inline-flex!important;position:static!important;align-items:center;justify-content:center;min-width:42px;padding:4px 12px;border-radius:100px;background:#dce9d0;color:#143f31;font-size:15px!important;font-weight:800;margin-bottom:8px}
+.sponti-how-steps .feature-item:nth-child(2) .feature-number{background:#ffddcc;color:#c65c2b}
+.sponti-how-steps .feature-item:nth-child(3) .feature-number{background:#e7dded}
+.sponti-how-steps .feature-item h3{font-family:"DM Sans",sans-serif!important;font-size:clamp(20px,2.7vw,30px)!important;margin:0 0 7px!important;line-height:1.25}
+.sponti-how-steps .feature-link{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none;color:#153e31!important}
+.sponti-how-steps .feature-link span{color:#f0783b;font-size:28px;font-weight:400}
+.sponti-how-steps .feature-item p{font-size:clamp(14px,1.6vw,18px)!important;line-height:1.5!important;margin:0!important;color:#52665d!important}
+.sponti-how-cta{display:flex;align-items:center;justify-content:center;gap:20px;align-self:center;width:min(100%,650px);padding:19px 24px;margin-top:48px;border-radius:100px;background:#14533e;color:#fff!important;font-weight:700;font-size:clamp(16px,2vw,21px);text-decoration:none;box-shadow:0 10px 20px rgba(21,74,56,.13);transition:transform .2s,background .2s}
+.sponti-how-cta:hover{transform:translateY(-2px);background:#0c3e2e}
+@media(max-width:760px){.sponti-how-modern #how-it-works{padding:55px 20px 64px!important}.sponti-how-heading h2{font-size:clamp(38px,9vw,54px)}.sponti-how-heading .section-intro{margin-bottom:28px!important}.sponti-how-steps{gap:18px!important}.sponti-how-steps .feature-item{grid-template-columns:72px minmax(0,1fr)!important;gap:14px!important;padding:16px!important;min-height:124px;border-radius:23px!important}.sponti-step-icon{width:70px;height:70px;border-radius:21px}.sponti-step-icon svg{width:39px;height:39px}.sponti-how-steps .feature-item:not(:last-child)::after{left:49px;height:20px}.sponti-how-steps .feature-number{font-size:12px!important;padding:3px 9px;min-width:33px;margin-bottom:6px}.sponti-how-steps .feature-item h3{font-size:clamp(17px,4.6vw,23px)!important}.sponti-how-steps .feature-link span{font-size:21px}.sponti-how-steps .feature-item p{font-size:14px!important}.sponti-how-cta{margin-top:34px;padding:17px 18px}}
+@media(prefers-reduced-motion:reduce){.sponti-how-cta{transition:none}}
+
+</style>
   </head>
   <body>
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
