@@ -59,3 +59,11 @@
 .sponti-quick-price output{font-weight:800;color:#154b3c}
 @media(max-width:900px){.sponti-course-quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:450px){.sponti-course-quick{grid-template-columns:1fr!important}}
+
+/* Final explicit six-field layout and no obsolete More Filters control. */
+.sponti-course-quick{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.sponti-course-quick>.sponti-quick-more{display:none!important}
+.sponti-course-quick>.sponti-quick-time,.sponti-course-quick>.sponti-quick-price,.sponti-course-quick>.sponti-quick-today{display:flex!important;min-width:0;min-height:60px;box-sizing:border-box}
+.sponti-course-quick>.sponti-quick-today{align-items:center!important;justify-content:center!important}
+@media(max-width:850px){.sponti-course-quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:480px){.sponti-course-quick{grid-template-columns:1fr!important}}
