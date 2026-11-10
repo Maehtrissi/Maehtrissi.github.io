@@ -86,3 +86,7 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
 .sponti-today-filter input:checked~span{background:#d5e9ce;color:#0c533a}
 .sponti-today-filter input:focus-visible~span{outline:2px solid #ff793c;outline-offset:3px}
 @media(max-width:800px){.sponti-today-filter{grid-column:1/-1;justify-content:flex-start;white-space:normal}}
+
+/* Today filter: clean centered label without lightning icon. */
+.sponti-today-filter{gap:0!important;justify-content:center!important}
+.sponti-today-filter>span{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;margin:0!important;padding:13px 20px!important;line-height:1.3!important}
