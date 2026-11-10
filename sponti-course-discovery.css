@@ -49,3 +49,13 @@
 .sponti-course-quick .sponti-quick-more span{margin-left:5px}
 @media(max-width:900px){.sponti-course-quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:450px){.sponti-course-quick{grid-template-columns:1fr!important}}
+
+/* Visible filters, no extra filter toggle. */
+.sponti-course-quick{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.sponti-course-quick .sponti-quick-time,.sponti-course-quick .sponti-quick-price{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:5px;min-width:0}
+.sponti-quick-time>span,.sponti-quick-price>span{font-size:11px;color:#527568;font-weight:700}
+.sponti-quick-time select{width:100%;min-width:0;border:0;background:transparent;color:#164d3d;font:700 14px "DM Sans",sans-serif}
+.sponti-quick-price input{width:100%;accent-color:#165841;cursor:pointer}
+.sponti-quick-price output{font-weight:800;color:#154b3c}
+@media(max-width:900px){.sponti-course-quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:450px){.sponti-course-quick{grid-template-columns:1fr!important}}
