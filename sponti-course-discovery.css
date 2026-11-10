@@ -83,3 +83,9 @@
 .sponti-dropdown-option:hover,.sponti-dropdown-option[aria-selected=true]{background:#e6f0df}
 .sponti-dropdown-option span{color:#14533e;font-size:18px}
 @media(max-width:700px){.sponti-dropdown-menu{width:max(100%,210px);max-width:85vw}.sponti-dropdown-trigger{font-size:13px}}
+
+/* Vertically center all dropdown chevrons inside the full filter field. */
+.sponti-course-quick .sponti-dropdown-host{position:relative!important}
+.sponti-course-quick .sponti-custom-dropdown{position:static!important;display:flex!important;align-items:center!important;min-height:100%}
+.sponti-course-quick .sponti-dropdown-trigger{position:static!important;display:flex!important;align-items:center!important;width:100%!important;min-height:40px!important;padding-right:26px!important}
+.sponti-course-quick .sponti-dropdown-arrow{position:absolute!important;right:17px!important;top:50%!important;transform:translateY(-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;width:18px!important;height:22px!important;line-height:1!important;margin:0!important;font-size:22px!important}
