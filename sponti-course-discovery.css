@@ -67,3 +67,19 @@
 .sponti-course-quick>.sponti-quick-today{align-items:center!important;justify-content:center!important}
 @media(max-width:850px){.sponti-course-quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:480px){.sponti-course-quick{grid-template-columns:1fr!important}}
+
+/* Sponti branded dropdown menus */
+.sponti-course-quick .sponti-dropdown-host{position:relative;overflow:visible!important;min-width:0}
+.sponti-dropdown-host>select{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}
+.sponti-custom-dropdown{flex:1;min-width:0}
+.sponti-dropdown-trigger{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:5px 0;border:0;background:transparent;color:#164d3d;font:700 14px "DM Sans",sans-serif;text-align:left;cursor:pointer}
+.sponti-dropdown-arrow{font-size:23px;font-weight:400;line-height:1}
+.sponti-dropdown-host:focus-within,.sponti-dropdown-host.is-open{border-color:#14533e!important;box-shadow:0 0 0 1px #14533e!important}
+.sponti-dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:100;width:max(100%,240px);max-width:min(360px,90vw);padding:12px;border:1px solid #e2e6dd;border-radius:22px;background:#fff;box-shadow:0 18px 40px #153d3029}
+.sponti-custom-dropdown.is-open .sponti-dropdown-menu{display:block}
+.sponti-dropdown-search{width:100%;padding:12px 14px;margin-bottom:8px;border:1px solid #d9dfd5;border-radius:13px;outline-color:#14533e;background:#fff;font:500 14px "DM Sans",sans-serif}
+.sponti-dropdown-options{max-height:260px;overflow-y:auto;overscroll-behavior:contain}
+.sponti-dropdown-option{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 13px;border:0;border-radius:12px;background:transparent;text-align:left;color:#173f33;font:600 14px "DM Sans",sans-serif;cursor:pointer}
+.sponti-dropdown-option:hover,.sponti-dropdown-option[aria-selected=true]{background:#e6f0df}
+.sponti-dropdown-option span{color:#14533e;font-size:18px}
+@media(max-width:700px){.sponti-dropdown-menu{width:max(100%,210px);max-width:85vw}.sponti-dropdown-trigger{font-size:13px}}
