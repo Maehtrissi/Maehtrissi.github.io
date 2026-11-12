@@ -405,3 +405,52 @@ if (siteMenu && siteMenuTrigger) {
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGlobalHeader);
  else initGlobalHeader();
 })();
+
+
+/* Replace decorative emoji in interface labels with consistent SVG line icons. */
+(()=>{
+ const paths={
+ '✓':'<path d="m5 12 4 4L19 6"/>','✔':'<path d="m5 12 4 4L19 6"/>','✅':'<path d="m5 12 4 4L19 6"/>',
+ '❤️':'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>','♥':'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>','♡':'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>',
+ '📅':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>','📆':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
+ '📍':'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+ '🔍':'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>','🔎':'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
+ '⭐':'<path d="m12 2 3 6.5 7 .9-5 5 .9 7L12 18l-5.9 3.4.9-7-5-5 7-.9Z"/>','🌟':'<path d="m12 2 3 6.5 7 .9-5 5 .9 7L12 18l-5.9 3.4.9-7-5-5 7-.9Z"/>',
+ '⚡':'<path d="m13 2-9 12h7l-1 8 10-12h-7Z"/>','🔔':'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+ '👤':'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>','👥':'<circle cx="9" cy="8" r="3"/><path d="M2 20a7 7 0 0 1 14 0M17 5a3 3 0 0 1 0 6M19 20h3a6 6 0 0 0-5-6"/>',
+ '🏠':'<path d="m3 10 9-7 9 7v11H3Z"/><path d="M9 21v-8h6v8"/>','✉':'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="m3 7 9 7 9-7"/>','📧':'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="m3 7 9 7 9-7"/>',
+ '📞':'<path d="M6 3h4l2 5-3 2a16 16 0 0 0 5 5l2-3 5 2v4c0 2-2 3-4 3A18 18 0 0 1 3 7c0-2 1-4 3-4Z"/>',
+ '🎨':'<path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 2-2c0-1-.5-2 1-2h1a4 4 0 0 0 4-4A10 10 0 0 0 12 3Z"/><circle cx="7" cy="11" r="1"/><circle cx="11" cy="7" r="1"/><circle cx="16" cy="8" r="1"/>',
+ '🏃':'<circle cx="14" cy="4" r="2"/><path d="m7 21 4-7 3 2 2 5M4 12l5-3 4 2 3-1M11 14l-2-5"/>','🧘':'<circle cx="12" cy="5" r="2"/><path d="M8 10c1 2 7 2 8 0M12 9v6M3 19l6-4 3 3 3-3 6 4M3 19h18"/>',
+ '🏋️':'<path d="M2 9v6m3-8v10m3-7v4m8-4v4m3-7v10m3-8v6M8 12h8"/>','🍳':'<path d="M3 9h14v7a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5ZM17 11h2a3 3 0 0 1 0 6h-2M7 3v3m5-3v3"/>',
+ '🎭':'<path d="M3 4c4 2 8 2 12 0v8c0 5-3 8-6 9-3-1-6-4-6-9ZM15 5l6-1v8c0 3-2 5-4 6"/><path d="M6 10h1m4 0h1M6 14c2 2 4 2 6 0"/>',
+ 'ℹ️':'<circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7h.01"/>','❗':'<circle cx="12" cy="12" r="10"/><path d="M12 6v8M12 18h.01"/>',
+ '🔒':'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+ '💳':'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+ '📷':'<rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="4"/><path d="m7 6 2-3h6l2 3"/>',
+ '💬':'<path d="M21 11a8 8 0 0 1-8 8H5l-3 3v-9a9 9 0 1 1 19-2Z"/>',
+ '🌿':'<path d="M20 3C10 3 4 8 4 16a5 5 0 0 0 5 5c8 0 11-8 11-18ZM4 20c3-6 7-9 12-12"/>'
+ };
+ const keys=Object.keys(paths).sort((a,b)=>b.length-a.length);
+ const escaped=keys.map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+ const re=new RegExp(escaped.join('|'),'gu');
+ const svgNS='http://www.w3.org/2000/svg';
+ const skip='script,style,textarea,code,pre,svg,[contenteditable],input,option,[data-no-icon-replace]';
+ function scan(root){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(n){
+   if(!n.parentElement||n.parentElement.closest(skip)||!re.test(n.nodeValue)){re.lastIndex=0;return NodeFilter.FILTER_REJECT;}re.lastIndex=0;return NodeFilter.FILTER_ACCEPT;
+  }});
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  for(const node of nodes){
+   const text=node.nodeValue;re.lastIndex=0;const frag=document.createDocumentFragment();let last=0,match;
+   while((match=re.exec(text))){if(match.index>last)frag.append(document.createTextNode(text.slice(last,match.index)));
+    const span=document.createElement('span');span.className='sponti-line-icon';span.setAttribute('aria-label',match[0]);span.setAttribute('role','img');
+    const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.8');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');svg.setAttribute('aria-hidden','true');svg.innerHTML=paths[match[0]];span.append(svg);frag.append(span);last=re.lastIndex;
+   }
+   if(last<text.length)frag.append(document.createTextNode(text.slice(last)));node.replaceWith(frag);
+  }
+ }
+ const style=document.createElement('style');style.textContent='.sponti-line-icon{display:inline-flex;align-items:center;justify-content:center;vertical-align:-.16em;width:1.15em;height:1.15em;color:inherit;flex-shrink:0}.sponti-line-icon svg{display:block;width:100%;height:100%}';document.head.append(style);
+ const run=()=>{scan(document.body);const observer=new MutationObserver(records=>{for(const record of records){for(const n of record.addedNodes){if(n.nodeType===1&& !n.matches(skip))scan(n);else if(n.nodeType===3&&n.parentElement&&!n.parentElement.closest(skip))scan(n.parentElement);}}});observer.observe(document.body,{childList:true,subtree:true});};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
