@@ -105,7 +105,7 @@
 
 </style>
       <link rel="stylesheet" href="/sponti-course-hero.css?v=20261110-today-no-icon" />
-  </head>
+  <style>.sponti-hero-search-field:has(input[name="datum"]) .sponti-search-field-inner{position:relative;min-width:0}.sponti-hero-search-field .sponti-date-hint{display:block;font-size:11px;color:#64766f;line-height:1.3;margin-top:3px;pointer-events:none}.sponti-hero-search-field input[name="datum"]{min-width:0;width:100%;color:#174c3b;font:inherit;font-size:14px;min-height:25px}.sponti-hero-search-field input[name="datum"]:not(:focus):invalid{color:#64766f}@media(max-width:640px){.sponti-hero-search-field .sponti-date-hint{font-size:10px}}</style></head>
   <body>
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> <svg class="sponti-banner-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
@@ -150,7 +150,7 @@
         </div>
         <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
           <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><input name="ort" type="text" placeholder="z. B. Zug" autocomplete="address-level2" /></span></label>
-          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum</span><input name="datum" type="date" /></span></label>
+          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum auswählen</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></label>
           <label class="sponti-today-filter"><input type="checkbox" id="sponti-today-checkbox" /><span>Heute noch freie Plätze</span></label>
           <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
         </form>
