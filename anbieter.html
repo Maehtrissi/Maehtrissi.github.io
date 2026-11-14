@@ -242,7 +242,7 @@ const form=root.querySelector('[data-provider-form="profile"]');form?.addEventLi
  const groups=[[labels[0],labels[1]],[labels[3],labels[2],labels[4]],[labels[5],labels[6],labels[7],labels[8]],[]];
  const titles=['Dein Unternehmen','So erreichen wir dich','Dein Angebot','Prüfen & Konto erstellen'];
  const steps=groups.map((fields,i)=>{const panel=document.createElement('section');panel.className='provider-wizard-step';panel.setAttribute('aria-labelledby','join-step-'+i);const heading=document.createElement('h3');heading.id='join-step-'+i;heading.tabIndex=-1;heading.textContent=titles[i];panel.append(heading,...fields);form.insertBefore(panel,submit);return panel;});
- const review=document.createElement('dl');review.className='provider-wizard-review';steps[3].append(review,form.querySelector('[data-registration-passwords]'),form.querySelector('.provider-terms-consent'),form.querySelector('.provider-media-consent'),help);
+ const review=document.createElement('dl');review.className='provider-wizard-review';steps[3].append(review,form.querySelector('[data-registration-passwords]'),form.querySelector('.provider-consent-heading'),form.querySelector('.provider-consent-description'),form.querySelector('.provider-terms-consent'),form.querySelector('.provider-media-consent'),help);
  const actions=document.createElement('div');actions.className='provider-wizard-actions';
  const back=document.createElement('button'),next=document.createElement('button');
  back.type=next.type='button';back.className='button account-secondary';next.className='button button-primary';back.textContent='Zurück';next.textContent='Weiter →';
