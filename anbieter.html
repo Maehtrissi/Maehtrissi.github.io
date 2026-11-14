@@ -89,7 +89,67 @@ body.account-page [data-course-editor] .provider-course-actions-footer{display:f
 body.account-page [data-course-editor] .provider-course-actions-footer .button{min-height:44px}
 @media(max-width:600px){body.account-page [data-course-editor] .provider-course-accordion summary{padding:15px}body.account-page [data-course-editor] .provider-course-accordion-content{padding:4px 15px 18px}body.account-page [data-course-editor] .provider-course-actions-footer .button{flex:1 1 130px}}
 </style><link rel="stylesheet" href="/sponti-mockup-design.css?v=20261107-arrow-svg" />
-<link rel="stylesheet" href="/sponti-dashboard.css?v=20261112" /><link rel="stylesheet" href="/sponti-provider-dashboard.css?v=20261112" /><link rel="stylesheet" href="/sponti-account-deletion.css?v=20261112" /></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
+<link rel="stylesheet" href="/sponti-dashboard.css?v=20261112" /><link rel="stylesheet" href="/sponti-provider-dashboard.css?v=20261112" /><link rel="stylesheet" href="/sponti-account-deletion.css?v=20261112" /><style>
+/* Anbieterregistrierung: gut erkennbare, barrierearme Pflichtzustimmungen. */
+body.account-page #provider-application-form .provider-consent-heading{
+  font:700 clamp(18px,2vw,21px)/1.35 "DM Sans",sans-serif;
+  color:#193e34;margin:26px 0 7px;letter-spacing:-.025em;
+}
+body.account-page #provider-application-form .provider-consent-heading span{color:#d16f38}
+body.account-page #provider-application-form .provider-consent-description{
+  font-size:14px;line-height:1.65;color:#52645a;margin:0 0 14px;
+}
+body.account-page #provider-application-form .provider-consent-card{
+  display:flex!important;align-items:flex-start!important;gap:16px!important;
+  width:100%;min-width:0;padding:20px!important;margin:13px 0!important;
+  border:2px solid #c9d9cc;border-radius:16px;
+  background:#f8faf6;box-shadow:0 3px 14px rgba(17,55,39,.045);
+  cursor:pointer;line-height:1.5;font-weight:400;
+  transition:border-color .16s,background .16s,box-shadow .16s;
+}
+body.account-page #provider-application-form .provider-terms-consent{border-color:#b2cdbb;background:#f2f8f1}
+body.account-page #provider-application-form .provider-consent-card:hover{
+  border-color:#4c8164;background:#f0f7ee;
+}
+body.account-page #provider-application-form .provider-consent-card:has(input:checked){
+  background:#ecf6eb;border-color:#2d7953;box-shadow:inset 0 0 0 1px rgba(45,121,83,.08);
+}
+body.account-page #provider-application-form .provider-consent-card:has(input:focus-visible){
+  outline:3px solid #f3a56e;outline-offset:3px;
+}
+body.account-page #provider-application-form .provider-consent-card input[type="checkbox"]{
+  display:block!important;appearance:auto!important;
+  width:30px!important;height:30px!important;min-width:30px!important;
+  flex:0 0 30px!important;margin:1px 0 0!important;
+  accent-color:#246649!important;cursor:pointer;
+  position:static!important;opacity:1!important;
+}
+body.account-page #provider-application-form .provider-consent-card > span{
+  flex:1;min-width:0;display:block;color:#1b3d2e;font-size:15px;line-height:1.55;
+}
+body.account-page #provider-application-form .provider-consent-card strong{
+  display:block;font-size:16px;line-height:1.45;font-weight:750;color:#173d2d;margin-bottom:7px;
+}
+body.account-page #provider-application-form .provider-consent-card small{
+  display:block;font-size:13px;font-weight:450;line-height:1.7;color:#405e4c;
+}
+body.account-page #provider-application-form .provider-consent-card a{
+  color:#15593e;text-decoration:underline;text-underline-offset:3px;font-weight:700;
+}
+body.account-page #provider-application-form .provider-required-label{
+  display:inline-block;margin-left:4px;font-weight:750;color:#925024;white-space:nowrap;
+}
+@media(max-width:580px){
+ body.account-page #provider-application-form .provider-consent-card{gap:12px!important;padding:16px!important}
+ body.account-page #provider-application-form .provider-consent-card input[type="checkbox"]{
+  width:28px!important;height:28px!important;min-width:28px!important;flex-basis:28px!important;
+ }
+ body.account-page #provider-application-form .provider-consent-card strong{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.account-page #provider-application-form .provider-consent-card{transition:none}
+}
+</style></head><body class="account-page"><a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> <svg class="sponti-banner-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
       <span class="top-announcement-mobile">Freie Plätze auf WhatsApp – <strong>Beitreten</strong> <svg class="sponti-banner-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
     </a><header class="site-header"><a class="logo" href="/" aria-label="Sponti Startseite"><img src="logo.png" alt="Sponti Logo"><span>Sponti</span></a><details class="account-selector"><summary>Anmelden</summary><div class="account-selector-menu"><a href="/profil" data-customer-profile-link>Als Kunde anmelden</a><a href="/anbieter">Als Kursanbieter anmelden</a></div></details><button class="site-menu-trigger" type="button" data-site-menu-trigger aria-expanded="false" aria-controls="site-menu"><span>Menü</span><span class="site-menu-icon" aria-hidden="true"><i></i><i></i></span></button></header><div class="site-menu" id="site-menu" data-site-menu aria-hidden="true"><button class="site-menu-scrim" type="button" data-site-menu-close aria-label="Menü schließen"></button><section class="site-menu-panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1"><div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schließen">×</button></div><nav class="site-menu-links" aria-label="Hauptnavigation"><a href="/">Startseite</a><a href="/kurse">Kurs entdecken</a><a href="/kursanbieter">Für Kursanbieter</a><a href="/warum">Motivation</a><a href="/erfahrungen">Erfahrungen</a></nav><a class="button button-primary site-menu-cta" data-open-booking href="/profil?mode=register">Sponti beitreten</a><a class="button site-menu-provider-cta" href="/anbieter?mode=register">Als Anbieter anmelden</a></section></div><main class="account-shell provider-account-shell" data-provider-account><div class="account-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> Sponti für Anbieter</div><h1>Dein Anbieterboard.<br><em>Dein Angebot.</em></h1><p>Melde dich an und verwalte dein Anbieterboard. Neu bei Sponti? Erstelle dein Konto unter „Als Kursanbieter beitreten“.</p></div><p class="account-notice" data-provider-approval role="status" hidden>Dein Konto wird noch bestätigt. Du kannst dein Profil bereits ausfüllen und Kurse als Entwurf vorbereiten. Öffentlich sichtbar wirst du erst nach unserer Freigabe.</p><p class="account-notice" data-provider-status role="status" aria-live="polite" hidden></p><p data-provider-loading>Dein Konto wird geladen …</p><section class="account-card" data-provider-recovery hidden aria-labelledby="recovery-title" style="max-width:980px;margin:20px auto 28px;padding:clamp(20px,4vw,34px);border:1px solid #d8e4db;border-radius:20px;background:#fffdfa;box-shadow:0 12px 32px rgba(25,62,52,.07)">
@@ -116,8 +176,10 @@ body.account-page [data-course-editor] .provider-course-actions-footer .button{m
           <label>Art der Kurse<select name="category"><option>Yoga &amp; Wellness</option><option>Kochen &amp; Genießen</option><option>Kunst &amp; Handwerk</option><option>Fotografie &amp; Design</option><option>Tanz &amp; Bewegung</option><option>Natur &amp; Draußen</option><option>Etwas anderes</option></select></label>
           <label>Wie viele Plätze bleiben bei dir durchschnittlich pro Kurs frei? (optional)<select name="average_free_seats" aria-describedby="provider-free-seats-help"><option value="">Bitte auswählen (optional)</option><option value="Keine">Keine</option><option value="1–3 Plätze">1–3 Plätze</option><option value="4–5 Plätze">4–5 Plätze</option><option value="Mehr als 5 Plätze">Mehr als 5 Plätze</option><option value="Noch unklar">Noch unklar</option></select><small id="provider-free-seats-help" style="font-weight:400;line-height:1.5;color:#56665e">Eine ungefähre Schätzung reicht. Falls du es noch nicht weisst, lass das Feld einfach leer.</small></label>
           <label>Nachricht (optional)<textarea name="message" rows="3" maxlength="4800" placeholder="Erzähl uns kurz von deinem Angebot"></textarea></label>
-          <label class="provider-terms-consent" style="display:flex;align-items:flex-start;gap:12px;margin:18px 0;line-height:1.5;font-weight:400"><input type="checkbox" name="provider_terms_accepted" required style="width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:#193e34"><span>Ich habe die <a href="/agb" target="_blank" rel="noopener noreferrer">Allgemeinen Geschäftsbedingungen (AGB)</a> gelesen und akzeptiere sie.</span></label>
-          <label class="provider-media-consent" style="display:flex;align-items:flex-start;gap:12px;margin:18px 0;line-height:1.5;font-weight:400"><input type="checkbox" name="provider_media_permission" required style="width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:#193e34"><span>Ich erlaube Sponti, meine hierfür ausdrücklich freigegebenen Unternehmensnamen, Logos, Bilder und Kursbeschreibungen für die Darstellung und Bewerbung meiner Angebote zu verwenden. Inhalte meiner Website und Social-Media-Profile dürfen nur mit entsprechender Freigabe verwendet werden. <a href="/anbieter-agb-entwurf" target="_blank" rel="noopener noreferrer">Details zu den Nutzungsrechten</a>.</span></label>
+          <h4 class="provider-consent-heading">Rechtliche Zustimmung <span aria-hidden="true">*</span></h4>
+          <p class="provider-consent-description">Bitte lies die geltenden Bedingungen und bestätige deine Zustimmung aktiv. Ohne diese Bestätigung kannst du kein Anbieterkonto erstellen.</p>
+          <label class="provider-terms-consent provider-consent-card"><input type="checkbox" name="provider_terms_accepted" required aria-describedby="provider-terms-explanation"><span><strong>Ich akzeptiere die aktuell gültigen AGB von Sponti.</strong><small id="provider-terms-explanation">Ich habe die <a href="/agb#aktuell-gueltig" target="_blank" rel="noopener noreferrer">aktuell gültigen Allgemeinen Geschäftsbedingungen (Stand 7. Oktober 2026)</a> gelesen und stimme ihnen zu. <span class="provider-required-label">Pflichtfeld</span></small></span></label>
+          <label class="provider-media-consent provider-consent-card"><input type="checkbox" name="provider_media_permission" required aria-describedby="provider-media-explanation"><span><strong>Ich stimme der Verwendung ausdrücklich freigegebener Anbieterinhalte zu.</strong><small id="provider-media-explanation">Sponti darf von mir ausdrücklich freigegebene Unternehmensnamen, Logos, Bilder und Kursbeschreibungen zur Darstellung und Bewerbung meiner Angebote verwenden. Inhalte von meiner Website oder aus Social Media nur mit entsprechender Freigabe. <a href="/anbieter-agb-entwurf" target="_blank" rel="noopener noreferrer">Hinweise zu Nutzungsrechten (Entwurf)</a>. <span class="provider-required-label">Pflichtfeld</span></small></span></label>
           <p class="account-help">Mit dem Absenden werden deine Angaben zur Bearbeitung deiner Anfrage gespeichert. Weitere Informationen findest du unter <a href="/rechtliches">Datenschutz &amp; Rechtliches</a>.</p>
           <button class="button button-primary" type="submit" disabled>Konto erstellen &amp; Anfrage senden</button>
           <div data-registration-passwords><h3>Dein Passwort</h3><label>Passwort<input name="signup_password" type="password" autocomplete="new-password" minlength="12" required aria-describedby="signup-password-help"></label><p class="account-help" id="signup-password-help">Mindestens 12 Zeichen. Dein Passwort wird ausschliesslich für deinen Zugang verwendet.</p><label>Passwort wiederholen<input name="signup_confirm" type="password" autocomplete="new-password" minlength="12" required></label></div><p data-partner-error role="alert" hidden></p>
