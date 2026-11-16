@@ -32,3 +32,11 @@
 .booking-step input[readonly]{background:#eef3ed!important;color:#375c49}
 @media(max-width:620px){.booking-identity-choice{grid-template-columns:1fr}.booking-identity-option{min-height:0;padding:16px}.booking-identity-login{padding:18px}.booking-identity-login form button{width:100%}}
 @media(prefers-reduced-motion:reduce){.booking-identity-option{transition:none}}
+
+/* Fehlende AGB-Zustimmung: gezielte, barrierearme Validierung. */
+#booking-form .booking-terms{padding:13px 15px;border:2px solid transparent;border-radius:12px;transition:background-color .18s,border-color .18s;}
+#booking-form .booking-terms.is-invalid{border-color:#ca3b36;background:#fff0ee;color:#9d2421;}
+#booking-form .booking-terms.is-invalid input[type="checkbox"]{outline:2px solid #ca3b36;outline-offset:3px;accent-color:#ca3b36;}
+#booking-form .booking-terms.is-invalid span{color:#9d2421;}
+#booking-form .booking-terms-error{color:#ae2926;font-size:13px;font-weight:700;line-height:1.55;margin:-14px 0 0 0;}
+#booking-form .booking-terms-error[hidden]{display:none!important;}
