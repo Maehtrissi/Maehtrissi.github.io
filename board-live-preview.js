@@ -10,7 +10,7 @@ if(form&&preview){
   const name=get('company'),category=get('category'),location=get('location'),website=get('website');
   const title=card.querySelector('.provider-profile-heading h3');if(title)title.textContent=name||'Dein Unternehmen';
   const cat=card.querySelector('[data-provider-category]');if(cat)cat.textContent=category||'Kategorie ergänzen';
-  const place=card.querySelector('[data-live-provider-location]');if(place)place.textContent=location||'Standort ergänzen';
+  const place=card.querySelector('[data-live-provider-location]');if(place)place.textContent=window.SpontiPlaces?.format(location)||location||'Standort ergänzen';
   const details=card.querySelector('.provider-profile-sections .provider-profile-section:nth-child(2)');
   if(details){
    let link=details.querySelector('[data-live-provider-website]');
