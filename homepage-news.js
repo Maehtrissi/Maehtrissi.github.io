@@ -32,6 +32,7 @@
     const total=Math.ceil(items.length/pageSize);
     page=Math.max(0,Math.min(page,Math.max(0,total-1)));
     list.replaceChildren();
+    list.setAttribute('aria-busy','false');
     if(items.length===0){
       list.append(elt('p','hero-news-empty','Hier findest du bald Neuigkeiten von Sponti.'));
       pager.hidden=true;
@@ -46,7 +47,7 @@
       }
       entry.append(elt('span','hero-news-entry-label',item.label||'Neu'));
       const heading=elt('strong','hero-news-entry-title',item.title||'Neu bei Sponti');
-      if(url){const arrow=elt('span','hero-news-entry-arrow','↗');arrow.setAttribute('aria-hidden','true');heading.append(arrow);}
+      if(url){const arrow=elt('span','hero-news-entry-arrow');arrow.innerHTML='<svg viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></svg>';arrow.setAttribute('aria-hidden','true');heading.append(arrow);}
       entry.append(heading);
       if(item.body)entry.append(elt('p','hero-news-entry-text',item.body));
       list.append(entry);
@@ -72,7 +73,11 @@
       render();
     }catch(error){
       // Preserve previously loaded entries during temporary network failures.
-      if(!items.length)render();
+      if(!items.length){
+        list.replaceChildren(elt('p','hero-news-empty','Die News konnten gerade nicht geladen werden. Bitte versuche es später erneut.'));
+        list.setAttribute('aria-busy','false');
+        pager.hidden=true;
+      }
       console.warn('Sponti News konnten nicht geladen werden.',error);
     }
   }

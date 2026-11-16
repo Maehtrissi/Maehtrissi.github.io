@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="styles.css?v=screenshot-gradient-20261107" />
     <link rel="stylesheet" href="whatsapp-community.css?v=qr-shadow-soft-20261013" />
-    <link rel="stylesheet" href="homepage-news.css?v=20261013" />
+    <link rel="stylesheet" href="homepage-news.css?v=20261116" />
     <link rel="stylesheet" href="category-section.css?v=section-bg-20261013" />
     <link rel="stylesheet" href="category-cards.css?v=soft-pastels-on-section-20261013" />
     <link rel="stylesheet" href="how-it-works.css?v=gradient-rings-20261013" />
@@ -176,6 +176,27 @@
         </nav>
       </section>
 
+      <section class="sponti-news-section hero-news-board" id="sponti-news" aria-labelledby="sponti-news-title">
+        <div class="sponti-news-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Neues von Sponti</div>
+            <h2 id="sponti-news-title">Sponti <em>Newsboard</em></h2>
+          </div>
+          <p>Neue Kurse, besondere Aktionen und alles, was bei Sponti gerade läuft.</p>
+        </div>
+        <div class="hero-news-list" data-home-news-list aria-live="polite" aria-busy="true">
+          <p class="hero-news-empty">Neuigkeiten werden geladen …</p>
+        </div>
+        <div class="hero-news-footer" data-home-news-pager hidden>
+          <span data-home-news-count aria-live="polite"></span>
+          <div class="hero-news-controls">
+            <button type="button" data-home-news-prev aria-label="Vorherige News anzeigen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+            <button type="button" data-home-news-next aria-label="Weitere News anzeigen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <noscript>Bitte aktiviere JavaScript, um die aktuellen News zu sehen.</noscript>
+      </section>
+
       <section class="locations-section" id="locations" aria-labelledby="locations-title">
         <div class="locations-heading">
           <div>
@@ -331,7 +352,7 @@
 
     
     <script src="script.js?v=global-header-20261107"></script>
-    <script defer src="homepage-news.js?v=20261013"></script>
+    <script defer src="homepage-news.js?v=20261116"></script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
   <script defer src="/homepage-featured-course.js?v=20261030"></script>
   <script defer src="sponti-reviews.js?v=20261031-empty-state"></script>
