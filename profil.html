@@ -105,7 +105,7 @@ root.querySelectorAll('[data-cfilter-tab]').forEach(b=>b.addEventListener('click
 root.querySelectorAll('form').forEach(form=>form.addEventListener('invalid',event=>{const panel=event.target.closest('[data-cboard-view]');const group=event.target.closest('[data-cfilter-view]');if(panel)openBoard(panel.dataset.cboardView);if(group)switchGroup('data-cfilter-tab','data-cfilter-view',group.dataset.cfilterView,'cfilter-inactive');},true));
 const recovery=root.querySelector('[data-account-recovery]');if(recovery){let last=recovery.hidden;new MutationObserver(()=>{if(!recovery.hidden&&last)switchGroup('data-cboard-tab','data-cboard-view','security','cboard-inactive');last=recovery.hidden;}).observe(recovery,{attributes:true,attributeFilter:['hidden']});}
 })();
-</script><script src="script.js?v=global-header-20261107"></script><script type="module" src="customer-account.js?v=onboarding-20261105"></script><script type="module">
+</script><script src="script.js?v=sponti-places-20261116"></script><script type="module" src="customer-account.js?v=onboarding-20261105"></script><script type="module">
   // Resume a course request after successful login or registration.
   const requestedCourse=new URLSearchParams(location.search).get('course');
   if(requestedCourse && /^[0-9a-f-]{36}$/i.test(requestedCourse)){
