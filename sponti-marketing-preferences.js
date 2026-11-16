@@ -4,7 +4,7 @@ if(section){
  const status=section.querySelector('[data-marketing-status]');
  const weekly=section.querySelector('[data-marketing-weekly]');
  const newsletter=section.querySelector('[data-marketing-newsletter]');
- const categories=[...section.querySelectorAll('input[data-marketing-category]')];
+ const categories=[...document.querySelectorAll('form[data-account-form="preferences"] input[name="categories"]')];
  const save=section.querySelector('[data-marketing-save]');
  const client=createClient(
   'https://ehifskiigrfpxeiruyxr.supabase.co',
@@ -27,8 +27,6 @@ if(section){
    if(error)throw error;
    weekly.checked=Boolean(data?.weekly_courses);
    newsletter.checked=Boolean(data?.newsletter);
-   const selected=new Set(Array.isArray(data?.categories)?data.categories:[]);
-   for(const item of categories)item.checked=selected.has(item.value);
    message('Du kannst diese Werbe-E-Mails jederzeit einzeln abbestellen.');
   }catch(e){message('Die E-Mail-Einstellungen konnten gerade nicht geladen werden.',true);}
  }
@@ -36,7 +34,7 @@ if(section){
   if(busy)return;
   const chosen=categories.filter(input=>input.checked).map(input=>input.value);
   if(weekly.checked&&!chosen.length){
-   message('Bitte wähle mindestens eine Kurskategorie für die wöchentlichen Kurstipps.',true);
+   message('Bitte wähle im Bereich «Kursarten» mindestens eine Kategorie aus.',true);
    return;
   }
   busy=true;save.disabled=true;message('Einstellungen werden gespeichert …');
