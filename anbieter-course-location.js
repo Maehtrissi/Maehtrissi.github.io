@@ -24,7 +24,7 @@
    if(course.elements.id?.value)return;
    const location=profile.elements.location?.value.trim()||'';
    if(!location)return;
-   course.elements.venue.value=location;
+   course.elements.venue.value=window.SpontiPlaces?.format(location)||location;
    const region=regionFor(location);
    if(region)course.elements.region.value=region;
   });
