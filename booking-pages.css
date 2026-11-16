@@ -84,6 +84,7 @@
 .booking-step-toggle:disabled{opacity:1;cursor:default;color:#637369}
 .booking-step-toggle:focus-visible{outline:3px solid #c77e53;outline-offset:6px;border-radius:6px}
 .booking-step-title{flex:1;min-width:0}
+.booking-step-toggle .step-number{font:700 16px/1 "DM Sans",Arial,sans-serif}
 .booking-step-chevron{flex:0 0 22px;color:#315f49;transition:transform .25s ease;transform:rotate(-90deg)}
 .booking-step-toggle[aria-expanded="true"] .booking-step-chevron{transform:rotate(0)}
 .booking-step-toggle:disabled .booking-step-chevron{opacity:.45}
