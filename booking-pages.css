@@ -34,12 +34,12 @@
 @media(prefers-reduced-motion:reduce){.booking-identity-option{transition:none}}
 
 /* Fehlende AGB-Zustimmung: gezielte, barrierearme Validierung. */
-#booking-form .booking-terms{padding:13px 15px;border:2px solid transparent;border-radius:12px;transition:background-color .18s,border-color .18s;}
-#booking-form .booking-terms.is-invalid{border-color:#ca3b36;background:#fff0ee;color:#9d2421;}
-#booking-form .booking-terms.is-invalid input[type="checkbox"]{outline:2px solid #ca3b36;outline-offset:3px;accent-color:#ca3b36;}
-#booking-form .booking-terms.is-invalid span{color:#9d2421;}
-#booking-form .booking-terms-error{color:#ae2926;font-size:13px;font-weight:700;line-height:1.55;margin:-14px 0 0 0;}
-#booking-form .booking-terms-error[hidden]{display:none!important;}
+.booking-consents .booking-terms{padding:13px 15px;border:2px solid transparent;border-radius:12px;transition:background-color .18s,border-color .18s;}
+.booking-consents .booking-terms.is-invalid{border-color:#ca3b36;background:#fff0ee;color:#9d2421;}
+.booking-consents .booking-terms.is-invalid input[type="checkbox"]{outline:2px solid #ca3b36;outline-offset:3px;accent-color:#ca3b36;}
+.booking-consents .booking-terms.is-invalid span{color:#9d2421;}
+.booking-consents .booking-terms-error{color:#ae2926;font-size:13px;font-weight:700;line-height:1.55;margin:-14px 0 0 0;}
+.booking-consents .booking-terms-error[hidden]{display:none!important;}
 
 /* Buchungsschritt 2: kompakte Auswahl der Personenanzahl ohne weitere Kursdetails. */
 #step-activity .booking-quantity{margin:22px 0 25px;max-width:280px;}
@@ -67,3 +67,12 @@
 .booking-step{scroll-margin-top:26px}
 .booking-step.is-current{border-color:#275941}
 @media(prefers-reduced-motion:reduce){.booking-step.is-revealing{animation:none}}
+
+/* Schritt 3: Pflicht-AGB und freiwillige Werbeeinwilligung erst vor Abschluss zeigen. */
+.booking-consents{display:grid;gap:13px;margin:24px 0 20px;padding:18px;background:#f7f6f0;border:1px solid #d9e4d6;border-radius:13px}
+.booking-consents .booking-check{align-items:flex-start;line-height:1.6}
+.booking-consents .booking-check input[type="checkbox"]{flex:0 0 auto;width:20px;height:20px;margin:2px 0 0;accent-color:#215943}
+.booking-consents .booking-terms-error{margin:-8px 0 2px 15px}
+.booking-step button[hidden],.booking-consents [hidden]{display:none!important}
+.booking-free-confirm{margin-top:18px}
+@media(max-width:520px){.booking-consents{padding:14px 12px}}
