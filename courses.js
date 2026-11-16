@@ -61,7 +61,7 @@
   const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');availabilityTrack.append(element('span','course-availability-fill'));availability.append(availabilityLabel,availabilityTrack);
   const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,availability,heading,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
   const details=element('div','course-details');
-  const locationText=element('span','course-location',course.venue);
+  const locationText=element('span','course-location',window.SpontiPlaces?.format(course.venue)||course.venue);
   locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
   const locationIcon=document.createElementNS('http://www.w3.org/2000/svg','svg');
   locationIcon.setAttribute('viewBox','0 0 24 24');locationIcon.setAttribute('width','15');locationIcon.setAttribute('height','15');locationIcon.setAttribute('fill','none');locationIcon.setAttribute('stroke','currentColor');locationIcon.setAttribute('stroke-width','1.8');locationIcon.setAttribute('stroke-linecap','round');locationIcon.setAttribute('stroke-linejoin','round');locationIcon.setAttribute('aria-hidden','true');
