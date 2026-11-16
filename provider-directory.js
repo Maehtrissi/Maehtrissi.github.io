@@ -29,7 +29,7 @@ function card(p){
  const providerName=text('h3');const nameLink=text('a',p.company);nameLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));providerName.append(nameLink);heading.append(providerName,text('p',p.category||'Kursanbieter','provider-directory-meta'));identity.append(heading);banner.append(identity);
  el.append(banner);
  const body=document.createElement('div');body.className='provider-directory-content';
- if(p.location)body.append(text('p',p.location,'provider-directory-location'));
+ if(p.location)body.append(text('p',window.SpontiPlaces?.format(p.location)||p.location,'provider-directory-location'));
  const profileLink=text('a','Anbieterprofil ansehen','provider-directory-profile-link');profileLink.href='/anbieterprofil?id='+encodeURIComponent(String(p.provider_id));body.append(profileLink);
  const details=document.createElement('details');details.className='provider-directory-details';details.append(text('summary','Mehr über den Anbieter'));
  const about=String(p.about_text||'').trim();
@@ -48,7 +48,7 @@ function card(p){
    const item=document.createElement('article');item.className='provider-directory-course';
    item.append(text('strong',course.title||'Kurs'));
    const date=course.starts_at?new Date(course.starts_at):null;
-   if(date&&!Number.isNaN(date.getTime()))item.append(text('p',[format.format(date),course.venue,'CHF '+Number(course.price||0).toFixed(2)].filter(Boolean).join(' · ')));
+   if(date&&!Number.isNaN(date.getTime()))item.append(text('p',[format.format(date),window.SpontiPlaces?.format(course.venue)||course.venue,'CHF '+Number(course.price||0).toFixed(2)].filter(Boolean).join(' · ')));
    if(course.description)item.append(text('p',course.description));
    const booking=link('Zur Buchung',course.booking_url);if(booking)item.append(booking);
    details.append(item);
