@@ -118,7 +118,7 @@ async function loadCourses(){
  const formatter=new Intl.DateTimeFormat('de-CH',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Zurich'});
  for(const c of active){
   const article=document.createElement('article');article.className='provider-course-item';
-  article.append(text('h4',c.title),text('p',formatter.format(new Date(c.starts_at))+' · '+c.venue+' · CHF '+Number(c.price).toFixed(2)));
+  article.append(text('h4',c.title),text('p',formatter.format(new Date(c.starts_at))+' · '+(window.SpontiPlaces?.format(c.venue)||c.venue)+' · CHF '+Number(c.price).toFixed(2)));
   if(c.description)article.append(text('p',c.description));coursesPreview.append(article);
  }
 }
