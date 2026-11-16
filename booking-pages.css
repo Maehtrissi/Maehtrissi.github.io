@@ -59,3 +59,11 @@
 .booking-summary .summary-total{padding:21px 0 16px}
 .booking-summary #checkout-total{font-variant-numeric:tabular-nums;white-space:nowrap}
 @media(max-width:520px){.booking-summary .booking-per-seat{padding:13px 14px}.booking-summary .booking-price-breakdown{padding-top:19px}}
+
+/* Buchungsschritte: zuerst Kontaktdaten, danach Platzanzahl, zuletzt Zahlung. */
+.booking-step[hidden]{display:none!important}
+.booking-step.is-revealing{animation:sponti-booking-step-appear .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes sponti-booking-step-appear{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.booking-step{scroll-margin-top:26px}
+.booking-step.is-current{border-color:#275941}
+@media(prefers-reduced-motion:reduce){.booking-step.is-revealing{animation:none}}
