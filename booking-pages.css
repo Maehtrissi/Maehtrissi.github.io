@@ -76,3 +76,38 @@
 .booking-step button[hidden],.booking-consents [hidden]{display:none!important}
 .booking-free-confirm{margin-top:18px}
 @media(max-width:520px){.booking-consents{padding:14px 12px}}
+
+/* Aufklappbarer Checkout: alle drei Titel bleiben sichtbar, nur der aktive Inhalt öffnet sich. */
+.booking-step-heading{width:100%;margin:0}
+.booking-step-heading h2{width:100%;margin:0}
+.booking-step-toggle{appearance:none;border:0;background:transparent;color:#193b30;width:100%;display:flex;align-items:center;gap:15px;text-align:left;font:inherit;padding:0;cursor:pointer}
+.booking-step-toggle:disabled{opacity:1;cursor:default;color:#637369}
+.booking-step-toggle:focus-visible{outline:3px solid #c77e53;outline-offset:6px;border-radius:6px}
+.booking-step-title{flex:1;min-width:0}
+.booking-step-chevron{flex:0 0 22px;color:#315f49;transition:transform .25s ease;transform:rotate(-90deg)}
+.booking-step-toggle[aria-expanded="true"] .booking-step-chevron{transform:rotate(0)}
+.booking-step-toggle:disabled .booking-step-chevron{opacity:.45}
+.booking-step:not(.is-current){padding:19px 27px;background:#fafbf7;border:1px solid #dce5da}
+.booking-step:not(.is-current) .step-number{background:#e8eee6;color:#465f4f}
+.booking-step.is-current{background:#fffefa}
+.booking-step-body{padding-top:18px}
+.booking-step-body[hidden]{display:none!important}
+.booking-step-body>p{line-height:1.7;color:#62766a}
+.booking-step-body.is-revealing{animation:sponti-booking-accordion-open .46s cubic-bezier(.22,1,.36,1) both}
+@keyframes sponti-booking-accordion-open{
+ from{opacity:.25;transform:translateY(-12px);clip-path:inset(0 0 100% 0)}
+ to{opacity:1;transform:translateY(0);clip-path:inset(0 0 0 0)}
+}
+#step-activity .booking-quantity{margin-top:3px}
+.booking-step-body .booking-consents{margin-top:3px}
+@media(max-width:600px){
+ .booking-step:not(.is-current){padding:16px 19px}
+ .booking-step.is-current{padding:20px}
+ .booking-step-toggle{gap:12px}
+ .booking-step h2{font-size:21px}
+ .booking-step-body{padding-top:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .booking-step-body.is-revealing{animation:none}
+ .booking-step-chevron{transition:none}
+}
