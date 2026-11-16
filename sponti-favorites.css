@@ -9,3 +9,18 @@
 @media (max-width: 600px) {
   [data-cboard-view="favorites"] #sponti-favorites-list + a.button { margin-top: 18px; }
 }
+
+/* Favoriten im Kundenkonto: klarer Leerzustand und einfache Entfernung. */
+.sponti-favorites-empty{margin:14px 0 4px;padding:20px 22px;border:1px dashed #c9d9c9;border-radius:14px;background:#f7f9f5;color:#4e695a;line-height:1.6}
+.sponti-favorites-empty p{margin:0 0 7px}
+.sponti-favorites-empty p:last-child{margin-bottom:0}
+.sponti-favorites-empty .sponti-favorites-empty-title{font-weight:700;color:#254c3a}
+.sponti-favorites-status{color:#597466;font-size:14px;line-height:1.7}
+.sponti-favorite-entry{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:14px}
+.sponti-favorite-entry-link{display:flex;flex:1;min-width:0;flex-direction:column;gap:5px;color:inherit;text-decoration:none}
+.sponti-favorite-entry-link:hover strong{text-decoration:underline;text-underline-offset:3px}
+.sponti-favorite-remove{appearance:none;border:1px solid #ceddd0;border-radius:999px;padding:8px 12px;background:#f7f9f5;color:#285340;font:600 12px/1.25 "DM Sans",Arial,sans-serif;cursor:pointer;flex-shrink:0}
+.sponti-favorite-remove:hover{background:#e7efe6}
+.sponti-favorite-remove:focus-visible{outline:3px solid #e58d5c;outline-offset:2px}
+.sponti-favorite-remove:disabled{opacity:.5;cursor:wait}
+@media(max-width:520px){.sponti-favorite-entry{align-items:flex-start;flex-wrap:wrap}.sponti-favorite-remove{margin-left:auto}.sponti-favorites-empty{padding:17px 16px}}
