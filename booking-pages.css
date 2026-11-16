@@ -40,3 +40,8 @@
 #booking-form .booking-terms.is-invalid span{color:#9d2421;}
 #booking-form .booking-terms-error{color:#ae2926;font-size:13px;font-weight:700;line-height:1.55;margin:-14px 0 0 0;}
 #booking-form .booking-terms-error[hidden]{display:none!important;}
+
+/* Buchungsschritt 2: kompakte Auswahl der Personenanzahl ohne weitere Kursdetails. */
+#step-activity .booking-quantity{margin:22px 0 25px;max-width:280px;}
+#step-activity .booking-quantity select{max-width:240px;}
+@media(max-width:520px){#step-activity .booking-quantity{max-width:100%;}#step-activity .booking-quantity select{max-width:100%;}}
