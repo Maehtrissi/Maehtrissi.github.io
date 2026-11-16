@@ -112,3 +112,10 @@
  .booking-step-body.is-revealing{animation:none}
  .booking-step-chevron{transition:none}
 }
+
+/* Rückkehr von Stripe: sichtbarer Status ohne neue Buchung anzulegen. */
+.booking-return-notice{margin:20px 0 0;padding:14px 17px;border-radius:11px;
+ border:1px solid #c8d8cd;background:#eaf2ea;color:#204c36;font-size:14px;line-height:1.65}
+.booking-return-notice[hidden]{display:none!important}
+.booking-return-notice[data-state="warning"]{background:#fff5e7;border-color:#e4c89f;color:#774f28}
+.booking-return-notice[data-state="success"]{background:#eaf2ea;border-color:#a2c6ad;color:#18583b}
