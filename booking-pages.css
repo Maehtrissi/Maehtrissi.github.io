@@ -119,3 +119,17 @@
 .booking-return-notice[hidden]{display:none!important}
 .booking-return-notice[data-state="warning"]{background:#fff5e7;border-color:#e4c89f;color:#774f28}
 .booking-return-notice[data-state="success"]{background:#eaf2ea;border-color:#a2c6ad;color:#18583b}
+
+/* AGB- und Werbe-Box bündig zur darunterliegenden Stripe-Zahlungsbox. */
+#step-payment .booking-step-body > .booking-consents{
+  box-sizing:border-box;
+  margin-left:-10px;
+  width:calc(100% + 10px);
+  max-width:none;
+}
+@media(max-width:600px){
+  #step-payment .booking-step-body > .booking-consents{
+    margin-left:-6px;
+    width:calc(100% + 6px);
+  }
+}
