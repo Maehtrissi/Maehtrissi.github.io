@@ -325,28 +325,143 @@ if (siteMenu && siteMenuTrigger) {
   }, true);
 })();
 
-// Schreibweise von Orts- und Adressangaben vereinheitlichen.
+// Einheitliche Ortsnamen auf allen Sponti-Seiten (Eingaben + Datenbankanzeigen).
 (() => {
-  const selector = 'input[name="city"], input[name="location"], input[name="venue"], input[name="meeting_point"], textarea[name="location"], textarea[name="venue"], textarea[name="meeting_point"]';
-  const formatPlace = value => value.replace(/(^|[\\s,;/-])([\\p{L}])/gu, (_, sep, initial) => sep + initial.toLocaleUpperCase('de-CH'));
-  const normalize = field => {
-    if (!field?.matches?.(selector) || field.readOnly || field.disabled) return;
-    const formatted = formatPlace(field.value);
-    if (formatted !== field.value) {
-      field.value = formatted;
-      field.dispatchEvent(new Event('input', { bubbles: true }));
-      field.dispatchEvent(new Event('change', { bubbles: true }));
+  const canonical = new Map(Object.entries({
+    zug:'Zug', baar:'Baar', cham:'Cham', steinhausen:'Steinhausen',
+    rotkreuz:'Rotkreuz', risch:'Risch', walchwil:'Walchwil',
+    'unteraegeri':'Unterägeri','unterageri':'Unterägeri','unterägeri':'Unterägeri',
+    'oberaegeri':'Oberägeri','oberageri':'Oberägeri','oberägeri':'Oberägeri',
+    huenenberg:'Hünenberg', hunenberg:'Hünenberg', hünenberg:'Hünenberg',
+    zuerich:'Zürich', zurich:'Zürich', zürich:'Zürich',
+    winterthur:'Winterthur', dubendorf:'Dübendorf', dübendorf:'Dübendorf',
+    waedenswil:'Wädenswil', wädenswil:'Wädenswil',
+    luzern:'Luzern', lucerne:'Luzern', schwyz:'Schwyz', aargau:'Aargau',
+    basel:'Basel', bern:'Bern', st:'St', gallen:'Gallen',
+    schweiz:'Schweiz', online:'Online', andere:'Weitere Orte',
+    schweizweit:'Schweizweit'
+  }));
+  const smallWords = new Set([
+    'am','an','auf','bei','beim','der','die','das','den','dem','des',
+    'im','in','und','von','vom','zu','zur','zum','mit','für','aus',
+    'nach','ob','unter','neben','vor','hinter','zwischen','oder','per'
+  ]);
+  const acronyms = new Set(['CH','ZH','ZG','LU','SZ','AG','SG','BE','BS','BL','SH','UR',
+    'OW','NW','TI','VD','VS','FR','NE','GE','GR','TG','AR','AI','GL','JU','SO','HB','SBB','ETH']);
+  const lower = word => word.toLocaleLowerCase('de-CH');
+  const formatPlace = value => {
+    if (typeof value !== 'string' || !value.trim()) return value ?? '';
+    return value.replace(/\p{L}+(?:['’]\p{L}+)*/gu,(word,offset,source)=>{
+      const normalized=lower(word);
+      if(canonical.has(normalized))return canonical.get(normalized);
+      const letters=word.toLocaleUpperCase('de-CH');
+      if(acronyms.has(letters)&&word===letters)return word;
+      const prefix=source.slice(0,offset);
+      if(smallWords.has(normalized)&&/\p{L}/u.test(prefix)&&!/[;:,.!?()–—]\s*$/u.test(prefix))return normalized;
+      // Bereits korrekt gemischte Eigennamen wie "McDonald" nicht beschädigen.
+      if(/\p{Ll}\p{Lu}/u.test(word))return word;
+      return word.charAt(0).toLocaleUpperCase('de-CH')+
+        word.slice(1).toLocaleLowerCase('de-CH');
+    });
+  };
+  const formatRegion = value => {
+    if (typeof value !== 'string') return value ?? '';
+    return canonical.get(lower(value.trim())) || formatPlace(value);
+  };
+  window.SpontiPlaces = Object.freeze({format:formatPlace,region:formatRegion});
+  const fields = 'input[name="city"], input[name="ort"], input[name="stadt"],'+
+    ' input[name="location"], input[name="venue"], input[name="meeting_point"],'+
+    ' textarea[name="city"], textarea[name="ort"], textarea[name="stadt"],'+
+    ' textarea[name="location"], textarea[name="venue"], textarea[name="meeting_point"]';
+  const normalizeInput = field => {
+    if(!field?.matches?.(fields)||field.readOnly||field.disabled)return;
+    const formatted=formatPlace(field.value);
+    if(formatted!==field.value){
+      field.value=formatted;
+      field.dispatchEvent(new Event('input',{bubbles:true}));
+      field.dispatchEvent(new Event('change',{bubbles:true}));
     }
   };
-  document.addEventListener('focusout', event => normalize(event.target), true);
-  document.addEventListener('submit', event => {
-    event.target.querySelectorAll?.(selector).forEach(normalize);
-  }, true);
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll(selector).forEach(field => field.setAttribute('autocapitalize', 'words'));
-  });
+  document.addEventListener('focusout',e=>normalizeInput(e.target),true);
+  document.addEventListener('submit',e=>{
+    e.target.querySelectorAll?.(fields).forEach(normalizeInput);
+  },true);
+  const setAutocapitalization=scope=>{
+    if(scope.matches?.(fields))scope.setAttribute('autocapitalize','words');
+    scope.querySelectorAll?.(fields).forEach(field=>field.setAttribute('autocapitalize','words'));
+  };
+  const simpleDisplays = [
+    '.course-location','.provider-directory-location',
+    '[data-live-provider-location]','[data-provider-location]',
+    '.provider-profile-location','.provider-location',
+    '.course-venue','.location-card-copy strong'
+  ].join(',');
+  const formatElement=element=>{
+    // Nur Textknoten formatieren: SVG-Icons und Links bleiben unverändert.
+    for(const node of element.childNodes){
+      if(node.nodeType!==Node.TEXT_NODE)continue;
+      const formatted=formatPlace(node.nodeValue);
+      if(formatted!==node.nodeValue)node.nodeValue=formatted;
+    }
+  };
+  const formatRow=row=>{
+    const label=row.querySelector(':scope > strong, :scope > span');
+    if(!label || !/^(Ort|Region|Treffpunkt)$/i.test(label.textContent.trim()))return;
+    const value=label.nextElementSibling;
+    if(value && /^(SPAN|STRONG)$/.test(value.tagName))formatElement(value);
+  };
+  const normalizeDisplays=scope=>{
+    if(!(scope instanceof Element))return;
+    if(scope.matches(simpleDisplays))formatElement(scope);
+    scope.querySelectorAll(simpleDisplays).forEach(formatElement);
+    const rows=new Set(scope.querySelectorAll('.summary-row,.detail-fact'));
+    const near=scope.closest('.summary-row,.detail-fact');
+    if(near)rows.add(near);
+    if(scope.matches('.summary-row,.detail-fact'))rows.add(scope);
+    rows.forEach(formatRow);
+    const chips=scope.querySelectorAll('#detail-chips > span');
+    for(const chip of chips){
+      const raw=chip.textContent.trim();
+      if(canonical.has(lower(raw)))chip.textContent=formatRegion(raw);
+    }
+    if(scope.matches('#detail-chips > span')){
+      const raw=scope.textContent.trim();
+      if(canonical.has(lower(raw)))scope.textContent=formatRegion(raw);
+    }
+  };
+  const init=()=>{
+    setAutocapitalization(document.documentElement);
+    normalizeDisplays(document.documentElement);
+    let pending=new Set();
+    let scheduled=false;
+    new MutationObserver(mutations=>{
+      for(const m of mutations){
+        if(m.type==='childList'){
+          for(const node of m.addedNodes){
+            if(node.nodeType===Node.ELEMENT_NODE)pending.add(node);
+            else if(node.parentElement)pending.add(node.parentElement);
+          }
+        }else if(m.type==='characterData'&&m.target.parentElement){
+          pending.add(m.target.parentElement);
+        }
+      }
+      if(scheduled || pending.size===0)return;
+      scheduled=true;
+      queueMicrotask(()=>{
+        const changed=pending;
+        pending=new Set();
+        scheduled=false;
+        for(const element of changed){
+          if(!element.isConnected)continue;
+          setAutocapitalization(element);
+          normalizeDisplays(element);
+        }
+      });
+    }).observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
 })();
-
 
 /* Sponti unified desktop/mobile navigation — 2026-11-07.
    Reuses the existing account selector and routes; leaves authentication intact. */
