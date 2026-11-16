@@ -1,1 +1,257 @@
-(()=>{'use strict';const base='https://ehifskiigrfpxeiruyxr.supabase.co',key='sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy',storage='sb-ehifskiigrfpxeiruyxr-auth-token';let favorites=new Set(),user=null;const getSession=()=>{try{return JSON.parse(localStorage.getItem(storage)||'null')}catch{return null}};async function session(){let s=getSession();if(!s?.access_token||!s?.user)return null;if(s.expires_at&&s.expires_at*1000<Date.now()+60000&&s.refresh_token){try{const r=await fetch(base+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{apikey:key,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:s.refresh_token})});if(r.ok){s=await r.json();localStorage.setItem(storage,JSON.stringify(s))}}catch{}}return s?.access_token? s:null}async function request(path,options={}){const s=await session();if(!s)throw Error('Bitte melde dich an, um Favoriten zu speichern.');const r=await fetch(base+'/rest/v1/'+path,{...options,headers:{apikey:key,Authorization:'Bearer '+s.access_token,'Content-Type':'application/json',...options.headers}});if(!r.ok)throw Error('Favoriten konnten nicht gespeichert werden.');return r.status===204?null:r.json()}async function load(){const s=await session();user=s?.user?.id||null;if(!user){favorites.clear();update();return}try{const rows=await request('course_favorites?select=course_id&user_id=eq.'+encodeURIComponent(user));favorites=new Set(rows.map(r=>r.course_id));update();renderBoard()}catch(e){console.warn(e.message)}}function update(){document.querySelectorAll('[data-favorite-id]').forEach(b=>{const yes=favorites.has(b.dataset.favoriteId);b.classList.toggle('is-favorite',yes);b.setAttribute('aria-pressed',String(yes));b.setAttribute('aria-label',yes?'Aus Favoriten entfernen':'Zu Favoriten hinzufügen');b.title=yes?'Aus Favoriten entfernen':'Zu Favoriten hinzufügen'})}async function toggle(id,b){if(!user){location.href='/profil?mode=login';return}b.disabled=true;try{if(favorites.has(id)){await request('course_favorites?user_id=eq.'+encodeURIComponent(user)+'&course_id=eq.'+encodeURIComponent(id),{method:'DELETE'});favorites.delete(id)}else{await request('course_favorites',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify({user_id:user,course_id:id})});favorites.add(id)}update();renderBoard()}catch(e){alert(e.message)}finally{b.disabled=false}}function heart(id){const b=document.createElement('button');b.type='button';b.className='sponti-favorite-heart';b.dataset.favoriteId=id;b.innerHTML='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';b.addEventListener('click',e=>{e.stopPropagation();e.preventDefault();toggle(id,b)});return b}function decorate(){document.querySelectorAll('.course-card').forEach(card=>{if(card.querySelector('.sponti-favorite-heart'))return;const link=card.querySelector('a[href*="kurs.html?id="]');if(!link)return;const id=new URL(link.href,location.href).searchParams.get('id');if(!id||!/^[0-9a-f-]{36}$/i.test(id))return;card.classList.add('sponti-favorite-card');card.append(heart(id))});if(document.body.classList.contains('sponti-detail-page')&&!document.querySelector('.sponti-favorite-heart')){const id=new URLSearchParams(location.search).get('id');if(id&&/^[0-9a-f-]{36}$/i.test(id)){const main=document.querySelector('main');if(main){const holder=document.createElement('div');holder.className='sponti-detail-favorite';const b=heart(id);holder.append(b,document.createTextNode(' Kurs merken'));main.prepend(holder)}}}update()}async function renderBoard(){const box=document.getElementById('sponti-favorites-list');if(!box||!user)return;box.textContent='Favoriten werden geladen …';if(!favorites.size){box.textContent='Du hast noch keine Favoriten. Entdecke Kurse und tippe auf das Herz.';return}try{const ids=[...favorites].filter(x=>/^[0-9a-f-]{36}$/i.test(x));const rows=await request('courses?select=id,title,starts_at,venue,region& id=in.('+ids.join(',')+')'.replace('& ',''));box.replaceChildren();for(const c of rows){const a=document.createElement('a');a.href='/kurs.html?id='+encodeURIComponent(c.id);a.className='sponti-favorite-entry';const strong=document.createElement('strong');strong.textContent=c.title;const small=document.createElement('span');small.textContent=[window.SpontiPlaces?.format(c.venue||c.region)||c.venue||c.region,c.starts_at?new Date(c.starts_at).toLocaleDateString('de-CH'):null].filter(Boolean).join(' · ');a.append(strong,small);box.append(a)}}catch{box.textContent='Favoriten konnten nicht geladen werden.'}}function init(){decorate();const grid=document.querySelector('.course-grid');if(grid)new MutationObserver(()=>decorate()).observe(grid,{childList:true});load();window.addEventListener('storage',e=>{if(e.key===storage)load()});document.addEventListener('click',e=>{if(e.target.closest('[data-cboard-tab="favorites"]'))renderBoard()})}document.readyState==='loading'?document.addEventListener('DOMContentLoaded',init):init()})();
+// Sponti Favoriten – identische Supabase-Anmeldung wie das Kundenkonto.
+(() => {
+  'use strict';
+  const API='https://ehifskiigrfpxeiruyxr.supabase.co';
+  const KEY='sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy';
+  const AUTH_STORAGE='sponti-customer-auth';
+  const ID_PATTERN=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const EMPTY_TEXT='Du hast noch keine Favoriten ausgewählt.';
+  let clientPromise=null;
+  let userId=null;
+  let favoriteIds=new Set();
+  let favoriteOrder=[];
+  let authCheck=0;
+  let renderCheck=0;
+  const busy=new Set();
+  const $=selector=>document.querySelector(selector);
+
+  const textNode=(tag,text,cls)=>{
+    const el=document.createElement(tag);
+    if(cls)el.className=cls;
+    el.textContent=text;
+    return el;
+  };
+  const isCourseId=value=>typeof value==='string'&&ID_PATTERN.test(value);
+  const placeText=value=>window.SpontiPlaces?.format(value)||value||'';
+  const empty=(container)=>{
+    if(!container)return;
+    const holder=document.createElement('div');
+    holder.className='sponti-favorites-empty';
+    holder.append(textNode('p',EMPTY_TEXT,'sponti-favorites-empty-title'));
+    holder.append(textNode('p','Entdecke Kurse und speichere sie mit dem Herz-Symbol.'));
+    container.replaceChildren(holder);
+  };
+  const status=(container,message)=>{
+    if(!container)return;
+    container.replaceChildren(textNode('p',message,'sponti-favorites-status'));
+  };
+  function client(){
+    if(!clientPromise){
+      clientPromise=import('https://esm.sh/@supabase/supabase-js@2.57.0')
+        .then(({createClient})=>{
+          const db=createClient(API,KEY,{auth:{
+            storageKey:AUTH_STORAGE,persistSession:true,autoRefreshToken:true,
+            detectSessionInUrl:false,flowType:'implicit'
+          }});
+          db.auth.onAuthStateChange(event=>{
+            if(['SIGNED_IN','SIGNED_OUT','TOKEN_REFRESHED','USER_UPDATED'].includes(event)){
+              queueMicrotask(()=>{void load();});
+            }
+          });
+          return db;
+        });
+    }
+    return clientPromise;
+  }
+  function updateHearts(){
+    document.querySelectorAll('[data-favorite-id]').forEach(button=>{
+      const id=button.dataset.favoriteId;
+      const saved=favoriteIds.has(id);
+      button.classList.toggle('is-favorite',saved);
+      button.setAttribute('aria-pressed',String(saved));
+      button.setAttribute('aria-label',saved?'Kurs aus Favoriten entfernen':'Kurs als Favorit speichern');
+      button.title=saved?'Aus Favoriten entfernen':'Zu Favoriten hinzufügen';
+      button.disabled=busy.has(id);
+    });
+    const detailLabel=$('[data-favorite-detail-label]');
+    if(detailLabel)detailLabel.textContent=favoriteIds.has(detailLabel.dataset.favoriteDetailLabel)
+      ?'Gespeichert':'Kurs merken';
+  }
+  function makeHeart(id){
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='sponti-favorite-heart';
+    button.dataset.favoriteId=id;
+    button.setAttribute('aria-pressed','false');
+    button.innerHTML='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 7.8-7.8Z" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+    // SVG paths are decorative: the button carries the accessible label.
+    button.addEventListener('click',event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      void toggle(id);
+    });
+    return button;
+  }
+  function decorate(){
+    document.querySelectorAll('.course-card').forEach(card=>{
+      if(card.querySelector('.sponti-favorite-heart'))return;
+      const link=card.querySelector('a[href*="kurs.html?id="]');
+      if(!link)return;
+      const id=new URL(link.href,location.href).searchParams.get('id');
+      if(!isCourseId(id))return;
+      card.classList.add('sponti-favorite-card');
+      card.append(makeHeart(id));
+    });
+    if(document.body.classList.contains('sponti-detail-page')&&!$('.sponti-detail-favorite')){
+      const id=new URLSearchParams(location.search).get('id');
+      const main=$('main');
+      if(isCourseId(id)&&main){
+        const wrapper=document.createElement('div');
+        wrapper.className='sponti-detail-favorite';
+        const button=makeHeart(id);
+        const label=textNode('span','Kurs merken');
+        label.dataset.favoriteDetailLabel=id;
+        wrapper.append(button,label);
+        main.prepend(wrapper);
+      }
+    }
+    updateHearts();
+  }
+  function renderItems(container,courses,limit){
+    if(!container)return;
+    const byId=new Map(courses.map(course=>[course.id,course]));
+    const fragment=document.createDocumentFragment();
+    for(const id of favoriteOrder.slice(0,limit)){
+      const course=byId.get(id);
+      if(!course)continue;
+      const article=document.createElement('article');
+      article.className='sponti-favorite-entry';
+      const link=document.createElement('a');
+      link.href='/kurs.html?id='+encodeURIComponent(id);
+      link.className='sponti-favorite-entry-link';
+      link.append(textNode('strong',course.title));
+      const info=[placeText(course.venue||course.region),
+        course.starts_at?new Date(course.starts_at).toLocaleDateString('de-CH'):null]
+        .filter(Boolean).join(' · ');
+      if(info)link.append(textNode('span',info));
+      const remove=textNode('button','Entfernen','sponti-favorite-remove');
+      remove.type='button';
+      remove.setAttribute('aria-label','Favorit entfernen: '+course.title);
+      remove.disabled=busy.has(id);
+      remove.addEventListener('click',()=>{void toggle(id);});
+      article.append(link,remove);
+      fragment.append(article);
+    }
+    if(!fragment.childNodes.length){
+      status(container,'Deine gespeicherten Kurse sind aktuell nicht verfügbar.');
+      return;
+    }
+    container.replaceChildren(fragment);
+  }
+  async function renderBoard(){
+    const board=$('#sponti-favorites-list');
+    const overview=$('#sponti-overview-favorites');
+    if(!board&&!overview)return;
+    const revision=++renderCheck;
+    if(!userId||!favoriteOrder.length){
+      empty(board);
+      empty(overview);
+      return;
+    }
+    const activeId=userId;
+    try{
+      const db=await client();
+      const {data,error}=await db.from('courses')
+        .select('id,title,starts_at,venue,region')
+        .in('id',favoriteOrder.slice(0,200));
+      if(error)throw error;
+      if(revision!==renderCheck||activeId!==userId)return;
+      const courses=Array.isArray(data)?data:[];
+      renderItems(board,courses,200);
+      renderItems(overview,courses,3);
+    }catch(error){
+      if(revision!==renderCheck)return;
+      console.warn('Sponti favorites rendering error',error?.code||'unknown');
+      status(board,'Favoriten konnten gerade nicht geladen werden. Bitte versuche es erneut.');
+      status(overview,'Favoriten können momentan nicht geladen werden.');
+    }
+  }
+  async function load(){
+    const revision=++authCheck;
+    try{
+      const db=await client();
+      const {data,error}=await db.auth.getUser();
+      if(revision!==authCheck)return;
+      if(error||!data?.user||data.user.is_anonymous){
+        userId=null;favoriteIds.clear();favoriteOrder=[];updateHearts();
+        await renderBoard();return;
+      }
+      const id=data.user.id;
+      const {data:rows,error:fetchError}=await db.from('course_favorites')
+        .select('course_id').eq('user_id',id).order('created_at',{ascending:false});
+      if(revision!==authCheck)return;
+      if(fetchError)throw fetchError;
+      userId=id;
+      favoriteOrder=(rows||[]).map(x=>x.course_id).filter(isCourseId);
+      favoriteIds=new Set(favoriteOrder);
+      updateHearts();
+      await renderBoard();
+    }catch(error){
+      if(revision!==authCheck)return;
+      console.warn('Sponti favorites loading error',error?.code||'unknown');
+      const board=$('#sponti-favorites-list');
+      const overview=$('#sponti-overview-favorites');
+      status(board,'Favoriten konnten gerade nicht geladen werden. Bitte versuche es erneut.');
+      status(overview,'Favoriten können momentan nicht geladen werden.');
+    }
+  }
+  async function toggle(id){
+    if(!isCourseId(id)||busy.has(id))return;
+    busy.add(id);updateHearts();
+    try{
+      const db=await client();
+      const {data:{user},error:authError}=await db.auth.getUser();
+      if(authError||!user||user.is_anonymous){
+        location.href='/profil?mode=login';
+        return;
+      }
+      const idOfUser=user.id;
+      const wasSaved=favoriteIds.has(id);
+      if(wasSaved){
+        const {error}=await db.from('course_favorites').delete()
+          .eq('user_id',idOfUser).eq('course_id',id);
+        if(error)throw error;
+        favoriteIds.delete(id);
+        favoriteOrder=favoriteOrder.filter(item=>item!==id);
+      }else{
+        const {error}=await db.from('course_favorites')
+          .upsert({user_id:idOfUser,course_id:id},{onConflict:'user_id,course_id',ignoreDuplicates:true});
+        if(error)throw error;
+        favoriteIds.add(id);
+        favoriteOrder=[id,...favoriteOrder.filter(item=>item!==id)];
+      }
+      userId=idOfUser;
+      updateHearts();
+      await renderBoard();
+    }catch(error){
+      console.warn('Sponti favorite write error',error?.code||'unknown');
+      alert('Favorit konnte nicht gespeichert werden. Bitte versuche es erneut.');
+      void load();
+    }finally{
+      busy.delete(id);updateHearts();
+    }
+  }
+  function init(){
+    decorate();
+    const grid=$('.course-grid');
+    if(grid)new MutationObserver(()=>decorate()).observe(grid,{childList:true,subtree:false});
+    const board=$('#sponti-favorites-list');
+    const overview=$('#sponti-overview-favorites');
+    if(board)status(board,'Favoriten werden geladen …');
+    if(overview)status(overview,'Favoriten werden geladen …');
+    void load();
+    // Kundenkonto und Favoriten verwenden denselben Supabase-Auth-Speicher.
+    window.addEventListener('storage',e=>{if(e.key===AUTH_STORAGE)void load();});
+    window.addEventListener('focus',()=>{void load();});
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible')void load();
+    });
+    document.addEventListener('click',e=>{
+      if(e.target.closest('[data-cboard-tab="favorites"],[data-cboard-tab="overview"],[data-overview-go="favorites"]')){
+        void load();
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
