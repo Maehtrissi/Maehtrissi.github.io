@@ -80,14 +80,16 @@
   calendarLines.setAttribute('d','M7 3v4M17 3v4M3 10h18');
   calendarIcon.append(calendarFrame,calendarLines);dateText.prepend(calendarIcon);
   details.append(locationText,dateText);
-  const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
-  const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
-  bottom.append(booking);
-  const seatFooter=element('div','course-seats-footer');
+  const bottom=element('div','course-bottom');
+  const seatsCompact=element('div','course-seats-footer');
   const seatsRow=element('div','course-seats-footer-row');
   seatsRow.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
-  seatFooter.append(seatsRow,availability);
-  body.append(details,bottom,seatFooter);card.append(image,body);return card;
+  seatsCompact.append(seatsRow,availability);
+  const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
+  bottom.append(seatsCompact,booking);
+  const priceFooter=element('div','course-price-footer');
+  priceFooter.append(element('span','', 'Preis pro Platz'),element('strong','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
+  body.append(details,bottom,priceFooter);card.append(image,body);return card;
  }
 async function linkCourseProviders(targetCards){
   try{
