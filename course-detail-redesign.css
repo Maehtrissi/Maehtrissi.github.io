@@ -212,16 +212,25 @@ body.sponti-detail-page {
 
 /* Rechte Kursübersicht folgt beim Scrollen auf breiten Bildschirmen.
    Die komplette Sidebar inkl. optionaler Anbieterkarte bleibt im normalen Seitenfluss. */
-@media(min-width:801px) and (min-height:651px){
+@media (min-width:801px){
+  .sponti-detail-page .detail-shell{
+    overflow:visible;
+    align-items:start;
+  }
   .sponti-detail-page .detail-shell>.detail-sidebar{
+    position:-webkit-sticky;
     position:sticky;
-    top:20px;
+    top:clamp(12px,2vh,24px);
     align-self:start;
+    height:max-content;
+    z-index:2;
   }
 }
-@media(max-width:800px), (max-height:650px){
+@media (max-width:800px){
   .sponti-detail-page .detail-shell>.detail-sidebar{
     position:static;
     top:auto;
+    height:auto;
+    z-index:auto;
   }
 }
