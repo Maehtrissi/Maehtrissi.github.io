@@ -93,65 +93,50 @@
   border:1px solid #efd0bc;
   box-shadow:0 2px 8px rgba(25,52,45,.08);
 }
-
-/* Freie Plätze und Verfügbarkeitsbalken neben dem Buchungsbutton;
-   Preis pro Platz als eigene letzte Zeile. */
-.courses-page .course-card .course-bottom{
+/* Kurskarte: freie Plätze mit Balken über der abschliessenden Preis-/Buchungszeile. */
+.courses-page .course-card .course-seats-footer{
+  display:grid;
+  gap:10px;
+  margin-top:15px;
+  padding:0;
+  border-top:0;
+}
+.courses-page .course-card .course-price-footer{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
-  flex-wrap:nowrap;
-  padding:16px 0 0;
-}
-.courses-page .course-card .course-bottom .course-seats-footer{
-  display:grid;
-  flex:1 1 0;
-  min-width:0;
-  gap:8px;
-  margin:0;
-  padding:0;
-  border:0;
-}
-.courses-page .course-card .course-bottom .course-seats-footer-row{
-  font-size:11px;
-  gap:6px;
-}
-.courses-page .course-card .course-bottom .course-seats-footer-row strong{
-  flex-shrink:0;
-  font-size:13px;
-}
-.courses-page .course-card .course-bottom .course-book{
-  flex:0 1 auto;
-  min-width:0;
-}
-.courses-page .course-card .course-price-footer{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
   margin-top:18px;
   padding-top:14px;
   border-top:1px solid #e2e9e2;
+}
+.courses-page .course-card .course-price-info{
+  display:grid;
+  gap:5px;
+  min-width:0;
   color:#617669;
   font-size:12px;
   font-weight:650;
 }
 .courses-page .course-card .course-price-footer .course-price{
   color:#15574e;
-  font-size:15px;
+  font-size:16px;
   font-weight:750;
   white-space:nowrap;
 }
+.courses-page .course-card .course-price-footer .course-book{
+  flex:0 1 auto;
+  min-width:0;
+  max-width:100%;
+  white-space:normal;
+  text-align:center;
+}
 @media(max-width:400px){
-  .courses-page .course-card .course-bottom{
+  .courses-page .course-card .course-price-footer{
     flex-wrap:wrap;
     gap:12px;
   }
-  .courses-page .course-card .course-bottom .course-seats-footer{
-    flex:1 1 100%;
-  }
-  .courses-page .course-card .course-bottom .course-book{
+  .courses-page .course-card .course-price-footer .course-book{
     flex:1 1 100%;
   }
 }
