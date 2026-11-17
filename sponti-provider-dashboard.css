@@ -12,3 +12,12 @@ body:has(.sponti-provider-dashboard) .provider-account-shell{max-width:1440px;wi
 .sponti-provider-dashboard>.board-nav button[aria-pressed="true"]{background:#07553c;color:#fff;border-color:#07553c;box-shadow:0 4px 12px rgba(7,85,60,.14)}
 .sponti-provider-dashboard>.board-nav button:focus-visible{outline:3px solid #f98b4a;outline-offset:2px}
 @media(max-width:900px){.sponti-provider-dashboard>.board-nav{padding:8px 0 14px;gap:8px}.sponti-provider-dashboard>.board-nav button{width:auto;flex:0 0 auto;min-height:42px;padding:10px 14px;white-space:nowrap}}
+
+/* Aktuelle und geplante Provision bei jeder Betragsänderung getrennt anzeigen. */
+.sponti-provider-dashboard .sponti-commission-results{display:grid;gap:5px;flex:1 1 310px;min-width:0}
+.sponti-provider-dashboard .sponti-commission-results output{display:block;font-weight:650;line-height:1.5;overflow-wrap:anywhere}
+.sponti-provider-dashboard .sponti-commission-results output:first-child{color:#173e30}
+.sponti-provider-dashboard .sponti-commission-results output:last-child{color:#65796c;font-weight:600}
+.sponti-provider-dashboard .sponti-commission-info .sponti-commission-help{margin:8px 0 0;font-size:12px;color:#62776a}
+.sponti-provider-dashboard .sponti-commission-info .sponti-commission-error{margin:8px 0 0;color:#a63c2a;font-size:13px}
+.sponti-provider-dashboard .sponti-commission-info .sponti-commission-error[hidden]{display:none}
