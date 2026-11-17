@@ -22,7 +22,7 @@ function updateReview(){
   ['Enduhrzeit',field('ends_at')||'Nicht angegeben'],
   ['Ort',field('venue')||'–'],
   ['Region',optionLabel('region')||'–'],
-  ['Preis pro Person',Number.isFinite(Number(field('price')))&&field('price')!==''?new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(field('price'))):'–'],
+  ['Preis pro Platz',Number.isFinite(Number(field('price')))&&field('price')!==''?new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(field('price'))):'–'],
   ['Freie Plätze',field('seats')||'–']
  ];
  root.replaceChildren();
