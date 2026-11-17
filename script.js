@@ -422,11 +422,17 @@ if (siteMenu && siteMenuTrigger) {
     const chips=scope.querySelectorAll('#detail-chips > span');
     for(const chip of chips){
       const raw=chip.textContent.trim();
-      if(canonical.has(lower(raw)))chip.textContent=formatRegion(raw);
+      if(canonical.has(lower(raw))){
+        const formatted=formatRegion(raw);
+        if(formatted!==chip.textContent)chip.textContent=formatted;
+      }
     }
     if(scope.matches('#detail-chips > span')){
       const raw=scope.textContent.trim();
-      if(canonical.has(lower(raw)))scope.textContent=formatRegion(raw);
+      if(canonical.has(lower(raw))){
+        const formatted=formatRegion(raw);
+        if(formatted!==scope.textContent)scope.textContent=formatted;
+      }
     }
   };
   const init=()=>{
