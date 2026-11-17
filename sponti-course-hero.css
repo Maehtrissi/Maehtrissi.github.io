@@ -226,3 +226,48 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
     margin-top:13px;
   }
 }
+
+/* Standortwahl auf der Startseite als Dropdown statt Texteingabe. */
+.sponti-hero-search .sponti-hero-search-field select[name="ort"],
+.sponti-hero-search .sponti-hero-search-field select#sponti-home-ort {
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  min-height:32px;
+  box-sizing:border-box;
+  padding:5px 25px 5px 0;
+  border:0;
+  border-radius:0;
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2315574e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 2px center;
+  appearance:none;
+  -webkit-appearance:none;
+  color:#174c3b;
+  font:600 14px/1.4 "DM Sans",sans-serif;
+  cursor:pointer;
+}
+.sponti-hero-search .sponti-hero-search-field #sponti-home-ort-custom{
+  display:block;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  min-height:36px;
+  padding:7px 10px;
+  margin-top:5px;
+  border:1px solid #d9e2d7;
+  border-radius:9px;
+  background:#fff;
+  font:500 14px/1.4 "DM Sans",sans-serif;
+}
+.sponti-hero-search .sponti-hero-search-field #sponti-home-ort-custom[hidden]{
+  display:none!important;
+}
+@media(max-width:600px){
+  .sponti-hero-search .sponti-hero-search-field #sponti-home-ort{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    min-height:32px;
+    font-size:15px;
+  }
+}
