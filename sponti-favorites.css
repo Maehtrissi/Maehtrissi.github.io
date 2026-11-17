@@ -24,3 +24,46 @@
 .sponti-favorite-remove:focus-visible{outline:3px solid #e58d5c;outline-offset:2px}
 .sponti-favorite-remove:disabled{opacity:.5;cursor:wait}
 @media(max-width:520px){.sponti-favorite-entry{align-items:flex-start;flex-wrap:wrap}.sponti-favorite-remove{margin-left:auto}.sponti-favorites-empty{padding:17px 16px}}
+
+/* Course details: full-width save action directly below "Kurs teilen". */
+.sponti-detail-page .booking-summary .sponti-detail-favorite {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:0;
+  margin:10px 0 0;
+}
+.sponti-detail-page .booking-summary .sponti-detail-favorite .sponti-favorite-heart {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  height:auto;
+  min-height:46px;
+  padding:10px 17px;
+  border:1px solid #c6d9cb;
+  border-radius:999px;
+  background:#f5f9f3;
+  color:#15574e;
+  box-shadow:none;
+  font:700 13px/1.4 "DM Sans",sans-serif;
+}
+.sponti-detail-page .booking-summary .sponti-detail-favorite .sponti-favorite-heart svg {
+  flex:0 0 21px;
+  width:21px;
+  height:21px;
+}
+.sponti-detail-page .booking-summary .sponti-detail-favorite .sponti-favorite-heart:hover {
+  transform:none;
+  background:#e8f2e9;
+}
+.sponti-detail-page .booking-summary .sponti-detail-favorite .sponti-favorite-heart.is-favorite {
+  background:#fff3e9;
+  border-color:#ffd6bb;
+  color:#864b2e;
+}
+.sponti-detail-page .booking-summary .sponti-detail-favorite .sponti-favorite-heart:disabled {
+  cursor:wait;
+  opacity:.7;
+}
