@@ -68,5 +68,50 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
   if(!contactList.children.length)addContact('Kontakt','Weitere Angaben im Anbieterprofil');
  }catch{/* Keine privaten Kontakte anzeigen oder Kursdetailansicht blockieren. */}
 }
-async function boot(){try{addDemoBanner();const c=await getCourse();document.title=c.title+' | Sponti';$('#course-breadcrumb').textContent=c.title;$('#detail-title').textContent=c.title;$('#detail-side-title').textContent=c.title;$('#detail-category').textContent=categories[c.category]||c.category||'Erlebnis';$('#detail-description').textContent=c.description||'Weitere Informationen zum Kurs erhältst du beim Anbieter.';$('#detail-visual').classList.add('detail-'+(c.category||'').replace(/[^a-z-]/g,''));$('#detail-price').textContent=fmtPrice(c.price);facts($('#detail-side-facts'),c);displayExtras(c);void loadPublicProvider(c.id);const bookingNote=document.querySelector('.booking-summary .booking-note');if(bookingNote)bookingNote.textContent=Number(c.price)===0?'Kostenloser Kurs: Buchung ohne Zahlung möglich, sofern noch Plätze frei sind.':'Kostenpflichtiger Kurs: Zahlung über Sponti derzeit noch nicht verfügbar.';const chip=$('#detail-chips');[categories[c.category]||c.category,window.SpontiPlaces?.region(c.region)||c.region].filter(Boolean).forEach(t=>chip.append(make('span','',t)));const share=$('[data-sponti-course-share]');if(share&&!DEMO_MODE){share.dataset.shareTitle=c.title;share.dataset.shareUrl=new URL('/kurs.html?id='+encodeURIComponent(c.id),location.origin).href;share.hidden=false;}const a=$('#detail-cta');a.textContent='Tickets buchen →';a.href=DEMO_MODE?'/buchung.html?demo=1':'/buchung.html?id='+encodeURIComponent(c.id);const deadline=$('#ticket-sale-deadline');const deadlineText=$('#ticket-sale-deadline-text');const deadlineMs=saleClosesAt(c);if(Number.isFinite(deadlineMs)){deadline.hidden=false;deadlineText.textContent='Verkauf endet am '+saleDate(deadlineMs)+' Uhr';}if(c.booking_url){const external=make('p','booking-note','Dieser Anbieter hat derzeit auch einen eigenen externen Buchungsweg.');deadline.after(external);}const updateSaleStatus=()=>{const ended=Number.isFinite(deadlineMs)&&Date.now()>=deadlineMs;const unavailable=Number(c.seats)<1||ended||new Date(c.starts_at)<=new Date();if(ended){deadlineText.textContent='Ticketverkauf beendet · Verkaufsschluss: '+saleDate(deadlineMs)+' Uhr';deadline.classList.add('is-ended');}if(unavailable){a.removeAttribute('href');a.classList.add('is-disabled');a.textContent=ended?'Ticketverkauf beendet':'Zurzeit nicht buchbar';document.querySelector('.mobile-booking-dock')?.remove();}return !unavailable;};const available=updateSaleStatus();$('#detail-status').hidden=true;$('#detail-shell').hidden=false;
+async function loadStripePaymentMethods(course){
+ if(DEMO_MODE||Number(course.price)<=0)return;
+ const wrap=$('#detail-payment-methods'),host=$('#detail-payment-icons'),caption=$('#detail-payment-caption');
+ if(!wrap||!host||!caption)return;
+ try{
+  const res=await fetch(URL_BASE+'/functions/v1/sponti-payment-methods',{
+   headers:{apikey:KEY},
+   signal:AbortSignal.timeout(10000)
+  });
+  if(!res.ok)return;
+  const data=await res.json();
+  if(!data||data.enabled!==true||!Array.isArray(data.methods))return;
+  const labels={
+   card:'Karten',twint:'TWINT',apple_pay:'Apple Pay',google_pay:'Google Pay',link:'Link',
+   paypal:'PayPal',klarna:'Klarna',postfinance:'PostFinance',mobilepay:'MobilePay',
+   revolut_pay:'Revolut Pay',amazon_pay:'Amazon Pay',samsung_pay:'Samsung Pay',
+   bancontact:'Bancontact',eps:'EPS',ideal:'iDEAL',sepa_debit:'SEPA',alipay:'Alipay',wechat_pay:'WeChat Pay'
+  };
+  const icons={
+   card:'M3 5h18v14H3z M3 10h18 M7 15h3',
+   wallet:'M4 5h15v4 M4 5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2H5 M16 15h4',
+   generic:'M12 2v20 M2 12h20 M5 5l14 14 M19 5 5 19'
+  };
+  host.replaceChildren();
+  const displayed=new Set();
+  for(const key of data.methods){
+   if(typeof key!=='string'||!Object.prototype.hasOwnProperty.call(labels,key)||displayed.has(key))continue;
+   displayed.add(key);
+   const badge=make('span','detail-payment-method detail-payment-method-'+key);
+   badge.setAttribute('role','listitem');
+   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+   svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('width','17');svg.setAttribute('height','17');
+   svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');
+   svg.setAttribute('stroke-width','1.8');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');
+   svg.setAttribute('aria-hidden','true');
+   const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+   path.setAttribute('d',key==='card'?icons.card:['apple_pay','google_pay','link','paypal','amazon_pay','revolut_pay','samsung_pay'].includes(key)?icons.wallet:icons.generic);
+   svg.append(path);badge.append(svg,document.createTextNode(labels[key]));host.append(badge);
+  }
+  if(!host.childElementCount)return;
+  const test=data.mode==='test';
+  caption.textContent=test?'Stripe-Testmodus: keine echten Zahlungen. Welche Zahlungsmethoden beim Bezahlen angezeigt werden, hängt von Buchung und Gerät ab.':'Stripe zeigt im Checkout die für deine Buchung und dein Gerät verfügbaren Zahlungsmethoden an.';
+  wrap.hidden=false;
+ }catch{/* Keine unbestätigten Zahlungslogos anzeigen, wenn Stripe nicht erreichbar ist. */}
+}
+async function boot(){try{addDemoBanner();const c=await getCourse();document.title=c.title+' | Sponti';$('#course-breadcrumb').textContent=c.title;$('#detail-title').textContent=c.title;$('#detail-side-title').textContent=c.title;$('#detail-category').textContent=categories[c.category]||c.category||'Erlebnis';$('#detail-description').textContent=c.description||'Weitere Informationen zum Kurs erhältst du beim Anbieter.';$('#detail-visual').classList.add('detail-'+(c.category||'').replace(/[^a-z-]/g,''));$('#detail-price').textContent=fmtPrice(c.price);facts($('#detail-side-facts'),c);displayExtras(c);void loadPublicProvider(c.id);void loadStripePaymentMethods(c);const bookingNote=document.querySelector('.booking-summary .booking-note');if(bookingNote)bookingNote.textContent=Number(c.price)===0?'Kostenloser Kurs: Buchung ohne Zahlung möglich, sofern noch Plätze frei sind.':'Kostenpflichtiger Kurs: Zahlung über Sponti derzeit noch nicht verfügbar.';const chip=$('#detail-chips');[categories[c.category]||c.category,window.SpontiPlaces?.region(c.region)||c.region].filter(Boolean).forEach(t=>chip.append(make('span','',t)));const share=$('[data-sponti-course-share]');if(share&&!DEMO_MODE){share.dataset.shareTitle=c.title;share.dataset.shareUrl=new URL('/kurs.html?id='+encodeURIComponent(c.id),location.origin).href;share.hidden=false;}const a=$('#detail-cta');a.textContent='Tickets buchen →';a.href=DEMO_MODE?'/buchung.html?demo=1':'/buchung.html?id='+encodeURIComponent(c.id);const deadline=$('#ticket-sale-deadline');const deadlineText=$('#ticket-sale-deadline-text');const deadlineMs=saleClosesAt(c);if(Number.isFinite(deadlineMs)){deadline.hidden=false;deadlineText.textContent='Verkauf endet am '+saleDate(deadlineMs)+' Uhr';}if(c.booking_url){const external=make('p','booking-note','Dieser Anbieter hat derzeit auch einen eigenen externen Buchungsweg.');deadline.after(external);}const updateSaleStatus=()=>{const ended=Number.isFinite(deadlineMs)&&Date.now()>=deadlineMs;const unavailable=Number(c.seats)<1||ended||new Date(c.starts_at)<=new Date();if(ended){deadlineText.textContent='Ticketverkauf beendet · Verkaufsschluss: '+saleDate(deadlineMs)+' Uhr';deadline.classList.add('is-ended');}if(unavailable){a.removeAttribute('href');a.classList.add('is-disabled');a.textContent=ended?'Ticketverkauf beendet':'Zurzeit nicht buchbar';document.querySelector('.mobile-booking-dock')?.remove();}return !unavailable;};const available=updateSaleStatus();$('#detail-status').hidden=true;$('#detail-shell').hidden=false;
   if(available){const dock=make('div','mobile-booking-dock');const action=make('a','booking-primary','Tickets buchen →');action.href=a.href;dock.append(action);document.body.append(dock);}if(Number.isFinite(deadlineMs)&&Date.now()<deadlineMs)window.setInterval(updateSaleStatus,30000);}catch(err){$('#detail-status').textContent=err.message+' ';$('#detail-status').append(Object.assign(make('a','','Alle Kurse ansehen'),{href:'/kurse'}));}}boot();})();
