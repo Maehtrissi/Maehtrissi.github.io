@@ -209,3 +209,19 @@ body.sponti-detail-page {
 @media(min-width:801px) and (max-width:1050px){.sponti-detail-page .detail-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sponti-detail-page .detail-overview-item{flex-direction:column;gap:9px}}
 @media(max-width:800px){.sponti-detail-page .detail-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.sponti-detail-page .detail-overview-block{padding:22px 18px}.sponti-detail-page .detail-overview-grid{grid-template-columns:1fr;gap:10px}.sponti-detail-page .detail-overview-item{align-items:center;padding:13px 14px}.sponti-detail-page .detail-overview-icon{flex-basis:38px;width:38px;height:38px}}
+
+/* Rechte Kursübersicht folgt beim Scrollen auf breiten Bildschirmen.
+   Die komplette Sidebar inkl. optionaler Anbieterkarte bleibt im normalen Seitenfluss. */
+@media(min-width:801px) and (min-height:651px){
+  .sponti-detail-page .detail-shell>.detail-sidebar{
+    position:sticky;
+    top:20px;
+    align-self:start;
+  }
+}
+@media(max-width:800px), (max-height:650px){
+  .sponti-detail-page .detail-shell>.detail-sidebar{
+    position:static;
+    top:auto;
+  }
+}
