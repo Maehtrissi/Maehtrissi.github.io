@@ -5,7 +5,6 @@
 .courses-page .course-image{transition:filter .24s ease}
 .courses-page .course-card:hover .course-image{filter:saturate(1.07)}
 .courses-page .course-availability{margin:12px 0 5px;font-size:12px;color:#19342d;font-weight:650}
-.courses-page .course-availability-label{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:6px}
 .courses-page .course-availability-track{height:5px;border-radius:999px;background:#dce7d9;overflow:hidden}
 .courses-page .course-availability-fill{display:block;height:100%;border-radius:999px;background:#4a8765;width:100%}
 .courses-page .course-availability.is-low .course-availability-fill{background:#e28c64;width:40%}
@@ -18,3 +17,14 @@
 }
 @media (min-width:801px){.sponti-detail-page .mobile-booking-dock{display:none}}
 @media (prefers-reduced-motion:reduce){.courses-page .course-card,.courses-page .course-image{transition:none}.courses-page .course-card:hover,.courses-page .course-card:focus-visible,.courses-page .course-card:focus-within{transform:none}}
+
+/* Kompaktere Kurskarten: Linie oben, verbleibende Plätze nur als letzte Zeile. */
+.courses-page .course-card .course-availability{margin:10px 0 12px}
+.courses-page .course-card .course-seats-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:15px;padding-top:13px;border-top:1px solid #e2e9e2;
+  font-size:12px;line-height:1.4;font-weight:650;color:#617669;
+}
+.courses-page .course-card .course-seats-footer strong{
+  color:#27664a;font-size:14px;font-weight:750;font-variant-numeric:tabular-nums;
+}
