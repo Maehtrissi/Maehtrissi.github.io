@@ -285,7 +285,10 @@ const form=root.querySelector('[data-provider-form="profile"]');form?.addEventLi
  for(let i=0;i<3;i++){const bad=[...steps[i].querySelectorAll('input,select,textarea')].find(input=>!input.checkValidity());if(bad){event.preventDefault();event.stopImmediatePropagation();show(i);bad.reportValidity();return;}}
  },true);
  let completed=false;
- new MutationObserver(()=>{if(completed)return;const busy=form.getAttribute('aria-busy')==='true';back.disabled=next.disabled=busy;if(!success.hidden){completed=true;progress.hidden=true;steps.forEach(pa<script>
+ new MutationObserver(()=>{if(completed)return;const busy=form.getAttribute('aria-busy')==='true';back.disabled=next.disabled=busy;if(!success.hidden){completed=true;progress.hidden=true;steps.forEach(panel=>panel.hidden=true);actions.hidden=true;}}).observe(form,{attributes:true,subtree:true,attributeFilter:['aria-busy','hidden']});
+ show(0,false);
+})();
+</script><script src="/provider-course-wizard.js?v=course-fields-final-20261117" defer></script><script src="/sponti-provider-dashboard.js?v=20261112" defer></script><script src="/sponti-account-deletion.js?v=20261112" defer></script><script src="/sponti-provider-commission-consent.js?v=20261113" defer></script><script>
 (()=>{
  'use strict';
  const input=document.getElementById('sponti-commission-price');
@@ -298,11 +301,7 @@ const form=root.querySelector('[data-provider-form="profile"]');form?.addEventLi
  function update(){
   const value=Number(input.value),cents=Math.round(value*100);
   const valid=input.value.trim()!==''&&Number.isFinite(value)&&value>=0.01&&value<=100000&&Math.abs(value*100-cents)<0.000001&&input.validity.valid;
-  if(!valid){
-   current.textContent='–';planned.textContent='–';
-   error.textContent='Bitte CHF 0.01 bis CHF 100’000.00 mit maximal zwei Dezimalstellen eingeben.';
-   error.hidden=false;return;
-  }
+  if(!valid){current.textContent='–';planned.textContent='–';error.textContent='Bitte CHF 0.01 bis CHF 100’000.00 mit maximal zwei Dezimalstellen eingeben.';error.hidden=false;return;}
   error.hidden=true;error.textContent='';
   const active=calc(cents,13),futureRate=cents<2500?15:13,future=calc(cents,futureRate);
   current.textContent='Aktuell (13 %): '+format(active.fee)+' Provision · '+format(active.payout)+' Anbieteranteil';
@@ -310,6 +309,6 @@ const form=root.querySelector('[data-provider-form="profile"]');form?.addEventLi
  }
  input.addEventListener('input',update);input.addEventListener('change',update);update();
 })();
-</script><script src="/provider-course-wizard.js?v=course-fields-final-20261117" defer></script><script src="/sponti-provider-dashboard.js?v=20261112" defer></script><script src="/sponti-account-deletion.js?v=20261112" defer></script><script src="/sponti-provider-commission-consent.js?v=20261113" defer></script><script>(function(){const input=document.getElementById('sponti-commission-price'),out=document.getElementById('sponti-commission-result');if(!input||!out)return;const chf=n=>new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(n);function update(){const value=Number(input.value);if(!Number.isFinite(value)||value<=0||value>100000||Math.round(value*100)!==value*100){out.textContent='Bitte einen gültigen Buchungsbetrag in CHF mit maximal zwei Nachkommastellen eingeben.';return}const rate=value<25?0.15:0.13;const fee=Math.round((Math.round(value*100)*rate)+1e-8)/100;out.textContent='Geplant: '+chf(fee)+' Provision ('+(rate*100).toFixed(0)+' %) · '+chf(value-fee)+' Anbieteranteil';}input.addEventListener('input',update);update()}})();</script></body></html>
+</script></body></html>
 
 
