@@ -14,7 +14,7 @@ async function refresh(){try{
  if(!id){fallback();return;}
  const rows=await get('courses?select=id,title,starts_at,status,seats,archived_at&id=eq.'+encodeURIComponent(id)+'&limit=1');
  const c=rows?.[0];
- if(!c||c.archived_at||c.status!=='published'||Number(c.seats)<=0||new Date(c.starts_at).getTime()<=Date.now()){fallback();return;}
+ if(!c||c.archived_at||c.status!=='published'||Number(c.seats)<=0||new Date(c.starts_at).getTime()<=Date.now()+3*60*60*1000){fallback();return;}
  eyebrow.textContent='Jetzt entdecken';
  title.textContent=c.title;
  link.href='/kurs.html?id='+encodeURIComponent(c.id);
