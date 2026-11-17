@@ -274,3 +274,35 @@ body.sponti-detail-page {
     z-index:auto;
   }
 }
+
+/* Kurs als Kalendereintrag speichern. Gleiche Breite wie Teilen und Favoriten. */
+.sponti-detail-page .booking-summary .detail-calendar[hidden],
+.sponti-detail-page .booking-summary .detail-calendar-options[hidden]{display:none!important}
+.sponti-detail-page .booking-summary .detail-calendar{width:100%;min-width:0;margin:10px 0 0}
+.sponti-detail-page .booking-summary .detail-calendar-toggle{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  min-height:46px;padding:10px 17px;border:1px solid #c6d9cb;border-radius:999px;
+  background:#f5f9f3;color:#15574e;font:700 13px/1.4 "DM Sans",sans-serif;cursor:pointer;
+  transition:background .18s,border-color .18s;
+}
+.sponti-detail-page .booking-summary .detail-calendar-toggle:hover,
+.sponti-detail-page .booking-summary .detail-calendar-toggle[aria-expanded="true"]{background:#e8f2e9;border-color:#8dae9c}
+.sponti-detail-page .booking-summary .detail-calendar-toggle svg{flex:0 0 19px}
+.sponti-detail-page .booking-summary .detail-calendar-toggle .detail-calendar-chevron{flex:0 0 17px;transition:transform .2s}
+.sponti-detail-page .booking-summary .detail-calendar-toggle[aria-expanded="true"] .detail-calendar-chevron{transform:rotate(180deg)}
+.sponti-detail-page .booking-summary .detail-calendar-toggle:focus-visible,
+.sponti-detail-page .booking-summary .detail-calendar-options :is(a,button):focus-visible{outline:3px solid #ef986b;outline-offset:3px}
+.sponti-detail-page .booking-summary .detail-calendar-options{
+ display:grid;gap:7px;margin-top:10px;padding:12px;border:1px solid #dce9dc;border-radius:17px;
+ background:#fffefa;box-shadow:0 8px 24px #1c523313
+}
+.sponti-detail-page .booking-summary .detail-calendar-options :is(a,button){
+ display:flex;align-items:center;justify-content:flex-start;width:100%;min-height:42px;box-sizing:border-box;
+ padding:10px 12px;border:0;border-radius:11px;background:#f4f8f2;color:#194e40;cursor:pointer;text-decoration:none;
+ font:600 13px/1.4 "DM Sans",sans-serif;text-align:left;white-space:normal;
+}
+.sponti-detail-page .booking-summary .detail-calendar-options :is(a,button):hover{background:#e6f1e5}
+.sponti-detail-page .booking-summary .detail-calendar-note{
+ margin:5px 2px 0;color:#688073;font-size:11px;line-height:1.5
+}
+@media(prefers-reduced-motion:reduce){.sponti-detail-page .detail-calendar-toggle .detail-calendar-chevron{transition:none}}
