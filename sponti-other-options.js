@@ -18,7 +18,7 @@ function initSelect(select){
  const update=()=>{
   const custom=isCustom(select.selectedOptions[0]);
   wrap.hidden=!custom;
-  input.required=custom&&select.required;
+  input.required=custom;
   if(custom&&select.selectedOptions[0]===customOption&&input.value.trim()!==customOption.value)input.value=customOption.value;
   if(!custom){input.required=false;input.value='';}
  };
