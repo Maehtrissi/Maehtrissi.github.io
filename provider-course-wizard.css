@@ -1,0 +1,48 @@
+/* Kursformular im gleichen dreistufigen Akkordeon-Stil wie die Sponti-Buchung. */
+body.account-page [data-course-editor] form[data-provider-form="course"]{display:grid;gap:16px}
+body.account-page [data-course-editor] .provider-course-wizard-step{
+ padding:19px 27px;border:1px solid #dce5da;border-radius:17px;background:#fafbf7;
+ scroll-margin-top:28px;min-width:0;transition:border-color .2s,background .2s;
+}
+body.account-page [data-course-editor] .provider-course-wizard-step.is-current{
+ padding:27px 31px;border:2px solid #275941;background:#fffefa;
+}
+body.account-page [data-course-editor] .provider-course-wizard-heading{margin:0;padding:0}
+body.account-page [data-course-editor] .provider-course-wizard-heading h3{margin:0;width:100%;font:700 23px/1.3 "DM Sans",sans-serif}
+body.account-page [data-course-editor] .provider-course-wizard-toggle{
+ appearance:none;display:flex;align-items:center;gap:15px;width:100%;padding:0;margin:0;
+ border:0;background:transparent;box-shadow:none;text-align:left;color:#193b30;font:inherit;cursor:pointer;
+}
+body.account-page [data-course-editor] .provider-course-wizard-toggle:disabled{opacity:1;cursor:default;color:#64776a}
+body.account-page [data-course-editor] .provider-course-wizard-toggle:focus-visible{outline:3px solid #e7875b;outline-offset:6px;border-radius:6px}
+body.account-page [data-course-editor] .provider-course-wizard-toggle .provider-course-step-number{
+ display:grid;place-items:center;flex:0 0 41px;width:41px;height:41px;margin:0;border-radius:50%;
+ background:#e8eee6;color:#465f4f;font:700 16px "DM Sans",sans-serif;
+}
+body.account-page [data-course-editor] .provider-course-wizard-step.is-current .provider-course-step-number{background:#193b30;color:#fff}
+body.account-page [data-course-editor] .provider-course-wizard-heading-text{display:grid;gap:3px;flex:1;min-width:0}
+body.account-page [data-course-editor] .provider-course-wizard-heading-title{color:inherit;font-size:clamp(17px,2vw,23px);font-weight:700;line-height:1.3}
+body.account-page [data-course-editor] .provider-course-wizard-heading-caption{color:#64776a;font-size:12px;font-weight:400;line-height:1.5}
+body.account-page [data-course-editor] .provider-course-wizard-toggle>svg{flex:0 0 22px;transition:transform .25s ease;transform:rotate(-90deg);color:#315f49}
+body.account-page [data-course-editor] .provider-course-wizard-toggle[aria-expanded="true"]>svg{transform:rotate(0)}
+body.account-page [data-course-editor] .provider-course-wizard-toggle:disabled>svg{opacity:.45}
+body.account-page [data-course-editor] .provider-course-wizard-body{display:grid;gap:17px;padding-top:24px}
+body.account-page [data-course-editor] .provider-course-wizard-body[hidden]{display:none!important}
+body.account-page [data-course-editor] .provider-course-wizard-body.is-revealing{animation:sponti-course-accordion-open .45s cubic-bezier(.22,1,.36,1) both}
+@keyframes sponti-course-accordion-open{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+body.account-page [data-course-editor] .provider-course-wizard-controls{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;margin-top:8px}
+body.account-page [data-course-editor] .provider-course-wizard-controls .button{min-height:46px}
+body.account-page [data-course-editor] .provider-course-wizard-step .provider-course-extra-fields{margin-top:0}
+body.account-page [data-course-editor] .provider-course-wizard-step .provider-course-actions-footer{margin-top:0}
+@media(max-width:600px){
+ body.account-page [data-course-editor] .provider-course-wizard-step{padding:17px 16px}
+ body.account-page [data-course-editor] .provider-course-wizard-step.is-current{padding:21px 18px}
+ body.account-page [data-course-editor] .provider-course-wizard-body{padding-top:17px}
+ body.account-page [data-course-editor] .provider-course-wizard-heading-title{font-size:18px}
+ body.account-page [data-course-editor] .provider-course-wizard-toggle{gap:11px}
+ body.account-page [data-course-editor] .provider-course-wizard-controls .button{flex:1 1 140px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.account-page [data-course-editor] .provider-course-wizard-body.is-revealing{animation:none}
+ body.account-page [data-course-editor] .provider-course-wizard-toggle>svg{transition:none}
+}
