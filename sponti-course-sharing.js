@@ -95,7 +95,7 @@
       if(!url)return;
       const feedback=panel.querySelector('.sponti-provider-link-feedback')||panel.querySelector('.sponti-course-share-feedback');
       void copyText(url).then(ok=>{
-        if(feedback)feedback.textContent=ok?'Link kopiert.':'Link konnte nicht kopiert werden. Bitte den Link aus der Adresszeile kopieren.';
+        if(feedback)feedback.textContent=ok?'Link kopiert.':(panel.querySelector('.provider-course-share-input')?'Kopieren nicht möglich. Bitte den angezeigten Kurslink markieren und manuell kopieren.':'Link konnte nicht kopiert werden. Bitte den Link aus der Adresszeile kopieren.');
       });
       return;
     }
