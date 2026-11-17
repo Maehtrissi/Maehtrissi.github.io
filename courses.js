@@ -40,7 +40,7 @@
  const cancellationText=()=> 'Stornobedingungen beim Kurs prüfen';
 
  function render(course){
-  const card=element('article','course-card'),start=new Date(course.starts_at);
+  const card=element('article','course-card'),start=new Date(course.starts_at);card.dataset.courseId=String(course.id);
   const detailUrl='/kurs.html?id='+encodeURIComponent(course.id);
   card.tabIndex=0;card.setAttribute('role','link');card.setAttribute('aria-label',`${course.title} – Kursdetails öffnen`);
   card.addEventListener('click',e=>{if(e.target.closest('a,button,input,select,textarea'))return;window.location.assign(detailUrl);});
@@ -60,7 +60,7 @@
   const availability=element('div','course-availability'+(Number(course.seats)===1?' is-last':Number(course.seats)===2?' is-low':''));
   const availabilityLabel=element('div','course-availability-label');availabilityLabel.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
   const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');availabilityTrack.append(element('span','course-availability-fill'));availability.append(availabilityLabel,availabilityTrack);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);body.append(urgency,availability,heading,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,availability,heading,providerRow,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
   const details=element('div','course-details');
   const locationText=element('span','course-location',window.SpontiPlaces?.format(course.venue)||course.venue);
   locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
@@ -73,7 +73,52 @@
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
   const policy=element('div','course-policy',cancellationText(start));
-  bottom.append(booking);body.append(details,policy,bottom);card.append(image,body);return card;
+  bottom.append(booking);
+  const share=element('div','course-card-share');
+  share.dataset.spontiCourseShare='';
+  share.dataset.shareTitle=course.title;
+  share.dataset.shareUrl=detailUrl;
+  const shareButton=element('button','sponti-course-share-trigger');
+  shareButton.type='button';
+  shareButton.setAttribute('aria-expanded','false');
+  shareButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10.5 6-4m-6 7 6 4"/></svg><span>Kurs teilen</span>';
+  share.append(shareButton);
+  body.append(details,policy,bottom,share);card.append(image,body);return card;
+ }
+async function linkCourseProviders(targetCards){
+  try{
+   const response=await fetch('https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/rpc/list_public_course_providers',{
+    method:'POST',
+    headers:{apikey:'sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy','Content-Type':'application/json'},
+    body:'{}',
+    signal:AbortSignal.timeout(15000)
+   });
+   if(!response.ok)return;
+   const providers=await response.json();
+   if(!Array.isArray(providers))return;
+   const index=new Map();
+   const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+   for(const provider of providers){
+    if(!provider||!uuid.test(String(provider.provider_id))||!String(provider.company||'').trim())continue;
+    for(const course of (Array.isArray(provider.courses)?provider.courses:[])){
+     if(course?.id)index.set(String(course.id),provider);
+    }
+   }
+   if(cards!==targetCards)return;
+   for(const card of targetCards){
+    const provider=index.get(card.dataset.courseId);
+    if(!provider)continue;
+    const row=card.querySelector('.course-provider');
+    if(!row)continue;
+    const name=String(provider.company).trim();
+    const link=element('a','',name);
+    link.href='/anbieterprofil?id='+encodeURIComponent(String(provider.provider_id));
+    row.replaceChildren(document.createTextNode('Anbieter: '),link);
+    row.hidden=false;
+    card.dataset.searchText+=' '+name.toLocaleLowerCase('de-CH');
+   }
+   applyFilters();
+  }catch{/* Kursübersicht auch bei nicht erreichbaren Anbieterprofilen weiterhin anzeigen. */}
  }
  async function load(){
   grid.setAttribute('aria-busy','true');message.textContent='Kurse werden geladen …';
@@ -89,6 +134,7 @@
    const queryParams=new URLSearchParams(location.search);const selected=queryParams.get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
    const requestedPlace=queryParams.get('ort');const placeButton=buttons.find(b=>b.dataset.location===requestedPlace);if(placeButton){buttons.filter(b=>b.dataset.location).forEach(b=>b.classList.remove('active'));placeButton.classList.add('active');}
    applyFilters();
+   void linkCourseProviders(cards);
    const pending=new URLSearchParams(location.search).get('course');
    if(pending && /^[0-9a-f-]{36}$/i.test(pending)){
     const selectedCourse=courses.find(c=>String(c.id)===pending);
