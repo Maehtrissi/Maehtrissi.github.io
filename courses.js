@@ -1,5 +1,5 @@
 (() => {
- const SALE_LEAD_MS=3*60*60*1000;
+ const SALE_LEAD_MS=2*60*60*1000;
  const grid=document.querySelector('.course-grid');
  if(!grid)return;
  const categories={'yoga-wellness':['Yoga & Wellness','yoga'],'kochen-geniessen':['Kochen & Geniessen','pasta'],'kunst-handwerk':['Kunst & Handwerk','clay'],'fotografie-design':['Fotografie & Design','photo'],'tanz-bewegung':['Tanz & Bewegung','dance'],'natur-draussen':['Natur & Draussen','bouquet']};
