@@ -1,0 +1,163 @@
+/* Einheitliche Checkboxen auf Sponti – 17.11.2026.
+   Native Inputs bleiben echte, per Tastatur und Screenreader bedienbare Checkboxen.
+   Die speziell animierte Checkbox im Schnellfilter besitzt bereits ihren SVG-Haken. */
+:root { --sponti-checkbox-green: #15574e; --sponti-checkbox-border: #8eaa9b; }
+html body input[type="checkbox"]:not(.sponti-cbx-input) {
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  display:inline-block !important;
+  position:relative !important;
+  inset:auto !important;
+  box-sizing:border-box !important;
+  width:22px !important;
+  height:22px !important;
+  min-width:22px !important;
+  min-height:22px !important;
+  flex:0 0 22px !important;
+  margin:2px 0 0 !important;
+  padding:0 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  clip:auto !important;
+  clip-path:none !important;
+  overflow:visible !important;
+  pointer-events:auto !important;
+  vertical-align:middle;
+  border:2px solid var(--sponti-checkbox-border) !important;
+  border-radius:6px !important;
+  background:#fff !important;
+  box-shadow:none !important;
+  cursor:pointer;
+  transform:translate3d(0,0,0);
+  transition:background-color .2s ease,border-color .2s ease,transform .2s ease;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input)::after {
+  content:"";
+  position:absolute;
+  top:1px;
+  left:5px;
+  display:block;
+  width:6px;
+  height:11px;
+  border-right:2.5px solid #fff;
+  border-bottom:2.5px solid #fff;
+  border-radius:1px;
+  transform:rotate(45deg) scale(.35);
+  transform-origin:55% 70%;
+  opacity:0;
+  transition:transform .24s ease,opacity .18s ease;
+  pointer-events:none;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):hover {
+  border-color:var(--sponti-checkbox-green) !important;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):checked {
+  background:var(--sponti-checkbox-green) !important;
+  border-color:var(--sponti-checkbox-green) !important;
+  animation:sponti-checkbox-wave .4s ease;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):checked::after {
+  opacity:1;
+  transform:rotate(45deg) scale(1);
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):indeterminate {
+  background:var(--sponti-checkbox-green) !important;
+  border-color:var(--sponti-checkbox-green) !important;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):indeterminate::after {
+  top:8px;
+  left:3px;
+  width:12px;
+  height:0;
+  border:0;
+  border-bottom:2.5px solid #fff;
+  transform:none;
+  opacity:1;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):focus-visible {
+  outline:3px solid #f19b6d !important;
+  outline-offset:4px !important;
+}
+html body input[type="checkbox"]:not(.sponti-cbx-input):disabled {
+  cursor:not-allowed;
+  opacity:.55 !important;
+}
+@keyframes sponti-checkbox-wave { 50% {transform:scale(.9)} }
+
+/* Registrierungs-Pflichtfelder bleiben bewusst gross und deutlich sichtbar. */
+html body.account-page #provider-application-form .provider-consent-card input[type="checkbox"] {
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  position:relative !important;
+  width:30px !important;
+  height:30px !important;
+  min-width:30px !important;
+  min-height:30px !important;
+  flex:0 0 30px !important;
+}
+html body.account-page #provider-application-form .provider-consent-card input[type="checkbox"]::after {
+  top:4px;
+  left:9px;
+  width:8px;
+  height:14px;
+}
+@media(max-width:580px) {
+  html body.account-page #provider-application-form .provider-consent-card input[type="checkbox"] {
+    width:28px !important;
+    height:28px !important;
+    min-width:28px !important;
+    min-height:28px !important;
+    flex:0 0 28px !important;
+  }
+  html body.account-page #provider-application-form .provider-consent-card input[type="checkbox"]::after {
+    top:3px;
+    left:8px;
+  }
+}
+
+/* Im Kundenboard werden die bisherigen Auswahlchips mit sichtbarer Checkbox dargestellt. */
+html body .account-card .account-choice {
+  gap:9px !important;
+}
+html body .account-card .account-choice input[type="checkbox"] {
+  position:relative !important;
+  width:22px !important;
+  height:22px !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+
+/* Öffentliche Filter: die vorher versteckten Checkboxen in den grünen Kacheln sichtbar machen. */
+html body .sponti-today-filter {
+  gap:10px !important;
+}
+html body .sponti-today-filter input[type="checkbox"],
+html body .course-extra-filters .today-filter-pill input[type="checkbox"] {
+  position:relative !important;
+  inset:auto !important;
+  opacity:1 !important;
+  width:22px !important;
+  height:22px !important;
+  margin:0 !important;
+  flex:0 0 22px !important;
+}
+html body .course-extra-filters .today-filter-pill {
+  gap:9px !important;
+}
+
+/* Rote Pflichtfeld-Markierung bleibt beim Buchen auch mit dem neuen Design erkennbar. */
+html body .booking-consents .booking-terms.is-invalid input[type="checkbox"] {
+  border-color:#ca3b36 !important;
+  outline:2px solid #ca3b36;
+  outline-offset:3px;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html body input[type="checkbox"]:not(.sponti-cbx-input) {
+    transition:none !important;
+    animation:none !important;
+  }
+  html body input[type="checkbox"]:not(.sponti-cbx-input)::after {
+    transition:none !important;
+  }
+}
