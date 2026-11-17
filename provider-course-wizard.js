@@ -8,9 +8,34 @@ if(steps.length!==3)return;
 form.noValidate=true;
 let active=0,unlocked=0;
 const reduceMotion=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function updateReview(){
+ const root=form.querySelector('[data-course-review-list]');
+ if(!root)return;
+ const field=name=>String(form.elements.namedItem(name)?.value||'').trim();
+ const date=field('starts_at');
+ const formattedDate=date?new Intl.DateTimeFormat('de-CH',{dateStyle:'full',timeStyle:'short'}).format(new Date(date)):'–';
+ const rows=[
+  ['Kurs',field('title')||'–'],
+  ['Kategorie',field('category')||'–'],
+  ['Datum & Uhrzeit',formattedDate],
+  ['Enduhrzeit',field('ends_at')||'Nicht angegeben'],
+  ['Ort',field('venue')||'–'],
+  ['Region',field('region')||'–'],
+  ['Preis pro Person',Number.isFinite(Number(field('price')))&&field('price')!==''?new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(field('price'))):'–'],
+  ['Freie Plätze',field('seats')||'–']
+ ];
+ root.replaceChildren();
+ for(const [key,value] of rows){
+  const wrap=document.createElement('div');
+  const dt=document.createElement('dt');dt.textContent=key;
+  const dd=document.createElement('dd');dd.textContent=value;
+  wrap.append(dt,dd);root.append(wrap);
+ }
+}
 function show(index,scroll=true){
  if(index<0||index>2||index>unlocked)return;
  active=index;
+ if(index===2)updateReview();
  steps.forEach((step,i)=>{
   const current=i===index;
   const body=step.querySelector('.provider-course-wizard-body');
@@ -80,6 +105,8 @@ form.addEventListener('submit',event=>{
   }
  }
 },true);
+form.addEventListener('input',()=>{if(active===2)updateReview();});
+form.addEventListener('change',()=>{if(active===2)updateReview();});
 form.addEventListener('reset',()=>{
  active=0;unlocked=0;show(0,false);
 });
