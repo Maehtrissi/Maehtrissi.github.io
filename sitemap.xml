@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sponti-switzerland.ch/</loc><lastmod>2026-11-10</lastmod></url>
-  <url><loc>https://sponti-switzerland.ch/kurse</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://sponti-switzerland.ch/</loc></url>
+  <url><loc>https://sponti-switzerland.ch/kurse</loc></url>
   <url><loc>https://sponti-switzerland.ch/kursanbieter</loc></url>
   <url><loc>https://sponti-switzerland.ch/motivation</loc></url>
   <url><loc>https://sponti-switzerland.ch/erfahrungen</loc></url>
   <url><loc>https://sponti-switzerland.ch/buchen</loc></url>
   <url><loc>https://sponti-switzerland.ch/kontakt</loc></url>
+  <url><loc>https://sponti-switzerland.ch/impressum</loc></url>
+  <url><loc>https://sponti-switzerland.ch/datenschutz</loc></url>
+  <url><loc>https://sponti-switzerland.ch/agb</loc></url>
+  <url><loc>https://sponti-switzerland.ch/rechtliches</loc></url>
+  <url><loc>https://sponti-switzerland.ch/warum</loc></url>
 </urlset>
