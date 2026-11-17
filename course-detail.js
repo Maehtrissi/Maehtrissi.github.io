@@ -19,8 +19,8 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
   if(!provider||!uuid.test(String(provider.provider_id))||!String(provider.company||'').trim())return;
   const providerId=String(provider.provider_id),providerName=String(provider.company).trim();
   const card=$('#detail-provider-card'),avatar=$('#detail-provider-card-avatar');
-  const contactList=$('#detail-provider-contact-list');
-  if(!card||!avatar||!contactList)return;
+  const contactList=$('#detail-provider-contact-list'),quickLinks=$('#detail-provider-quick-links');
+  if(!card||!avatar||!contactList||!quickLinks)return;
   $('#detail-provider-card-name').textContent=providerName;
   $('#detail-provider-card-category').textContent=String(provider.category||'Kursanbieter').trim();
   $('#detail-provider-card-link').href='/anbieterprofil?id='+encodeURIComponent(providerId);
@@ -34,21 +34,28 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
   };
   const location=String(provider.location||'').trim();
   if(location)addContact('Standort',window.SpontiPlaces?.format(location)||location);
-  const website=String(provider.website||'').trim();
-  if(website){
+  const addQuickLink=(label,value)=>{
    try{
-    const url=new URL(website);
-    if(['https:','http:'].includes(url.protocol)&&!url.username&&!url.password)
-     addContact('Website',url.hostname.replace(/^www\./i,''),url.href,true);
+    const url=new URL(String(value||'').trim());
+    if(!['https:','http:'].includes(url.protocol)||url.username||url.password)return;
+    if(quickLinks.querySelectorAll('a').length>=5||[...quickLinks.querySelectorAll('a')].some(a=>a.href===url.href))return;
+    const anchor=make('a','detail-provider-quick-link',label);
+    anchor.href=url.href;anchor.target='_blank';anchor.rel='noopener noreferrer';
+    quickLinks.append(anchor);
    }catch{}
-  }
+  };
+  addQuickLink('Website',provider.website);
   card.hidden=false;
   const results=await Promise.allSettled([rpc('list_public_provider_contacts'),rpc('list_public_provider_extras_v2')]);
   if(results[0].status==='fulfilled'&&Array.isArray(results[0].value)){
    const contact=results[0].value.find(p=>String(p.provider_id)===providerId);
    const email=String(contact?.public_email||'').trim();
    const phone=String(contact?.public_phone||'').trim();
-   if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))addContact('E-Mail',email,'mailto:'+email);
+   if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    addContact('E-Mail',email,'mailto:'+email);
+    const emailButton=$('#detail-provider-contact-button');
+    if(emailButton){emailButton.href='mailto:'+email+'?subject='+encodeURIComponent('Frage zu deinem Kurs auf Sponti');emailButton.hidden=false;}
+   }
    if(/^[+0-9(). /-]{6,30}$/.test(phone)){
     const number=phone.replace(/[^0-9+]/g,'');
     if(number.replace(/\D/g,'').length>=6)addContact('Telefon',phone,'tel:'+number);
@@ -58,6 +65,11 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
    const extra=results[1].value.find(p=>String(p.provider_id)===providerId);
    const about=String(extra?.about_text||'').trim(),aboutEl=$('#detail-provider-card-about');
    if(about){aboutEl.textContent=about.length>220?about.slice(0,217).trimEnd()+'…':about;aboutEl.hidden=false;}
+   for(const link of (Array.isArray(extra?.social_links)?extra.social_links:[]).slice(0,10)){
+    if(!link||!link.url)continue;
+    const label=String(link.label||'Social Media').trim().slice(0,32);
+    addQuickLink(label||'Social Media',link.url);
+   }
    const logo=String(extra?.logo_path||'');
    if(/^[0-9a-f-]{36}\/[\w.-]+$/i.test(logo)){
     const img=document.createElement('img');
@@ -68,5 +80,5 @@ async function getCourse(){if(DEMO_MODE)return DEMO_COURSE;if(!id||!uuid.test(id
   if(!contactList.children.length)addContact('Kontakt','Weitere Angaben im Anbieterprofil');
  }catch{/* Keine privaten Kontakte anzeigen oder Kursdetailansicht blockieren. */}
 }
-async function boot(){try{addDemoBanner();const c=await getCourse();document.title=c.title+' | Sponti';$('#course-breadcrumb').textContent=c.title;$('#detail-title').textContent=c.title;$('#detail-side-title').textContent=c.title;$('#detail-category').textContent=categories[c.category]||c.category||'Erlebnis';$('#detail-description').textContent=c.description||'Weitere Informationen zum Kurs erhältst du beim Anbieter.';$('#detail-visual').classList.add('detail-'+(c.category||'').replace(/[^a-z-]/g,''));$('#detail-price').textContent=fmtPrice(c.price);facts($('#detail-side-facts'),c);displayExtras(c);void loadPublicProvider(c.id);const bookingNote=document.querySelector('.booking-summary .booking-note');if(bookingNote)bookingNote.textContent=Number(c.price)===0?'Kostenloser Kurs: Buchung ohne Zahlung möglich, sofern noch Plätze frei sind.':'Kostenpflichtiger Kurs: Zahlung über Sponti derzeit noch nicht verfügbar.';const chip=$('#detail-chips');[categories[c.category]||c.category,window.SpontiPlaces?.region(c.region)||c.region].filter(Boolean).forEach(t=>chip.append(make('span','',t)));const share=$('[data-sponti-course-share]');if(share&&!DEMO_MODE){share.dataset.shareTitle=c.title;share.dataset.shareUrl=new URL('/kurs.html?id='+encodeURIComponent(c.id),location.origin).href;share.hidden=false;}const a=$('#detail-cta');a.textContent='Tickets buchen →';a.href=DEMO_MODE?'/buchung.html?demo=1':'/buchung.html?id='+encodeURIComponent(c.id);const deadline=$('#ticket-sale-deadline');const deadlineText=$('#ticket-sale-deadline-text');const deadlineMs=saleClosesAt(c);if(Number.isFinite(deadlineMs)){deadline.hidden=false;deadlineText.textContent='Verkauf endet am '+saleDate(deadlineMs)+' Uhr';}if(c.booking_url){const external=make('p','booking-note','Dieser Anbieter hat derzeit auch einen eigenen externen Buchungsweg.');deadline.after(external);}const updateSaleStatus=()=>{const ended=Number.isFinite(deadlineMs)&&Date.now()>=deadlineMs;const unavailable=Number(c.seats)<1||ended||new Date(c.starts_at)<=new Date();if(ended){deadlineText.textContent='Ticketverkauf beendet · Verkaufsschluss: '+saleDate(deadlineMs)+' Uhr';deadline.classList.add('is-ended');}if(unavailable){a.removeAttribute('href');a.classList.add('is-disabled');a.textContent=ended?'Ticketverkauf beendet':'Zurzeit nicht buchbar';document.querySelector('.mobile-booking-dock')?.remove();}return !unavailable;};const available=updateSaleStatus();$('#detail-status').hidden=true;$('#detail-shell').hidden=false;
+async function boot(){try{addDemoBanner();const c=await getCourse();document.title=c.title+' | Sponti';$('#course-breadcrumb').textContent=c.title;$('#detail-title').textContent=c.title;$('#detail-side-title').textContent=c.title;$('#detail-category').textContent=categories[c.category]||c.category||'Erlebnis';$('#detail-description').textContent=c.description||'Weitere Informationen zum Kurs erhältst du beim Anbieter.';$('#detail-visual').classList.add('detail-'+(c.category||'').replace(/[^a-z-]/g,''));$('#detail-price').textContent=fmtPrice(c.price);facts($('#detail-side-facts'),c);displayExtras(c);void loadPublicProvider(c.id);const bookingNote=document.querySelector('.booking-summary .booking-note');if(bookingNote)bookingNote.textContent=Number(c.price)===0?'Kostenloser Kurs: Buchung ohne Zahlung möglich, sofern noch Plätze frei sind.':'Kostenpflichtiger Kurs: Zahlung über Sponti derzeit noch nicht verfügbar.';const share=$('[data-sponti-course-share]');if(share&&!DEMO_MODE){share.dataset.shareTitle=c.title;share.dataset.shareUrl=new URL('/kurs.html?id='+encodeURIComponent(c.id),location.origin).href;share.hidden=false;}const a=$('#detail-cta');a.textContent='Tickets buchen →';a.href=DEMO_MODE?'/buchung.html?demo=1':'/buchung.html?id='+encodeURIComponent(c.id);const deadline=$('#ticket-sale-deadline');const deadlineText=$('#ticket-sale-deadline-text');const deadlineMs=saleClosesAt(c);if(Number.isFinite(deadlineMs)){deadline.hidden=false;deadlineText.textContent='Verkauf endet am '+saleDate(deadlineMs)+' Uhr';}if(c.booking_url){const external=make('p','booking-note','Dieser Anbieter hat derzeit auch einen eigenen externen Buchungsweg.');deadline.after(external);}const updateSaleStatus=()=>{const ended=Number.isFinite(deadlineMs)&&Date.now()>=deadlineMs;const unavailable=Number(c.seats)<1||ended||new Date(c.starts_at)<=new Date();if(ended){deadlineText.textContent='Ticketverkauf beendet · Verkaufsschluss: '+saleDate(deadlineMs)+' Uhr';deadline.classList.add('is-ended');}if(unavailable){a.removeAttribute('href');a.classList.add('is-disabled');a.textContent=ended?'Ticketverkauf beendet':'Zurzeit nicht buchbar';document.querySelector('.mobile-booking-dock')?.remove();}return !unavailable;};const available=updateSaleStatus();$('#detail-status').hidden=true;$('#detail-shell').hidden=false;
   if(available){const dock=make('div','mobile-booking-dock');const action=make('a','booking-primary','Tickets buchen →');action.href=a.href;dock.append(action);document.body.append(dock);}if(Number.isFinite(deadlineMs)&&Date.now()<deadlineMs)window.setInterval(updateSaleStatus,30000);}catch(err){$('#detail-status').textContent=err.message+' ';$('#detail-status').append(Object.assign(make('a','','Alle Kurse ansehen'),{href:'/kurse'}));}}boot();})();
