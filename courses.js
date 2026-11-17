@@ -49,12 +49,10 @@
   const category=categories[course.category]||[course.category,'clay'];
   Object.assign(card.dataset,{category:categories[course.category]?course.category:'andere',location:['zug','zuerich','luzern','schwyz','aargau','andere'].includes(course.region)?course.region:'andere',day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
   const image=element('div',`course-image course-image-${category[1]}`);
-  image.append(element('span','course-category',category[0]),element('span','course-date',new Intl.DateTimeFormat('de-CH',{timeZone:'Europe/Zurich',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(start)));
-  const body=element('div','course-card-body');
-  const urgency=element('div','course-urgency');
-  const countdown=element('span','course-countdown',countdownText(start));
+  const countdown=element('span','course-countdown course-image-countdown',countdownText(start));
   countdown.dataset.startsAt=course.starts_at;
-  urgency.append(countdown);
+  image.append(element('span','course-category',category[0]),countdown);
+  const body=element('div','course-card-body');
   const availability=element('div','course-availability'+(Number(course.seats)===1?' is-last':Number(course.seats)===2?' is-low':''));
   const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');
   const availabilityFill=element('span','course-availability-fill');
@@ -72,7 +70,16 @@
   const pinOutline=document.createElementNS('http://www.w3.org/2000/svg','path');pinOutline.setAttribute('d','M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z');
   const pinCenter=document.createElementNS('http://www.w3.org/2000/svg','circle');pinCenter.setAttribute('cx','12');pinCenter.setAttribute('cy','10');pinCenter.setAttribute('r','2.5');
   locationIcon.append(pinOutline,pinCenter);locationText.prepend(locationIcon);
-  details.append(locationText);
+  const courseDate=new Intl.DateTimeFormat('de-CH',{timeZone:'Europe/Zurich',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(start);
+  const dateText=element('span','course-event-date',courseDate+' Uhr');
+  const calendarIcon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  calendarIcon.setAttribute('viewBox','0 0 24 24');calendarIcon.setAttribute('width','15');calendarIcon.setAttribute('height','15');calendarIcon.setAttribute('fill','none');calendarIcon.setAttribute('stroke','currentColor');calendarIcon.setAttribute('stroke-width','1.8');calendarIcon.setAttribute('stroke-linecap','round');calendarIcon.setAttribute('stroke-linejoin','round');calendarIcon.setAttribute('aria-hidden','true');
+  const calendarFrame=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  calendarFrame.setAttribute('x','3');calendarFrame.setAttribute('y','5');calendarFrame.setAttribute('width','18');calendarFrame.setAttribute('height','16');calendarFrame.setAttribute('rx','2');
+  const calendarLines=document.createElementNS('http://www.w3.org/2000/svg','path');
+  calendarLines.setAttribute('d','M7 3v4M17 3v4M3 10h18');
+  calendarIcon.append(calendarFrame,calendarLines);dateText.prepend(calendarIcon);
+  details.append(locationText,dateText);
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
   bottom.append(booking);
@@ -80,7 +87,7 @@
   const seatsRow=element('div','course-seats-footer-row');
   seatsRow.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
   seatFooter.append(seatsRow,availability);
-  body.append(details,bottom,seatFooter);card.append(urgency,image,body);return card;
+  body.append(details,bottom,seatFooter);card.append(image,body);return card;
  }
 async function linkCourseProviders(targetCards){
   try{
