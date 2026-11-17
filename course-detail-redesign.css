@@ -130,3 +130,10 @@ body.sponti-detail-page {
   .sponti-detail-page .booking-summary{padding:24px;}
 }
 @media(prefers-reduced-motion:reduce){.sponti-detail-page .booking-primary{transition:none!important;transform:none!important;}}
+
+/* Ticketverkauf endet drei Stunden vor dem jeweiligen Kursbeginn. */
+.sponti-detail-page .booking-summary .ticket-sale-deadline{display:flex;align-items:center;gap:10px;margin:15px 0 0;color:#355d53;font-size:13px;font-weight:600;line-height:1.5;}
+.sponti-detail-page .booking-summary .ticket-sale-deadline[hidden]{display:none;}
+.sponti-detail-page .booking-summary .ticket-sale-dot{display:inline-block;flex:0 0 9px;width:9px;height:9px;border-radius:50%;background:#15574e;box-shadow:0 0 0 3px rgba(21,87,78,.10);}
+.sponti-detail-page .booking-summary .ticket-sale-deadline.is-ended{color:#687b6d;}
+.sponti-detail-page .booking-summary .ticket-sale-deadline.is-ended .ticket-sale-dot{background:#8d9992;box-shadow:none;}
