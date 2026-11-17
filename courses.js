@@ -37,7 +37,6 @@
  }));
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
  const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
- const cancellationText=()=> 'Stornobedingungen beim Kurs prüfen';
 
  function render(course){
   const card=element('article','course-card'),start=new Date(course.starts_at);card.dataset.courseId=String(course.id);
@@ -57,8 +56,14 @@
   countdown.dataset.startsAt=course.starts_at;
   urgency.append(countdown);
   const availability=element('div','course-availability'+(Number(course.seats)===1?' is-last':Number(course.seats)===2?' is-low':''));
-  const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');availabilityTrack.append(element('span','course-availability-fill'));availability.append(availabilityTrack);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,availability,heading,providerRow);
+  const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');
+  const availabilityFill=element('span','course-availability-fill');
+  const remainingSeats=Math.max(0,Math.floor(Number(course.seats)||0));
+  // Temporary 10-seat comparison scale until the original course capacity is stored.
+  const capacity=10;
+  availabilityFill.style.width=Math.min(100,remainingSeats/capacity*100)+'%';
+  availabilityTrack.append(availabilityFill);availability.append(availabilityTrack);
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,heading,providerRow);
   const details=element('div','course-details');
   const locationText=element('span','course-location',window.SpontiPlaces?.format(course.venue)||course.venue);
   locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
@@ -70,20 +75,12 @@
   details.append(locationText);
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
-  const policy=element('div','course-policy',cancellationText(start));
   bottom.append(booking);
-  const share=element('div','course-card-share');
-  share.dataset.spontiCourseShare='';
-  share.dataset.shareTitle=course.title;
-  share.dataset.shareUrl=detailUrl;
-  const shareButton=element('button','sponti-course-share-trigger');
-  shareButton.type='button';
-  shareButton.setAttribute('aria-expanded','false');
-  shareButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10.5 6-4m-6 7 6 4"/></svg><span>Kurs teilen</span>';
-  share.append(shareButton);
   const seatFooter=element('div','course-seats-footer');
-  seatFooter.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
-  body.append(details,policy,bottom,share,seatFooter);card.append(image,body);return card;
+  const seatsRow=element('div','course-seats-footer-row');
+  seatsRow.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
+  seatFooter.append(seatsRow,availability);
+  body.append(details,bottom,seatFooter);card.append(image,body);return card;
  }
 async function linkCourseProviders(targetCards){
   try{
@@ -144,5 +141,5 @@ async function linkCourseProviders(targetCards){
   finally{grid.setAttribute('aria-busy','false');}
  }
  load();
- window.setInterval(()=>document.querySelectorAll('.course-countdown[data-starts-at]').forEach(el=>{const start=new Date(el.dataset.startsAt);el.textContent=countdownText(start);const policy=el.closest('.course-card')?.querySelector('.course-policy');if(policy)policy.textContent=cancellationText(start);}),60000);
+ window.setInterval(()=>document.querySelectorAll('.course-countdown[data-starts-at]').forEach(el=>{const start=new Date(el.dataset.startsAt);el.textContent=countdownText(start);}),60000);
 })();
