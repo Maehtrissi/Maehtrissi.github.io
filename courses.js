@@ -55,12 +55,10 @@
   const urgency=element('div','course-urgency');
   const countdown=element('span','course-countdown',countdownText(start));
   countdown.dataset.startsAt=course.starts_at;
-  const seats=element('span',Number(course.seats)<=2?'course-spots course-spots-low':'course-spots',course.seats===1?'Letzter Platz':`Noch ${course.seats} Plätze`);
-  urgency.append(countdown,seats);
+  urgency.append(countdown);
   const availability=element('div','course-availability'+(Number(course.seats)===1?' is-last':Number(course.seats)===2?' is-low':''));
-  const availabilityLabel=element('div','course-availability-label');availabilityLabel.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
-  const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');availabilityTrack.append(element('span','course-availability-fill'));availability.append(availabilityLabel,availabilityTrack);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,availability,heading,providerRow,element('p','course-short-description',(course.short_description||course.description||'').replace(/\*\*/g,'').slice(0,180)));
+  const availabilityTrack=element('div','course-availability-track');availabilityTrack.setAttribute('aria-hidden','true');availabilityTrack.append(element('span','course-availability-fill'));availability.append(availabilityTrack);
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,availability,heading,providerRow);
   const details=element('div','course-details');
   const locationText=element('span','course-location',window.SpontiPlaces?.format(course.venue)||course.venue);
   locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
@@ -69,7 +67,7 @@
   const pinOutline=document.createElementNS('http://www.w3.org/2000/svg','path');pinOutline.setAttribute('d','M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z');
   const pinCenter=document.createElementNS('http://www.w3.org/2000/svg','circle');pinCenter.setAttribute('cx','12');pinCenter.setAttribute('cy','10');pinCenter.setAttribute('r','2.5');
   locationIcon.append(pinOutline,pinCenter);locationText.prepend(locationIcon);
-  details.append(locationText,element('strong','',`${course.seats} ${course.seats===1?'Platz':'Plätze'} frei`));
+  details.append(locationText);
   const bottom=element('div','course-bottom');bottom.append(element('span','course-price',new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(course.price))));
   const booking=element('a','course-book','Details & buchen');booking.href='/kurs.html?id='+encodeURIComponent(course.id);booking.style.textDecoration='none';
   const policy=element('div','course-policy',cancellationText(start));
@@ -83,7 +81,9 @@
   shareButton.setAttribute('aria-expanded','false');
   shareButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10.5 6-4m-6 7 6 4"/></svg><span>Kurs teilen</span>';
   share.append(shareButton);
-  body.append(details,policy,bottom,share);card.append(image,body);return card;
+  const seatFooter=element('div','course-seats-footer');
+  seatFooter.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
+  body.append(details,policy,bottom,share,seatFooter);card.append(image,body);return card;
  }
 async function linkCourseProviders(targetCards){
   try{
