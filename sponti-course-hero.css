@@ -90,3 +90,139 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
 /* Today filter: clean centered label without lightning icon. */
 .sponti-today-filter{gap:0!important;justify-content:center!important}
 .sponti-today-filter>span{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;margin:0!important;padding:13px 20px!important;line-height:1.3!important}
+
+
+/* Mobile search layout: fix desktop grid override and iPhone text wrapping (2026-11-17). */
+@media (max-width:800px) {
+  .sponti-hero-search {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+    gap:0;
+    padding:12px 15px 15px;
+    border-radius:26px;
+  }
+  .sponti-hero-search>.sponti-hero-search-field {
+    box-sizing:border-box;
+    min-width:0;
+    width:100%;
+    padding:14px 10px;
+    border-bottom:1px solid #e2e5df;
+  }
+  .sponti-hero-search>.sponti-hero-search-field:nth-child(1) {
+    grid-column:1;
+    border-right:1px solid #e2e5df;
+  }
+  .sponti-hero-search>.sponti-hero-search-field:nth-child(2) {
+    grid-column:2;
+    border-right:0;
+    border-top:0;
+  }
+  .sponti-hero-search>.sponti-today-filter {
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start!important;
+    box-sizing:border-box;
+    min-width:0;
+    width:100%;
+    gap:10px!important;
+    margin:12px 0 0;
+    padding:13px 15px;
+    background:#e8f1e3;
+    border-radius:16px;
+    white-space:normal;
+  }
+  .sponti-hero-search>.sponti-today-filter>span {
+    display:block!important;
+    flex:1 1 auto;
+    min-width:0;
+    width:auto;
+    background:transparent!important;
+    padding:0!important;
+    margin:0!important;
+    text-align:left!important;
+    justify-content:flex-start!important;
+    color:#145340;
+    font-size:14px;
+    line-height:1.4!important;
+  }
+  .sponti-hero-search>button[type="submit"] {
+    grid-column:1/-1;
+    width:100%;
+    min-height:52px;
+    margin-top:12px;
+    padding:14px 20px;
+    box-sizing:border-box;
+    border-radius:999px;
+  }
+}
+@media (max-width:600px) {
+  .sponti-hero-search {
+    grid-template-columns:minmax(0,1fr);
+    gap:0;
+    padding:13px 18px 17px;
+    border-radius:26px;
+  }
+  .sponti-hero-search>.sponti-hero-search-field,
+  .sponti-hero-search>.sponti-hero-search-field:nth-child(1),
+  .sponti-hero-search>.sponti-hero-search-field:nth-child(2) {
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    box-sizing:border-box;
+    min-width:0;
+    width:100%;
+    gap:13px;
+    padding:15px 2px;
+    border:0;
+    border-bottom:1px solid #e2e5df;
+  }
+  .sponti-hero-search .sponti-search-field-icon {
+    flex:0 0 26px;
+    width:26px;
+    text-align:center;
+    font-size:26px;
+  }
+  .sponti-hero-search .sponti-search-field-inner {
+    display:flex;
+    flex:1 1 auto;
+    flex-direction:column;
+    min-width:0;
+    width:100%;
+    gap:4px;
+  }
+  .sponti-hero-search .sponti-search-label {
+    font-size:14px;
+    line-height:1.35;
+  }
+  .sponti-hero-search .sponti-hero-search-field input[name="ort"],
+  .sponti-hero-search .sponti-hero-search-field input[name="datum"] {
+    display:block;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    min-height:30px;
+    box-sizing:border-box;
+    font-size:15px;
+    line-height:1.4;
+  }
+  .sponti-hero-search .sponti-hero-search-field .sponti-date-hint {
+    display:block;
+    width:100%;
+    max-width:100%;
+    font-size:12px;
+    line-height:1.4;
+    overflow-wrap:normal;
+  }
+  .sponti-hero-search>.sponti-today-filter {
+    padding:12px 14px;
+    margin-top:15px;
+  }
+  .sponti-hero-search>button[type="submit"] {
+    margin-top:13px;
+  }
+}
