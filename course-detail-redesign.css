@@ -307,3 +307,14 @@ body.sponti-detail-page {
  margin:5px 2px 0;color:#688073;font-size:11px;line-height:1.5
 }
 @media(prefers-reduced-motion:reduce){.sponti-detail-page .detail-calendar-toggle .detail-calendar-chevron{transition:none}}
+
+/* Override the global main > section margin that otherwise adds 5vw of empty
+   space between the full-width course title and the course image/booking box. */
+html body.sponti-detail-page main.booking-main > section.detail-shell {
+  margin-block:8px 0 !important;
+}
+@media (max-width:800px) {
+  html body.sponti-detail-page main.booking-main > section.detail-shell {
+    margin-block:10px 0 !important;
+  }
+}
