@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="/course-ux.css?v=booking-button-bottom-20261117" />
   <link rel="stylesheet" href="/course-artwork.css?v=pastel-20261019" />
   <link rel="stylesheet" href="/sponti-mockup-design.css?v=20261107-arrow-svg" />
-  <link rel="stylesheet" href="/sponti-course-discovery.css?v=20261110-chevron-center6" />
+  <link rel="stylesheet" href="/sponti-course-discovery.css?v=sponti-green-cbx-20261117" />
 <link rel="stylesheet" href="/sponti-favorites.css?v=empty-state-20261116" />
   <link rel="stylesheet" href="/sponti-course-sharing.css?v=20261117" /></head>
     <body class="courses-page">
@@ -69,7 +69,13 @@
           
           <label class="sponti-quick-time"><span>Uhrzeit</span><select id="sponti-quick-time" aria-label="Uhrzeit wählen"><option value="all">Alle Uhrzeiten</option><option value="vormittag">Vormittag</option><option value="nachmittag">Nachmittag</option><option value="abend">Abend</option></select></label>
           <label class="sponti-quick-price"><span>Maximalpreis: <output id="sponti-quick-price-value">Alle Preise</output></span><input type="range" id="sponti-quick-price" min="0" max="200" step="5" value="200" aria-label="Maximalpreis in CHF"></label>
-          <label class="sponti-quick-today"><input type="checkbox" id="sponti-quick-today"><span>Heute noch freie Plätze</span></label>
+          <label class="sponti-quick-today">
+            <input type="checkbox" id="sponti-quick-today" class="sponti-cbx-input">
+            <span class="sponti-cbx-mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5 6.4 12 13.7 4"/></svg>
+            </span>
+            <span class="sponti-cbx-text">Heute noch freie Plätze</span>
+          </label>
         </div>
         <button class="sponti-course-submit" type="button" id="sponti-show-courses">Kurse entdecken <span aria-hidden="true">→</span></button>
         <div class="sponti-category-heading"><h2>Beliebte Kategorien</h2><button type="button" id="sponti-reset-categories">Alle anzeigen <span aria-hidden="true">→</span></button></div>
