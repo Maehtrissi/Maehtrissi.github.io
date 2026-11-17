@@ -84,3 +84,10 @@
   font-size:11px;
   line-height:1.5;
 }
+
+/* Kategorien auf den Kurskarten: Sponti-Orange mit dunkelgrüner Schrift. */
+.courses-page .course-card .course-image .course-category{
+  background:#ff9168;
+  color:#15574e;
+  font-weight:750;
+}
