@@ -161,17 +161,3 @@ body.sponti-detail-page {
 .sponti-detail-page .detail-provider-card-link:hover{background:#e4f0e0}
 .sponti-detail-page .detail-provider-card-link:focus-visible{outline:3px solid #ef986b;outline-offset:3px}
 @media(max-width:460px){.sponti-detail-page .detail-provider-contact{grid-template-columns:1fr;gap:3px}}
-
-/* Zahlungsmethoden live aus der aktiven Stripe-Payment-Method-Configuration. */
-.sponti-detail-page .detail-payment-methods[hidden]{display:none!important}
-.sponti-detail-page .detail-payment-methods{margin-top:22px;padding-top:18px;border-top:1px solid #e0e9e2}
-.sponti-detail-page .detail-payment-methods h3{margin:0 0 12px;color:#345e50;font:700 13px/1.5 "DM Sans",sans-serif}
-.sponti-detail-page .detail-payment-icons{display:flex;flex-wrap:wrap;gap:8px}
-.sponti-detail-page .detail-payment-method{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:7px 10px;border:1px solid #dae5dc;border-radius:9px;background:#f9fbf8;color:#315f51;font:700 12px/1.3 "DM Sans",sans-serif;white-space:nowrap}
-.sponti-detail-page .detail-payment-method svg{flex:0 0 17px;width:17px;height:17px}
-.sponti-detail-page .detail-payment-method-twint{background:#fff6f1;border-color:#f0d8ca;color:#814932}
-.sponti-detail-page .detail-payment-method-apple_pay{background:#f5f5f5;border-color:#e2e2e2;color:#222}
-.sponti-detail-page .detail-payment-method-google_pay{background:#f9fafc;border-color:#dce5eb;color:#333}
-.sponti-detail-page .detail-payment-method-paypal{background:#f0f6fc;border-color:#d7e6f4;color:#145b94}
-.sponti-detail-page .detail-payment-method-link{background:#f6f3fb;border-color:#e6dff3;color:#51427e}
-.sponti-detail-page .detail-payment-caption{margin:10px 0 0;color:#77877a;font-size:11px;line-height:1.6}
