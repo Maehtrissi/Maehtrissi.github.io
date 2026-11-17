@@ -19,7 +19,7 @@ body.account-page form[data-account-form="preferences"] nav.customer-board-subna
 .sponti-dashboard-layout>.customer-board-nav button[aria-pressed="true"]{background:#07553c;color:#fff;border-color:#07553c;box-shadow:0 4px 12px rgba(7,85,60,.14)}
 .sponti-dashboard-layout>.customer-board-nav button:focus-visible{outline:3px solid #f98b4a;outline-offset:2px}
 @media(max-width:900px){.sponti-dashboard-layout>.customer-board-nav{padding:8px 0 14px;gap:8px}.sponti-dashboard-layout>.customer-board-nav button{width:auto;flex:0 0 auto;min-height:42px;padding:10px 14px;white-space:nowrap}}
-</style><link rel="stylesheet" href="/sponti-other-options.css?v=20261117" /><script defer src="/sponti-other-options.js?v=20261117"></script></head>
+</style><link rel="stylesheet" href="/sponti-other-options.css?v=20261117" /><script defer src="/sponti-other-options.js?v=20261117-custom-inputs-v2"></script></head>
 <body class="account-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
       <span class="top-announcement-desktop">Neue freie Plätze direkt aufs Handy – <strong>Sponti WhatsApp Community beitreten</strong> <svg class="sponti-banner-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
@@ -105,7 +105,7 @@ root.querySelectorAll('[data-cfilter-tab]').forEach(b=>b.addEventListener('click
 root.querySelectorAll('form').forEach(form=>form.addEventListener('invalid',event=>{const panel=event.target.closest('[data-cboard-view]');const group=event.target.closest('[data-cfilter-view]');if(panel)openBoard(panel.dataset.cboardView);if(group)switchGroup('data-cfilter-tab','data-cfilter-view',group.dataset.cfilterView,'cfilter-inactive');},true));
 const recovery=root.querySelector('[data-account-recovery]');if(recovery){let last=recovery.hidden;new MutationObserver(()=>{if(!recovery.hidden&&last)switchGroup('data-cboard-tab','data-cboard-view','security','cboard-inactive');last=recovery.hidden;}).observe(recovery,{attributes:true,attributeFilter:['hidden']});}
 })();
-</script><script src="script.js?v=sponti-places-20261116"></script><script type="module" src="customer-account.js?v=onboarding-20261105"></script><script type="module">
+</script><script src="script.js?v=sponti-places-20261116"></script><script type="module" src="customer-account.js?v=other-regions-20261117"></script><script type="module">
   // Resume a course request after successful login or registration.
   const requestedCourse=new URLSearchParams(location.search).get('course');
   if(requestedCourse && /^[0-9a-f-]{36}$/i.test(requestedCourse)){
