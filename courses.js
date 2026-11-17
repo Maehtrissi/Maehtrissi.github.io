@@ -7,7 +7,13 @@
  const buttons=[...document.querySelectorAll('.course-filters .filter')];
  const active=(attr)=>buttons.filter(b=>b.classList.contains('active')&&b.dataset[attr]&& !['alle','all'].includes(b.dataset[attr])).map(b=>b.dataset[attr]);
  const message=document.getElementById('course-status');
- const searchTerm=(new URLSearchParams(location.search).get('suche')||'').trim().toLocaleLowerCase('de-CH');
+ const queryParams=new URLSearchParams(location.search);
+ const searchTerm=(queryParams.get('suche')||'').trim().toLocaleLowerCase('de-CH');
+ const selectedPlace=(queryParams.get('ort')||'').trim();
+ const slugPlaces=['zug','zuerich','luzern','schwyz','aargau','andere'];
+ const placeSlug=selectedPlace.toLocaleLowerCase('de-CH');
+ const customPlace=selectedPlace&&!slugPlaces.includes(placeSlug)&&placeSlug!=='all'?placeSlug:'';
+
  const todayToggle=document.getElementById('filter-today');
  const priceSlider=document.getElementById('filter-price');
  const priceLabel=document.getElementById('filter-price-value');
@@ -19,7 +25,7 @@
  function applyFilters(){
   const filters=[['filter','category'],['location','location'],['day','day'],['time','time']].map(([button,card])=>({values:active(button),card}));
   let shown=0;
-  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()+SALE_LEAD_MS&&Number(card.dataset.seats)>0;const searchOk=!searchTerm||(card.dataset.searchText||'').includes(searchTerm);const visible=bookable&&searchOk&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
+  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()+SALE_LEAD_MS&&Number(card.dataset.seats)>0;const searchOk=!searchTerm||(card.dataset.searchText||'').includes(searchTerm);const placeOk=!customPlace||(card.dataset.placeText||'').includes(customPlace);const visible=bookable&&searchOk&&placeOk&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
   message.textContent=cards.length===0?'Aktuell sind keine Kurse veröffentlicht. Schau bald wieder vorbei oder tritt Sponti bei, um Kursinfos zu erhalten.':shown===0?(searchTerm?'Keine Kurse für diese Suche gefunden. Versuche einen anderen Begriff.':'Für diese Auswahl gibt es aktuell keine Kurse. Ändere die Filter.'):`${shown} ${shown===1?'Kurs':'Kurse'} verfügbar`;
  }
  buttons.forEach(button=>button.addEventListener('click',()=>{
@@ -47,7 +53,7 @@
   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(start).map(p=>[p.type,p.value]));
   const day={Mon:'mo',Tue:'th',Wed:'mi',Thu:'do',Fri:'fr',Sat:'sa',Sun:'so'}[parts.weekday];
   const category=categories[course.category]||[course.category,'clay'];
-  Object.assign(card.dataset,{category:categories[course.category]?course.category:'andere',location:['zug','zuerich','luzern','schwyz','aargau','andere'].includes(course.region)?course.region:'andere',day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
+  Object.assign(card.dataset,{category:categories[course.category]?course.category:'andere',location:['zug','zuerich','luzern','schwyz','aargau','andere'].includes(course.region)?course.region:'andere',day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),placeText:[course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH'),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
   const image=element('div',`course-image course-image-${category[1]}`);
   const countdown=element('span','course-countdown course-image-countdown',countdownText(start));
   countdown.dataset.startsAt=course.starts_at;
@@ -137,8 +143,8 @@ async function linkCourseProviders(targetCards){
     const data=await response.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort.');courses.push(...data);if(data.length<500)break;
    }
    cards=courses.filter(c=>new Date(c.starts_at).getTime()>Date.now()+SALE_LEAD_MS&&Number(c.seats)>0).map(render);grid.replaceChildren(...cards);
-   const queryParams=new URLSearchParams(location.search);const selected=queryParams.get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
-   const requestedPlace=queryParams.get('ort');const placeButton=buttons.find(b=>b.dataset.location===requestedPlace);if(placeButton){buttons.filter(b=>b.dataset.location).forEach(b=>b.classList.remove('active'));placeButton.classList.add('active');}
+   const selected=queryParams.get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
+   const placeButton=buttons.find(b=>b.dataset.location===placeSlug);if(placeButton){buttons.filter(b=>b.dataset.location).forEach(b=>b.classList.remove('active'));placeButton.classList.add('active');}
    applyFilters();
    void linkCourseProviders(cards);
    const pending=new URLSearchParams(location.search).get('course');
