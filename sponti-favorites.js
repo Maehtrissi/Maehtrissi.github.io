@@ -94,15 +94,18 @@
     });
     if(document.body.classList.contains('sponti-detail-page')&&!$('.sponti-detail-favorite')){
       const id=new URLSearchParams(location.search).get('id');
-      const main=$('main');
-      if(isCourseId(id)&&main){
+      const summary=$('.booking-summary');
+      if(isCourseId(id)&&summary){
         const wrapper=document.createElement('div');
         wrapper.className='sponti-detail-favorite';
         const button=makeHeart(id);
         const label=textNode('span','Kurs merken');
         label.dataset.favoriteDetailLabel=id;
-        wrapper.append(button,label);
-        main.prepend(wrapper);
+        button.append(label);
+        wrapper.append(button);
+        const share=summary.querySelector('.detail-share');
+        if(share)share.after(wrapper);
+        else summary.append(wrapper);
       }
     }
     updateHearts();
