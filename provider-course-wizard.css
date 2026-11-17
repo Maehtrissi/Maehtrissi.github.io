@@ -46,3 +46,13 @@ body.account-page [data-course-editor] .provider-course-wizard-step .provider-co
  body.account-page [data-course-editor] .provider-course-wizard-body.is-revealing{animation:none}
  body.account-page [data-course-editor] .provider-course-wizard-toggle>svg{transition:none}
 }
+
+/* Kurserstellung: hilfreiche Eingabehinweise und schlichte Zusammenfassung. */
+body.account-page [data-course-editor] .provider-course-field-intro{margin:0;color:#60786b;font-size:13px;line-height:1.6}
+body.account-page [data-course-editor] .provider-course-review{padding:18px 20px;background:#f3f8f1;border:1px solid #dce8d9;border-radius:15px}
+body.account-page [data-course-editor] .provider-course-review h4{margin:0 0 13px;color:#1b4739;font-size:17px;font-weight:700}
+body.account-page [data-course-editor] .provider-course-review dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 20px;margin:0}
+body.account-page [data-course-editor] .provider-course-review dl>div{min-width:0;padding:8px 0;border-bottom:1px solid #dce8d9}
+body.account-page [data-course-editor] .provider-course-review dt{font-size:11px;font-weight:650;color:#60776a}
+body.account-page [data-course-editor] .provider-course-review dd{margin:5px 0 0;font-size:13px;font-weight:700;color:#1b4739;overflow-wrap:anywhere}
+@media(max-width:580px){body.account-page [data-course-editor] .provider-course-review dl{grid-template-columns:1fr}}
