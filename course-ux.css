@@ -39,3 +39,22 @@
 @media(prefers-reduced-motion:reduce){
   .courses-page .course-card .course-seats-footer .course-availability-fill{transition:none}
 }
+
+/* Countdown is positioned as a compact header above each course image. */
+.courses-page .course-card>.course-urgency{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  margin:0;
+  background:#fffdfa;
+}
+.courses-page .course-card>.course-urgency .course-countdown{
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  box-sizing:border-box;
+  padding:6px 11px;
+  font-size:11px;
+  line-height:1.25;
+}
