@@ -192,3 +192,20 @@ body.sponti-detail-page {
 .sponti-detail-page .detail-provider-quick-link:focus-visible,.sponti-detail-page .detail-provider-contact-button:focus-visible{outline:3px solid #ef986b;outline-offset:3px}
 @media(max-width:800px){.sponti-detail-page .detail-sidebar{gap:18px}}
 @media(max-width:460px){.sponti-detail-page .detail-sidebar .detail-provider-card{padding:24px 20px}.sponti-detail-page .detail-provider-card-avatar{width:106px;height:106px;flex-basis:106px}.sponti-detail-page .detail-provider-contact{grid-template-columns:1fr}}
+
+/* Vier wesentliche Kursinformationen links; rechts bleibt die kompakte Buchungsbox. */
+.sponti-detail-page .detail-overview-block{padding:25px 28px 28px}
+.sponti-detail-page .detail-overview-block h2{margin:0 0 19px;font-size:22px}
+.sponti-detail-page .detail-overview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.sponti-detail-page .detail-overview-item{display:flex;align-items:flex-start;gap:13px;min-width:0;padding:17px 16px;background:#f5f9f3;border:1px solid #e0eadd;border-radius:15px}
+.sponti-detail-page .detail-overview-icon{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:12px;background:#e5f0e5;color:#17584b}
+.sponti-detail-page .detail-overview-icon svg{width:20px;height:20px}
+.sponti-detail-page .detail-overview-text{display:grid;gap:5px;min-width:0}
+.sponti-detail-page .detail-overview-label{font:600 12px/1.4 "DM Sans",sans-serif;color:#678073}
+.sponti-detail-page .detail-overview-value{font:700 14px/1.5 "DM Sans",sans-serif;color:#174e43;overflow-wrap:anywhere;word-break:normal}
+.sponti-detail-page .booking-summary .summary-total{margin-top:18px;border-top:1px solid #d9e3d7;padding:22px 0}
+.sponti-detail-page .booking-summary h2{margin-bottom:16px}
+@media(max-width:1050px){.sponti-detail-page .detail-overview-grid{grid-template-columns:1fr}.sponti-detail-page .detail-overview-item{padding:14px 16px}}
+@media(min-width:801px) and (max-width:1050px){.sponti-detail-page .detail-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sponti-detail-page .detail-overview-item{flex-direction:column;gap:9px}}
+@media(max-width:800px){.sponti-detail-page .detail-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.sponti-detail-page .detail-overview-block{padding:22px 18px}.sponti-detail-page .detail-overview-grid{grid-template-columns:1fr;gap:10px}.sponti-detail-page .detail-overview-item{align-items:center;padding:13px 14px}.sponti-detail-page .detail-overview-icon{flex-basis:38px;width:38px;height:38px}}
