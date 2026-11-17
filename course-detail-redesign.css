@@ -161,3 +161,34 @@ body.sponti-detail-page {
 .sponti-detail-page .detail-provider-card-link:hover{background:#e4f0e0}
 .sponti-detail-page .detail-provider-card-link:focus-visible{outline:3px solid #ef986b;outline-offset:3px}
 @media(max-width:460px){.sponti-detail-page .detail-provider-contact{grid-template-columns:1fr;gap:3px}}
+
+/* Kursdetail: Eventfrog-inspirierte eigenständige Anbieterkarte in der rechten Spalte.
+   Die Kategorie-/Regions-Chips im oberen Titelblock werden nicht mehr angezeigt. */
+.sponti-detail-page .detail-sidebar{min-width:0;display:grid;align-content:start;gap:22px}
+.sponti-detail-page .detail-sidebar .booking-summary{position:static;top:auto}
+.sponti-detail-page .detail-sidebar .detail-provider-card{
+ display:grid;gap:20px;padding:26px 28px;background:rgba(255,255,255,.92);
+ border:1px solid rgba(25,67,56,.12);border-radius:28px;box-shadow:0 24px 60px rgba(50,63,49,.075);min-width:0;
+}
+.sponti-detail-page .detail-provider-eyebrow{margin:0;color:#456359;font:700 13px/1.5 "DM Sans",sans-serif;letter-spacing:.025em}
+.sponti-detail-page .detail-provider-card-identity{display:grid;justify-items:center;gap:13px;text-align:center}
+.sponti-detail-page .detail-provider-card-avatar{width:126px;height:126px;flex:0 0 126px;border-radius:20px;border:1px solid #d8e5d8;background:#edf3e9;font-size:49px}
+.sponti-detail-page .detail-provider-card-name{text-align:center}
+.sponti-detail-page .detail-provider-card-name h2{margin:0 0 6px!important;font:700 23px/1.28 "DM Sans",sans-serif;color:#154f47;overflow-wrap:anywhere}
+.sponti-detail-page .detail-provider-card-name p{margin:0;color:#61796c;font-size:12px}
+.sponti-detail-page .detail-provider-quick-links{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+.sponti-detail-page .detail-provider-quick-links:empty{display:none}
+.sponti-detail-page .detail-provider-quick-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:39px;padding:9px 13px;border-radius:999px;border:1px solid #d4e0d6;background:#f9fbf7;color:#194e40;font-size:12px;font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+.sponti-detail-page .detail-provider-quick-link:hover{background:#eaf3e7;color:#15574e}
+.sponti-detail-page .detail-provider-card-about{color:#5f7065;font-size:13px;line-height:1.6}
+.sponti-detail-page .detail-provider-card-contacts{padding:16px 0 0;border:0;border-top:1px solid #e1e9de;background:none;border-radius:0}
+.sponti-detail-page .detail-provider-card-contacts h3{margin:0 0 3px;font-size:14px}
+.sponti-detail-page .detail-provider-contact{grid-template-columns:minmax(65px,.42fr) minmax(0,1fr)}
+.sponti-detail-page .detail-provider-contact-button{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:5px;min-height:46px;padding:12px 14px;background:#15574e;color:#fff;border:1px solid #15574e;border-radius:13px;font-size:13px;font-weight:750;text-decoration:none;text-align:center}
+.sponti-detail-page .detail-provider-contact-button:hover{background:#226a5b;color:#fff}
+.sponti-detail-page .detail-provider-contact-button[hidden]{display:none!important}
+.sponti-detail-page .detail-provider-contact-button svg{width:19px;height:19px;flex:0 0 19px}
+.sponti-detail-page .detail-provider-card-link{justify-self:stretch;text-align:center}
+.sponti-detail-page .detail-provider-quick-link:focus-visible,.sponti-detail-page .detail-provider-contact-button:focus-visible{outline:3px solid #ef986b;outline-offset:3px}
+@media(max-width:800px){.sponti-detail-page .detail-sidebar{gap:18px}}
+@media(max-width:460px){.sponti-detail-page .detail-sidebar .detail-provider-card{padding:24px 20px}.sponti-detail-page .detail-provider-card-avatar{width:106px;height:106px;flex-basis:106px}.sponti-detail-page .detail-provider-contact{grid-template-columns:1fr}}
