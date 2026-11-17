@@ -63,7 +63,7 @@
   const capacity=10;
   availabilityFill.style.width=Math.min(100,remainingSeats/capacity*100)+'%';
   availabilityTrack.append(availabilityFill);availability.append(availabilityTrack);
-  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(urgency,heading,providerRow);
+  const heading=element('h2','');const titleLink=element('a','course-title-link',course.title);titleLink.href='/kurs.html?id='+encodeURIComponent(course.id);heading.append(titleLink);const providerRow=element('p','course-provider');providerRow.hidden=true;body.append(heading,providerRow);
   const details=element('div','course-details');
   const locationText=element('span','course-location',window.SpontiPlaces?.format(course.venue)||course.venue);
   locationText.style.display='inline-flex';locationText.style.alignItems='center';locationText.style.gap='5px';
@@ -80,7 +80,7 @@
   const seatsRow=element('div','course-seats-footer-row');
   seatsRow.append(element('span','', 'Freie Plätze'),element('strong','',String(course.seats)));
   seatFooter.append(seatsRow,availability);
-  body.append(details,bottom,seatFooter);card.append(image,body);return card;
+  body.append(details,bottom,seatFooter);card.append(urgency,image,body);return card;
  }
 async function linkCourseProviders(targetCards){
   try{
