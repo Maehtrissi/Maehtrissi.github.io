@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="guest-signup.css?v=choice-20261017" />
     <link rel="stylesheet" href="/course-ux.css?v=20261105" />
   <link rel="stylesheet" href="/booking-pages.css?v=demo-20261019"><link rel="stylesheet" href="/course-artwork.css?v=pastel-20261019" />
-    <link rel="stylesheet" href="/course-detail-redesign.css?v=20261117-stripe-method-sync" />
+    <link rel="stylesheet" href="/course-detail-redesign.css?v=20261117-eventfrog-provider" />
     <link rel="stylesheet" href="/sponti-course-sharing.css?v=20261117" />
   <link rel="stylesheet" href="/sponti-mockup-design.css?v=20261107-arrow-svg" />
 <link rel="stylesheet" href="/sponti-favorites.css?v=empty-state-20261116" /></head>
@@ -65,31 +65,16 @@
           <div class="detail-intro">
             <p class="booking-eyebrow">Dein nächstes Erlebnis</p>
             <h1 id="detail-title"></h1>
-            <div class="detail-chips" id="detail-chips"></div>
           </div>
           <div class="detail-media-card">
             <div class="detail-visual" id="detail-visual"><span class="detail-category" id="detail-category"></span></div>
             <div class="detail-media-caption"><strong>Entdecken. Entscheiden. Erleben.</strong><span>Mit Sponti</span></div>
           </div>
           <section class="detail-block"><h2>Über diesen Kurs</h2><p id="detail-description"></p></section>
-          <section class="detail-block detail-provider-card" id="detail-provider-card" aria-labelledby="detail-provider-card-heading" hidden>
-            <h2 id="detail-provider-card-heading">Dein Kursanbieter</h2>
-            <div class="detail-provider-card-identity">
-              <span id="detail-provider-card-avatar" class="detail-provider-card-avatar" aria-hidden="true"></span>
-              <div class="detail-provider-card-name">
-                <h3 id="detail-provider-card-name"></h3>
-                <p id="detail-provider-card-category"></p>
-              </div>
-            </div>
-            <div class="detail-provider-card-contacts">
-              <h3>Kontakt &amp; Standort</h3>
-              <div id="detail-provider-contact-list" class="detail-provider-contact-list"></div>
-            </div>
-            <p id="detail-provider-card-about" class="detail-provider-card-about" hidden></p>
-            <a id="detail-provider-card-link" class="detail-provider-card-link" href="#">Vollständiges Anbieterprofil ansehen <span aria-hidden="true">→</span></a>
-          </section>
+
           <a class="booking-back" href="/kurse">← Weitere Kurse entdecken</a>
         </div>
+        <div class="detail-sidebar">
         <aside class="booking-summary">
           <p class="booking-eyebrow">Dein Kurs</p>
           <h2 id="detail-side-title"></h2>
@@ -105,6 +90,28 @@
           </div>
           <p class="booking-note">Buchungsmöglichkeiten und Bedingungen richten sich nach diesem Angebot.</p>
         </aside>
+        <section class="detail-provider-card" id="detail-provider-card" aria-labelledby="detail-provider-card-heading" hidden>
+          <p class="detail-provider-eyebrow">Dein Kursanbieter</p>
+          <div class="detail-provider-card-identity">
+            <span id="detail-provider-card-avatar" class="detail-provider-card-avatar" aria-hidden="true"></span>
+            <div class="detail-provider-card-name">
+              <h2 id="detail-provider-card-name"></h2>
+              <p id="detail-provider-card-category"></p>
+            </div>
+          </div>
+          <div class="detail-provider-quick-links" id="detail-provider-quick-links"></div>
+          <p id="detail-provider-card-about" class="detail-provider-card-about" hidden></p>
+          <div class="detail-provider-card-contacts">
+            <h3>Kontakt &amp; Standort</h3>
+            <div id="detail-provider-contact-list" class="detail-provider-contact-list"></div>
+            <a id="detail-provider-contact-button" class="detail-provider-contact-button" href="#" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
+              Anbieter kontaktieren
+            </a>
+          </div>
+          <a id="detail-provider-card-link" class="detail-provider-card-link" href="#">Ganzes Anbieterprofil ansehen <span aria-hidden="true">→</span></a>
+        </section>
+        </div>
       </section>
     </main><footer class="site-footer">
   <div class="footer-main">
@@ -140,4 +147,4 @@
 <script src="/script.js?v=course-freeze-fix-20261117"></script>
 <script type="module" src="/customer-account.js?v=customer-dropdown-label-20261012"></script>
 <script defer src="/sponti-course-sharing.js?v=20261117"></script>
-<script type="module" src="/course-detail.js?v=20261117-payment-methods-pending"></script><script src="/sponti-favorites.js?v=auth-fixed-20261116" defer></script></body></html>
+<script type="module" src="/course-detail.js?v=20261117-eventfrog-provider"></script><script src="/sponti-favorites.js?v=auth-fixed-20261116" defer></script></body></html>
