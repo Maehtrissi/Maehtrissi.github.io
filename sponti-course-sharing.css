@@ -1,0 +1,50 @@
+/* Teilen von Kursen – passend zum Sponti Grün und zu den Kurskarten. */
+[data-sponti-course-share]{position:relative;min-width:0}
+[data-sponti-course-share] .sponti-course-share-trigger{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ border:1px solid #c6d9cb;border-radius:999px;background:#f5f9f3;color:#15574e;
+ padding:10px 17px;min-height:42px;max-width:100%;
+ font:700 13px/1.4 "DM Sans",sans-serif;cursor:pointer;
+ transition:background .18s,border-color .18s,box-shadow .18s;
+}
+[data-sponti-course-share] .sponti-course-share-trigger:hover,
+[data-sponti-course-share] .sponti-course-share-trigger[aria-expanded="true"]{
+ background:#e8f2e9;border-color:#8dae9c;box-shadow:0 4px 14px #15574e17;
+}
+[data-sponti-course-share] .sponti-course-share-trigger svg{width:18px;height:18px;flex:0 0 18px}
+[data-sponti-course-share] .sponti-course-share-trigger:focus-visible,
+[data-sponti-course-share] .sponti-course-share-action:focus-visible{
+ outline:3px solid #ef986b;outline-offset:3px;
+}
+[data-sponti-course-share] .sponti-course-share-menu{
+ display:grid;gap:7px;min-width:0;margin-top:10px;padding:12px;
+ border:1px solid #dce9dc;border-radius:17px;background:#fffefa;
+ box-shadow:0 8px 24px #1c523313;
+}
+[data-sponti-course-share] .sponti-course-share-menu[hidden]{display:none!important}
+[data-sponti-course-share] .sponti-course-share-action{
+ display:flex;align-items:center;justify-content:flex-start;width:100%;
+ min-height:40px;box-sizing:border-box;padding:10px 12px;border:0;border-radius:11px;
+ background:#f4f8f2;color:#194e40;cursor:pointer;text-decoration:none;
+ font:600 13px/1.4 "DM Sans",sans-serif;white-space:normal;
+}
+[data-sponti-course-share] .sponti-course-share-action:hover{background:#e6f1e5}
+[data-sponti-course-share] .sponti-course-share-feedback{display:block;color:#245e4a;font-size:12px;line-height:1.5}
+[data-sponti-course-share] .sponti-course-share-feedback:empty{display:none}
+.sponti-detail-page .detail-share{margin:18px 0 5px}
+.sponti-detail-page .detail-share .sponti-course-share-trigger{width:100%}
+.sponti-detail-page .detail-provider{margin:12px 0 0;color:#5a7166;font-size:14px;line-height:1.55}
+.sponti-detail-page .detail-provider a{color:#15574e;font-weight:750;text-decoration:underline;text-underline-offset:3px}
+.sponti-detail-page .detail-provider a:hover{color:#d26d49}
+.sponti-detail-page .detail-provider[hidden]{display:none!important}
+.courses-page .course-card .course-provider{margin:6px 0 12px;font-size:12px;line-height:1.5;color:#637b6a}
+.courses-page .course-card .course-provider a{color:#15574e;text-decoration:underline;text-underline-offset:2px;font-weight:700}
+.courses-page .course-card .course-provider a:hover{color:#c66e47}
+.courses-page .course-card .course-provider[hidden]{display:none!important}
+.courses-page .course-card .course-card-share{margin-top:12px}
+.courses-page .course-card .course-card-share .sponti-course-share-trigger{padding:8px 13px;min-height:38px}
+.courses-page .course-card .course-card-share .sponti-course-share-menu{margin-top:8px}
+@media(max-width:460px){
+ .sponti-detail-page .detail-share .sponti-course-share-trigger{min-height:47px}
+ .courses-page .course-card .course-card-share .sponti-course-share-action{min-height:44px}
+}
