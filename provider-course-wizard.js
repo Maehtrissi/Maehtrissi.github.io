@@ -12,15 +12,16 @@ function updateReview(){
  const root=form.querySelector('[data-course-review-list]');
  if(!root)return;
  const field=name=>String(form.elements.namedItem(name)?.value||'').trim();
+ const optionLabel=name=>String(form.elements.namedItem(name)?.selectedOptions?.[0]?.textContent||field(name)).trim();
  const date=field('starts_at');
  const formattedDate=date?new Intl.DateTimeFormat('de-CH',{dateStyle:'full',timeStyle:'short'}).format(new Date(date)):'–';
  const rows=[
   ['Kurs',field('title')||'–'],
-  ['Kategorie',field('category')||'–'],
+  ['Kategorie',optionLabel('category')||'–'],
   ['Datum & Uhrzeit',formattedDate],
   ['Enduhrzeit',field('ends_at')||'Nicht angegeben'],
   ['Ort',field('venue')||'–'],
-  ['Region',field('region')||'–'],
+  ['Region',optionLabel('region')||'–'],
   ['Preis pro Person',Number.isFinite(Number(field('price')))&&field('price')!==''?new Intl.NumberFormat('de-CH',{style:'currency',currency:'CHF'}).format(Number(field('price'))):'–'],
   ['Freie Plätze',field('seats')||'–']
  ];
