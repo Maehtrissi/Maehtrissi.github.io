@@ -34,7 +34,7 @@ function prefill(account) {
   const keys = { company:"company", contact:"contact", phone:"phone", location:"location", category:"category", offer_type:"offer_type" };
   for (const [field, source] of Object.entries(keys)) {
     if (account[source] && form.elements[field] && !form.elements[field].value)
-      form.elements[field].value = account[source];
+      field === "category" && window.SpontiOtherOptions ? window.SpontiOtherOptions.setValue(form.elements[field], account[source]) : form.elements[field].value = account[source];
   }
 }
 async function refresh() {
