@@ -10,7 +10,7 @@
  const queryParams=new URLSearchParams(location.search);
  const searchTerm=(queryParams.get('suche')||'').trim().toLocaleLowerCase('de-CH');
  const selectedPlace=(queryParams.get('ort')||'').trim();
- const slugPlaces=['zug','zuerich','luzern','schwyz','aargau','andere'];
+ const slugPlaces=['zug','zuerich','luzern','solothurn','aargau','andere'];
  const placeSlug=selectedPlace.toLocaleLowerCase('de-CH');
  const customPlace=selectedPlace&&!slugPlaces.includes(placeSlug)&&placeSlug!=='all'?placeSlug:'';
 
@@ -53,7 +53,7 @@
   const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(start).map(p=>[p.type,p.value]));
   const day={Mon:'mo',Tue:'th',Wed:'mi',Thu:'do',Fri:'fr',Sat:'sa',Sun:'so'}[parts.weekday];
   const category=categories[course.category]||[course.category,'clay'];
-  Object.assign(card.dataset,{category:categories[course.category]?course.category:'andere',location:['zug','zuerich','luzern','schwyz','aargau','andere'].includes(course.region)?course.region:'andere',day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),placeText:[course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH'),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
+  Object.assign(card.dataset,{category:categories[course.category]?course.category:'andere',location:['zug','zuerich','luzern','solothurn','aargau','andere'].includes(course.region)?course.region:'andere',day,time:Number(parts.hour)<12?'vormittag':Number(parts.hour)<18?'nachmittag':'abend',startsAt:course.starts_at,price:String(course.price),seats:String(course.seats),placeText:[course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH'),searchText:[course.title,course.description,course.short_description,course.category,category[0],course.venue,course.region].filter(Boolean).join(' ').toLocaleLowerCase('de-CH')});
   const image=element('div',`course-image course-image-${category[1]}`);
   const countdown=element('span','course-countdown course-image-countdown',countdownText(start));
   countdown.dataset.startsAt=course.starts_at;
