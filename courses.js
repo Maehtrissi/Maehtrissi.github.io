@@ -13,8 +13,12 @@
  const slugPlaces=['zug','zuerich','luzern','solothurn','aargau','andere'];
  const placeSlug=selectedPlace.toLocaleLowerCase('de-CH');
  const customPlace=selectedPlace&&!slugPlaces.includes(placeSlug)&&placeSlug!=='all'?placeSlug:'';
+ const requestedDate=(queryParams.get('datum')||'').trim();
+ const selectedDate=/^\d{4}-\d{2}-\d{2}$/.test(requestedDate)&&!Number.isNaN(Date.parse(requestedDate))?requestedDate:'';
+ const todayRequested=queryParams.get('heute')==='1';
 
  const todayToggle=document.getElementById('filter-today');
+ if(todayRequested&&todayToggle)todayToggle.checked=true;
  const priceSlider=document.getElementById('filter-price');
  const priceLabel=document.getElementById('filter-price-value');
  const zurichDay=(date)=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Zurich',year:'numeric',month:'2-digit',day:'2-digit'}).format(date);
@@ -22,10 +26,22 @@
  todayToggle?.addEventListener('change',applyFilters);
  priceSlider?.addEventListener('input',()=>{updatePriceLabel();applyFilters();});
  updatePriceLabel();
+ const dateNotice=document.getElementById('sponti-applied-date');
+ if(selectedDate&&dateNotice){
+  const dateLabel=document.createElement('span');
+  dateLabel.textContent='Gewähltes Datum: '+new Intl.DateTimeFormat('de-CH',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Zurich'}).format(new Date(selectedDate+'T12:00:00Z'));
+  const clearLink=document.createElement('a');
+  const withoutDate=new URLSearchParams(location.search);
+  withoutDate.delete('datum');
+  clearLink.href='/kurse'+(withoutDate.toString()?'?'+withoutDate.toString():'');
+  clearLink.textContent='Datum entfernen';
+  dateNotice.replaceChildren(dateLabel,clearLink);
+  dateNotice.hidden=false;
+ }
  function applyFilters(){
   const filters=[['filter','category'],['location','location'],['day','day'],['time','time']].map(([button,card])=>({values:active(button),card}));
   let shown=0;
-  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()+SALE_LEAD_MS&&Number(card.dataset.seats)>0;const searchOk=!searchTerm||(card.dataset.searchText||'').includes(searchTerm);const placeOk=!customPlace||(card.dataset.placeText||'').includes(customPlace);const visible=bookable&&searchOk&&placeOk&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
+  for(const card of cards){const start=new Date(card.dataset.startsAt);const todayOk=!todayToggle?.checked||(zurichDay(start)===zurichDay(new Date())&&start.getTime()>Date.now()&&Number(card.dataset.seats)>0);const priceOk=!priceSlider||Number(card.dataset.price)<=Number(priceSlider.value)||priceSlider.value===priceSlider.max;const bookable=Number.isFinite(start.getTime())&&start.getTime()>Date.now()+SALE_LEAD_MS&&Number(card.dataset.seats)>0;const searchOk=!searchTerm||(card.dataset.searchText||'').includes(searchTerm);const placeOk=!customPlace||(card.dataset.placeText||'').includes(customPlace);const dateOk=!selectedDate||zurichDay(start)===selectedDate;const visible=bookable&&searchOk&&placeOk&&dateOk&&filters.every(f=>!f.values.length||f.values.includes(card.dataset[f.card]))&&todayOk&&priceOk;card.hidden=!visible;card.style.display=visible?'':'none';if(visible)shown++;}
   message.textContent=cards.length===0?'Aktuell sind keine Kurse veröffentlicht. Schau bald wieder vorbei oder tritt Sponti bei, um Kursinfos zu erhalten.':shown===0?(searchTerm?'Keine Kurse für diese Suche gefunden. Versuche einen anderen Begriff.':'Für diese Auswahl gibt es aktuell keine Kurse. Ändere die Filter.'):`${shown} ${shown===1?'Kurs':'Kurse'} verfügbar`;
  }
  buttons.forEach(button=>button.addEventListener('click',()=>{
