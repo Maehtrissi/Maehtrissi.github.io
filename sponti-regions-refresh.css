@@ -40,3 +40,9 @@
 @media(hover:hover){.locations-section .location-card.is-active:hover{box-shadow:0 12px 26px rgba(25,52,45,.12)!important}}
 .locations-section .location-viewport{padding-bottom:38px!important}
 @media(max-width:760px){.locations-section .location-viewport{padding-bottom:24px!important}}
+
+/* Unaufdringlicher Bildnachweis für die Solothurn-Ortskarte (CC BY-SA 4.0). */
+.location-photo-credit{margin:6px 10px 0;text-align:right;font-size:11px;line-height:1.45;color:#748177}
+.location-photo-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.location-photo-credit a:hover{color:#15574e}
+@media(max-width:600px){.location-photo-credit{text-align:center;font-size:10px}}
