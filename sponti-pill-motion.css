@@ -1,0 +1,160 @@
+/* Sponti Pill Motion — hover / press animation adapted from user's Uiverse example.
+   Deliberately does NOT change gradients, font, padding, corner radii or normal shadows.
+   No pseudo-elements are injected: existing icons, gloss, badges and click handlers stay intact.
+   Lists both <a> and <button> CTAs, including dynamically generated course cards. */
+html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+){
+  transform-origin:center center;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .3s cubic-bezier(.2,.72,.22,1), filter .3s ease, box-shadow .3s ease, background-color .2s ease !important;
+}
+@media(hover:hover) and (pointer:fine){
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+):not(:disabled):not([disabled]):not([aria-disabled="true"]):not(.is-disabled):hover{
+    transform:translateY(-2px) scale(1.02) !important;
+    filter:drop-shadow(0 9px 15px rgba(21,87,78,.18));
+  }
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+):not(:disabled):not([disabled]):not([aria-disabled="true"]):not(.is-disabled):active{
+    transform:scale(.98) !important;
+    filter:drop-shadow(0 4px 9px rgba(21,87,78,.12));
+  }
+}
+@media(hover:none){
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+):not(:disabled):not([disabled]):not([aria-disabled="true"]):not(.is-disabled):active{
+    transform:scale(.98) !important;
+    transition:transform .16s ease !important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+),
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+):not(:disabled):not([disabled]):not([aria-disabled="true"]):not(.is-disabled):hover,
+  html body :is(
+  .hero-actions .button-primary,
+  a.button, button.button, input.button,
+  .booking-primary, .booking-secondary, .booking-next, .booking-free-confirm,
+  .booking-identity-option, .course-book,
+  .sponti-course-hero-cta, .sponti-hero-search > button[type="submit"],
+  .sponti-how-cta, .provider-how-cta, .provider-pricing-button,
+  .sponti-pricing-cta, .provider-directory-more-button,
+  .site-menu-cta, .site-menu-provider-cta,
+  .sponti-course-submit, .sponti-course-share-trigger,
+  .detail-calendar-toggle, .detail-provider-contact-button,
+  .detail-provider-card-link, .account-secondary,
+  .account-social-button, .board-save, .filter,
+  .sponti-dropdown-trigger, .booking-free-confirm,
+  .provider-course-wizard-controls > button,
+  .provider-course-wizard-actions > button,
+  .board-nav > button,
+  .sponti-share-option, .sponti-share-copy
+):not(:disabled):not([disabled]):not([aria-disabled="true"]):not(.is-disabled):active{
+    transform:none !important;
+    filter:none !important;
+    transition:none !important;
+  }
+}
