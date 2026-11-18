@@ -336,7 +336,7 @@ if (siteMenu && siteMenuTrigger) {
     zuerich:'Zürich', zurich:'Zürich', zürich:'Zürich',
     winterthur:'Winterthur', dubendorf:'Dübendorf', dübendorf:'Dübendorf',
     waedenswil:'Wädenswil', wädenswil:'Wädenswil',
-    luzern:'Luzern', lucerne:'Luzern', schwyz:'Schwyz', aargau:'Aargau',
+    luzern:'Luzern', lucerne:'Luzern', solothurn:'Solothurn', schwyz:'Schwyz', aargau:'Aargau',
     basel:'Basel', bern:'Bern', st:'St', gallen:'Gallen',
     schweiz:'Schweiz', online:'Online', andere:'Weitere Orte',
     schweizweit:'Schweizweit'
