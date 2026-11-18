@@ -74,7 +74,7 @@
 <link rel="stylesheet" href="/sponti-mockup-design.css?v=20261107-arrow-svg" />
   <link rel="stylesheet" href="/sponti-reference-home.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-header-spacing.css?v=20261109" />
-  <link rel="stylesheet" href="/sponti-regions-refresh.css?v=20261109b" />
+  <link rel="stylesheet" href="/sponti-regions-refresh.css?v=solothurn-20261118" />
     <style id="sponti-how-modern-critical">
 /* Sponti 3-step section, inspired by approved reference */
 .sponti-how-modern{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 95% 5%,rgba(215,231,199,.35),transparent 32%),radial-gradient(ellipse at 0% 100%,rgba(252,205,172,.28),transparent 35%),#fffaf5}
@@ -150,7 +150,7 @@
           </div>
         </div>
         <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
-          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="schwyz">Schwyz</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></label>
+          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></label>
           <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum auswählen</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></label>
           <label class="sponti-today-filter"><input type="checkbox" id="sponti-today-checkbox" /><span>Heute noch freie Plätze</span></label>
           <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
@@ -251,10 +251,10 @@
                 <span class="location-card-overlay"></span>
                 <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Luzern</strong></span>
               </a>
-              <a class="location-card" href="/kurse?ort=schwyz" data-location-card aria-label="Kurse in Schwyz entdecken">
-                <img src="Schwyz.png" alt="" loading="lazy" decoding="async">
+              <a class="location-card" href="/kurse?ort=solothurn" data-location-card aria-label="Kurse in Solothurn entdecken">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Solothurn_2023.jpg/960px-Solothurn_2023.jpg" alt="" loading="lazy" decoding="async">
                 <span class="location-card-overlay"></span>
-                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Schwyz</strong></span>
+                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Solothurn</strong></span>
               </a>
               <a class="location-card" href="/kurse?ort=aargau" data-location-card aria-label="Kurse in Aargau entdecken">
                 <img src="Aargau.png" alt="" loading="lazy" decoding="async">
@@ -267,6 +267,7 @@
             <span aria-hidden="true">→</span>
           </button>
           <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 5</p>
+          <p class="location-photo-credit">Solothurn-Foto: <a href="https://commons.wikimedia.org/wiki/File:Solothurn_2023.jpg" target="_blank" rel="noopener noreferrer">Christian David / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> (Bild zugeschnitten)</p>
         </div>
       </section>
       <div class="how-section-band sponti-how-modern">
@@ -376,7 +377,7 @@
 </footer>
 
     
-    <script src="script.js?v=sponti-places-20261116"></script>
+    <script src="script.js?v=solothurn-region-20261118"></script>
     <script defer src="homepage-news.js?v=20261116"></script>
       <script type="module" src="customer-account.js?v=customer-dropdown-label-20261012"></script>
   <script defer src="/homepage-featured-course.js?v=2h-sale-cutoff-20261117"></script>
