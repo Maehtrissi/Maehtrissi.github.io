@@ -12,7 +12,7 @@
    ['zug',/\b(zug|baar|cham|steinhausen|hunenberg|rotkreuz|risch|unterageri|oberageri|walchwil|morgarten)\b/],
    ['zuerich',/\b(zurich|winterthur|uster|dietikon|dubendorf|kloten|wadenswil|horgen|bulach|adliswil)\b/],
    ['luzern',/\b(luzern|lucerne|emmen|kriens|horw|sursee|ebikon|hochdorf)\b/],
-   ['schwyz',/\b(schwyz|einsiedeln|arth|goldau|brunnen|kussnacht|freibach|pfaffikon sz|lachen sz)\b/],
+   ['solothurn',/\b(solothurn|olten|grenchen|zuchwil|biberist|bellach|balsthal|dornach|breitenbach|gerlafingen|langendorf|subingen|bettlach|selzach|trimbach|niedergosgen)\b/],
    ['aargau',/\b(aargau|aarau|baden|wohlen|muri|brugg|wettingen|lenzburg|spreitenbach|bremgarten|zofingen)\b/]
   ];
   const matches=rules.filter(([,rx])=>rx.test(value));
