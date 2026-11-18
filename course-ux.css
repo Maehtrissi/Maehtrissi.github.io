@@ -140,3 +140,32 @@
     flex:1 1 100%;
   }
 }
+
+/* Zeigt einen vom Startseiten-Suchformular übernommenen Kalendertag.
+   Das Datum kann direkt auf der Kursseite wieder entfernt werden. */
+.courses-page .sponti-applied-date:not([hidden]) {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  max-width:1200px;
+  margin:0 auto 15px;
+  padding:0 24px;
+  color:#15574e;
+  font-size:13px;
+  font-weight:700;
+}
+.courses-page .sponti-applied-date a {
+  display:inline-flex;
+  align-items:center;
+  padding:6px 12px;
+  border:1px solid #c7d9c8;
+  border-radius:999px;
+  color:#15574e;
+  background:#eef6eb;
+  text-decoration:none;
+  font-size:12px;
+}
+.courses-page .sponti-applied-date a:hover {background:#e1ecde}
+.courses-page .sponti-applied-date a:focus-visible {outline:2px solid #ef966b;outline-offset:3px}
