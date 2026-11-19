@@ -58,6 +58,45 @@
   applyFilters();
  }));
  const element=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!=null)el.textContent=text;return el;};
+
+ const upcomingRoot=document.getElementById('sponti-upcoming-events');
+ const upcomingEmpty=(message)=>{
+  if(!upcomingRoot)return;
+  upcomingRoot.replaceChildren(element('p','sponti-upcoming-empty',message));
+  upcomingRoot.setAttribute('aria-busy','false');
+ };
+ function renderUpcomingCourses(courses){
+  if(!upcomingRoot)return;
+  const now=Date.now()+SALE_LEAD_MS;
+  const upcoming=courses.filter(course=>{
+   const starts=new Date(course.starts_at).getTime();
+   return Number.isFinite(starts)&&starts>now&&Number(course.seats)>0
+    &&course.status==='published'&&!course.archived_at&&course.id&&course.title;
+  }).sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at)).slice(0,3);
+  if(!upcoming.length){upcomingEmpty('Momentan sind keine kommenden Kurse mit freien Plätzen verfügbar.');return;}
+  const items=upcoming.map(course=>{
+   const start=new Date(course.starts_at);
+   const dateParts=new Intl.DateTimeFormat('de-CH',{day:'2-digit',month:'short',timeZone:'Europe/Zurich'}).formatToParts(start);
+   const day=dateParts.find(part=>part.type==='day')?.value||'';
+   const month=(dateParts.find(part=>part.type==='month')?.value||'').replace('.','');
+   const time=new Intl.DateTimeFormat('de-CH',{weekday:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Zurich'}).format(start);
+   const place=String(course.venue||course.region||'').trim();
+   const item=element('a','sponti-upcoming-event');
+   item.href='/kurs.html?id='+encodeURIComponent(String(course.id));
+   item.setAttribute('aria-label',String(course.title)+' – '+time+(place?', '+place:'')+' – Kursdetails öffnen');
+   const badge=element('span','sponti-upcoming-date');
+   badge.append(element('strong','',day),element('span','',month));
+   const info=element('span','sponti-upcoming-info');
+   info.append(element('span','sponti-upcoming-name',course.title),element('span','sponti-upcoming-meta',time+(place?' · '+place:'')));
+   const arrow=element('span','sponti-upcoming-arrow','→');
+   arrow.setAttribute('aria-hidden','true');
+   item.append(badge,info,arrow);
+   return item;
+  });
+  upcomingRoot.replaceChildren(...items);
+  upcomingRoot.setAttribute('aria-busy','false');
+ }
+
  const countdownText=(start)=>{const ms=start-Date.now();if(ms<=0)return 'Startet jetzt';const mins=Math.floor(ms/60000);if(mins<60)return `Startet in ${Math.max(1,mins)} Min.`;const hours=Math.floor(mins/60);if(hours<24)return `Startet in ${hours} Std. ${mins%60} Min.`;const days=Math.floor(hours/24);return `Startet in ${days} ${days===1?'Tag':'Tagen'}`;};
 
  function render(course){
@@ -158,6 +197,7 @@ async function linkCourseProviders(targetCards){
     if(!response.ok)throw new Error('Kurse konnten nicht geladen werden.');
     const data=await response.json();if(!Array.isArray(data))throw new Error('Ungültige Antwort.');courses.push(...data);if(data.length<500)break;
    }
+   renderUpcomingCourses(courses);
    cards=courses.filter(c=>new Date(c.starts_at).getTime()>Date.now()+SALE_LEAD_MS&&Number(c.seats)>0).map(render);grid.replaceChildren(...cards);
    const selected=queryParams.get('filter');const match=buttons.find(b=>b.dataset.filter===selected&&selected!=='alle');if(match){match.classList.add('active');buttons.find(b=>b.dataset.filter==='alle')?.classList.remove('active');}
    const placeButton=buttons.find(b=>b.dataset.location===placeSlug);if(placeButton){buttons.filter(b=>b.dataset.location).forEach(b=>b.classList.remove('active'));placeButton.classList.add('active');}
@@ -168,7 +208,7 @@ async function linkCourseProviders(targetCards){
     const selectedCourse=courses.find(c=>String(c.id)===pending);
     if(selectedCourse)window.location.replace('/buchung.html?id='+encodeURIComponent(selectedCourse.id));
    }
-  }catch{message.replaceChildren(document.createTextNode('Die Kurse konnten gerade nicht geladen werden. '));const retry=element('button','filter','Erneut versuchen');retry.type='button';retry.addEventListener('click',load);message.append(retry);}
+  }catch{upcomingEmpty('Die nächsten Termine konnten gerade nicht geladen werden.');message.replaceChildren(document.createTextNode('Die Kurse konnten gerade nicht geladen werden. '));const retry=element('button','filter','Erneut versuchen');retry.type='button';retry.addEventListener('click',load);message.append(retry);}
   finally{grid.setAttribute('aria-busy','false');}
  }
  load();
