@@ -314,3 +314,220 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
     margin-top:15px;
   }
 }
+
+
+/* Homepage: kompaktere CTA-Reihenfolge und Sponti-eigene Orts-/Datum-Dropdowns (19.11.2026) */
+.sponti-hero-search{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) max-content max-content;
+  gap:8px;
+}
+.sponti-hero-search>.sponti-hero-search-field:nth-child(2){border-right:0}
+.sponti-hero-search>button[type="submit"],
+.sponti-hero-search>button.sponti-today-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  align-self:center;
+  width:auto;
+  min-height:50px;
+  max-height:54px;
+  margin:0;
+  padding:12px 21px;
+  font-size:14px;
+  line-height:1.25;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.sponti-hero-search>button[type="submit"]{gap:7px}
+.sponti-hero-search>button[type="submit"] span{margin-left:2px}
+.sponti-hero-search>button.sponti-today-cta{padding:12px 19px}
+.sponti-hero-search .sponti-home-dropdown{position:relative;width:100%;min-width:0}
+.sponti-hero-search.sponti-home-enhanced #sponti-home-ort,
+.sponti-hero-search.sponti-home-enhanced input[name="datum"]{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  min-width:1px!important;
+  min-height:1px!important;
+  padding:0!important;
+  margin:0!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  overflow:hidden!important;
+}
+.sponti-hero-search.sponti-home-enhanced .sponti-date-hint{display:none!important}
+.sponti-hero-search button.sponti-home-dropdown-trigger{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  min-width:0;
+  min-height:32px;
+  margin:0;
+  padding:4px 0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  background-image:none;
+  box-shadow:none;
+  color:#174c3b;
+  text-align:left;
+  font:600 14px/1.3 "DM Sans",sans-serif;
+  white-space:normal;
+}
+.sponti-hero-search .sponti-home-trigger-label{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.sponti-hero-search .sponti-home-dropdown-trigger svg{
+  width:19px;
+  height:19px;
+  flex:none;
+  fill:none;
+  stroke:#175543;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:transform .2s ease;
+}
+.sponti-hero-search .sponti-home-dropdown.is-open .sponti-home-dropdown-trigger svg{transform:rotate(180deg)}
+.sponti-hero-search .sponti-home-dropdown-trigger:focus-visible{
+  outline:2px solid #f18c64;
+  outline-offset:4px;
+  border-radius:4px;
+}
+.sponti-hero-search>.sponti-hero-search-field.is-dropdown-open{position:relative;z-index:30}
+.sponti-hero-search .sponti-home-dropdown-panel{
+  position:absolute;
+  top:calc(100% + 13px);
+  left:0;
+  z-index:70;
+  width:max(100%,220px);
+  max-width:min(340px,calc(100vw - 32px));
+  box-sizing:border-box;
+  padding:10px;
+  border:1px solid #e2e6dd;
+  border-radius:20px;
+  background:#fffdfb;
+  box-shadow:0 18px 42px rgba(21,61,48,.2);
+}
+.sponti-hero-search .sponti-home-dropdown-panel[hidden]{display:none!important}
+.sponti-hero-search .sponti-home-location-panel{max-height:305px;overflow-y:auto;overscroll-behavior:contain}
+.sponti-hero-search button.sponti-home-option{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+  min-height:42px;
+  margin:0;
+  padding:11px 12px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  box-shadow:none;
+  color:#174c3b;
+  text-align:left;
+  font:600 14px/1.25 "DM Sans",sans-serif;
+  white-space:normal;
+}
+.sponti-hero-search button.sponti-home-option:hover,
+.sponti-hero-search button.sponti-home-option.is-selected,
+.sponti-hero-search button.sponti-home-option:focus-visible{background:#e8f1e3}
+.sponti-hero-search .sponti-home-option-check{visibility:hidden;color:#145340;font-weight:800}
+.sponti-hero-search .sponti-home-option.is-selected .sponti-home-option-check{visibility:visible}
+.sponti-hero-search .sponti-home-calendar{
+  left:auto;
+  right:0;
+  width:320px;
+  max-width:min(340px,calc(100vw - 32px));
+  padding:16px;
+}
+.sponti-home-calendar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.sponti-home-calendar-head strong{color:#174c3b;font:800 15px "DM Sans",sans-serif;text-transform:capitalize}
+.sponti-hero-search button.sponti-home-calendar-nav{
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:33px;
+  height:33px;
+  min-width:33px;
+  min-height:33px;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#e8f1e3;
+  color:#145340;
+  box-shadow:none;
+  font:700 25px/1 "DM Sans",sans-serif;
+}
+.sponti-hero-search button.sponti-home-calendar-nav:disabled{opacity:.3;cursor:default}
+.sponti-home-calendar-weekdays,.sponti-home-calendar-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.sponti-home-calendar-weekdays{margin-bottom:7px;color:#71877c;font:700 11px "DM Sans",sans-serif}
+.sponti-home-calendar-weekdays span{padding:7px 0}
+.sponti-hero-search button.sponti-home-calendar-day{
+  display:grid;
+  place-items:center;
+  width:100%;
+  aspect-ratio:1;
+  min-width:0;
+  min-height:0;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:11px;
+  background:transparent;
+  color:#174c3b;
+  box-shadow:none;
+  font:600 13px "DM Sans",sans-serif;
+}
+.sponti-hero-search button.sponti-home-calendar-day:hover:not(:disabled),
+.sponti-hero-search button.sponti-home-calendar-day:focus-visible{background:#e8f1e3}
+.sponti-hero-search button.sponti-home-calendar-day.is-today{outline:1px solid #ff8e5c;outline-offset:-2px}
+.sponti-hero-search button.sponti-home-calendar-day.is-selected,
+.sponti-hero-search button.sponti-home-calendar-day.is-selected:hover{background:#145340;color:#fff}
+.sponti-hero-search button.sponti-home-calendar-day:disabled{opacity:.28;cursor:default}
+.sponti-home-calendar-foot{display:flex;justify-content:space-between;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid #e8ebe4}
+.sponti-hero-search button.sponti-home-calendar-shortcut{
+  margin:0;
+  padding:7px 11px;
+  min-height:32px;
+  border:0;
+  border-radius:10px;
+  background:#e8f1e3;
+  color:#145340;
+  box-shadow:none;
+  font:700 12px "DM Sans",sans-serif;
+}
+.sponti-hero-search button.sponti-home-calendar-shortcut:hover{background:#d8eacc}
+@media(max-width:800px){
+  .sponti-hero-search{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .sponti-hero-search>button[type="submit"],
+  .sponti-hero-search>button.sponti-today-cta{
+    grid-column:auto;
+    width:100%;
+    min-height:49px;
+    max-height:none;
+    margin-top:10px;
+    padding:12px 13px;
+    white-space:normal;
+  }
+  .sponti-hero-search>.sponti-hero-search-field:nth-child(2){border-right:0}
+}
+@media(max-width:600px){
+  .sponti-hero-search{grid-template-columns:minmax(0,1fr)}
+  .sponti-hero-search>button[type="submit"],
+  .sponti-hero-search>button.sponti-today-cta{
+    grid-column:1/-1;
+    width:100%;
+    margin-top:7px;
+  }
+  .sponti-hero-search .sponti-home-calendar{left:0;right:auto;width:min(320px,calc(100vw - 66px))}
+}
+@media(prefers-reduced-motion:reduce){
+  .sponti-hero-search .sponti-home-dropdown-trigger svg{transition:none}
+}
