@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="/sponti-favorites.css?v=empty-state-20261116" />
   <link rel="stylesheet" href="/sponti-course-sharing.css?v=20261117" />  <link rel="stylesheet" href="/sponti-checkboxes.css?v=green-unified-20261117" />
   <link rel="stylesheet" href="/sponti-pill-motion.css?v=20261118-uiverse-hover1" />
+  <link rel="stylesheet" href="/sponti-upcoming-calendar.css?v=20261119-upcoming-calendar" />
 </head>
     <body class="courses-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -60,9 +61,29 @@
     </div>
     <main>
       <section class="courses-heading sponti-course-discovery">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> Finde deinen Kurs</div>
-        <h1>Dein nächstes<br><em>Erlebnis.</em></h1>
-        <p class="sponti-course-lead">Finde Kurse ganz nach deinen Wünschen</p>
+        <div class="sponti-course-intro">
+          <div class="sponti-course-intro-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Finde deinen Kurs</div>
+            <h1>Dein nächstes<br><em>Erlebnis.</em></h1>
+            <p class="sponti-course-lead">Finde Kurse ganz nach deinen Wünschen</p>
+          </div>
+          <aside class="sponti-upcoming-calendar" aria-label="Nächste verfügbare Kurse">
+            <div class="sponti-upcoming-head">
+              <div>
+                <span class="sponti-upcoming-eyebrow">Dein Kurskalender</span>
+                <h2>Demnächst bei Sponti</h2>
+              </div>
+              <span class="sponti-upcoming-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg></span>
+            </div>
+            <div class="sponti-upcoming-events" id="sponti-upcoming-events" aria-live="polite" aria-busy="true">
+              <p class="sponti-upcoming-empty">Nächste Kurse werden geladen …</p>
+            </div>
+            <div class="sponti-upcoming-footer">
+              <span>Kurzfristig freie Plätze</span>
+              <a href="#course-status">Alle Termine ansehen →</a>
+            </div>
+          </aside>
+        </div>
         <form class="sponti-course-search" role="search" action="/kurse" method="get"><label for="sponti-course-query"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7"/><path d="m16 16 5 5"/></svg></label><input id="sponti-course-query" type="search" name="suche" placeholder="Kurs, Ort oder Aktivität suchen …" autocomplete="off"></form>
         <div class="sponti-course-quick">
           <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><select id="sponti-quick-location" aria-label="Standort wählen"><option value="all">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Weitere Orte</option></select></label>
