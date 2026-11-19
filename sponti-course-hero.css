@@ -538,3 +538,71 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
     grid-column:auto;
   }
 }
+
+
+/* Homepage search refinements: unclipped panels, balanced fields, button divider (2026-11-19) */
+/* Der Hero schneidet normalerweise seine dekorativen Ringe ab; bei geöffnetem
+   Dropdown muss er über die nächste Sektion hinaus sichtbar sein. */
+body:has(.sponti-reference-hero) .sponti-reference-hero:has(.sponti-home-dropdown.is-open){
+  overflow:visible!important;
+  z-index:25!important;
+}
+.sponti-hero-search{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(235px,.72fr) minmax(270px,.85fr);
+  gap:8px;
+}
+.sponti-hero-search>.sponti-hero-search-field{
+  padding-left:18px;
+  padding-right:18px;
+}
+.sponti-hero-search>button[type="submit"],
+.sponti-hero-search>button.sponti-today-cta{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+.sponti-hero-search>button.sponti-today-cta{
+  position:relative;
+}
+/* Trennlinie genau in der Lücke zwischen dem orangen und grünen Button. */
+.sponti-hero-search>button.sponti-today-cta::before{
+  content:"";
+  position:absolute;
+  left:-5px;
+  top:-10px;
+  bottom:-10px;
+  width:1px;
+  background:#d8dfd7;
+  pointer-events:none;
+}
+@media(max-width:1000px) and (min-width:801px){
+  .sponti-hero-search{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(195px,.75fr) minmax(230px,.9fr);
+  }
+  .sponti-hero-search>.sponti-hero-search-field{
+    padding-left:12px;
+    padding-right:12px;
+  }
+}
+@media(max-width:800px){
+  .sponti-hero-search{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .sponti-hero-search>button[type="submit"],
+  .sponti-hero-search>button.sponti-today-cta{
+    grid-column:auto;
+    width:100%;
+  }
+}
+@media(max-width:600px){
+  .sponti-hero-search{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .sponti-hero-search>button[type="submit"],
+  .sponti-hero-search>button.sponti-today-cta{
+    grid-column:1/-1;
+  }
+  .sponti-hero-search>button.sponti-today-cta::before{
+    display:none;
+  }
+}
