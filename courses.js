@@ -67,30 +67,36 @@
  };
  function renderUpcomingCourses(courses){
   if(!upcomingRoot)return;
-  const now=Date.now()+SALE_LEAD_MS;
+  const bookingCutoff=Date.now()+SALE_LEAD_MS;
   const upcoming=courses.filter(course=>{
    const starts=new Date(course.starts_at).getTime();
-   return Number.isFinite(starts)&&starts>now&&Number(course.seats)>0
+   return Number.isFinite(starts)&&starts>bookingCutoff&&Number(course.seats)>0
     &&course.status==='published'&&!course.archived_at&&course.id&&course.title;
   }).sort((a,b)=>new Date(a.starts_at)-new Date(b.starts_at)).slice(0,3);
-  if(!upcoming.length){upcomingEmpty('Momentan sind keine kommenden Kurse mit freien Plätzen verfügbar.');return;}
+  if(!upcoming.length){upcomingEmpty('Momentan sind keine nächsten Kurse mit freien Plätzen verfügbar.');return;}
+
+  const dateFormatter=new Intl.DateTimeFormat('de-CH',{day:'2-digit',month:'short',timeZone:'Europe/Zurich'});
+  const timeFormatter=new Intl.DateTimeFormat('de-CH',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Zurich'});
   const items=upcoming.map(course=>{
    const start=new Date(course.starts_at);
-   const dateParts=new Intl.DateTimeFormat('de-CH',{day:'2-digit',month:'short',timeZone:'Europe/Zurich'}).formatToParts(start);
-   const day=dateParts.find(part=>part.type==='day')?.value||'';
-   const month=(dateParts.find(part=>part.type==='month')?.value||'').replace('.','');
-   const time=new Intl.DateTimeFormat('de-CH',{weekday:'short',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Zurich'}).format(start);
-   const place=String(course.venue||course.region||'').trim();
+   const date=dateFormatter.format(start);
+   const time=timeFormatter.format(start);
+   const seats=Math.floor(Number(course.seats));
+   const seatText=seats===1?'1 Platz frei':seats+' Plätze frei';
    const item=element('a','sponti-upcoming-event');
    item.href='/kurs.html?id='+encodeURIComponent(String(course.id));
-   item.setAttribute('aria-label',String(course.title)+' – '+time+(place?', '+place:'')+' – Kursdetails öffnen');
-   const badge=element('span','sponti-upcoming-date');
-   badge.append(element('strong','',day),element('span','',month));
+   item.setAttribute('aria-label',String(course.title)+' – '+date+' um '+time+' – '+seatText+' – Kursdetails öffnen');
+   const dots=element('span','sponti-upcoming-dots');
+   dots.setAttribute('aria-hidden','true');
+   const level=seats<=2?'low':seats<=4?'mid':'high';
+   ['low','mid','high'].forEach(kind=>dots.append(element('span','sponti-upcoming-dot'+(kind===level?' is-active':''))));
    const info=element('span','sponti-upcoming-info');
-   info.append(element('span','sponti-upcoming-name',course.title),element('span','sponti-upcoming-meta',time+(place?' · '+place:'')));
-   const arrow=element('span','sponti-upcoming-arrow','→');
+   const title=element('strong','sponti-upcoming-name',String(course.title));
+   const metadata=element('span','sponti-upcoming-meta',date+' · '+time+' · '+seatText);
+   info.append(title,metadata);
+   const arrow=element('span','sponti-upcoming-arrow','›');
    arrow.setAttribute('aria-hidden','true');
-   item.append(badge,info,arrow);
+   item.append(dots,info,arrow);
    return item;
   });
   upcomingRoot.replaceChildren(...items);
