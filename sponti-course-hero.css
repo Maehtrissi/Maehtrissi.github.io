@@ -531,3 +531,10 @@ html body:has(.sponti-course-hero) .sponti-course-hero{background:radial-gradien
 @media(prefers-reduced-motion:reduce){
   .sponti-hero-search .sponti-home-dropdown-trigger svg{transition:none}
 }
+
+/* Buttons im Dropdown dürfen in der mobilen 2-Spalten-Suche nicht über sieben Kalenderspalten spannen. */
+@media(max-width:800px){
+  .sponti-hero-search .sponti-home-dropdown button{
+    grid-column:auto;
+  }
+}
