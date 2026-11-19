@@ -80,32 +80,24 @@
   outline:2px solid #ef875a;
   outline-offset:3px;
 }
-.courses-page .sponti-upcoming-dots{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  flex:0 0 auto;
+.courses-page .sponti-upcoming-calendar-clock{
+  display:grid;
+  place-items:center;
+  flex:0 0 43px;
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  background:#e8f0e2;
+  color:#155441;
 }
-.courses-page .sponti-upcoming-dot{
-  display:inline-block;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:#f9d6d3;
-}
-.courses-page .sponti-upcoming-dot:nth-child(2){background:#f8e8c5}
-.courses-page .sponti-upcoming-dot:nth-child(3){background:#cfead6}
-.courses-page .sponti-upcoming-dot.is-active:first-child{
-  background:#ff5c5b;
-  box-shadow:0 0 0 2px rgba(255,92,91,.1);
-}
-.courses-page .sponti-upcoming-dot.is-active:nth-child(2){
-  background:#ffbd35;
-  box-shadow:0 0 0 2px rgba(255,189,53,.1);
-}
-.courses-page .sponti-upcoming-dot.is-active:nth-child(3){
-  background:#24c963;
-  box-shadow:0 0 0 2px rgba(36,201,99,.1);
+.courses-page .sponti-upcoming-calendar-clock svg{
+  display:block;
+  width:33px;
+  height:33px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 .courses-page .sponti-upcoming-info{
   display:flex;
@@ -159,8 +151,8 @@
   }
   .courses-page .sponti-upcoming-name{font-size:13px}
   .courses-page .sponti-upcoming-meta{font-size:10px}
-  .courses-page .sponti-upcoming-dot{width:10px;height:10px}
-  .courses-page .sponti-upcoming-dots{gap:4px}
+  .courses-page .sponti-upcoming-calendar-clock{flex-basis:38px;width:38px;height:38px}
+  .courses-page .sponti-upcoming-calendar-clock svg{width:30px;height:30px}
 }
 @media(max-width:700px){
   .courses-page .sponti-course-intro{
