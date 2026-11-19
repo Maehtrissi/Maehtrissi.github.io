@@ -68,7 +68,18 @@ async function load(){
   list.replaceChildren();
   const activeProviders=providers.filter(p=>Array.isArray(p.courses)&&p.courses.some(c=>c.starts_at&&new Date(c.starts_at).getTime()>Date.now()));
   for(const p of (compact?activeProviders.slice(0,2):activeProviders)){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
-  status.textContent=activeProviders.length?'':'Noch keine Anbieter mit aktuellen Kursen verfügbar.';
- }catch{status.textContent='Anbieterprofile sind momentan nicht verfügbar.';}
+  status.classList.toggle('is-empty',activeProviders.length===0);
+  if(activeProviders.length){
+   status.replaceChildren();
+  }else{
+   const icon=document.createElement('span');
+   icon.className='provider-directory-empty-icon';
+   icon.setAttribute('aria-hidden','true');
+   icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/><path d="m9.5 15 1.7 1.7 3.6-3.6"/></svg>';
+   const title=text('strong','Noch keine Anbieter mit aktuellen Kursen verfügbar.','provider-directory-empty-title');
+   const hint=text('span','Sobald neue Kursanbieter ihre Angebote veröffentlichen, findest du sie hier.','provider-directory-empty-subtitle');
+   status.replaceChildren(icon,title,hint);
+  }
+ }catch{status.classList.remove('is-empty');status.textContent='Anbieterprofile sind momentan nicht verfügbar.';}
 }
 load();
