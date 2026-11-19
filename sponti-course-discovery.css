@@ -186,3 +186,63 @@
     transition:none!important;
   }
 }
+
+
+/* Kursanbieter-Entdecken: ruhiger, mittig ausgerichteter Leerzustand. */
+.courses-page .provider-directory [data-provider-directory-status]:empty{
+  display:none;
+}
+.courses-page .provider-directory [data-provider-directory-status].is-empty{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:min(100%,720px);
+  min-height:176px;
+  box-sizing:border-box;
+  margin:30px auto 34px;
+  padding:27px clamp(20px,4vw,42px) 29px;
+  border:1px solid rgba(192,211,193,.65);
+  border-radius:27px;
+  background:linear-gradient(135deg,rgba(255,255,255,.89),rgba(248,251,245,.8));
+  box-shadow:0 13px 32px rgba(31,70,50,.065);
+  color:#174b3b;
+  text-align:center;
+}
+.courses-page .provider-directory .provider-directory-empty-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 48px;
+  width:48px;
+  height:48px;
+  margin-bottom:15px;
+  border-radius:16px;
+  background:#e5efdf;
+  color:#1d5a45;
+}
+.courses-page .provider-directory .provider-directory-empty-icon svg{
+  width:26px;
+  height:26px;
+}
+.courses-page .provider-directory .provider-directory-empty-title{
+  display:block;
+  margin:0;
+  color:#174b3b;
+  font:750 clamp(16px,1.65vw,19px)/1.4 "DM Sans",sans-serif;
+  letter-spacing:-.015em;
+}
+.courses-page .provider-directory .provider-directory-empty-subtitle{
+  display:block;
+  max-width:520px;
+  margin-top:7px;
+  color:#637b6c;
+  font:500 clamp(13px,1.3vw,14px)/1.6 "DM Sans",sans-serif;
+}
+@media(max-width:600px){
+  .courses-page .provider-directory [data-provider-directory-status].is-empty{
+    min-height:0;
+    margin:22px auto 27px;
+    padding:25px 20px;
+    border-radius:22px;
+  }
+}
