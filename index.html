@@ -104,9 +104,10 @@
 @media(prefers-reduced-motion:reduce){.sponti-how-cta{transition:none}}
 
 </style>
-      <link rel="stylesheet" href="/sponti-course-hero.css?v=home-today-button-date-search-20261118" />
+      <link rel="stylesheet" href="/sponti-course-hero.css?v=home-sponti-dropdowns-20261119" />
   <style>.sponti-hero-search-field:has(input[name="datum"]) .sponti-search-field-inner{position:relative;min-width:0}.sponti-hero-search-field .sponti-date-hint{display:block;font-size:11px;color:#64766f;line-height:1.3;margin-top:3px;pointer-events:none}.sponti-hero-search-field input[name="datum"]{min-width:0;width:100%;color:#174c3b;font:inherit;font-size:14px;min-height:25px}.sponti-hero-search-field input[name="datum"]:not(:focus):invalid{color:#64766f}@media(max-width:640px){.sponti-hero-search-field .sponti-date-hint{font-size:10px}}</style>  <link rel="stylesheet" href="/sponti-checkboxes.css?v=green-unified-20261117" />
   <link rel="stylesheet" href="/sponti-pill-motion.css?v=20261118-uiverse-hover1" />
+  <script defer src="/sponti-home-filters.js?v=20261119-sponti-dropdowns"></script>
 </head>
   <body>
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -151,10 +152,10 @@
           </div>
         </div>
         <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
-          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></label>
-          <label class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum auswählen</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></label>
-          <button class="sponti-today-cta" type="button" id="sponti-home-today">Heute noch freie Plätze</button>
+          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">⌖</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></div>
+          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true">▦</span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum auswählen</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></div>
           <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
+          <button class="sponti-today-cta" type="button" id="sponti-home-today">Heute noch freie Plätze</button>
         </form>
         <script>
           (() => {
