@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const POLICY='commission-tier-2026-11-13';
+const POLICY='commission-tier-2026-11-20';
 const panel=document.querySelector('[data-commission-consent-panel]');
 if(!panel)return;
 const status=panel.querySelector('[data-commission-consent-status]');
@@ -18,8 +18,8 @@ async function refresh(){
  const {data,error}=await client.rpc('sponti_provider_commission_consent_status');
  if(error){setMessage('Zustimmungsstatus konnte nicht geladen werden.',true);button.disabled=true;return}
  const entry=Array.isArray(data)?data[0]:data;
- if(entry?.consented){checkbox.checked=true;checkbox.disabled=true;button.disabled=true;setMessage('Zustimmung zur geplanten Provisionsstaffel dokumentiert.');detail.textContent='Erfasst am '+fmt(entry.consented_at)+'. Die neue Staffel ist noch nicht für Buchungen aktiviert.'}
- else{checkbox.disabled=false;checkbox.checked=false;button.disabled=true;detail.textContent='';setMessage('Noch keine Zustimmung zu dieser neuen Staffel erfasst.')}
+ if(entry?.consented){checkbox.checked=true;checkbox.disabled=true;button.disabled=true;setMessage('Zustimmung zur Provisionsstaffel dokumentiert.');detail.textContent='Erfasst am '+fmt(entry.consented_at)+'.'}
+ else{checkbox.disabled=false;checkbox.checked=false;button.disabled=true;detail.textContent='';setMessage('Noch keine Zustimmung zu dieser Staffel erfasst.')}
 }
 checkbox.addEventListener('change',()=>{button.disabled=!checkbox.checked||busy});
 button.addEventListener('click',async()=>{
