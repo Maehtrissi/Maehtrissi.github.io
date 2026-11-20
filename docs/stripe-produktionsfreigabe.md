@@ -19,7 +19,7 @@
 4. **Webhooks:** Stripe-Signatur verifizieren; `checkout.session.completed`, asynchrone Erfolge/Fehler und Session-Ablauf behandeln. Idempotenz und Ereignisreihenfolge absichern. Nicht auf die Erfolgs-URL als Zahlungsnachweis vertrauen.
 5. **Reservierungen:** Abgelaufene und abgebrochene Sessions zuverlässig auflösen; Stripe-Webhook-Ausfälle durch periodischen Abgleich auffangen. Keine Überbuchungen bei parallelen Checkouts.
 6. **Connect:** Anbieter nur nach CRM-Freigabe und Stripe-Verifizierung für zahlungspflichtige Kurse zulassen; Connect-Status serverseitig prüfen.
-7. **Abrechnung:** 13 % Sponti-Provision exakt in Rappen berechnen; Stripe-Gebühren und MWST-Behandlung definieren; nach Kursdurchführung Transfers einmalig ausführen. Auszahlung/Transferstatus, Fehler und Rückabwicklungen protokollieren.
+7. **Abrechnung:** Sponti-Provision (20 % unter CHF 20.00 Buchungsgesamtpreis, 15 % ab CHF 20.00) exakt in Rappen berechnen; Stripe-Gebühren und MWST-Behandlung definieren; nach Kursdurchführung Transfers einmalig ausführen. Auszahlung/Transferstatus, Fehler und Rückabwicklungen protokollieren.
 8. **Storno/Refunds:** Kunden- und Anbieterabsagen, Fristen, Teilrückerstattungen, Gebühren und Rückbuchungen mit Stripe und Datenbank synchronisieren.
 9. **Kommunikation:** Bestätigung erst nach signiertem Zahlungsnachweis; Rechnungs-/Belegangaben, Bestätigungsmail, Anbieter-Teilnehmerliste und CRM-Status prüfen.
 10. **Recht/Datenschutz:** AGB, Datenschutz, Vermittlerrolle, Anbietervereinbarung, Zahlungseinzug, Auszahlungsfristen, Gebühren, Aufbewahrung und Stripe-Vertragsrollen durch Schweizer Rechtsberatung prüfen.
