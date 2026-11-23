@@ -54,3 +54,13 @@ body:has(.sponti-provider-dashboard) .provider-account-shell{max-width:1440px;wi
 .sponti-status-tip li strong{font-size:14px}
 .sponti-status-tip li.is-current{background:#e6efe5;border:1px solid #b9d3bf}
 @media(max-width:720px){.sponti-provider-dashboard .sponti-welcome{flex-direction:column;gap:12px}.sponti-status-tip{left:0;right:auto}}
+
+/* Stripe-Bereich */
+.sponti-stripe-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sponti-stripe-link{background:none;border:0;padding:0;color:#b8541f;font:inherit;font-weight:600;text-decoration:underline;cursor:pointer}
+.sponti-stripe-status{margin:0 0 8px;font-size:16px}
+.sponti-stripe-status strong[data-kind="done"]{color:#2f6b3f}
+.sponti-stripe-status strong[data-kind="review"],.sponti-stripe-status strong[data-kind="start"]{color:#b8541f}
+.sponti-stripe-help{margin:16px 0 0;font-size:13.5px;color:#56665e}
+.sponti-stripe-banner .sponti-stripe-actions{flex-direction:column;align-items:flex-start;gap:10px}
+@media(max-width:720px){.sponti-stripe-banner .sponti-stripe-actions{align-items:stretch}}
