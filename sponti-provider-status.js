@@ -8,8 +8,8 @@ const STATES=[
  ['Neu','Deine Anmeldung ist eingegangen. Sponti prüft sie.'],
  ['Kontaktiert','Sponti hat sich bei dir gemeldet.'],
  ['Gespräch','Wir klären gemeinsam die Zusammenarbeit.'],
- ['Partner','Du bist freigeschaltet: Kurse erstellen und Stripe einrichten.'],
- ['Live','Alles ist bereit. Deine Kurse sind buchbar und bezahlbar.'],
+ ['Partner','Du bist freigeschaltet. Du kannst dein Profil ausfüllen und Kurse als Entwurf speichern. Den Link zur Stripe-Einrichtung bekommst du per E-Mail.'],
+ ['Live','Alles ist bereit. Du kannst Kurse veröffentlichen, und Kunden können sie buchen und bezahlen.'],
  ['Abgelehnt','Eine Zusammenarbeit ist zurzeit nicht möglich.']
 ];
 const label=box.querySelector('[data-status-label]');
