@@ -48,8 +48,9 @@ async function load(){
   if(!r.ok){loaded=false;diag('HTTP '+r.status+' '+raw.slice(0,60));return;}
   let v=null;
   try{v=JSON.parse(raw);}catch(e){v=raw;}
-  if(v&&typeof v==='object')v=v.status;
+  if(v&&typeof v==='object')v=('status' in v)?v.status:'';
   if(typeof v==='string'&&v&&v!=='null'){fails=0;render(v);}
+  else if(v===null||v===undefined){loaded=true;label.textContent='noch nicht freigegeben';box.setAttribute('data-state','Neu');box.removeAttribute('hidden');}
   else{loaded=false;diag('Antwort '+raw.slice(0,60));}
  }catch(e){loaded=false;diag('Fehler '+(e&&e.message));}
 }

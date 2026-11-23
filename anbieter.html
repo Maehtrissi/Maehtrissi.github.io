@@ -290,7 +290,7 @@ const form=root.querySelector('[data-provider-form="profile"]');form?.addEventLi
  new MutationObserver(()=>{if(completed)return;const busy=form.getAttribute('aria-busy')==='true';back.disabled=next.disabled=busy;if(!success.hidden){completed=true;progress.hidden=true;steps.forEach(panel=>panel.hidden=true);actions.hidden=true;}}).observe(form,{attributes:true,subtree:true,attributeFilter:['aria-busy','hidden']});
  show(0,false);
 })();
-</script><script src="/provider-course-wizard.js?v=course-fields-final-20261117" defer></script><script src="/sponti-provider-dashboard.js?v=20261112" defer></script><script src="/sponti-stripe-onboarding.js?v=20261123b" defer></script><script src="/sponti-provider-status.js?v=20261123d" defer></script><script src="/sponti-account-deletion.js?v=20261112" defer></script><script src="/sponti-provider-commission-consent.js?v=20261120" defer></script><script>
+</script><script src="/provider-course-wizard.js?v=course-fields-final-20261117" defer></script><script src="/sponti-provider-dashboard.js?v=20261112" defer></script><script src="/sponti-stripe-onboarding.js?v=20261123b" defer></script><script src="/sponti-provider-status.js?v=20261123e" defer></script><script src="/sponti-account-deletion.js?v=20261112" defer></script><script src="/sponti-provider-commission-consent.js?v=20261120" defer></script><script>
 (()=>{
  'use strict';
  const input=document.getElementById('sponti-commission-price');
