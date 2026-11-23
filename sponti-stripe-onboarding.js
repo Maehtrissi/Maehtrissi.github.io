@@ -41,12 +41,12 @@ function render(kind){
   title.textContent='Noch offen: Stripe-Konto einrichten';
   text.textContent=kind==='review'
    ?'Du hast Stripe schon angefangen, aber es fehlen noch Angaben oder Stripe prüft noch. Mache mit dem Link aus der E-Mail weiter.'
-   :'Ohne Stripe-Konto können Kunden nicht bei dir bezahlen. Den Link zum Onboarding erhältst du per E-Mail. Öffne die E-Mail und folge dem Link. Das dauert nur wenige Minuten.';
+   :'Ohne Stripe-Konto können Kunden nicht bei dir bezahlen. Den Link zum Onboarding erhältst du per E-Mail. Öffne die E-Mail und folge dem Link. Das dauert nur wenige Minuten. Sponti schickt die E-Mail von Hand, sie kann also noch etwas auf sich warten lassen. Schau auch im Spam-Ordner nach.';
   banner.hidden=false;
  }else banner.hidden=true;
  if(!view)return;
  const map={
-  start:['Noch nicht eingerichtet','Richte dein Stripe-Konto mit dem Link aus der E-Mail einmal ein. Danach können Kunden bei dir bezahlen, und du erhältst deinen Anteil direkt auf dein Bankkonto.'],
+  start:['Noch nicht eingerichtet','Richte dein Stripe-Konto mit dem Link aus der E-Mail einmal ein. Sponti schickt diese E-Mail von Hand. Ist sie noch nicht da, hab etwas Geduld und schau auch im Spam-Ordner nach. Danach können Kunden bei dir bezahlen, und du erhältst deinen Anteil direkt auf dein Bankkonto.'],
   review:['Unvollständig','Bei Stripe fehlen noch Angaben, oder Stripe prüft sie noch. Mache mit dem Link aus der E-Mail dort weiter, wo du aufgehört hast.'],
   done:['Bereit','Dein Stripe-Konto ist eingerichtet. Im Stripe-Dashboard siehst du Auszahlungen, Zahlungen und deine Kontodaten.'],
   locked:['Noch nicht verfügbar','Das Stripe-Konto steht nach der Freischaltung durch Sponti zur Verfügung. Den Link zum Onboarding erhältst du dann per E-Mail.']
