@@ -48,7 +48,8 @@ async function check(){
  checked=true;
  try{
   const {status,data}=await call('status');
-  if(status!==200||data.live_enabled===false){show('hidden');return;}
+  if(status!==200){checked=false;show('hidden');return;}
+  if(data.live_enabled===false){show('hidden');return;}
   if(isComplete(data)){show('hidden');return;}
   const started=(data.details_submitted===true)||(data.onboarding_complete===true);
   show(started?'review':'start');
@@ -72,5 +73,8 @@ button.addEventListener('click',async()=>{
 new MutationObserver(()=>check()).observe(member,{attributes:true,attributeFilter:['hidden']});
 check();
 // Falls die Anmeldung erst kurz nach dem Laden bereit ist.
-let tries=0;const timer=setInterval(()=>{tries++;if(checked||tries>20){clearInterval(timer);return;}check();},1000);
+// Erneut prüfen, z. B. nachdem Sponti den Anbieter freigeschaltet hat.
+let tries=0;const timer=setInterval(()=>{tries++;if(tries>60){clearInterval(timer);return;}if(!checked)check();},5000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!checked)check();});
+window.addEventListener('focus',()=>{if(!checked)check();});
 })();
