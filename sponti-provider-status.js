@@ -37,10 +37,13 @@ async function load(){
  const jwt=token();if(!jwt)return;
  loaded=true;
  try{
-  const r=await fetch(BASE,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+jwt,apikey:KEY},body:'{}'});
+  const r=await fetch(BASE,{method:'POST',headers:{'content-type':'application/json',accept:'application/json',authorization:'Bearer '+jwt,apikey:KEY},body:'{}'});
   if(!r.ok){loaded=false;return;}
-  const v=await r.json();
-  if(typeof v==='string'&&v)render(v);else loaded=false;
+  const raw=(await r.text()).trim();
+  let v=raw;
+  try{const parsed=JSON.parse(raw);v=parsed;}catch(e){v=raw.replace(/^"|"$/g,'');}
+  if(v&&typeof v==='object')v=v.provider_get_status||v.status||'';
+  if(typeof v==='string'&&v&&v!=='null')render(v);else loaded=false;
  }catch(e){loaded=false;}
 }
 button.addEventListener('click',()=>{const open=box.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));});
