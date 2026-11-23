@@ -2,7 +2,7 @@
 const box=document.querySelector('[data-account-status]');
 if(!box)return;
 const member=document.querySelector('[data-provider-member]');
-const BASE='https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/rpc/provider_get_status';
+const BASE='https://ehifskiigrfpxeiruyxr.supabase.co/rest/v1/rpc/provider_get_status_json';
 const KEY='sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy';
 const STATES=[
  ['Neu','Deine Anmeldung ist eingegangen. Sponti prüft sie.'],
@@ -22,15 +22,16 @@ function token(){
 }
 function render(current){
  label.textContent=current;
- box.dataset.state=current;
- list.replaceChildren(...STATES.map(([name,text])=>{
+ box.setAttribute('data-state',current);
+ while(list.firstChild)list.removeChild(list.firstChild);
+ for(const item of STATES){
   const li=document.createElement('li');
-  if(name===current)li.className='is-current';
-  const b=document.createElement('strong');b.textContent=name;
-  const t=document.createElement('span');t.textContent=text;
-  li.append(b,t);return li;
- }));
- box.hidden=false;
+  if(item[0]===current)li.className='is-current';
+  const b=document.createElement('strong');b.textContent=item[0];
+  const t=document.createElement('span');t.textContent=item[1];
+  li.appendChild(b);li.appendChild(t);list.appendChild(li);
+ }
+ box.removeAttribute('hidden');
 }
 async function load(){
  if(loaded||(member&&member.hidden))return;
@@ -44,7 +45,7 @@ async function load(){
   try{const parsed=JSON.parse(raw);v=parsed;}catch(e){v=raw.replace(/^"|"$/g,'');}
   if(v&&typeof v==='object')v=v.provider_get_status||v.status||'';
   if(typeof v==='string'&&v&&v!=='null')render(v);else loaded=false;
- }catch(e){loaded=false;}
+ }catch(e){loaded=false;console.warn('Kontostatus',e&&e.message);}
 }
 button.addEventListener('click',()=>{const open=box.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));});
 document.addEventListener('click',e=>{if(!box.contains(e.target)){box.classList.remove('is-open');button.setAttribute('aria-expanded','false');}});
