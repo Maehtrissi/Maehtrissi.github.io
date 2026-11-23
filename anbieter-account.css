@@ -140,3 +140,8 @@
  .provider-account-shell .provider-course-actions-footer { display:flex; flex-wrap:wrap; gap:8px; }
  .provider-account-shell .provider-course-actions-footer .button { flex:1 1 130px; min-width:0; white-space:normal; }
 }
+
+/* Kursarten: Eingabefeld und Entfernen-Button in einer Zeile ausrichten */
+.provider-account-shell .provider-extra-row:has(> label:only-of-type){grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px}
+.provider-account-shell .provider-extra-row:has(> label:only-of-type) button{justify-self:end;align-self:end;width:auto;min-width:120px;white-space:nowrap}
+@media (max-width:760px){.provider-account-shell .provider-extra-row:has(> label:only-of-type){grid-template-columns:minmax(0,1fr)}.provider-account-shell .provider-extra-row:has(> label:only-of-type) button{justify-self:start}}
