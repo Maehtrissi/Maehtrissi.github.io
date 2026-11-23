@@ -77,7 +77,7 @@ function renderPreviewExtras(){
  card.querySelector('[data-provider-extra-preview]')?.remove();
  const hero=document.createElement('div');hero.dataset.providerBannerDisplay='';
  hero.className='provider-profile-hero';
- const background=document.createElement('img');background.src=bannerPath?photoUrl(bannerPath):'sponti-standard-banner.svg';background.alt='Profilbanner';background.className='provider-profile-hero-image';hero.append(background);
+ const background=document.createElement('img');background.src=bannerPath?photoUrl(bannerPath):'/sponti-standard-banner.webp?v=20261123';background.alt='Profilbanner';background.className='provider-profile-hero-image';hero.append(background);
  const identity=document.createElement('div');identity.className='provider-profile-identity';
  if(logoPath){const logo=document.createElement('img');logo.src=photoUrl(logoPath);logo.alt='Firmenlogo';logo.className='provider-profile-round-logo';identity.append(logo);}
  else{const icon=document.createElement('span');icon.className='provider-profile-round-logo provider-profile-logo-placeholder';icon.textContent='S';identity.append(icon);}
@@ -167,7 +167,7 @@ function renderBanner(){
  if(bannerPath){
   const img=document.createElement('img');img.src=photoUrl(bannerPath);img.alt='Aktueller Profilbanner';outer.append(img);
  }else{
-  const img=document.createElement('img');img.src='sponti-standard-banner.svg';img.alt='Sponti Standardbanner';
+  const img=document.createElement('img');img.src='/sponti-standard-banner.webp?v=20261123';img.alt='Sponti Standardbanner';
   outer.append(img);
  }
  bannerPreview.append(outer);

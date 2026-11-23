@@ -10,7 +10,7 @@ function section(title){const s=el('section',undefined,'public-provider-section'
 async function rpc(name){const res=await fetch(API+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(15000)});if(!res.ok)throw new Error('Anbieterprofile konnten nicht geladen werden.');return res.json();}
 function render(p){
  document.title=p.company+' | Sponti Schweiz';
- const hero=el('div',undefined,'public-provider-hero'),img=document.createElement('img');img.src=safePath(p.banner_path)?imageUrl(p.banner_path):'/sponti-standard-banner.svg';img.alt='Banner von '+p.company;hero.append(img);
+ const hero=el('div',undefined,'public-provider-hero'),img=document.createElement('img');img.src=safePath(p.banner_path)?imageUrl(p.banner_path):'/sponti-standard-banner.webp?v=20261123';img.alt='Banner von '+p.company;hero.append(img);
  const identity=el('div',undefined,'public-provider-identity');
  if(safePath(p.logo_path)){const logo=document.createElement('img');logo.src=imageUrl(p.logo_path);logo.alt='Logo von '+p.company;logo.className='public-provider-logo';identity.append(logo);}
  else identity.append(el('span','S','public-provider-logo public-provider-placeholder'));
