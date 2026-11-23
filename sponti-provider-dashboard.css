@@ -36,3 +36,21 @@ body:has(.sponti-provider-dashboard) .provider-account-shell{max-width:1440px;wi
 .sponti-billing-grid label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
 .sponti-billing-msg{margin:0 0 12px;font-weight:600}
 @media(max-width:720px){.sponti-billing-grid{grid-template-columns:1fr}}
+
+/* Kontostatus oben rechts */
+.sponti-provider-dashboard .sponti-welcome{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.sponti-status{position:relative;flex:0 0 auto;margin-top:6px}
+.sponti-status[hidden]{display:none}
+.sponti-status-button{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border:1px solid #cfe0d2;border-radius:999px;background:#f2f7f1;color:#234b38;font:inherit;font-size:14px;cursor:pointer}
+.sponti-status-button:hover,.sponti-status-button:focus-visible{background:#e6efe5;outline:none;box-shadow:0 0 0 3px rgba(7,85,60,.18)}
+.sponti-status-dot{width:10px;height:10px;border-radius:50%;background:#e0a23a}
+.sponti-status[data-state="Partner"] .sponti-status-dot,.sponti-status[data-state="Live"] .sponti-status-dot{background:#2f9e5b}
+.sponti-status[data-state="Abgelehnt"] .sponti-status-dot{background:#c0453a}
+.sponti-status-tip{position:absolute;right:0;top:calc(100% + 8px);z-index:20;width:min(380px,86vw);padding:16px 18px;border:1px solid #dbe6db;border-radius:14px;background:#fff;box-shadow:0 14px 34px rgba(25,62,52,.16);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s}
+.sponti-status:hover .sponti-status-tip,.sponti-status:focus-within .sponti-status-tip,.sponti-status.is-open .sponti-status-tip{opacity:1;visibility:visible;transform:none}
+.sponti-status-title{margin:0 0 10px;font-weight:700;color:#234b38}
+.sponti-status-tip ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sponti-status-tip li{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;font-size:13.5px;line-height:1.4}
+.sponti-status-tip li strong{font-size:14px}
+.sponti-status-tip li.is-current{background:#e6efe5;border:1px solid #b9d3bf}
+@media(max-width:720px){.sponti-provider-dashboard .sponti-welcome{flex-direction:column;gap:12px}.sponti-status-tip{left:0;right:auto}}
