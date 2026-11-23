@@ -19,7 +19,7 @@ function card(p){
  }else{
   banner.classList.add('is-default');
   const image=document.createElement('img');image.className='provider-directory-cover';
-  image.src='sponti-standard-banner.svg';image.alt='Sponti Standardbanner';image.loading='lazy';
+  image.src='/sponti-standard-banner.webp?v=20261123';image.alt='Sponti Standardbanner';image.loading='lazy';
   banner.append(image);
  }
  const identity=document.createElement('div');identity.className='provider-directory-identity';
