@@ -37,7 +37,23 @@ function row(target,fields,values={}){
  wrap.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',renderPreviewExtras));
 }
 function addSpecialty(value={}){if(specialties.children.length>=30){notify('Maximal 30 Angebote.');return;}row(specialties,[['name','Name der Kursart',false]],value);}
-function addLink(value={}){if(links.children.length>=20){notify('Maximal 20 Links.');return;}row(links,[['label','Button-Beschriftung (z. B. Instagram)',false],['url','Vollständige Webadresse (https://...)',false]],value);}
+const LINK_TYPES=[['Website',[],'https://www.deine-seite.ch'],['Instagram',['instagram.com'],'https://www.instagram.com/deinname'],['Facebook',['facebook.com','fb.com'],'https://www.facebook.com/deineseite'],['TikTok',['tiktok.com'],'https://www.tiktok.com/@deinname'],['YouTube',['youtube.com','youtu.be'],'https://www.youtube.com/@deinkanal'],['LinkedIn',['linkedin.com'],'https://www.linkedin.com/company/deinname'],['WhatsApp',['wa.me','whatsapp.com'],'https://wa.me/41790000000'],['X',['x.com','twitter.com'],'https://x.com/deinname']];
+const linkType=label=>LINK_TYPES.find(t=>t[0]===label);
+const linkHostOk=(label,url)=>{const t=linkType(label);if(!t||!t[1].length)return true;try{const h=new URL(url).hostname.toLowerCase().replace(/^www\./,'');return t[1].some(d=>h===d||h.endsWith('.'+d));}catch{return false;}};
+function addLink(value={}){
+ if(links.children.length>=LINK_TYPES.length){notify('Maximal '+LINK_TYPES.length+' Links.');return;}
+ row(links,[['label','Plattform',false],['url','Vollständige Webadresse (https://...)',false]],{url:value.url});
+ const wrap=links.lastElementChild;const old=wrap.querySelector('[data-provider-extra="label"]');
+ const select=document.createElement('select');select.dataset.providerExtra='label';
+ const empty=document.createElement('option');empty.value='';empty.textContent='Plattform wählen …';select.append(empty);
+ const used=new Set([...links.children].filter(r=>r!==wrap).map(r=>r.querySelector('[data-provider-extra="label"]')?.value));
+ for(const [name] of LINK_TYPES){const o=document.createElement('option');o.value=name;o.textContent=name;if(used.has(name))o.disabled=true;select.append(o);}
+ select.value=linkType(value.label)?value.label:'';
+ old.replaceWith(select);
+ const url=wrap.querySelector('[data-provider-extra="url"]');
+ const hint=()=>{const t=linkType(select.value);url.placeholder=t?t[2]:'https://...';};hint();
+ select.addEventListener('change',()=>{hint();for(const r of links.children){const sel=r.querySelector('select[data-provider-extra="label"]');if(!sel)continue;for(const o of sel.options){if(!o.value)continue;o.disabled=o.value!==sel.value&&[...links.children].some(x=>x!==r&&x.querySelector('[data-provider-extra="label"]')?.value===o.value);}}renderPreviewExtras();});
+}
 root?.querySelector('[data-add-specialty]')?.addEventListener('click',()=>addSpecialty());
 root?.querySelector('[data-add-link]')?.addEventListener('click',()=>addLink());
 function readRows(parent,keys){
@@ -48,7 +64,9 @@ function readRows(parent,keys){
 }
 function readFields(){
  const specialtiesValue=readRows(specialties,['name','description']).filter(s=>s.name);
- const linkValues=readRows(links,['label','url']).filter(x=>x.label&&safeLink(x.url)).map(x=>({label:x.label,url:safeLink(x.url)}));
+ const linkValues=readRows(links,['label','url']).filter(x=>linkType(x.label)&&safeLink(x.url)&&linkHostOk(x.label,x.url)).map(x=>({label:x.label,url:safeLink(x.url)}));
+ const badLinks=readRows(links,['label','url']).filter(x=>!(linkType(x.label)&&safeLink(x.url)&&linkHostOk(x.label,x.url)));
+ if(badLinks.length)notify('Mindestens ein Link wurde nicht gespeichert: Wähle eine Plattform und gib die passende vollständige Adresse (https://...) ein.');
  return {about_text:form.elements.about_text.value.trim(),specialties:specialtiesValue,social_links:linkValues,logo_path:logoPath,banner_path:bannerPath};
 }
 window.SpontiProviderExtras={readFields};
