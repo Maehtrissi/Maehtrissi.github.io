@@ -42,7 +42,7 @@ function render(kind){
   text.textContent=kind==='review'
    ?'Du hast Stripe schon angefangen, aber es fehlen noch Angaben oder Stripe prüft noch. Mache mit dem Link aus der E-Mail weiter.'
    :'Ohne Stripe-Konto können Kunden nicht bei dir bezahlen. Den Link zum Onboarding erhältst du per E-Mail. Öffne die E-Mail und folge dem Link. Das dauert nur wenige Minuten. Sponti schickt die E-Mail von Hand, sie kann also noch etwas auf sich warten lassen. Schau auch im Spam-Ordner nach.';
-  banner.hidden=false;
+  banner.hidden=true;
  }else banner.hidden=true;
  if(!view)return;
  const map={
