@@ -33,19 +33,25 @@ function render(current){
  }
  box.removeAttribute('hidden');
 }
+let fails=0;
+function diag(reason){
+ fails++;
+ if(fails>=3){label.textContent='nicht ladbar ('+reason+')';box.removeAttribute('hidden');}
+}
 async function load(){
  if(loaded||(member&&member.hidden))return;
- const jwt=token();if(!jwt)return;
+ const jwt=token();if(!jwt){diag('keine Anmeldung');return;}
  loaded=true;
  try{
-  const r=await fetch(BASE,{method:'POST',headers:{'content-type':'application/json',accept:'application/json',authorization:'Bearer '+jwt,apikey:KEY},body:'{}'});
-  if(!r.ok){loaded=false;return;}
+  const r=await fetch(BASE,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+jwt,apikey:KEY},body:'{}'});
   const raw=(await r.text()).trim();
-  let v=raw;
-  try{const parsed=JSON.parse(raw);v=parsed;}catch(e){v=raw.replace(/^"|"$/g,'');}
-  if(v&&typeof v==='object')v=v.provider_get_status||v.status||'';
-  if(typeof v==='string'&&v&&v!=='null')render(v);else loaded=false;
- }catch(e){loaded=false;console.warn('Kontostatus',e&&e.message);}
+  if(!r.ok){loaded=false;diag('HTTP '+r.status+' '+raw.slice(0,60));return;}
+  let v=null;
+  try{v=JSON.parse(raw);}catch(e){v=raw;}
+  if(v&&typeof v==='object')v=v.status;
+  if(typeof v==='string'&&v&&v!=='null'){fails=0;render(v);}
+  else{loaded=false;diag('Antwort '+raw.slice(0,60));}
+ }catch(e){loaded=false;diag('Fehler '+(e&&e.message));}
 }
 button.addEventListener('click',()=>{const open=box.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));});
 document.addEventListener('click',e=>{if(!box.contains(e.target)){box.classList.remove('is-open');button.setAttribute('aria-expanded','false');}});
