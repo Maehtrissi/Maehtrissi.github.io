@@ -2665,3 +2665,42 @@ body:not(.sponti-detail-page) {
   background-size:cover !important;
   background-attachment:fixed !important;
 }
+
+/* Header-Suche: öffnet sich als Pille nach links neben der Lupe — 2026-11-24 */
+.site-header .sponti-header-search{position:relative;}
+.site-header .sponti-search-trigger{position:relative;z-index:102;}
+.site-header .sponti-search-trigger svg{transition:transform .25s ease;}
+.site-header .sponti-search-trigger[aria-expanded=true]{background:#15574e;color:#fff;border-color:#15574e;transform:none;}
+.site-header .sponti-search-panel{
+ position:absolute;top:50%;right:calc(100% + 8px);left:auto;z-index:101;
+ width:360px;max-width:440px;height:48px;padding:4px 4px 4px 18px;gap:6px;
+ transform:translateY(-50%);border-radius:999px;border:1px solid #d6e0d6;
+ background:#fffefa;box-shadow:0 10px 30px rgba(25,52,45,.13);
+ transform-origin:right center;animation:sponti-search-open .28s cubic-bezier(.2,.8,.2,1);
+}
+.site-header .sponti-search-panel input{
+ flex:1;min-height:0;height:100%;padding:0;border:0;border-radius:0;background:transparent;
+ font:500 14px "DM Sans",sans-serif;color:#19342d;outline:none;
+}
+.site-header .sponti-search-panel input::placeholder{color:#7c8a83;}
+.site-header .sponti-search-panel input::-webkit-search-cancel-button{display:none;}
+.site-header .sponti-search-panel:focus-within{border-color:#15574e;box-shadow:0 10px 30px rgba(25,52,45,.13),0 0 0 3px rgba(21,87,78,.12);}
+.site-header .sponti-search-panel button{
+ height:38px;min-height:0;padding:0 18px;border-radius:999px;flex:none;
+ background:#15574e;color:#fff;font:700 13px "DM Sans",sans-serif;transition:background .2s ease;
+}
+.site-header .sponti-search-panel button:hover{background:#0f443d;}
+@keyframes sponti-search-open{
+ from{opacity:0;clip-path:inset(0 0 0 100% round 999px);}
+ to{opacity:1;clip-path:inset(0 0 0 0 round 999px);}
+}
+@media(min-width:851px){
+ .site-header .sponti-global-nav{transition:opacity .2s ease;}
+ .site-header:has(.sponti-search-trigger[aria-expanded=true]) .sponti-global-nav{opacity:0;pointer-events:none;}
+}
+@media(max-width:850px){.site-header .sponti-search-panel{right:calc(100% + 6px);}}
+@media(max-width:480px){
+ .site-header .sponti-search-panel{height:44px;padding-left:14px;}
+ .site-header .sponti-search-panel button{height:34px;padding:0 13px;}
+}
+@media(prefers-reduced-motion:reduce){.site-header .sponti-search-panel{animation:none;}}

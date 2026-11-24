@@ -511,9 +511,23 @@ if (siteMenu && siteMenuTrigger) {
   const input=document.createElement('input');input.type='search';input.name='suche';input.placeholder='Yoga, Pilates, Töpfern …';input.setAttribute('aria-label','Kurse nach Stichwort suchen');input.autocomplete='off';input.required=true;
   const submit=document.createElement('button');submit.type='submit';submit.textContent='Suchen';
   panel.append(input,submit);search.append(toggle,panel);
-  function closeSearch(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+  const searchIcon=toggle.innerHTML;
+  const closeIcon='<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  // Breite = freier Platz links neben der Lupe (CSS begrenzt auf max. 440px).
+  function fitPanel(){
+   if(panel.hidden)return;
+   const free=toggle.getBoundingClientRect().left-header.getBoundingClientRect().left-14;
+   panel.style.width=Math.max(160,Math.round(free))+'px';
+  }
+  window.addEventListener('resize',fitPanel);
+  function setOpen(open){
+   panel.hidden=!open;if(open)fitPanel();toggle.setAttribute('aria-expanded',String(open));
+   toggle.setAttribute('aria-label',open?'Suche schliessen':'Kurse suchen');
+   toggle.innerHTML=open?closeIcon:searchIcon;
+  }
+  function closeSearch(){if(!panel.hidden)setOpen(false);}
   toggle.addEventListener('click',()=>{
-   const opening=panel.hidden;panel.hidden=!opening;toggle.setAttribute('aria-expanded',String(opening));
+   const opening=panel.hidden;setOpen(opening);
    if(opening)input.focus();
   });
   document.addEventListener('click',e=>{if(!search.contains(e.target))closeSearch();});
