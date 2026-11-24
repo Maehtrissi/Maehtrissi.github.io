@@ -22,7 +22,7 @@
 (function () {
   'use strict';
 
-  var SITE_KEY = ''; // öffentlicher Turnstile Site Key, z. B. '0x4AAAAAAA…'
+  var SITE_KEY = '0x4AAAAAAGQou9Mp-MPUs4eR'; // öffentlicher Turnstile Site Key, z. B. '0x4AAAAAAA…'
   var AUTH_HOST = 'ehifskiigrfpxeiruyxr.supabase.co';
   var PROTECTED = /\/auth\/v1\/(?:signup|recover|otp)(?:\?|$)|\/auth\/v1\/token\?(?:.*&)?grant_type=password(?:&|$)/;
   var MSG_FAILED = 'Die Sicherheitsprüfung hat nicht geklappt. Bitte lade die Seite neu und versuche es nochmals.';
