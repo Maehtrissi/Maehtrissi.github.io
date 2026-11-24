@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sponti-switzerland.ch/</loc></url>
-  <url><loc>https://sponti-switzerland.ch/kurse</loc></url>
-  <url><loc>https://sponti-switzerland.ch/kursanbieter</loc></url>
-  <url><loc>https://sponti-switzerland.ch/motivation</loc></url>
-  <url><loc>https://sponti-switzerland.ch/erfahrungen</loc></url>
-  <url><loc>https://sponti-switzerland.ch/buchen</loc></url>
-  <url><loc>https://sponti-switzerland.ch/kontakt</loc></url>
-  <url><loc>https://sponti-switzerland.ch/impressum</loc></url>
-  <url><loc>https://sponti-switzerland.ch/datenschutz</loc></url>
-  <url><loc>https://sponti-switzerland.ch/agb</loc></url>
-  <url><loc>https://sponti-switzerland.ch/rechtliches</loc></url>
-  <url><loc>https://sponti-switzerland.ch/warum</loc></url>
+  <url><loc>https://sponti-switzerland.ch/</loc><lastmod>2026-11-24</lastmod><priority>1.0</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kurse</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kurse-zug</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://sponti-switzerland.ch/yoga-zug</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://sponti-switzerland.ch/pilates-zug</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://sponti-switzerland.ch/tanzkurs-zug</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/toepferkurs-zug</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kurse-luzern</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kurse-zuerich</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kurse-aargau</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kursanbieter</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://sponti-switzerland.ch/motivation</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/erfahrungen</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/buchen</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/anbieter-entdecken</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/kontakt</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/impressum</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/datenschutz</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/agb</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
+  <url><loc>https://sponti-switzerland.ch/rechtliches</loc><lastmod>2026-11-24</lastmod><priority>0.4</priority></url>
 </urlset>

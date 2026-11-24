@@ -2704,3 +2704,6 @@ body:not(.sponti-detail-page) {
  .site-header .sponti-search-panel button{height:34px;padding:0 13px;}
 }
 @media(prefers-reduced-motion:reduce){.site-header .sponti-search-panel{animation:none;}}
+
+/* Footer: vierte Spalte "Kurse in deiner Nähe" — 2026-11-24 */
+@media(min-width:900px){.site-footer .footer-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}

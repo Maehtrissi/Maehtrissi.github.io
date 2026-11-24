@@ -1,0 +1,28 @@
+/* Orts-Landingpages (/kurse-zug, /yoga-zug …) — 2026-11-24 */
+.sponti-location{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+.sponti-breadcrumb{font-size:13px;color:#6b7d72;margin:10px 0 0}
+.sponti-breadcrumb a{color:#2f5a49;text-decoration:none}.sponti-breadcrumb a:hover{text-decoration:underline}
+.sponti-location .courses-heading p{max-width:720px}
+.sponti-location section{margin-top:44px}
+.sponti-location h2{font-family:"Playfair Display",Georgia,serif;color:#173e30;font-size:clamp(22px,3vw,30px);margin:0 0 14px}
+.sponti-location-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px}
+.sponti-location-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.sponti-location-card{display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:18px;background:#fffefa;border:1px solid #e1e9df;box-shadow:0 8px 24px rgba(25,52,45,.06);color:#19342d;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.sponti-location-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(25,52,45,.12)}
+.sponti-location-card strong{font-size:17px}
+.sponti-location-date{font-size:12px;font-weight:700;color:#df7c49;text-transform:uppercase;letter-spacing:.04em}
+.sponti-location-meta{font-size:13px;color:#5f7067}
+.sponti-location-status{color:#5f7067;max-width:680px;line-height:1.6}
+.sponti-location-text{max-width:760px}
+.sponti-location-text h2{font-size:clamp(20px,2.6vw,26px);margin-top:28px}
+.sponti-location-text p{line-height:1.75;color:#2f4d40}
+.sponti-location-faq{max-width:760px}
+.sponti-location-faq details{border-bottom:1px solid #e1e9df;padding:14px 0}
+.sponti-location-faq summary{cursor:pointer;font-weight:700;color:#173e30;list-style:none}
+.sponti-location-faq summary::-webkit-details-marker{display:none}
+.sponti-location-faq summary::after{content:"+";float:right;color:#df7c49;font-weight:700}
+.sponti-location-faq details[open] summary::after{content:"–"}
+.sponti-location-faq p{margin:10px 0 0;line-height:1.7;color:#2f4d40}
+.sponti-location-related div{display:flex;flex-wrap:wrap;gap:10px}
+.sponti-location-related a{padding:9px 16px;border-radius:999px;border:1px solid #cfdccf;background:#fff;color:#15574e;font-weight:600;text-decoration:none}
+.sponti-location-related a:hover{background:#eef3ea}
