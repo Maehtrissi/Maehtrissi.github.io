@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Kurs bewerten | Sponti</title><link rel="icon" href="/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#f8f3ec;color:#164d40;font-family:"DM Sans",Arial,sans-serif}
+.wrap{min-height:100vh;display:grid;place-items:center;padding:28px 16px;box-sizing:border-box}
+.panel{background:#fff;border-radius:26px;box-shadow:0 16px 45px #153d3020;max-width:600px;width:100%;padding:42px 34px;box-sizing:border-box}
+.logo{display:flex;align-items:center;gap:10px;color:#164d40;text-decoration:none;font-weight:700;font-size:22px;margin-bottom:26px}.logo img{width:40px;height:40px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,5vw,36px);line-height:1.15;margin:0 0 10px}
+.sub{color:#5e746b;line-height:1.6;margin:0 0 24px}
+.course{background:#f1f5ef;border-radius:16px;padding:16px 18px;margin:0 0 24px}.course strong{display:block;font-size:17px}.course span{color:#587067;font-size:14px}
+fieldset{border:0;padding:0;margin:0 0 22px}legend{font-weight:700;margin-bottom:10px}
+.stars{display:flex;gap:6px}.stars button{width:48px;height:48px;border:1px solid #d6e0d6;border-radius:12px;background:#fff;color:#c8d2c8;font-size:28px;line-height:1;cursor:pointer;transition:transform .15s ease,color .15s ease,background .15s ease}
+.stars button.on{color:#f0a233;background:#fff7ea;border-color:#f3d39b}.stars button:hover{transform:translateY(-2px)}.stars button:focus-visible{outline:2px solid #df7c49;outline-offset:2px}
+.star-label{display:block;margin-top:8px;font-size:13px;color:#5e746b;min-height:18px}
+label{display:block;font-weight:700;margin:0 0 18px}label small{font-weight:400;color:#6b7d72}
+textarea,input{display:block;width:100%;box-sizing:border-box;margin-top:8px;border:1px solid #cfdccf;border-radius:12px;padding:12px 14px;font:400 15px "DM Sans",Arial,sans-serif;color:#19342d;background:#fff}
+textarea{min-height:130px;resize:vertical}textarea:focus,input:focus{outline:2px solid #15574e;outline-offset:1px}
+button.submit{width:100%;border:0;border-radius:28px;padding:15px 22px;background:#175b4d;color:#fff;font:700 16px "DM Sans",Arial,sans-serif;cursor:pointer}button.submit:disabled{opacity:.6;cursor:default}
+.error{color:#a33b22;margin:0 0 14px}.small{font-size:13px;color:#718178;margin:16px 0 0;line-height:1.5}
+.done{text-align:center}.mark{height:68px;width:68px;display:grid;place-items:center;border-radius:50%;background:#e9f3ed;color:#17634c;font-size:34px;margin:0 auto 18px}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}.actions a{display:inline-block;background:#175b4d;color:#fff;text-decoration:none;padding:13px 22px;border-radius:28px;font-weight:700}
+@media(max-width:500px){.panel{padding:30px 20px}.stars button{width:44px;height:44px}}
+</style></head><body>
+<main class="wrap"><section class="panel" aria-live="polite">
+ <a class="logo" href="/"><img src="/logo.png" alt="">Sponti</a>
+ <div id="loading"><p class="sub">Bewertung wird geladen …</p></div>
+ <div id="message" hidden><h1 id="message-title"></h1><p class="sub" id="message-text"></p><div class="actions"><a href="/kurse">Kurse entdecken</a></div></div>
+ <form id="form" hidden novalidate>
+  <h1>Wie war dein Kurs?</h1>
+  <p class="sub" id="greeting">Deine Bewertung hilft anderen bei der Wahl und dem Kursanbieter, noch besser zu werden.</p>
+  <div class="course"><strong id="course-title"></strong><span id="course-date"></span></div>
+  <fieldset><legend>Deine Bewertung</legend><div class="stars" role="radiogroup" aria-label="Sterne von 1 bis 5"></div><span class="star-label" id="star-label"></span></fieldset>
+  <label>Was hat dir gefallen? Was könnte besser sein?<textarea id="text" maxlength="2000" required placeholder="Erzähl kurz von deinem Kurs …"></textarea></label>
+  <label>Dein Name <small>(wird mit der Bewertung angezeigt)</small><input id="name" maxlength="80" autocomplete="given-name" placeholder="z. B. Anna"></label>
+  <p class="error" id="error" role="alert" hidden></p>
+  <button class="submit" type="submit" id="submit">Bewertung senden</button>
+  <p class="small">Sponti prüft jede Bewertung kurz, bevor sie veröffentlicht wird. Bitte keine persönlichen Daten anderer Personen angeben.</p>
+ </form>
+</section></main>
+<script>
+(()=>{
+ const URL_BASE='https://ehifskiigrfpxeiruyxr.supabase.co',KEY='sb_publishable_ne8xIO5aoko5eW4ONLfBRQ_uyfBBhYy';
+ const token=new URLSearchParams(location.search).get('t')||'';
+ const $=id=>document.getElementById(id);
+ const labels=['','Nicht gut','Geht so','Gut','Sehr gut','Ausgezeichnet'];
+ let rating=0;
+ function message(title,text){$('loading').hidden=true;$('form').hidden=true;$('message').hidden=false;$('message-title').textContent=title;$('message-text').textContent=text;}
+ async function rpc(name,body){
+  const r=await fetch(URL_BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(15000)});
+  const data=await r.json().catch(()=>null);
+  if(!r.ok)throw new Error((data&&data.message)||'Das hat gerade nicht geklappt. Bitte versuche es erneut.');
+  return data;
+ }
+ const starsBox=document.querySelector('.stars');
+ for(let i=1;i<=5;i++){
+  const b=document.createElement('button');b.type='button';b.textContent='★';b.setAttribute('role','radio');b.setAttribute('aria-checked','false');b.setAttribute('aria-label',i+' '+(i===1?'Stern':'Sterne')+' – '+labels[i]);
+  b.addEventListener('click',()=>setRating(i));
+  b.addEventListener('mouseenter',()=>paint(i));b.addEventListener('mouseleave',()=>paint(rating));
+  starsBox.append(b);
+ }
+ function paint(n){[...starsBox.children].forEach((b,i)=>b.classList.toggle('on',i<n));$('star-label').textContent=labels[n]||'';}
+ function setRating(n){rating=n;paint(n);[...starsBox.children].forEach((b,i)=>b.setAttribute('aria-checked',String(i+1===n)));}
+ async function init(){
+  if(!/^[0-9a-f]{48}$/.test(token)){message('Link ungültig','Dieser Bewertungslink ist unvollständig. Bitte öffne den Link direkt aus der E-Mail von Sponti.');return;}
+  try{
+   const rows=await rpc('sponti_review_lookup',{p_token:token});
+   const row=Array.isArray(rows)?rows[0]:null;
+   if(!row){message('Link ungültig oder abgelaufen','Dieser Bewertungslink funktioniert nicht mehr. Bei Fragen erreichst du uns unter info@sponti-switzerland.ch.');return;}
+   if(row.already_reviewed){message('Danke, du hast schon bewertet!','Für diesen Kurs ist deine Bewertung bereits bei uns eingegangen.');return;}
+   if(!row.can_review){message('Noch etwas Geduld','Du kannst den Kurs bewerten, sobald er stattgefunden hat.');return;}
+   $('course-title').textContent=row.course_title||'Dein Kurs';
+   if(row.starts_at)$('course-date').textContent=new Intl.DateTimeFormat('de-CH',{dateStyle:'full',timeStyle:'short',timeZone:'Europe/Zurich'}).format(new Date(row.starts_at))+' Uhr';
+   if(row.first_name){$('name').value=row.first_name;$('greeting').textContent='Hallo '+row.first_name+'! Deine Bewertung hilft anderen bei der Wahl und dem Kursanbieter, noch besser zu werden.';}
+   $('loading').hidden=true;$('form').hidden=false;
+  }catch(e){message('Gerade nicht erreichbar','Die Bewertung konnte nicht geladen werden. Bitte versuche es später erneut.');}
+ }
+ $('form').addEventListener('submit',async e=>{
+  e.preventDefault();$('error').hidden=true;
+  const text=$('text').value.trim();
+  if(!rating){$('error').textContent='Bitte wähle 1 bis 5 Sterne.';$('error').hidden=false;return;}
+  if(text.length<10){$('error').textContent='Bitte schreibe ein paar Worte (mindestens 10 Zeichen).';$('error').hidden=false;$('text').focus();return;}
+  $('submit').disabled=true;$('submit').textContent='Wird gesendet …';
+  try{
+   await rpc('sponti_submit_review',{p_token:token,p_rating:rating,p_text:text,p_name:$('name').value.trim()});
+   message('Danke für deine Bewertung!','Wir schauen sie kurz an und veröffentlichen sie dann. Bis zum nächsten spontanen Kurs!');
+   $('message').classList.add('done');$('message').insertAdjacentHTML('afterbegin','<div class="mark">✓</div>');
+  }catch(err){$('error').textContent=err.message;$('error').hidden=false;$('submit').disabled=false;$('submit').textContent='Bewertung senden';}
+ });
+ init();
+})();
+</script></body></html>
