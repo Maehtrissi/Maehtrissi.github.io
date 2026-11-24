@@ -3,6 +3,10 @@
  *
  * Zeigt pro Termin, wie viele Plätze gebucht sind, und auf Klick die
  * Teilnehmer (Name, Plätze, Telefon, E-Mail) mit Druck- und CSV-Export.
+ * Zusätzlich: "Termin absagen" für veröffentlichte Termine. Absagen = Kurs
+ * deaktivieren; die Datenbank verschickt dann automatisch die Absage-E-Mail an
+ * alle Gebuchten (customer_course_change_email_events). Deaktivieren/Löschen
+ * von Terminen mit Buchungen fragt vorher nach.
  * Daten kommen aus der RPC public.provider_course_participants(), die nur
  * bestätigte Buchungen der eigenen Kurse zurückgibt.
  * anbieter-account.js stellt den Supabase-Client als window.SpontiProviderDb
@@ -30,6 +34,7 @@ style.textContent=`
 .sponti-participants-table td{padding:8px;border-bottom:1px solid #e7eee5;vertical-align:top;word-break:break-word}
 .sponti-participants-table tr:last-child td{border-bottom:0}
 .sponti-participants-table a{color:#15574e}
+.sponti-cancel-course{color:#a33b22!important}
 .sponti-participants-note{margin:10px 0 0;font-size:12px;color:#6b776f}
 @media(max-width:640px){.sponti-participants-table thead{display:none}.sponti-participants-table tr{display:block;padding:8px 0;border-bottom:1px solid #e7eee5}.sponti-participants-table td{display:block;padding:2px 0;border:0}.sponti-participants-table td[data-label]::before{content:attr(data-label)": ";color:#6b776f}}
 `;
@@ -135,6 +140,7 @@ function decorate(){
   badge.className='sponti-participants-count'+(booked?'':' is-empty');
   badge.textContent=booked?seatsText(booked)+' gebucht':'Noch keine Buchungen';
   info?.append(badge);
+  addCancel(item,booked);
   if(!booked)continue;
   const panel=buildPanel(item,rows);
   const btn=document.createElement('button');
@@ -145,6 +151,36 @@ function decorate(){
   (actions||item).prepend(btn);
   item.append(panel);
  }
+}
+
+function cancelMessage(item,booked,verb){
+ const {title,when}=courseInfo(item);
+ return 'Termin «'+title+'» am '+when+' '+verb+'?\n\n'+
+  (booked?seatsText(booked)+' gebucht: Alle Teilnehmenden erhalten automatisch eine Absage-E-Mail von Sponti.\nDie Rückerstattung übernimmt Sponti, du musst dafür nichts tun.':'Für diesen Termin gibt es noch keine Buchungen.')+
+  '\n\nDer Termin ist danach nicht mehr buchbar.';
+}
+function addCancel(item,booked){
+ const actions=item.querySelector('.provider-course-actions');
+ if(!actions)return;
+ const buttons=[...actions.querySelectorAll('button')];
+ const deactivate=buttons.find(b=>b.textContent.trim()==='Deaktivieren');
+ const remove=actions.querySelector('.provider-delete');
+ let bypass=false;
+ // Nachfragen, bevor ein gebuchter Termin deaktiviert oder gelöscht wird.
+ item.addEventListener('click',e=>{
+  if(bypass||!booked)return;
+  const btn=e.target.closest&&e.target.closest('button');
+  if(!btn||(btn!==deactivate&&btn!==remove))return;
+  if(!window.confirm(cancelMessage(item,booked,btn===remove?'löschen und absagen':'deaktivieren und absagen'))){e.preventDefault();e.stopImmediatePropagation();}
+ },true);
+ if(!deactivate)return;
+ const cancel=document.createElement('button');
+ cancel.type='button';cancel.className='account-text-button sponti-cancel-course';cancel.textContent='Termin absagen';
+ cancel.onclick=()=>{
+  if(!window.confirm(cancelMessage(item,booked,'absagen')))return;
+  bypass=true;deactivate.click();bypass=false;
+ };
+ deactivate.before(cancel);
 }
 
 let timer=null;
