@@ -7,7 +7,7 @@
  const buttons=[...document.querySelectorAll('.course-filters .filter')];
  const active=(attr)=>buttons.filter(b=>b.classList.contains('active')&&b.dataset[attr]&& !['alle','all'].includes(b.dataset[attr])).map(b=>b.dataset[attr]);
  const message=document.getElementById('course-status');
- const queryParams=new URLSearchParams(location.search);
+ const queryParams=new URLSearchParams(location.search);for(const [k,v] of new URLSearchParams(document.body.dataset.presetParams||''))if(!queryParams.has(k))queryParams.set(k,v);
  const searchTerm=(queryParams.get('suche')||'').trim().toLocaleLowerCase('de-CH');
  const selectedPlace=(queryParams.get('ort')||'').trim();
  const slugPlaces=['zug','zuerich','luzern','solothurn','aargau','andere'];

@@ -66,7 +66,10 @@ async function load(){
   let extras=[];try{extras=await rpc('list_public_provider_extras_v2');}catch{try{extras=await rpc('list_public_provider_extras');}catch{}}
   const extraById=new Map((Array.isArray(extras)?extras:[]).map(x=>[String(x.provider_id),x]));
   list.replaceChildren();
-  const activeProviders=providers.filter(p=>Array.isArray(p.courses)&&p.courses.some(c=>c.starts_at&&new Date(c.starts_at).getTime()>Date.now()));
+  const REGION_WORDS={zug:['zug','baar','cham','steinhausen','rotkreuz','risch','hünenberg','huenenberg','ägeri','aegeri','menzingen','neuheim','walchwil'],luzern:['luzern','kriens','emmen','horw','ebikon','sursee','meggen','littau'],zuerich:['zürich','zuerich','winterthur','uster','dübendorf','wädenswil','horgen','kloten'],aargau:['aargau','aarau','baden','wettingen','wohlen','lenzburg','brugg','zofingen','muri','rheinfelden'],solothurn:['solothurn','olten','grenchen']};
+  const region=list?.dataset.region||'';const words=REGION_WORDS[region]||[];
+  const inRegion=p=>!words.length||[p.location,...(Array.isArray(p.courses)?p.courses.map(c=>c.venue):[])].some(v=>words.some(w=>String(v||'').toLowerCase().includes(w)));
+  const activeProviders=providers.filter(p=>Array.isArray(p.courses)&&p.courses.some(c=>c.starts_at&&new Date(c.starts_at).getTime()>Date.now())&&inRegion(p));
   for(const p of (compact?activeProviders.slice(0,2):activeProviders)){list.append(card({...p,...(extraById.get(String(p.provider_id))||{})}));}
   status.classList.toggle('is-empty',activeProviders.length===0);
   if(activeProviders.length){
