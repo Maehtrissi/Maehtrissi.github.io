@@ -43,7 +43,7 @@ create table if not exists public.course_waitlist(
   held_quantity integer not null default 0 check (held_quantity >= 0),
   leave_token uuid not null default gen_random_uuid() unique,
   booking_id uuid references public.course_checkout_bookings(id) on delete set null,
-  created_at timestamptz not null default now(),
+  created_at timestamptz not null default clock_timestamp(),
   updated_at timestamptz not null default now()
 );
 comment on table public.course_waitlist is 'Platzanfragen (Warteliste) für ausgebuchte Kurse. offered = Plätze sind reserviert (held_quantity bereits von courses.seats abgezogen).';
@@ -152,7 +152,8 @@ begin
     raise exception 'Dein reservierter Platz ist leider nicht mehr gültig.' using errcode = 'P0001';
   end if;
   if p_quantity is null or p_quantity < 1 or p_quantity > w.held_quantity then
-    raise exception 'Du kannst höchstens % Plätze aus deiner Anfrage buchen.', w.held_quantity using errcode = '22023';
+    raise exception 'Du kannst höchstens % aus deiner Anfrage buchen.',
+      case when w.held_quantity = 1 then '1 Platz' else w.held_quantity || ' Plätze' end using errcode = '22023';
   end if;
   perform set_config('sponti.waitlist_busy', 'on', true);
   update public.courses set seats = seats + w.held_quantity where id = p_course_id;
