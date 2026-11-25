@@ -20,6 +20,7 @@ if(!list)return;
 const style=document.createElement('style');
 style.textContent=`
 .sponti-participants-count{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 10px;border-radius:999px;background:#eef3ea;color:#15574e;font:600 12px "DM Sans",sans-serif}
+.sponti-waitlist-count{background:#fbf0e6;color:#9a5530;margin-left:6px}
 .sponti-participants-count.is-empty{background:#f3f3ef;color:#6b776f}
 .provider-course-item:has(.sponti-participants-panel){flex-wrap:wrap}
 .sponti-participants-panel{grid-column:1/-1;flex:1 1 100%;width:100%;box-sizing:border-box;margin-top:14px;padding:16px 18px;border:1px solid #dbe6db;border-radius:16px;background:#f8faf5}
@@ -40,7 +41,7 @@ style.textContent=`
 `;
 document.head.appendChild(style);
 
-let byCourse=new Map(),loading=null,available=true;
+let byCourse=new Map(),waitlist=new Map(),loading=null,available=true;
 
 async function load(){
  const db=window.SpontiProviderDb;
@@ -48,6 +49,9 @@ async function load(){
  const {data,error}=await db.rpc('provider_course_participants');
  if(error){available=false;console.warn('Sponti Teilnehmerliste nicht verfügbar:',error.message);return;}
  available=true;byCourse=new Map();
+ const wl=await db.rpc('provider_course_waitlist_counts');
+ waitlist=new Map();
+ if(!wl.error)for(const row of wl.data||[])waitlist.set(String(row.course_id),row);
  for(const row of data||[]){
   const key=String(row.course_id);
   if(!byCourse.has(key))byCourse.set(key,[]);
@@ -140,6 +144,17 @@ function decorate(){
   badge.className='sponti-participants-count'+(booked?'':' is-empty');
   badge.textContent=booked?seatsText(booked)+' gebucht':'Noch keine Buchungen';
   info?.append(badge);
+  const wl=waitlist.get(String(item.dataset.courseId));
+  if(wl&&(wl.waiting||wl.offered)){
+   const w=document.createElement('span');
+   w.className='sponti-participants-count sponti-waitlist-count';
+   const parts=[];
+   if(wl.waiting)parts.push(wl.waiting===1?'1 Platzanfrage':wl.waiting+' Platzanfragen');
+   if(wl.offered)parts.push(wl.offered+' reserviert');
+   w.textContent=parts.join(' · ');
+   w.title='Kunden auf der Warteliste. Wird ein Platz frei oder erhöhst du die Platzzahl, bekommen sie automatisch einen reservierten Buchungslink.';
+   info?.append(' ',w);
+  }
   addCancel(item,booked);
   if(!booked)continue;
   const panel=buildPanel(item,rows);
