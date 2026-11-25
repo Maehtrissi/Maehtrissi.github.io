@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="/sponti-partner-form-clarity.css?v=20261109" />
   <link rel="stylesheet" href="/sponti-pricing-redesign.css?v=20261109" />
 <link rel="stylesheet" href="/sponti-other-options.css?v=20261117" /><script defer src="/sponti-other-options.js?v=20261117-custom-inputs-v2"></script>  <link rel="stylesheet" href="/sponti-pill-motion.css?v=20261118-uiverse-hover1" />
+<style>@media(min-width:801px){.sponti-package-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}}</style>
 </head>
   <body class="provider-page">
     <a class="top-announcement" href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer" aria-label="Sponti WhatsApp Community beitreten">
@@ -130,7 +131,7 @@
               <li><span class="sponti-process-number">03</span><div><strong>Einrichtung &amp; Freigabe</strong><p>Nach Registrierung, Prüfung und Zahlungs-Onboarding kannst du deine Kurse auf Sponti veröffentlichen.</p></div></li>
             </ol>
           </div>
-          <div class="sponti-partner-pricing-note"><strong>Das Wichtigste zu den Kosten</strong><p>In den ersten zwei Monaten entfällt die monatliche Plattformgebühr. Ab der ersten erfolgreichen, nicht erstatteten Buchung fallen 20 % (Preis pro Platz unter CHF 20.00) bzw. 15 % (ab CHF 20.00) Provision an. Danach kannst du Standard (CHF 10/Monat) oder Promo (CHF 30/Monat) wählen – keine automatische Umstellung ohne deine Zustimmung.</p><a href="#preise">Alle Preise &amp; Pakete ansehen <span aria-hidden="true">→</span></a></div>
+          <div class="sponti-partner-pricing-note"><strong>Das Wichtigste zu den Kosten</strong><p>In den ersten zwei Monaten entfällt die monatliche Plattformgebühr. Ab der ersten erfolgreichen, nicht erstatteten Buchung fallen 20 % (Preis pro Platz unter CHF 20.00) bzw. 15 % (ab CHF 20.00) Provision an. Danach gilt der Standard-Tarif für CHF 15 pro Monat – keine automatische Umstellung ohne deine Zustimmung.</p><a href="#preise">Alle Preise &amp; Pakete ansehen <span aria-hidden="true">→</span></a></div>
           <p class="partner-direct"><strong>Du hast noch Fragen?</strong><br>Schreib uns an <a href="mailto:info@sponti-switzerland.ch">info@sponti-switzerland.ch</a> oder per <a href="https://wa.me/41794561683" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
         </div>
         <form class="partner-form sponti-partner-form" id="partner-form" data-partner-form>
@@ -161,20 +162,19 @@
           <p class="provider-costs-intro">Starte mit Sponti und profitiere von zusätzlicher Sichtbarkeit für dein Angebot. In der Startphase entfällt die monatliche Plattformgebühr.</p>
           <div class="provider-costs-grid">
             <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><path d="m12 3 1.9 6.1L20 11l-6.1 1.9L12 19l-1.9-6.1L4 11l6.1-1.9L12 3Z"/></svg></span><h3>2 Monate kostenlos</h3><p>Keine monatliche Plattformgebühr und zusätzliche Sichtbarkeit für dein Angebot. Die Buchungsprovision gilt weiterhin.</p></article>
-            <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-sage" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 18h2"/></svg></span><span class="provider-cost-kicker">Danach</span><h3>CHF 10 / 30</h3><p>Pro Monat: Standard für CHF 10 oder Promo für CHF 30, nur nach deiner ausdrücklichen Wahl.</p></article>
+            <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-sage" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 18h2"/></svg></span><span class="provider-cost-kicker">Danach</span><h3>CHF 15</h3><p>Pro Monat im Standard-Tarif, nur nach deiner ausdrücklichen Zustimmung.</p></article>
             <article class="provider-cost-card"><span class="provider-cost-icon provider-cost-icon-coral" aria-hidden="true"><svg class="sponti-inline-icon" viewBox="0 0 24 24"><path d="M12 3 21 8l-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="provider-cost-kicker">Pro Buchung</span><h3>15–20 %</h3><p>Provision auf jede erfolgreiche, nicht erstattete Buchung: 20 % bei einem Preis pro Platz unter CHF 20.00, 15 % ab CHF 20.00 – auch während der Startphase.</p></article>
           </div>
           <div class="provider-costs-note"><span class="provider-costs-info" aria-hidden="true">i</span><p><strong>Wichtig:</strong> Die ersten zwei Monate sind nur von der monatlichen Plattformgebühr befreit. Die Provision (20 % bei einem Preis pro Platz unter CHF 20.00, 15 % ab CHF 20.00) gilt ab der ersten erfolgreichen, nicht erstatteten Buchung. Es erfolgt keine automatische Umstellung auf ein kostenpflichtiges Paket.</p></div>
           <div class="sponti-pricing-packages" aria-labelledby="sponti-package-heading">
             <div class="eyebrow"><span class="eyebrow-dot"></span> Unsere Pakete</div>
             <h3 id="sponti-package-heading">Unsere Pakete <em>im Überblick.</em></h3>
-            <p>Entscheide nach der Startphase, welches Paket zu deinem Angebot passt.</p>
+            <p>Nach der Startphase geht es mit dem Standard-Tarif weiter.</p>
             <div class="sponti-package-grid">
               <article class="sponti-package-card start"><div class="sponti-package-top"><span class="sponti-package-name">Startphase</span><h4>2 Monate kostenlos</h4></div><ul><li>Keine monatliche Plattformgebühr</li><li>Kurse auf Sponti präsentieren</li><li>Zusätzliche Sichtbarkeit in der Startphase</li><li>15–20 % Provision pro Buchung</li></ul></article>
-              <article class="sponti-package-card standard"><div class="sponti-package-top"><span class="sponti-package-name">Standard</span><h4>CHF 10 <small>/ Monat</small></h4></div><ul><li>Kurse auf Sponti präsentieren</li><li>Normale Plattform-Präsenz</li><li>Kurse und freie Plätze verwalten</li><li>15–20 % Provision pro Buchung</li></ul></article>
-              <article class="sponti-package-card promo"><div class="sponti-package-top"><span class="sponti-package-name">Promo</span><h4>CHF 30 <small>/ Monat</small></h4></div><ul><li>Alle Leistungen aus Standard</li><li>Erweiterte Werbung und Reichweite</li><li>Zusätzliche Newsletter-Präsenz</li><li>Instagram- und Community-Werbung nach Vereinbarung</li><li>15–20 % Provision pro Buchung</li></ul></article>
-            </div>
-            <p class="sponti-pricing-conditions">Die konkreten Werbeleistungen des Promo-Pakets werden vor Vertragsabschluss vereinbart. Eine Paketwahl erfolgt nicht automatisch. <strong>Verbindliche Grundlage:</strong> Die Gebühren, Provisionen, Zahlungsbedingungen und weiteren Regeln der Zusammenarbeit werden in den <a href="/agb">AGB von Sponti</a> und gegebenenfalls einer individuellen Vereinbarung geregelt. Die AGB werden bei der verbindlichen Anbieterregistrierung bzw. beim Vertragsabschluss ausdrücklich zur Annahme vorgelegt.</p>
+              <article class="sponti-package-card standard"><div class="sponti-package-top"><span class="sponti-package-name">Standard</span><h4>CHF 15 <small>/ Monat</small></h4></div><ul><li>Kurse auf Sponti präsentieren</li><li>Normale Plattform-Präsenz</li><li>Kurse und freie Plätze verwalten</li><li>15–20 % Provision pro Buchung</li></ul></article>
+                          </div>
+            <p class="sponti-pricing-conditions">Der Standard-Tarif beginnt nicht automatisch, sondern erst nach deiner Zustimmung. <strong>Verbindliche Grundlage:</strong> Die Gebühren, Provisionen, Zahlungsbedingungen und weiteren Regeln der Zusammenarbeit werden in den <a href="/agb">AGB von Sponti</a> und gegebenenfalls einer individuellen Vereinbarung geregelt. Die AGB werden bei der verbindlichen Anbieterregistrierung bzw. beim Vertragsabschluss ausdrücklich zur Annahme vorgelegt.</p>
           </div>
           <div class="sponti-pricing-process" aria-labelledby="sponti-pricing-process-title">
             <div class="eyebrow"><span class="eyebrow-dot"></span> So funktioniert's</div>
