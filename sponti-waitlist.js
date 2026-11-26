@@ -98,7 +98,7 @@ function showRequest(cta,course){
  if(!(Date.now()<closesAt)||(course.booking_url||'')!=='')return;
  cta.dataset.waitlist='request';
  cta.classList.remove('is-disabled');
- cta.textContent='Platz anfragen →';
+ cta.textContent='Reservieren →';
  cta.href='#platz-anfragen';
  const info=box(cta,'Dieser Kurs ist ausgebucht.','Frag kostenlos und unverbindlich einen Platz an. Wird einer frei, reservieren wir ihn für dich und schicken dir einen Buchungslink per E-Mail.','info');
  info.id='platz-anfragen';
