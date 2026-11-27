@@ -1,0 +1,7 @@
+-- 2026-11-27: Neue Kurskategorien (bereits in Supabase angewendet als Migration «sponti_new_course_categories»)
+-- Schlüssel: yoga-wellness (Yoga & Meditation), pilates-barre (Pilates & Barre), fitness-spinning (Fitness & Spinning),
+--            tanz-bewegung (Tanz), kunst-handwerk (Töpfern & Kreatives)
+-- Alte Kategorien (Kochen & Geniessen, Fotografie & Design, Natur & Draussen, alte Bezeichnungen) bleiben vorerst
+-- in den Prüfungen erlaubt, damit bestehende Daten gültig bleiben. Sie können später entfernt werden.
+-- Geändert: private.capture_provider_signup, private.provider_account, private.sync_provider_course_to_public,
+--           public.sponti_marketing_preferences, Constraints Kursanbieter_category_check und customer_preferences_categories_check.

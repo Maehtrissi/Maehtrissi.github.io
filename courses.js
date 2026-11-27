@@ -2,7 +2,7 @@
  const SALE_LEAD_MS=2*60*60*1000;
  const grid=document.querySelector('.course-grid');
  if(!grid)return;
- const categories={'yoga-wellness':['Yoga & Wellness','yoga'],'kochen-geniessen':['Kochen & Geniessen','pasta'],'kunst-handwerk':['Kunst & Handwerk','clay'],'fotografie-design':['Fotografie & Design','photo'],'tanz-bewegung':['Tanz & Bewegung','dance'],'natur-draussen':['Natur & Draussen','bouquet']};
+ const categories={'yoga-wellness':['Yoga & Meditation','yoga'],'pilates-barre':['Pilates & Barre','yoga'],'fitness-spinning':['Fitness & Spinning','dance'],'tanz-bewegung':['Tanz','dance'],'kunst-handwerk':['Töpfern & Kreatives','clay'],'kochen-geniessen':['Kochen & Geniessen','pasta'],'fotografie-design':['Fotografie & Design','photo'],'natur-draussen':['Natur & Draussen','bouquet']};
  let cards=[];
  const buttons=[...document.querySelectorAll('.course-filters .filter')];
  const active=(attr)=>buttons.filter(b=>b.classList.contains('active')&&b.dataset[attr]&& !['alle','all'].includes(b.dataset[attr])).map(b=>b.dataset[attr]);

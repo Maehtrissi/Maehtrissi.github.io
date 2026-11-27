@@ -318,3 +318,9 @@ html body.sponti-detail-page main.booking-main > section.detail-shell {
     margin-block:10px 0 !important;
   }
 }
+.sponti-detail-page .detail-visual.detail-pilates-barre {
+  background:radial-gradient(ellipse at 95% 10%,#f5bd96,transparent 53%),linear-gradient(130deg,#f7ebdb,#e1ead7);
+}
+.sponti-detail-page .detail-visual.detail-fitness-spinning {
+  background:radial-gradient(ellipse at 95% 10%,#b9d4e0,transparent 53%),linear-gradient(130deg,#eef3e6,#f7ebdb);
+}
