@@ -1,0 +1,9 @@
+-- 2026-11-28: Alle Kunden-Mails vervollständigt (in Supabase angewendet: sponti_customer_emails_complete, sponti_customer_emails_claim_user_id)
+-- Neue Mail-Arten in private.customer_email_outbox:
+--   course_changed        Trigger auf public.courses (Datum/Uhrzeit oder Ort geändert, 2 Min. Puffer, ältere Änderungsmails werden ersetzt)
+--   waitlist_expired      in private.sponti_waitlist_expire() (reservierter Platz nicht rechtzeitig gebucht)
+--   account_deleted       Trigger auf private.account_deletion_requests (Status -> done, nur Kundenkonten)
+--   newsletter_subscribed Trigger auf private.sponti_customer_marketing_preferences (Newsletter oder Kurstipps eingeschaltet, max. 1x pro Tag)
+-- booking_cancelled wird jetzt mit eigenem HTML in drei Varianten verschickt: rückerstattet / keine Rückerstattung / Gratiskurs.
+-- Neue CRM-Funktion public.crm_cancel_booking_without_refund(uuid): bezahlte Buchung stornieren ohne Rückerstattung (Platz wird frei).
+-- Edge Function send-customer-events Version 4, send-sponti-marketing-weekly Version 3 (neue Kategorienamen).
