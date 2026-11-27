@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import {createClient} from "npm:@supabase/supabase-js@2.117.2";
+// Version 5: account_deleted mit Anbieter-Variante (event_key provider:...).
 // Version 4: zusätzlich course_changed, waitlist_expired, account_deleted, newsletter_subscribed;
 // booking_cancelled mit eigenem HTML in drei Varianten (rückerstattet, ohne Rückerstattung, Gratiskurs).
 const tokenHash="75d5d822f75aaefe45cd34b1f119fbae8d8f35a3cd0c7fcb49e67f0a460021ed";
@@ -73,8 +74,8 @@ function waitlistExpiredMail(w:any,c:any){
  const name=firstName(w.guest_name);const title=String(c.title||"Kurs");
  return {subject:"Deine Reservierung ist abgelaufen: «"+title.slice(0,80)+"»",html:layout(`<p>Hallo ${name}</p><p>Der für dich reservierte Platz bei <strong>${escape(title)}</strong> am ${escape(dateTime(c.starts_at))} wurde nicht rechtzeitig gebucht. Deshalb haben wir ihn an die nächste Person auf der Warteliste weitergegeben.</p><p>Wenn du doch noch mitmachen möchtest, schau auf der Kursseite nach. Vielleicht ist wieder etwas frei, oder du stellst eine neue Platzanfrage.</p>${button(SITE+"/kurs.html?id="+encodeURIComponent(c.id),"Zum Kurs")}`)};
 }
-function accountDeletedMail(){
- return {subject:"Dein Sponti-Konto wurde gelöscht",html:layout(`<p>Hallo</p><p>Wie gewünscht haben wir dein Sponti-Konto gelöscht. Deine Profilangaben, Favoriten und Benachrichtigungen sind entfernt.</p>${note("Buchungs- und Zahlungsbelege müssen wir aus gesetzlichen Gründen noch eine Zeit lang aufbewahren. Mehr dazu in unserer <a href=\""+SITE+"/datenschutz\" style=\"color:#173e30\">Datenschutzerklärung</a>.")}<p>Schade, dass du gehst. Du kannst jederzeit wieder ein neues Konto erstellen oder als Gast buchen.</p><p style="color:#5f7067;font-size:14px">Du hast die Löschung nicht selbst veranlasst? Dann melde dich bitte sofort unter info@sponti-switzerland.ch.</p>`)};
+function accountDeletedMail(provider=false){
+ return {subject:provider?"Dein Sponti-Anbieterkonto wurde gelöscht":"Dein Sponti-Konto wurde gelöscht",html:layout(`<p>Hallo</p><p>${provider?"Wie gewünscht haben wir dein Anbieterkonto bei Sponti gelöscht. Dein Profil und deine Kurse sind nicht mehr öffentlich sichtbar. Bereits bezahlte Buchungen und offene Auszahlungen werden ordnungsgemäss abgewickelt.":"Wie gewünscht haben wir dein Sponti-Konto gelöscht. Deine Profilangaben, Favoriten und Benachrichtigungen sind entfernt."}</p>${note("Buchungs- und Zahlungsbelege müssen wir aus gesetzlichen Gründen noch eine Zeit lang aufbewahren. Mehr dazu in unserer <a href=\""+SITE+"/datenschutz\" style=\"color:#173e30\">Datenschutzerklärung</a>.")}<p>Schade, dass du gehst. Du kannst jederzeit wieder ein neues Konto erstellen oder als Gast buchen.</p><p style="color:#5f7067;font-size:14px">Du hast die Löschung nicht selbst veranlasst? Dann melde dich bitte sofort unter info@sponti-switzerland.ch.</p>`)};
 }
 function newsletterMail(m:any){
  const both=m.newsletter&&m.weekly_courses;
@@ -110,7 +111,7 @@ Deno.serve(async(req:Request)=>{
    try{
     if(job.kind==="account_deleted"){
      if(!validEmail(job.recipient_email)){state="cancelled";reason="Invalid recipient";skipped++;}
-     else{const res=await sendHtml(key,job.id,job.recipient_email,accountDeletedMail());state=res.state;mailId=res.id;reason=res.reason;res.state==="sent"?sent++:failed++;}
+     else{const res=await sendHtml(key,job.id,job.recipient_email,accountDeletedMail(String(job.event_key||"").startsWith("provider:")));state=res.state;mailId=res.id;reason=res.reason;res.state==="sent"?sent++:failed++;}
     }else if(job.kind==="newsletter_subscribed"){
      const {data:m,error:mErr}=await db.schema("private").from("sponti_customer_marketing_preferences")
       .select("email,newsletter,weekly_courses,unsubscribe_token").eq("user_id",job.user_id).maybeSingle();
