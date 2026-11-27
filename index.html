@@ -126,9 +126,9 @@
       </button>
     </header>
     <div class="site-menu" id="site-menu" data-site-menu aria-hidden="true">
-      <button class="site-menu-scrim" type="button" data-site-menu-close aria-label="Menü schließen"></button>
+      <button class="site-menu-scrim" type="button" data-site-menu-close aria-label="Menü schliessen"></button>
       <section class="site-menu-panel" role="dialog" aria-modal="true" aria-labelledby="site-menu-title" tabindex="-1">
-        <div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schließen">×</button></div>
+        <div class="site-menu-panel-header"><span id="site-menu-title">Navigation</span><button class="site-menu-close" type="button" data-site-menu-close aria-label="Menü schliessen">×</button></div>
         <nav class="site-menu-links" aria-label="Hauptnavigation"><a href="/">Startseite</a><a href="/kurse">Kurs entdecken</a><a href="/kursanbieter">Für Kursanbieter</a><a href="/motivation">Motivation</a><a href="/erfahrungen">Erfahrungen</a></nav>
         <a class="button button-primary site-menu-cta" data-open-booking href="/profil?mode=register">Sponti beitreten</a><a class="button site-menu-provider-cta" href="/anbieter?mode=register">Als Anbieter anmelden</a>
       </section>
@@ -147,13 +147,13 @@
             <div class="sponti-course-hero-benefits"><span>✓ Kurzfristig buchbar</span><span>✓ Freie Plätze entdecken</span><span>✓ In deiner Umgebung</span></div>
           </div>
           <div class="sponti-course-hero-gallery" aria-label="Entdecke verschiedene Kursarten">
-            <a class="sponti-hero-photo sponti-hero-photo-left" href="/kurse?filter=tanz-bewegung" aria-label="Fitness- und Bewegungskurse entdecken"><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="Fitnesskurs" loading="eager" /><strong>Fitness</strong></a>
-            <a class="sponti-hero-photo sponti-hero-photo-main" href="/kurse?filter=yoga-wellness" aria-label="Yoga und Wellnesskurse entdecken"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Yogakurs" loading="eager" /><strong>Yoga</strong></a>
-            <a class="sponti-hero-photo sponti-hero-photo-right" href="/kurse?filter=kunst-handwerk" aria-label="Kunst und Handwerkskurse entdecken"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="Töpferkurs" loading="eager" /><strong>Töpfern</strong></a>
+            <a class="sponti-hero-photo sponti-hero-photo-left" href="/kurse?filter=fitness-spinning" aria-label="Fitness- und Spinningkurse entdecken"><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="Fitnesskurs" loading="eager" /><strong>Fitness</strong></a>
+            <a class="sponti-hero-photo sponti-hero-photo-main" href="/kurse?filter=yoga-wellness" aria-label="Yoga- und Meditationskurse entdecken"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Yogakurs" loading="eager" /><strong>Yoga</strong></a>
+            <a class="sponti-hero-photo sponti-hero-photo-right" href="/kurse?filter=kunst-handwerk" aria-label="Töpfer- und Kreativkurse entdecken"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="Töpferkurs" loading="eager" /><strong>Töpfern</strong></a>
           </div>
         </div>
         <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
-          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></div>
+          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></div>
           <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></div>
           <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
           <button class="sponti-today-cta" type="button" id="sponti-home-today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 11h7l-1 9 10-12h-7V2Z"/></svg>Heute noch freie Plätze</button>
@@ -204,13 +204,12 @@
           })();
         </script>
         <nav class="sponti-hero-quick-categories" aria-label="Kurse nach Kategorie entdecken">
-          <a href="/kurse?filter=yoga-wellness"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M12 4v6m-5 3 5-3 5 3M7 13l-4 7h18l-4-7M8 20l4-5 4 5"/></svg></span>Yoga &amp; Pilates</a>
-          <a href="/kurse?filter=tanz-bewegung"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M3 9v6m3-8v10m12-10v10m3-8v6M6 12h12"/></svg></span>Fitness</a>
-          <a href="/kurse?filter=tanz-bewegung"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="m10 8 4 3 5 1M14 11l-3 5-5 3m5-3 7 4M10 8 5 12"/></svg></span>Tanz</a>
-          <a href="/kurse?filter=kunst-handwerk"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M7 3h10M9 3v4L5 13c0 5 3 8 7 8s7-3 7-8l-4-6V3M6 14h12"/></svg></span>Töpfern</a>
-          <a href="/kurse?filter=yoga-wellness"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-8-6-8-11 4 0 7 2 8 5 1-3 4-5 8-5 0 5-4 8-8 11ZM12 15c-3-4-3-8 0-12 3 4 3 8 0 12Z"/></svg></span>Achtsamkeit</a>
-          <a href="/kurse?filter=natur-draussen"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="m2 20 7-13 4 7 3-5 6 11H2Z"/></svg></span>Outdoor</a>
-          <a href="/kurse?filter=kochen-geniessen"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M4 14c0-4 3-6 8-6s8 2 8 6v5H4v-5ZM7 8V4m5 4V3m5 5V4"/></svg></span>Kochen</a>
+          <a href="/kurse?filter=yoga-wellness"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-7-7-7-11 4 0 6 2 7 5 1-3 3-5 7-5 0 4-3 8-7 11Z"/><path d="M12 15c-3-4-3-8 0-12 3 4 3 8 0 12Z"/></svg></span>Yoga</a>
+          <a href="/kurse?filter=pilates-barre"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M3 20h18M6 16l6-6 6 6M12 10v3"/></svg></span>Pilates</a>
+          <a href="/kurse?filter=fitness-spinning"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M3 9v6m3-8v10m12-10v10m3-8v6M6 12h12"/></svg></span>Fitness</a>
+          <a href="/kurse?filter=tanz-bewegung"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="m8 10 5-3 3 4 4 1M13 7l-2 7-5 3M11 14l5 3 2 4M11 14l-2 7"/></svg></span>Tanz</a>
+          <a href="/kurse?filter=kunst-handwerk"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M8 3h8M9 3c0 4-5 5-5 11a8 8 0 0 0 16 0c0-6-5-7-5-11M5 14h14M8 19h8"/></svg></span>Töpfern</a>
+          <a href="/kurse?filter=yoga-wellness"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4-3-8-6-8-11 4 0 7 2 8 5 1-3 4-5 8-5 0 5-4 8-8 11ZM12 15c-3-4-3-8 0-12 3 4 3 8 0 12Z"/></svg></span>Meditation</a>
           <a href="/kurse"><span class="sponti-quick-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span>Alle Kurse</a>
         </nav>
       </section>
@@ -265,11 +264,6 @@
                 <span class="location-card-overlay"></span>
                 <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Luzern</strong></span>
               </a>
-              <a class="location-card" href="/kurse?ort=solothurn" data-location-card aria-label="Kurse in Solothurn entdecken">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Solothurn_2023.jpg/960px-Solothurn_2023.jpg" alt="" loading="lazy" decoding="async">
-                <span class="location-card-overlay"></span>
-                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Solothurn</strong></span>
-              </a>
               <a class="location-card" href="/kurse?ort=aargau" data-location-card aria-label="Kurse in Aargau entdecken">
                 <img src="Aargau.png" alt="" loading="lazy" decoding="async">
                 <span class="location-card-overlay"></span>
@@ -280,8 +274,7 @@
           <button class="location-control location-control-next" type="button" data-location-next aria-controls="location-viewport" aria-label="Nächsten Ort anzeigen">
             <span aria-hidden="true">→</span>
           </button>
-          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 5</p>
-          <p class="location-photo-credit">Solothurn-Foto: <a href="https://commons.wikimedia.org/wiki/File:Solothurn_2023.jpg" target="_blank" rel="noopener noreferrer">Christian David / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> (Bild zugeschnitten)</p>
+          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 4</p>
         </div>
       </section>
       <div class="how-section-band sponti-how-modern">
@@ -343,18 +336,18 @@
           <div class="eyebrow"><span class="eyebrow-dot"></span> Gut zu wissen</div>
           <h2 id="sponti-faq-title">Noch <em>Fragen?</em></h2>
           <p>Hier findest du Antworten rund um Sponti, freie Kursplätze und spontane Erlebnisse.</p>
-          <p class="sponti-faq-help"><a href="/kontakt">Weitere Fragen? Schreib uns</a></p>
+          <p class="sponti-faq-help"><a href="/hilfe">Alle Fragen &amp; Antworten</a></p>
         </div>
         <div class="sponti-faq-items">
-          <details name="sponti-faq"><summary>Was ist Sponti?<span aria-hidden="true">+</span></summary><p>Sponti ist eine Plattform für Kurse, Workshops und Erlebnisse in der Schweiz. Wir machen Angebote sichtbar, bei denen kurzfristig noch Plätze frei sind – beispielsweise Yoga, Kochen, kreative Workshops oder Bewegungsangebote. Du kannst auf <a href="/kurse">Kurse entdecken</a> nach passenden Angeboten suchen, Details vergleichen und je nach Kurs direkt beim Anbieter buchen oder eine unverbindliche Kursanfrage über Sponti senden. Welche Angebote verfügbar sind, hängt von den teilnehmenden Kursanbietern und ihren freien Plätzen ab.</p></details>
+          <details name="sponti-faq"><summary>Was ist Sponti?<span aria-hidden="true">+</span></summary><p>Sponti ist eine Plattform für kurzfristig freie Plätze in Kursen und Workshops in der Schweiz, zum Beispiel Yoga, Pilates, Tanz, Fitness, Töpfern oder Meditation. Auf <a href="/kurse">Kurse entdecken</a> findest du Angebote, bei denen noch Plätze frei sind, vergleichst Termine und Preise und buchst deinen Platz direkt online über Sponti. Durchgeführt werden die Kurse von unabhängigen Anbietern aus deiner Region.</p></details>
           <details name="sponti-faq"><summary>Wie finde ich einen passenden Kurs?<span aria-hidden="true">+</span></summary><p>Auf der Seite <a href="/kurse">Kurse entdecken</a> kannst du die Angebote gezielt eingrenzen: Wähle eine oder mehrere Kurskategorien, den gewünschten Standort, einen Wochentag und die passende Tageszeit (Vormittag, Nachmittag oder Abend). Mit dem Preisregler legst du deinen Maximalpreis fest. Über den Filter «Heute noch verfügbar» findest du ausserdem Kurse mit freien Plätzen, die noch am selben Tag beginnen. Du kannst auch mehrere Filter gleichzeitig verwenden oder mit «Alle Kurse», «Alle Orte», «Alle Tage» und «Alle Uhrzeiten» bewusst offen suchen. Die Kurskarten zeigen die verfügbaren Informationen zum Angebot, beispielsweise Ort, Termin, Preis und freie Plätze. Wenn dich ein Kurs interessiert, öffne die Detailansicht für weitere Angaben und den jeweiligen Buchungs- oder Anfrageweg.</p></details>
-          <details name="sponti-faq"><summary>Muss ich mich anmelden?<span aria-hidden="true">+</span></summary><p>Du kannst Kurse grundsätzlich auch ohne Kundenkonto entdecken. Bei Angeboten mit Gastanfrage kannst du deine Anfrage ohne Registrierung übermitteln; dabei benötigen wir die im Formular abgefragten Kontaktdaten, damit deine Anfrage bearbeitet werden kann. Ein kostenloses <a href="/profil">Sponti-Profil</a> bietet zusätzliche Möglichkeiten: Du kannst bevorzugte Kursarten, Regionen, Wochentage und Tageszeiten sowie deinen gewünschten Informationskanal speichern. Ob für eine konkrete Buchung eine Anmeldung beim jeweiligen Anbieter nötig ist, hängt vom Angebot ab.</p></details>
-          <details name="sponti-faq"><summary>Was kostet die Nutzung von Sponti?<span aria-hidden="true">+</span></summary><p>Die Suche nach Kursen und die Erstellung eines Sponti-Kundenprofils sind kostenlos. Die Teilnahme an einem Kurs kann kostenpflichtig sein. Der angegebene Kurspreis sowie mögliche zusätzliche Bedingungen richten sich nach dem jeweiligen Angebot. Prüfe vor einer verbindlichen Buchung die Informationen zu Preis, Zahlung, Stornierung und Durchführung. Eine unverbindliche Anfrage ist noch keine bestätigte Buchung; die Bestätigung erfolgt über den vorgesehenen Buchungsprozess bzw. den Anbieter.</p></details>
+          <details name="sponti-faq"><summary>Muss ich mich anmelden?<span aria-hidden="true">+</span></summary><p>Nein. Du kannst Kurse auch ohne Konto entdecken und als Gast buchen. Mit einem kostenlosen <a href="/profil">Sponti-Konto</a> siehst du aber alle deine Buchungen an einem Ort, kannst Favoriten speichern, gebuchte Kurse bewerten und einstellen, über welche frei gewordenen Plätze wir dich informieren sollen.</p></details>
+          <details name="sponti-faq"><summary>Was kostet die Nutzung von Sponti?<span aria-hidden="true">+</span></summary><p>Sponti ist für dich kostenlos. Du bezahlst nur den Kurspreis, der beim Angebot angezeigt wird, ohne zusätzliche Gebühren. Die Zahlung erfolgt bei der Buchung sicher online über Stripe. Bis 24 Stunden vor Kursbeginn kannst du kostenlos stornieren. Mehr dazu in unserer <a href="/hilfe#stornieren">Hilfe</a>.</p></details>
           <details name="sponti-faq"><summary>Wie erfahre ich von neuen freien Plätzen?<span aria-hidden="true">+</span></summary><p>Wir informieren über neue und kurzfristig freie Kursplätze – unter anderem per E-Mail und in unserer <a href="https://chat.whatsapp.com/EO0QokxRnht6HreYx9PrBg" target="_blank" rel="noopener noreferrer">WhatsApp Community</a>. In deinem kostenlosen <a href="/profil">Sponti-Kundenprofil</a> kannst du selbst festlegen, wie du Kursinfos erhalten möchtest: per E-Mail, WhatsApp, über beide Kanäle oder gar nicht. Zusätzlich wählst du deine Interessen, Wunschregionen und bevorzugten Tage und Uhrzeiten. So können wir passende Angebote entsprechend deinen Einstellungen berücksichtigen. Wenn du keine Kursinfos erhalten möchtest, kannst du dies ebenfalls im Profil auswählen. Deine Einstellungen lassen sich später wieder ändern. Die Auswahl ist eine Präferenz und keine Garantie, dass du zu jedem passenden Angebot automatisch eine Nachricht erhältst; ob und wann wir informieren können, hängt von den verfügbaren Kursen und den genutzten Kommunikationskanälen ab.</p></details>
           <details name="sponti-faq"><summary>Ein Kurs ist ausgebucht. Kann ich trotzdem noch einen Platz bekommen?<span aria-hidden="true">+</span></summary><p>Ja, oft. Bei ausgebuchten Kursen steht auf der Kursseite «Platz anfragen». Damit kommst du kostenlos und unverbindlich auf die Warteliste. Wird ein Platz frei, zum Beispiel weil jemand storniert, reservieren wir ihn automatisch für dich und schicken dir eine E-Mail mit deinem persönlichen Buchungslink. Wer zuerst anfragt, ist zuerst dran. Anfragen kannst du bis zum Buchungsschluss, also bis 2 Stunden vor Kursbeginn.</p></details>
           <details name="sponti-faq"><summary>Wie lange ist ein frei gewordener Platz für mich reserviert?<span aria-hidden="true">+</span></summary><p>Das hängt davon ab, wie bald der Kurs beginnt: 6 Stunden, wenn er in mehr als 3 Tagen stattfindet, 3 Stunden bei 1 bis 3 Tagen und 1 Stunde, wenn er in weniger als 24 Stunden beginnt. Wird ein Platz nachts frei (zwischen 22 und 7 Uhr), bleibt er mindestens bis 9 Uhr für dich reserviert. Die genaue Uhrzeit steht in der E-Mail. Brichst du die Zahlung ab, bleibt der Platz bis dahin trotzdem für dich reserviert. Brauchst du ihn nicht, kannst du ihn über den Link in der E-Mail freigeben, damit die nächste Person nachrücken kann.</p></details>
           <details name="sponti-faq"><summary>Kann ich selbst Kurse über Sponti anbieten?<span aria-hidden="true">+</span></summary><p>Ja. Sponti richtet sich auch an Studios, Kursleitende und Unternehmen, die freie Plätze in Kursen, Workshops oder Erlebnissen anbieten möchten. Auf der <a href="/kursanbieter">Kursanbieter-Seite</a> findest du Informationen dazu, wie dein Angebot über Sponti sichtbarer werden kann, wie eine Zusammenarbeit angefragt wird und welche Konditionen vorgesehen sind. Über das Anbieterformular kannst du uns deine Angaben und dein Angebot schicken. Wir prüfen die Anfrage und melden uns bezüglich der nächsten Schritte. Eine Anfrage bedeutet noch keine automatische Freischaltung.</p></details>
-          <details name="sponti-faq"><summary>Ich habe noch eine Frage. Wie erreiche ich euch?<span aria-hidden="true">+</span></summary><p>Nutze unsere <a href="/kontakt">Kontaktseite</a>, wenn du Fragen zu Sponti, einem Angebot, deinem Profil oder einer Zusammenarbeit hast. Beschreibe möglichst genau, worum es geht, und gib bei Fragen zu einem Kurs dessen Namen und Termin an. So können wir deine Anfrage besser zuordnen. Bei Fragen zur konkreten Durchführung eines Kurses oder zu einer bestehenden Buchung kann auch der jeweilige Kursanbieter der richtige Ansprechpartner sein.</p></details>
+          <details name="sponti-faq"><summary>Ich habe noch eine Frage. Wie erreiche ich euch?<span aria-hidden="true">+</span></summary><p>Viele Antworten zu Buchung, Zahlung, Stornierung und Kursausfällen findest du in unserer <a href="/hilfe">Hilfe &amp; FAQ</a>. Hat bei einer Buchung etwas nicht geklappt, kannst du uns dort direkt <a href="/hilfe#problem-melden">ein Problem melden</a>. Für alles andere erreichst du uns über die <a href="/kontakt">Kontaktseite</a> per E-Mail oder WhatsApp. Gib bei Fragen zu einer Buchung immer deine Buchungsnummer an.</p></details>
         </div>
         </div>
       </section>
@@ -372,6 +365,7 @@
         <a href="/kurse">Kurse entdecken</a>
         <a href="/kursanbieter">Für Kursanbieter</a>
         <a href="/motivation">Über Sponti</a>
+        <a href="/hilfe">Hilfe &amp; FAQ</a>
         <a href="/kontakt">Kontakt</a>
       </nav>
       <nav class="footer-column" aria-label="Kurse nach Ort">

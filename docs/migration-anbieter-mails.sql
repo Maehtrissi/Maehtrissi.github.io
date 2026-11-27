@@ -1,0 +1,10 @@
+-- 2026-11-28: Anbieter-Mails vervollständigt (in Supabase angewendet: sponti_provider_emails_part1..4, sponti_provider_emails_fix_record)
+-- Neue Arten in private.provider_event_email_outbox (eigenes HTML in send-provider-events v2):
+--   account_live       CRM-Status -> Live (setzt auch Kursanbieter.live_at = Start der 2 Gratismonate)
+--   free_phase_ending  14 Tage vor Ende der Gratisphase (AGB 7.5), geprüft im Minuten-Cron dispatch_provider_event_emails
+--   course_online      Kurs wird veröffentlicht; Sammelmail pro Anbieter und Tag (Kursserien = 1 Mail), 10 Min. Puffer
+--   course_changed     Datum/Uhrzeit oder Ort eines veröffentlichten Kurses geändert, mit Anzahl informierter Teilnehmender
+--   waitlist_joined    neue Platzanfrage auf der Warteliste
+-- booking_cancelled: Text unterscheidet jetzt mit Rückerstattung / ohne Rückerstattung / Gratiskurs.
+-- Konto gelöscht (Anbieter): über private.customer_email_outbox mit event_key «provider:account_deleted:…» (send-customer-events v5).
+-- Partner-Mail bleibt manuell (automatischer Trigger enqueue_provider_approval_mail ist deaktiviert).

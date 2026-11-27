@@ -7,7 +7,7 @@
 'use strict';
 const id=new URLSearchParams(location.search).get('id')||'';
 if(!/^[0-9a-f-]{36}$/i.test(id))return;
-const cats={'yoga-wellness':'Yoga & Wellness','kochen-geniessen':'Kochen & Geniessen','kunst-handwerk':'Kunst & Handwerk','fotografie-design':'Fotografie & Design','tanz-bewegung':'Tanz & Bewegung','natur-draussen':'Natur & Draussen'};
+const cats={'yoga-wellness':'Yoga & Meditation','pilates-barre':'Pilates & Barre','fitness-spinning':'Fitness & Spinning','tanz-bewegung':'Tanz','kunst-handwerk':'Töpfern & Kreatives','kochen-geniessen':'Kochen & Geniessen','fotografie-design':'Fotografie & Design','natur-draussen':'Natur & Draussen'};
 const places={zug:'Zug',zuerich:'Zürich',luzern:'Luzern',solothurn:'Solothurn',aargau:'Aargau'};
 function meta(sel,attr,name,value){let el=document.head.querySelector(sel);if(!el){el=document.createElement(attr==='link'?'link':'meta');if(attr==='link')el.rel=name;else el.setAttribute(attr,name);document.head.append(el);}el.setAttribute(attr==='link'?'href':'content',value);}
 (async()=>{
