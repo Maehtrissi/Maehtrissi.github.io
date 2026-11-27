@@ -83,3 +83,28 @@ body .help-page .help-report h2,.help-report h2{margin:0 0 12px;font-size:clamp(
  .cboard-help-strip{flex-wrap:wrap}
  .cboard-help-actions .help-btn{width:100%}
 }
+
+/* Hinweis: Benachrichtigungen einstellen (wie Stripe-Hinweis bei Anbietern) */
+.sponti-notify-banner{display:flex;align-items:center;gap:16px;margin:0 0 22px;padding:18px 22px;border:1px solid #f0c9a8;border-radius:16px;background:#fff4e8;color:#3d2a17}
+.sponti-notify-banner[hidden]{display:none}
+.sponti-notify-banner .help-icon{flex:0 0 42px;width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fde1cc;color:#c4632f}
+.sponti-notify-banner .help-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sponti-notify-banner>div{flex:1;min-width:0}
+.sponti-notify-banner strong{display:block;font-size:17px;line-height:1.3;margin:0 0 4px;color:#3d2a17}
+.sponti-notify-banner p{margin:0;font-size:14.5px;line-height:1.5;max-width:62ch}
+.sponti-notify-banner .help-btn{flex:0 0 auto;min-height:46px;font-size:14px;padding:11px 20px;border:0;cursor:pointer;font-family:inherit;white-space:nowrap}
+.sponti-dashboard-layout>.sponti-notify-banner{grid-column:2;margin-top:34px}
+@media(max-width:900px){.sponti-dashboard-layout>.sponti-notify-banner{grid-column:1;margin-top:0}}
+@media(max-width:720px){
+ .sponti-notify-banner{flex-wrap:wrap;align-items:flex-start;gap:12px}
+ .sponti-notify-banner>div{flex-basis:calc(100% - 58px)}
+ .sponti-notify-banner .help-btn{width:100%}
+}
+
+/* Kundenboard-Navigation auf dem Handy: eine scrollbare Zeile statt abgeschnittener Wörter */
+@media(max-width:900px){
+ body.account-page .sponti-dashboard-layout>.customer-board-nav{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:8px!important;padding:6px 2px 12px!important;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+ body.account-page .sponti-dashboard-layout>.customer-board-nav::-webkit-scrollbar{display:none}
+ body.account-page .sponti-dashboard-layout>.customer-board-nav button{flex:0 0 auto!important;width:auto!important;max-width:none!important;white-space:nowrap!important;overflow-wrap:normal!important;text-align:left!important;scroll-snap-align:start}
+ body.account-page .sponti-dashboard-layout>.customer-board-nav button:last-child{margin-right:40px}
+}
