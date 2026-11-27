@@ -153,7 +153,7 @@
           </div>
         </div>
         <form class="sponti-hero-search" action="/kurse" method="get" aria-label="Kurse suchen">
-          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="solothurn">Solothurn</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></div>
+          <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Ort</span><select id="sponti-home-ort" name="ort" aria-label="Ort auswählen"><option value="">Alle Orte</option><option value="zug">Zug</option><option value="zuerich">Zürich</option><option value="luzern">Luzern</option><option value="aargau">Aargau</option><option value="andere">Anderer Ort eingeben</option></select><input id="sponti-home-ort-custom" type="text" maxlength="100" placeholder="Ort eingeben, z. B. Bellinzona" aria-label="Anderen Ort eingeben" autocomplete="address-level2" hidden disabled /></span></div>
           <div class="sponti-hero-search-field"><span class="sponti-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg></span><span class="sponti-search-field-inner"><span class="sponti-search-label">Datum</span><input name="datum" type="date" aria-label="Kursdatum auswählen" /><span class="sponti-date-hint">Tippen oder Kalender öffnen</span></span></div>
           <button type="submit">Kurse finden <span aria-hidden="true">→</span></button>
           <button class="sponti-today-cta" type="button" id="sponti-home-today"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 11h7l-1 9 10-12h-7V2Z"/></svg>Heute noch freie Plätze</button>
@@ -265,11 +265,6 @@
                 <span class="location-card-overlay"></span>
                 <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Luzern</strong></span>
               </a>
-              <a class="location-card" href="/kurse?ort=solothurn" data-location-card aria-label="Kurse in Solothurn entdecken">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Solothurn_2023.jpg/960px-Solothurn_2023.jpg" alt="" loading="lazy" decoding="async">
-                <span class="location-card-overlay"></span>
-                <span class="location-card-copy"><span>Dein nächstes Erlebnis in</span><strong>Solothurn</strong></span>
-              </a>
               <a class="location-card" href="/kurse?ort=aargau" data-location-card aria-label="Kurse in Aargau entdecken">
                 <img src="Aargau.png" alt="" loading="lazy" decoding="async">
                 <span class="location-card-overlay"></span>
@@ -280,8 +275,7 @@
           <button class="location-control location-control-next" type="button" data-location-next aria-controls="location-viewport" aria-label="Nächsten Ort anzeigen">
             <span aria-hidden="true">→</span>
           </button>
-          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 5</p>
-          <p class="location-photo-credit">Solothurn-Foto: <a href="https://commons.wikimedia.org/wiki/File:Solothurn_2023.jpg" target="_blank" rel="noopener noreferrer">Christian David / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a> (Bild zugeschnitten)</p>
+          <p class="location-status" data-location-status aria-live="polite">Zug, 1 von 4</p>
         </div>
       </section>
       <div class="how-section-band sponti-how-modern">
